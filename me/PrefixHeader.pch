@@ -1,0 +1,81 @@
+//
+//  PrefixHeader.pch
+//  yangsheng
+//
+//  Created by jam on 17/7/6.
+//  Copyright © 2017年 jam. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+
+//importer
+
+#import "ZZHttpTool.h"
+#import "ZZUrlTool.h"
+
+#import "ZZNotificationName.h"
+
+#import "UIImageView+ZZWebImage.h"
+#import "UIView+ext.h"
+#import "NSDictionary+ext.h"
+#import "MBProgressHUD.h"
+#import "MBProgressHUD+ZZCustom.h"
+#import "NSString+ext.h"
+#import "UIImage+ext.h"
+#import "UITableView+Ext.h"
+#import "UINavigationController+Children.h"
+
+#import "NaviController.h"
+
+#import "CorneredImageView.h"
+
+//#import "UserModel.h"
+
+//#ifdef DEBUG
+//#define NSLog(FORMAT, ...) fprintf(stderr,"[%s:%ld]\t%s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String])
+//#else
+//#define NSLog(...)
+//#endif
+
+//Xcode Version
+#define XcodeSDK11 (__IPHONE_OS_VERSION_MAX_ALLOWED>=110000)
+
+//Strings
+
+#define BadNetworkDescription @"网络不通畅"
+#define AskToLoginDescription @"需要登录"
+
+
+//UIcolors
+
+#define rgba(a, b, c, d) ([UIColor colorWithRed:(a/255.0) green:(b/255.0) blue:(c/255.0) alpha:d])
+#define rgb(a, b, c) ([UIColor colorWithRed:(a/255.0) green:(b/255.0) blue:(c/255.0) alpha:1])
+
+#define graya(w,a) [UIColor colorWithWhite:(w/255.0) alpha:a]
+#define gray(w) [UIColor colorWithWhite:(w/255.0) alpha:1]
+
+
+//grays
+#define gray_051 gray(51) //0.2 
+#define gray_102 gray(102) //0.4
+#define gray_153 gray(153) //0.6
+#define gray_221 gray(221) //0.8 lines
+#define gray_230 gray(230) //0.9 tableview bgs
+
+#define gray_2 gray_051
+#define gray_4 gray_102
+#define gray_6 gray_153
+#define gray_8 gray_221
+#define gray_9 gray_230
+
+#define _pinkColor rgb(233,0,117)
+#define _redColor rgb(218,0,0)
+#define _blueColor rgb(59,119,240)
+
+#define _mainColor _blueColor
+
+#define _randomColor [UIColor colorWithHue:((CGFloat)(arc4random())/255.0) saturation:1 brightness:1 alpha:1]
+
+#endif /* PrefixHeader_pch */
