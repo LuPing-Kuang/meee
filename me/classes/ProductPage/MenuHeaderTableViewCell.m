@@ -56,9 +56,9 @@
 {
     _buttonModelArray=buttonModelArray;
     
-    [self.contentView removeAllSubviews];
+    [self removeAllSubviews];
     
-    self.contentView.backgroundColor=[UIColor whiteColor];
+    self.backgroundColor=[UIColor whiteColor];
 //    self.backgroundColor=[UIColor whiteColor];
     
     CGFloat bw=64;
@@ -69,7 +69,7 @@
         MenuHeaderButtonModel* model=[buttonModelArray objectAtIndex:i];
         
         UIView* bg=[[UIView alloc]initWithFrame:CGRectMake(0, 0, bw, bh)];
-        [self.contentView addSubview:bg];
+        [self addSubview:bg];
         
         UILabel* ti=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, bw-imgW, bh)];
         ti.text=model.title;
@@ -153,12 +153,12 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    CGFloat w=[self.contentView frame].size.width;
+    CGFloat w=[self frame].size.width;
     CGFloat wp=w/self.buttonModelArray.count;
-    CGFloat h=[self.contentView frame].size.height;
+    CGFloat h=[self frame].size.height;
     
-    for (NSInteger i=0;i<self.contentView.subviews.count;i++) {
-        UIView* view=[self.contentView.subviews objectAtIndex:i];
+    for (NSInteger i=0;i<self.subviews.count;i++) {
+        UIView* view=[self.subviews objectAtIndex:i];
         view.frame=CGRectMake(wp/2+(wp*i)-view.frame.size.width/2, h/2-view.frame.size.height/2, view.frame.size.width, view.frame.size.height);
     }
     CGFloat he=1/[[UIScreen mainScreen]scale];

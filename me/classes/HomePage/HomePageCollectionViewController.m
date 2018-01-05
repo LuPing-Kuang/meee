@@ -15,14 +15,7 @@
 
 #import "SimpleButtonsTableViewCell.h"
 
-typedef NS_ENUM(NSInteger,HomePageSection)
-{
-    HomePageSectionButtons,
-    HomePageSectionMallHot,
-    HomePageSectionPartners,
-    HomePageSectionCommons,
-    HomePageSectionCount,
-};
+#import "HomePageHttpTool.h"
 
 @interface HomePageCollectionViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,SimpleButtonsTableViewCellDelegate>
 
@@ -31,9 +24,9 @@ typedef NS_ENUM(NSInteger,HomePageSection)
 @implementation HomePageCollectionViewController
 {
     NSArray* arrayWithSimpleButtons;
-    NSMutableArray* mallHotArray;
-    NSMutableArray* partnerArray;
-    NSMutableArray* commonsArray;
+    NSMutableArray* advsArray;
+    NSMutableArray* bannersArray;
+    NSMutableArray* productSections;
 }
 
 - (void)viewDidLoad {
@@ -41,9 +34,31 @@ typedef NS_ENUM(NSInteger,HomePageSection)
     self.collectionView.backgroundColor=[UIColor whiteColor];
     self.navigationItem.title=@"ME微光电";
     
-    [self setAdvertiseHeaderViewWithPicturesUrls:[NSArray arrayWithObjects:@"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=4059113324,2480842661&fm=27&gp=0.jpg",@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1514364119633&di=f56f1aa2f7e78865bdd94bc584984720&imgtype=0&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fphotoblog%2F1303%2F16%2Fc10%2F18970073_18970073_1363441358578_mthumb.jpg",@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1514364147938&di=a0232a2d24ddfa235fbfcdb56a7b2e17&imgtype=jpg&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D1759907589%2C489492230%26fm%3D214%26gp%3D0.jpg", nil]];
-    
-    
+    [self refresh];
+}
+
+-(void)refresh
+{
+    [HomePageHttpTool getHomePageDatasCache:NO token:[UserModel token] success:^(NSArray *banners, NSArray *collections, NSArray *productSecns) {
+        advsArray=[NSMutableArray arrayWithArray:banners];
+        productSections=[NSMutableArray arrayWithArray:productSecns];
+        
+        
+        bannersArray=[NSMutableArray arrayWithArray:banners];
+        NSMutableArray* pics=[NSMutableArray array];
+        for (BannerModel* ban in banners) {
+            NSString* picur=ban.imgurl;
+            if (picur.length==0) {
+                picur=@"";
+            }
+            [pics addObject:picur];
+        }
+        [self setAdvertiseHeaderViewWithPicturesUrls:pics];
+        
+        [self.collectionView reloadData];
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
 }
 
 -(NSArray*)arrayWithSimpleButtons
@@ -64,18 +79,19 @@ typedef NS_ENUM(NSInteger,HomePageSection)
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return HomePageSectionCount;
+    return 1+productSections.count;
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    if(section==HomePageSectionButtons)
+    if(section==0)
     {
         return 1;
     }
     else
     {
-        return section*4;;
+        ProductSection* prosec=[productSections objectAtIndex:section-1];
+        return prosec.products.count;
     }
 }
 
@@ -83,41 +99,46 @@ typedef NS_ENUM(NSInteger,HomePageSection)
 {
     NSInteger section=indexPath.section;
     NSInteger row=indexPath.row;
-    if (section==HomePageSectionButtons)
+    if (section==0)
     {
         HomeFourCollectionViewCell* ce=[collectionView dequeueReusableCellWithReuseIdentifier:@"HomeFourCollectionViewCell" forIndexPath:indexPath];
         [ce setButtons:[self arrayWithSimpleButtons]];
         [ce setDelegate:self];
         return ce;
     }
-    else if (section==HomePageSectionMallHot) {
+    
+    ProductSection* prosec=[productSections objectAtIndex:section-1];
+    ProductModel* promo=[prosec.products objectAtIndex:row];
+    if (prosec.style==ProductSectionStyleOne) {
         ProductLargeCollectionViewCell* ce=[collectionView dequeueReusableCellWithReuseIdentifier:@"ProductLargeCollectionViewCell" forIndexPath:indexPath];
-        ce.title.text=ce.description;
-        ce.image.image=[UIImage imageNamed:[NSString stringWithFormat:@"demo%ld.png",(row+section)%5]];
-        ce.price.text=[NSString stringWithFloat:1000+section+row headUnit:@"¥" tailUnit:nil];
+        ce.title.text=promo.title;
+        [ce.image setImageUrl:promo.thumb];
+        ce.price.text=promo.price;
         return ce;
     }
-    else if(section==HomePageSectionPartners||section==HomePageSectionCommons)
+    else
     {
         ProductSmallCollectionViewCell* ce=[collectionView dequeueReusableCellWithReuseIdentifier:@"ProductSmallCollectionViewCell" forIndexPath:indexPath];
-        ce.title.text=ce.description;
-        ce.image.image=[UIImage imageNamed:[NSString stringWithFormat:@"demo%ld.png",(row+section)%5]];
-        ce.price.text=[NSString stringWithFloat:1000+section+row headUnit:@"¥" tailUnit:nil];
+        ce.title.text=promo.title;
+        [ce.image setImageUrl:promo.thumb];
+        ce.price.text=promo.price;
         return ce;
     }
-    UICollectionViewCell* cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.backgroundColor=_randomColor;
-    return cell;
+//    UICollectionViewCell* cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+//    cell.backgroundColor=_randomColor;
+//    return cell;
 }
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     CGFloat scrW=collectionView.frame.size.width;
-    if (indexPath.section==HomePageSectionButtons) {
+    if (indexPath.section==0) {
         
         return CGSizeMake(scrW, [SimpleButtonsTableViewCell heightWithButtonsCount:[self arrayWithSimpleButtons].count]);
     }
-    else if(indexPath.section==HomePageSectionMallHot)
+    ProductSection* prosec=[productSections objectAtIndex:indexPath.section-1];
+    if(prosec.style==ProductSectionStyleOne)
     {
         CGFloat he=110;
         if (scrW>=375) {
@@ -132,43 +153,33 @@ typedef NS_ENUM(NSInteger,HomePageSection)
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    if (section==HomePageSectionButtons) {
+    if (section==0) {
         return [super collectionView:collectionView layout:collectionViewLayout referenceSizeForHeaderInSection:section];
     }
-    else if(section==HomePageSectionCommons||section==HomePageSectionPartners||section==HomePageSectionMallHot)
+    else
     {
         if ([collectionView numberOfItemsInSection:section]>0) {
             return CGSizeMake(collectionView.frame.size.width,60);
         }
         return CGSizeZero;
     }
-    else{
-        return CGSizeMake(0, 0);
-    }
 }
 
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
-{
-    CGFloat scrW=collectionView.frame.size.width;
-    if (section==HomePageSectionPartners||section==HomePageSectionMallHot) {
-        return CGSizeMake(scrW, 10);
-    }
-    else
-    {
-        return [super collectionView:collectionView layout:collectionViewLayout referenceSizeForFooterInSection:section];
-    }
-}
+//-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
+//{
+//    CGFloat scrW=collectionView.frame.size.width;
+//    if (section==HomePageSectionPartners||section==HomePageSectionMallHot) {
+//        return CGSizeMake(scrW, 10);
+//    }
+//    else
+//    {
+//        return [super collectionView:collectionView layout:collectionViewLayout referenceSizeForFooterInSection:section];
+//    }
+//}
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    if (section==HomePageSectionPartners||section==HomePageSectionCommons) {
-        return 15;
-    }
-    else if(section==HomePageSectionMallHot)
-    {
-        return 15;
-    }
-    return 0.00;
+    return 15;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
@@ -178,33 +189,24 @@ typedef NS_ENUM(NSInteger,HomePageSection)
 
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    if (section==HomePageSectionPartners||section==HomePageSectionCommons) {
+    if (section!=0) {
+        
         return UIEdgeInsetsMake(5,15, 35, 15);
     }
-    else if(section==HomePageSectionMallHot)
-    {
-        return UIEdgeInsetsMake(5,15, 35, 15);
-    }
+    
     return UIEdgeInsetsZero;
 }
 
 -(UICollectionReusableView*)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-        if (indexPath.section==HomePageSectionMallHot||indexPath.section==HomePageSectionPartners||indexPath.section==HomePageSectionCommons) {
+        if (indexPath.section!=0) {
+            
+            ProductSection* prosec=[productSections objectAtIndex:indexPath.section-1];
+            
             ProductCateHeaderCollectionReusableView* cateHeader=[collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"ProductCateHeaderCollectionReusableView" forIndexPath:indexPath];
-            if (indexPath.section==HomePageSectionMallHot) {
-                cateHeader.title.text=@"商城热销";
-                cateHeader.detail.text=nil;
-            }
-            else if (indexPath.section==HomePageSectionPartners) {
-                cateHeader.title.text=@"合伙人推荐";
-                cateHeader.detail.text=@"查看更多";
-            }
-            else if (indexPath.section==HomePageSectionCommons) {
-                cateHeader.title.text=@"常用耗材推荐";
-                cateHeader.detail.text=@"查看更多";
-            }
+            cateHeader.title.text=prosec.title;
+            cateHeader.detail.text=nil;
             cateHeader.button.tag=indexPath.section;
             [cateHeader.button removeTarget:self action:@selector(checkmoreButtonClick:) forControlEvents:UIControlEventTouchUpInside];
             [cateHeader.button addTarget:self action:@selector(checkmoreButtonClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -219,6 +221,12 @@ typedef NS_ENUM(NSInteger,HomePageSection)
     }
     return [super collectionView:collectionView viewForSupplementaryElementOfKind:kind atIndexPath:indexPath];
 
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    NSLog(@"%@ did selected %@",collectionView,indexPath);
 }
 
 #pragma mark actions

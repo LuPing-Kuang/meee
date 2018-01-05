@@ -30,7 +30,7 @@
 
 @end
 
-@interface MenuHeaderTableViewCell : UITableViewHeaderFooterView
+@interface MenuHeaderTableViewCell : UIView
 
 @property (nonatomic,strong) NSArray<MenuHeaderButtonModel*>* buttonModelArray;
 @property (nonatomic,weak) id<MenuHeaderTableViewCellDelegate>delegate;

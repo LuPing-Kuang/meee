@@ -8,14 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#define RegisterUserSuccessNotification @"RegisterUserSuccessNotification"
-#define LoginUserSuccessNotification @"LoginUserSuccessNotification"
-
-#define SelectedNewCityNotification @"SelectedNewCityNotification"
-#define WeChatReturnAuthCodeNotification @"WeChatReturnAuthCodeNotification"
-
-#define ScheduleRefreshNetWorkNotification @"ScheduleRefreshNetWorkNotification"
-
 #define UITableViewReloadDataNotification @"UITableViewReloadDataNotification"
 #define UICollectionViewReloadSectionsNotification @"UICollectionViewReloadSectionsNotification"
 

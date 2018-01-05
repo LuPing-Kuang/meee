@@ -59,12 +59,6 @@ static NSString * const reuseIdentifier = @"Cell";
     self.collectionView.backgroundColor=[UIColor whiteColor];
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleDefault];
-}
-
 -(NSMutableArray*)dataSource
 {
     if (_dataSource==nil) {
@@ -88,12 +82,13 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(NSInteger)pageSize
 {
-    if (_pageSize<=0) {
-        NSDictionary* d=[ZZHttpTool pageParams];
-        
-        _pageSize=[[d valueForKey:@"pagesize"]integerValue];
-    }
-    return _pageSize;
+//    if (_pageSize<=0) {
+//        NSDictionary* d=[ZZHttpTool pageParams];
+//        
+//        _pageSize=[[d valueForKey:@"pagesize"]integerValue];
+//    }
+//    return _pageSize;
+    return 30;
 }
 
 
@@ -166,22 +161,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(void)advertiseView:(AdvertiseView *)adver didSelectedIndex:(NSInteger)index
 {
-    //    NSLog(@"advertise:%@ did selected index:%d",advHeader,(int)index);
-    
-}
-
--(void)reframeRefreshControlWithScrollView:(UIScrollView*)scrollView
-{
-    if (scrollView==self.collectionView) {
-        NSLog(@"offset:%@",NSStringFromCGPoint(scrollView.contentOffset));
-        NSLog(@"refresh:%@",NSStringFromCGRect(refreshControl.frame));
-        CGRect fr =refreshControl.frame;
-        fr.origin.y=scrollView.contentOffset.y;
-        
-        [refreshControl removeFromSuperview];
-        [self.collectionView addSubview:refreshControl];
-        refreshControl.frame=fr;
-    }
+        NSLog(@"advertise:%@ did selected index:%d",adver,(int)index);
 }
 
 -(UICollectionViewLayout*)collectionViewLayout
@@ -200,6 +180,24 @@ static NSString * const reuseIdentifier = @"Cell";
     // Dispose of any resources that can be recreated.
 }
 
+-(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UIView* bgView=cell.selectedBackgroundView;
+    if (!bgView) {
+        bgView=[[UIView alloc]init];
+        bgView.backgroundColor=[UIColor groupTableViewBackgroundColor];
+    }
+    bgView.frame=cell.bounds;
+    cell.selectedBackgroundView=bgView;
+    
+    bgView=cell.backgroundView;
+    if (!bgView) {
+        bgView=[[UIImageView alloc]init];
+        bgView.backgroundColor=[UIColor whiteColor];
+    }
+    bgView.frame=cell.bounds;
+    cell.backgroundView=bgView;
+}
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
@@ -251,18 +249,20 @@ static NSString * const reuseIdentifier = @"Cell";
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
 }
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     CGPoint contentOffset = scrollView.contentOffset;
     CGRect frame = scrollView.frame;
     CGSize contentSize=scrollView.contentSize;
     
-    CGFloat maa=64;
+//    CGFloat maa=20;
     
-    if (contentOffset.y >= contentSize.height - frame.size.height -maa || contentSize.height < frame.size.height-maa)
+    if (contentOffset.y >= contentSize.height - frame.size.height || contentSize.height < frame.size.height)
     {
-        NSLog(@"should lo");
-        [self loadMoreFooterViewShouldStartLoadMore:loadMoreFooter];
+        if (loadMoreFooter.loading==NO) {
+            NSLog(@"should loadmore");
+            [self loadMoreFooterViewShouldStartLoadMore:loadMoreFooter];
+        }
     }
 }
 

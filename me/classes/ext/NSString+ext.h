@@ -12,8 +12,6 @@
 
 @interface NSString (ext)
 
--(NSURL*)urlWithMainUrl;
-
 -(BOOL)isMobileNumber;
 
 -(BOOL)isEMailAddress;

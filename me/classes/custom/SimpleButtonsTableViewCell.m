@@ -80,13 +80,12 @@ const NSInteger simpleButtonRowCount=4;
         UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, widthPerEach, imageHeight)];
         UIImage* img=[UIImage imageNamed:mo.imageName];
 //        imageView.backgroundColor=_randomColor;
-        imageView.contentMode=UIViewContentModeCenter;
+        imageView.contentMode=UIViewContentModeScaleAspectFit;
         imageView.image=img;
         [bbg addSubview:imageView];
         
         if(!img)
         {
-            imageView.contentMode=UIViewContentModeScaleAspectFit;
             [imageView sd_setImageWithURL:[NSURL URLWithString:mo.imageName]];
         }
         
@@ -100,6 +99,36 @@ const NSInteger simpleButtonRowCount=4;
                 circle.backgroundColor=mo.circleColor;
             }
             [bbg insertSubview:circle belowSubview:imageView];
+        }
+        
+        if(mo.badge>0)
+        {
+            UILabel *bad=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
+            bad.backgroundColor=_redColor;
+            bad.textColor=[UIColor whiteColor];
+            bad.text=[NSString stringWithFormat:@"%ld",(long)mo.badge];
+            bad.font=[UIFont systemFontOfSize:14];
+            if(mo.badge>99)
+            {
+                bad.text=@"99+";
+            }
+            bad.textAlignment=NSTextAlignmentCenter;
+            [bad sizeToFit];
+            
+            CGRect newRe=bad.frame;
+            newRe.origin=CGPointMake(imageView.frame.size.width/2+10, -10);
+            newRe.size.width=newRe.size.width+8;
+            newRe.size.height=20;
+            if(newRe.size.width<newRe.size.height)
+            {
+                newRe.size.width=newRe.size.height;
+            }
+            
+            bad.frame=newRe;
+            
+            bad.layer.cornerRadius=newRe.size.height/2;
+            bad.clipsToBounds=YES;
+            [bbg addSubview:bad];
         }
         
         UIButton* btn=[[UIButton alloc]initWithFrame:bbg.bounds];
@@ -140,7 +169,7 @@ const NSInteger simpleButtonRowCount=4;
 
 @implementation SimpleButtonModel
 
--(instancetype)initWithTitle:(NSString *)title imageName:(NSString *)imageName identifier:(NSString *)identifier type:(NSInteger)type
+-(instancetype)initWithTitle:(NSString *)title imageName:(NSString *)imageName identifier:(NSString *)identifier type:(NSInteger)type badge:(NSInteger)badge
 {
     self=[super init];
     if (self) {
@@ -148,6 +177,7 @@ const NSInteger simpleButtonRowCount=4;
         self.imageName=imageName;
         self.identifier=identifier;
         self.type=type;
+        self.badge=badge;
     }
     return self;
 }
@@ -156,11 +186,11 @@ const NSInteger simpleButtonRowCount=4;
 {
     NSMutableArray* array=[NSMutableArray array];
     NSArray* titles=[NSArray arrayWithObjects:@"在线教育",@"视频教程",@"成为合伙人",@"敬请期待", nil];
-    NSArray* images=nil;
+    NSArray* images=[NSArray arrayWithObjects:@"demo1",@"demo2",@"demo3",@"demo4",nil];
     NSArray* identis=nil;
     for (NSNumber* num in types) {
         NSInteger i=num.integerValue;
-        SimpleButtonModel* mo=[[SimpleButtonModel alloc]initWithTitle:[titles objectAtIndex:i] imageName:[images objectAtIndex:i] identifier:i<identis.count?[identis objectAtIndex:i]:@"" type:i+1];
+        SimpleButtonModel* mo=[[SimpleButtonModel alloc]initWithTitle:[titles objectAtIndex:i] imageName:[images objectAtIndex:i] identifier:i<identis.count?[identis objectAtIndex:i]:@"" type:i+1 badge:0];
         [array addObject:mo];
     }
     return array;

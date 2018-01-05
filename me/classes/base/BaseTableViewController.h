@@ -1,18 +1,19 @@
 //
-//  BaseCollectionViewController.h
+//  BaseTableViewController.h
 //  yangsheng
 //
-//  Created by Macx on 17/7/14.
+//  Created by jam on 17/7/6.
 //  Copyright © 2017年 jam. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "AdvertiseView.h"
 
-@interface BaseCollectionViewController : UICollectionViewController<AdvertiseViewDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,UICollectionViewDelegate>
+@interface BaseTableViewController : UITableViewController<AdvertiseViewDelegate>
 
 @property (nonatomic,strong) NSMutableArray* dataSource;
 @property (nonatomic,strong) NSMutableArray* advsArray;
+//@property (nonatomic,strong) NSString* urlString;
 
 @property (nonatomic,assign) NSInteger currentPage;
 @property (nonatomic,assign) NSInteger pageSize;
@@ -20,14 +21,15 @@
 
 -(void)firstLoad;
 -(void)refresh;
+-(void)stopRefreshAfterSeconds;
 
 -(void)loadMore;
 
 -(void)setAdvertiseHeaderViewWithPicturesUrls:(NSArray*)picturesUrls;
 
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section;
-
 -(void)showLoadMoreView;
 -(void)hideLoadMoreView;
+
+-(void)tableViewReloadData;
 
 @end

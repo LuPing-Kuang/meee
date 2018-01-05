@@ -8,12 +8,7 @@
 
 #import "NSString+ext.h"
 
-@implementation NSString (ext)
-
--(NSURL*)urlWithMainUrl
-{
-    return [NSURL URLWithString:[ZZUrlTool fullUrlWithTail:self]];
-}
+@implementation NSString (ext)         
 
 -(BOOL)isMobileNumber
 {
