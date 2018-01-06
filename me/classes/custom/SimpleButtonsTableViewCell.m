@@ -73,20 +73,21 @@ const NSInteger simpleButtonRowCount=4;
         if (mo.titleColor) {
             titleLabel.textColor=mo.titleColor;
         }
-        titleLabel.font=[UIFont systemFontOfSize:14];
+        titleLabel.font=[UIFont systemFontOfSize:12];
         titleLabel.text=mo.title;
         [bbg addSubview:titleLabel];
         
         UIImageView* imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, widthPerEach, imageHeight)];
         UIImage* img=[UIImage imageNamed:mo.imageName];
 //        imageView.backgroundColor=_randomColor;
-        imageView.contentMode=UIViewContentModeScaleAspectFit;
+        imageView.contentMode=UIViewContentModeCenter;
         imageView.image=img;
+        imageView.clipsToBounds=YES;
         [bbg addSubview:imageView];
         
         if(!img)
         {
-            [imageView sd_setImageWithURL:[NSURL URLWithString:mo.imageName]];
+            [imageView setImageUrl:mo.imageName];
         }
         
         if (mo.circledImage) {
@@ -104,7 +105,7 @@ const NSInteger simpleButtonRowCount=4;
         if(mo.badge>0)
         {
             UILabel *bad=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
-            bad.backgroundColor=_redColor;
+            bad.backgroundColor=_mainColor;
             bad.textColor=[UIColor whiteColor];
             bad.text=[NSString stringWithFormat:@"%ld",(long)mo.badge];
             bad.font=[UIFont systemFontOfSize:14];
@@ -180,20 +181,6 @@ const NSInteger simpleButtonRowCount=4;
         self.badge=badge;
     }
     return self;
-}
-
-+(NSArray*)exampleButtonModelsWithTypes:(NSArray *)types
-{
-    NSMutableArray* array=[NSMutableArray array];
-    NSArray* titles=[NSArray arrayWithObjects:@"在线教育",@"视频教程",@"成为合伙人",@"敬请期待", nil];
-    NSArray* images=[NSArray arrayWithObjects:@"demo1",@"demo2",@"demo3",@"demo4",nil];
-    NSArray* identis=nil;
-    for (NSNumber* num in types) {
-        NSInteger i=num.integerValue;
-        SimpleButtonModel* mo=[[SimpleButtonModel alloc]initWithTitle:[titles objectAtIndex:i] imageName:[images objectAtIndex:i] identifier:i<identis.count?[identis objectAtIndex:i]:@"" type:i+1 badge:0];
-        [array addObject:mo];
-    }
-    return array;
 }
 
 @end

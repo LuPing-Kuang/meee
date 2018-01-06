@@ -98,4 +98,22 @@
     return str;
 }
 
+-(NSString*)stringValueFromUrlParamsKey:(NSString *)key
+{
+    NSArray* quesMarkArr=[self componentsSeparatedByString:@"?"];
+    if (quesMarkArr.lastObject) {
+        NSString* paras=quesMarkArr.lastObject;
+        NSArray* andMarkArr=[paras componentsSeparatedByString:@"&"];
+        for (NSString* oneParStr in andMarkArr) {
+            NSArray* keyValue=[oneParStr componentsSeparatedByString:@"="];
+            if (keyValue.count==2) {
+                if ([keyValue.firstObject isEqualToString:key]) {
+                    return keyValue.lastObject;
+                }
+            }
+        }
+    }
+    return @"";
+}
+
 @end

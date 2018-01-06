@@ -23,8 +23,7 @@
 
 @implementation HomePageCollectionViewController
 {
-    NSArray* arrayWithSimpleButtons;
-    NSMutableArray* advsArray;
+    NSMutableArray* collArray;
     NSMutableArray* bannersArray;
     NSMutableArray* productSections;
 }
@@ -40,11 +39,9 @@
 -(void)refresh
 {
     [HomePageHttpTool getHomePageDatasCache:NO token:[UserModel token] success:^(NSArray *banners, NSArray *collections, NSArray *productSecns) {
-        advsArray=[NSMutableArray arrayWithArray:banners];
         productSections=[NSMutableArray arrayWithArray:productSecns];
-        
-        
         bannersArray=[NSMutableArray arrayWithArray:banners];
+        collArray=[NSMutableArray arrayWithArray:collections];
         NSMutableArray* pics=[NSMutableArray array];
         for (BannerModel* ban in banners) {
             NSString* picur=ban.imgurl;
@@ -59,20 +56,6 @@
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
-}
-
--(NSArray*)arrayWithSimpleButtons
-{
-    if (arrayWithSimpleButtons.count==0) {
-        
-        NSMutableArray* array=[NSMutableArray array];
-        for (NSInteger i=0; i<4; i++) {
-            NSNumber* num=[NSNumber numberWithInteger:i];
-            [array addObject:num];
-        }
-        arrayWithSimpleButtons=[SimpleButtonModel exampleButtonModelsWithTypes:array];;
-    }
-    return arrayWithSimpleButtons;
 }
 
 #pragma mark collectionview datasource delegate
@@ -102,7 +85,7 @@
     if (section==0)
     {
         HomeFourCollectionViewCell* ce=[collectionView dequeueReusableCellWithReuseIdentifier:@"HomeFourCollectionViewCell" forIndexPath:indexPath];
-        [ce setButtons:[self arrayWithSimpleButtons]];
+        [ce setButtons:collArray];
         [ce setDelegate:self];
         return ce;
     }
@@ -135,7 +118,7 @@
     CGFloat scrW=collectionView.frame.size.width;
     if (indexPath.section==0) {
         
-        return CGSizeMake(scrW, [SimpleButtonsTableViewCell heightWithButtonsCount:[self arrayWithSimpleButtons].count]);
+        return CGSizeMake(scrW, [SimpleButtonsTableViewCell heightWithButtonsCount:collArray.count]);
     }
     ProductSection* prosec=[productSections objectAtIndex:indexPath.section-1];
     if(prosec.style==ProductSectionStyleOne)

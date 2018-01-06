@@ -22,8 +22,9 @@ typedef NS_ENUM(NSInteger,MyPageDataType)
 @property NSString* title;
 @property NSString* detail;
 @property NSInteger badge;
+@property NSString* action;
 @property id associateObject;
 
-+(instancetype)modelWithType:(MyPageDataType)type imageName:(NSString*)imageName title:(NSString*)title detail:(NSString*)detail badge:(NSInteger)badge associateObject:(id)obj;
++(instancetype)modelWithType:(MyPageDataType)type imageName:(NSString*)imageName title:(NSString*)title detail:(NSString*)detail badge:(NSInteger)badge action:(NSString*)action associateObject:(id)obj;
 
 @end

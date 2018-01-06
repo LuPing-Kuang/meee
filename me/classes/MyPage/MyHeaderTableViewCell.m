@@ -12,6 +12,12 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
+    self.headBgView.clipsToBounds=YES;
+    self.headBgView.layer.cornerRadius=self.headBgView.frame.size.width/2;
+    
+    self.headImageView.clipsToBounds=YES;
+    self.headImageView.layer.cornerRadius=self.headImageView.frame.size.width/2;
     // Initialization code
 }
 
@@ -21,4 +27,6 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)settingButton:(id)sender {
+}
 @end

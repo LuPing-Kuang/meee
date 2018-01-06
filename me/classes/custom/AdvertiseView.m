@@ -23,7 +23,7 @@ const CGFloat advertiseViewAutoScrollTime=3.0;
 
 +(instancetype)defaultAdvertiseView
 {
-    AdvertiseView* a=[[AdvertiseView alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen]bounds].size.width, [[UIScreen mainScreen]bounds].size.width*0.45)];
+    AdvertiseView* a=[[AdvertiseView alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen]bounds].size.width, [[UIScreen mainScreen]bounds].size.width/3*2)];
 //    a.backgroundColor=[UIColor lightGrayColor];
     return a;
 }
@@ -67,7 +67,7 @@ const CGFloat advertiseViewAutoScrollTime=3.0;
         }
         else
         {
-            [img sd_setImageWithURL:[NSURL URLWithString:[picturesUrls objectAtIndex:i]]];
+            [img setImageUrl:[picturesUrls objectAtIndex:i]];
         }
         [scroll addSubview:img];
     }

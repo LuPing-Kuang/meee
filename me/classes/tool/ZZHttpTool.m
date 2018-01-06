@@ -60,7 +60,12 @@
 //        NSString* suburl=[url stringByReplacingOccurrencesOfString:[ZZUrlTool main] withString:@"main/"];
 //        NSString* getorpost=[NSString stringWithFormat:@"%@:%@",method,suburl];
 //        [MobClick event:@"getorpost" attributes:[NSDictionary dictionaryWithObject:getorpost forKey:@"method:url"]];
-        
+        if(params)
+        {
+            NSMutableDictionary* pararara=[NSMutableDictionary dictionaryWithDictionary:params];
+            [pararara setValue:@"1" forKey:@"ios"];
+            params=pararara;
+        }
         NSArray* keys=[params allKeys];
         NSMutableArray* keysAndValues=[NSMutableArray array];
         for (NSString* key in keys) {
@@ -286,7 +291,7 @@
     NSData * data2 = [receiveStr dataUsingEncoding:NSUTF8StringEncoding];
     
     NSDictionary* result=[NSJSONSerialization JSONObjectWithData:data2 options:NSJSONReadingMutableLeaves error:nil];
-//    result=AFJSONObjectByRemovingKeysWithNullValues(result, NSJSONReadingMutableLeaves);
+    result=AFJSONObjectByRemovingKeysWithNullValues(result, NSJSONReadingMutableLeaves);
     if(result==nil)
     {
         NSLog(@"get null dictionary");//why nil??

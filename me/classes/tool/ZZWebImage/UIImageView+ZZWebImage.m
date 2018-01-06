@@ -20,6 +20,12 @@ static char *ZZWebImageUrlKey="ZZWebImageUrlKey";
 
 -(void)setImageUrl:(NSString *)url placeHolder:(UIImage *)placeHolder
 {
+    UIImage* localImage=[UIImage imageNamed:url];
+    if (localImage) {
+        self.image=localImage;
+        return;
+    }
+    
     __weak typeof(self) ws=self;
     [self setImageUrl:url placeHolder:placeHolder completed:^(UIImage *image, NSError *error, NSString *imageUrl) {
         ws.image=image;
@@ -39,22 +45,13 @@ static char *ZZWebImageUrlKey="ZZWebImageUrlKey";
         self.webImageUrl=url;
         [ZZWebImageTool getImageFromUrl:url success:^(UIImage *image, NSError *error) {
             if (image&&[url isEqualToString:self.webImageUrl]) {
+                self.image=image;
                 if (completion) {
                     completion(image,error,url);
                 }
             }
         }];
     }
-}
-
--(void)sd_setImageWithURL:(NSURL *)url
-{
-    [self setImageUrl:url.absoluteString];
-}
-
--(void)sd_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder
-{
-    [self setImageUrl:url.absoluteString placeHolder:placeholder];
 }
 
 -(void)setWebImageUrl:(NSString *)webImageUrl

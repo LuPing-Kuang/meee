@@ -14,11 +14,9 @@
 
 #import "MyPageDataModel.h"
 
-@interface MyPageViewController ()<SimpleButtonsTableViewCellDelegate>
+#import "MyPageHttpTool.h"
 
-{
-    NSMutableArray* datasource;
-}
+@interface MyPageViewController ()<SimpleButtonsTableViewCellDelegate>
 
 @end
 
@@ -27,53 +25,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationItem.title=@"会员中心";
+    
     self.tableView.estimatedRowHeight=100;
-    [self configureDataSource];
+    [self refresh];
     // Do any additional setup after loading the view.
 }
 
--(void)configureDataSource
+-(void)refresh
 {
-    datasource=[NSMutableArray array];
-    
-    NSMutableArray* collections=[NSMutableArray array];
-    [collections addObject:[[SimpleButtonModel alloc]initWithTitle:@"待付款" imageName:@"demo0" identifier:nil type:0 badge:1]];
-    [collections addObject:[[SimpleButtonModel alloc]initWithTitle:@"待发货" imageName:@"demo0" identifier:nil type:0 badge:12]];
-    [collections addObject:[[SimpleButtonModel alloc]initWithTitle:@"待收货" imageName:@"demo0" identifier:nil type:0 badge:144444]];
-    [collections addObject:[[SimpleButtonModel alloc]initWithTitle:@"退换货" imageName:@"demo0" identifier:nil type:0 badge:10000000]];
-    
-    NSArray* sectionHeader=[NSArray arrayWithObjects:
-                            [MyPageDataModel modelWithType:MyPageDataTypeHeader imageName:nil title:nil detail:nil badge:0 associateObject:nil],
-                            [MyPageDataModel modelWithType:MyPageDataTypeNormal imageName:nil title:@"我的订单" detail:@"查看全部订单" badge:0 associateObject:nil],
-                            [MyPageDataModel modelWithType:MyPageDataTypeCollection imageName:nil title:nil detail:nil badge:0 associateObject:collections],
-                            nil];
-    
-    NSArray* sectionTokens=[NSArray arrayWithObjects:
-                            [MyPageDataModel modelWithType:MyPageDataTypeNormal imageName:nil title:@"领取优惠券" detail:nil badge:10 associateObject:nil],
-                            [MyPageDataModel modelWithType:MyPageDataTypeNormal imageName:nil title:@"我的优惠券" detail:nil badge:0 associateObject:nil], nil];
-    
-    NSArray* sectionScores=[NSArray arrayWithObjects:
-                            [MyPageDataModel modelWithType:MyPageDataTypeNormal imageName:nil title:@"积分排行" detail:nil badge:10 associateObject:nil], nil];
-    
-    NSArray* sectionMines=[NSArray arrayWithObjects:
-                            [MyPageDataModel modelWithType:MyPageDataTypeNormal imageName:nil title:@"我的购物车" detail:nil badge:10 associateObject:nil],
-                            [MyPageDataModel modelWithType:MyPageDataTypeNormal imageName:nil title:@"我的关注" detail:nil badge:0 associateObject:nil],
-                           [MyPageDataModel modelWithType:MyPageDataTypeNormal imageName:nil title:@"我的足迹" detail:nil badge:10 associateObject:nil],
-                           [MyPageDataModel modelWithType:MyPageDataTypeNormal imageName:nil title:@"我的全返" detail:nil badge:10 associateObject:nil],nil];
-    
-    NSArray* sectionRecords=[NSArray arrayWithObjects:
-                            [MyPageDataModel modelWithType:MyPageDataTypeNormal imageName:nil title:@"充值记录" detail:nil badge:10 associateObject:nil], nil];
-    
-    NSArray* sectionManagements=[NSArray arrayWithObjects:
-                            [MyPageDataModel modelWithType:MyPageDataTypeNormal imageName:nil title:@"收货地址管理" detail:nil badge:10 associateObject:nil], nil];
-    
-    [datasource addObject:sectionHeader];
-    [datasource addObject:sectionTokens];
-    [datasource addObject:sectionScores];
-    [datasource addObject:sectionMines];
-    [datasource addObject:sectionRecords];
-    [datasource addObject:sectionManagements];
-    [self.tableView reloadData];
+    [MyPageHttpTool getMyPageDataCache:NO token:[UserModel token] success:^(NSArray *myPageSections) {
+        [self.dataSource removeAllObjects];
+        [self.dataSource addObjectsFromArray:myPageSections];
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        [self.tableView reloadData];
+    }];
 }
 
 #pragma mark tableview datasource delegate
@@ -90,12 +57,12 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return datasource.count;
+    return self.dataSource.count;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSArray* sectionArr=[datasource objectAtIndex:section];
+    NSArray* sectionArr=[self.dataSource objectAtIndex:section];
     return sectionArr.count;
 }
 
@@ -104,7 +71,7 @@
     NSInteger section=indexPath.section;
     NSInteger row=indexPath.row;
     
-    NSArray* sectionArr=[datasource objectAtIndex:section];
+    NSArray* sectionArr=[self.dataSource objectAtIndex:section];
     MyPageDataModel* mo=[sectionArr objectAtIndex:row];
     
     if (mo.dataType==MyPageDataTypeNormal) {
@@ -126,13 +93,46 @@
     }
     else if(mo.dataType==MyPageDataTypeHeader)
     {
+        UserModel* us=mo.associateObject;
         MyHeaderTableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"MyHeaderTableViewCell" forIndexPath:indexPath];
+        [cell.headImageView setImageUrl:us.avatar];
+        cell.moneyLabel.text=us.money;
+        cell.scoreLabel.text=[NSString stringWithFormat:@"%ld",(long)us.credit.integerValue];
+        cell.nameLabel.text=us.nickname;
+        cell.levelName.text=[NSString stringWithFormat:@"[%@]",us.levelname];
+        if (us.levelname.length==0) {
+            cell.levelName.text=nil;
+        }
+
+        [cell.topupButton addTarget:self action:@selector(goToTopUp) forControlEvents:UIControlEventTouchUpInside];
+        [cell.settingButton addTarget:self action:@selector(goToSetting) forControlEvents:UIControlEventTouchUpInside];
+        [cell.headButton addTarget:self action:@selector(goToChangeAvatar) forControlEvents:UIControlEventTouchUpInside];
+        
         return cell;
     }
     
     //if nothing
     
     return [[UITableViewCell alloc]init];
+}
+
+#pragma mark actions
+
+-(void)goToSetting
+{
+    NSLog(@"setting");
+}
+
+-(void)goToTopUp
+{
+    NSLog(@"topup");
+}
+
+-(void)goToChangeAvatar
+{
+    NSLog(@"avatar");
+    UIViewController* log=[[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    [self presentViewController:log animated:YES completion:nil];
 }
 
 @end

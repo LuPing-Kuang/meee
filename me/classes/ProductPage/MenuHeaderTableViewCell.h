@@ -16,9 +16,12 @@
 @property (nonatomic,strong) NSString* title;
 @property (nonatomic,strong) NSString* ascendingString;
 @property (nonatomic,strong) NSString* descendingString;
+@property (nonatomic,strong) NSString* imageName;
+@property (nonatomic,assign) BOOL alone;
+
 @property (nonatomic,strong,readonly) NSString* sortString;
 
-+(instancetype)modelWithTitle:(NSString*)title selected:(BOOL)selected ordered:(BOOL)ordered ascending:(BOOL)ascending ascendingString:(NSString*)ascendingString descendingString:(NSString*)descendingString;
++(instancetype)modelWithTitle:(NSString*)title selected:(BOOL)selected ordered:(BOOL)ordered ascending:(BOOL)ascending ascendingString:(NSString*)ascendingString descendingString:(NSString*)descendingString imageName:(NSString*)imageName alone:(BOOL)alone;
 
 @end
 

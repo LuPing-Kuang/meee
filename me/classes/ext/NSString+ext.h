@@ -26,4 +26,6 @@
 
 -(NSString*)stringAppendingUnit:(NSString*)unit;
 
+-(NSString*)stringValueFromUrlParamsKey:(NSString*)key;
+
 @end

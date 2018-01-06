@@ -10,7 +10,7 @@
 
 @implementation MenuHeaderButtonModel
 
-+(instancetype)modelWithTitle:(NSString *)title selected:(BOOL)selected ordered:(BOOL)ordered ascending:(BOOL)ascending ascendingString:(NSString*)ascendingString descendingString:(NSString*)descendingString
++(instancetype)modelWithTitle:(NSString *)title selected:(BOOL)selected ordered:(BOOL)ordered ascending:(BOOL)ascending ascendingString:(NSString*)ascendingString descendingString:(NSString*)descendingString imageName:(NSString *)imageName alone:(BOOL)alone
 {
     MenuHeaderButtonModel* m=[[MenuHeaderButtonModel alloc]init];
     m.title=title;
@@ -19,6 +19,8 @@
     m.ascending=ascending;
     m.ascendingString=ascendingString;
     m.descendingString=descendingString;
+    m.imageName=imageName;
+    m.alone=alone;
     return m;
 }
 
@@ -58,10 +60,12 @@
     
     [self removeAllSubviews];
     
-    self.backgroundColor=[UIColor whiteColor];
 //    self.backgroundColor=[UIColor whiteColor];
-    
-    CGFloat bw=64;
+//    self.backgroundColor=[UIColor whiteColor];
+    if (buttonModelArray.count<=0) {
+        return;
+    }
+    CGFloat bw=self.frame.size.width/buttonModelArray.count;
     CGFloat bh=32;
     CGFloat imgW=10;
     CGFloat imgH=imgW;
@@ -79,7 +83,7 @@
         ti.textAlignment=NSTextAlignmentCenter;
         [bg addSubview:ti];
         
-        UILabel* upImg=[[UILabel alloc]initWithFrame:CGRectMake(bw-imgW-5, bh/2-imgH+1, imgW, imgH)];
+        UILabel* upImg=[[UILabel alloc]initWithFrame:CGRectMake(bw-imgW-12, bh/2-imgH+1, imgW, imgH)];
         upImg.text=@"▲";
         upImg.textColor=gray_6;
         upImg.font=[UIFont systemFontOfSize:9];
@@ -93,10 +97,21 @@
         doImg.textAlignment=NSTextAlignmentCenter;
         [bg addSubview:doImg];
         
+        UIImageView* rightImage=[[UIImageView alloc]initWithImage:[UIImage imageNamed:model.imageName]];
+        rightImage.center=CGPointMake(bw-imgW-8, bh/2);
+        [bg addSubview:rightImage];
+        
+        UIView* line=[[UIView alloc]initWithFrame:CGRectMake(bw, 4, 1, bh-8)];
+        line.backgroundColor=gray_8;
+        [bg addSubview:line];
+        
         if (model.ordered==NO) {
             ti.frame=bg.bounds;
             upImg.hidden=YES;
             doImg.hidden=YES;
+        }
+        if (rightImage.image) {
+            ti.frame=CGRectMake(0, 0, bw-imgW, bh);
         }
         if (model.selected) {
             ti.textColor=_mainColor;
@@ -107,6 +122,8 @@
             {
                 doImg.textColor=_mainColor;
             }
+            rightImage.image=[rightImage.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            rightImage.tintColor=_mainColor;
         }
         
         UIButton* btn=[[UIButton alloc]initWithFrame:bg.bounds];
@@ -123,9 +140,16 @@
     NSInteger tag=button.tag;
     MenuHeaderButtonModel* mo=[self.buttonModelArray objectAtIndex:tag];
     BOOL oldSelected=mo.selected;
-    for (MenuHeaderButtonModel* m in self.buttonModelArray) {
-        m.selected=NO;
+    if(!mo.alone)
+    {
+        for (MenuHeaderButtonModel* m in self.buttonModelArray) {
+            if (m.alone) {
+                break;
+            }
+            m.selected=NO;
+        }
     }
+    
     mo.selected=YES;
     if (mo.ordered) {
         mo.ascending=!mo.ascending;

@@ -41,6 +41,4 @@
 
 -(instancetype)initWithTitle:(NSString*)title imageName:(NSString*)imageName identifier:(NSString*)identifier type:(NSInteger)type badge:(NSInteger)badge;
 
-+(NSArray*)exampleButtonModelsWithTypes:(NSArray<NSNumber*>*)types;
-
 @end

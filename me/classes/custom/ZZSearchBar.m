@@ -20,7 +20,7 @@
     bar.font=[UIFont systemFontOfSize:13];
     bar.returnKeyType=UIReturnKeySearch;
     
-    UIImage* seaImg=[UIImage imageNamed:@"searchGraySmall"];
+    UIImage* seaImg=[UIImage imageNamed:@"search_icon"];
     
     //UIGraphicsBeginImageContext(CGSizeMake(16, 16));
     //[seaImg drawInRect:CGRectMake(0, 0, 16, 16)];
@@ -34,21 +34,22 @@
     bar.leftView=icon;
     bar.leftViewMode=UITextFieldViewModeAlways;
     
+    bar.clearButtonMode=UITextFieldViewModeWhileEditing;
 //    bar.translatesAutoresizingMaskIntoConstraints = NO;
-    /*
-    UIButton* cle=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, bar.frame.size.height, bar.frame.size.height)];
-    [cle setImage:[UIImage imageNamed:@"clear"] forState:UIControlStateNormal];
-    [cle addTarget:bar action:@selector(clearText) forControlEvents:UIControlEventTouchUpInside];
-    bar.rightView=cle;
-    bar.rightViewMode=UITextFieldViewModeAlways;
-    */
+    
+//    UIButton* cle=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, bar.frame.size.height, bar.frame.size.height)];
+//    [cle setImage:[UIImage imageNamed:@"clear"] forState:UIControlStateNormal];
+//    [cle addTarget:bar action:@selector(clearText) forControlEvents:UIControlEventTouchUpInside];
+//    bar.rightView=cle;
+//    bar.rightViewMode=UITextFieldViewModeAlways;
+    
     return bar;
 }
 
 -(void)clearText
 {
     self.text=@"";
-    [self becomeFirstResponder];
+//    [self becomeFirstResponder];
 }
 
 //-(CGSize)intrinsicContentSize

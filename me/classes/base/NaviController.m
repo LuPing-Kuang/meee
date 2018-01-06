@@ -21,7 +21,7 @@
     
     self.navigationBar.tintColor=[UIColor blackColor];
     
-//    self.navigationBar.translucent=NO;
+    self.navigationBar.translucent=NO;
     
 //    self.navigationBar.tintColor=[UIColor whiteColor];
     

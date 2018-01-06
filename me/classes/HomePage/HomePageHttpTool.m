@@ -7,6 +7,7 @@
 //
 
 #import "HomePageHttpTool.h"
+#import "SimpleButtonsTableViewCell.h"
 
 @implementation HomePageHttpTool
 
@@ -20,7 +21,7 @@
     
     [self get:str params:paar usingCache:cache success:^(NSDictionary *dict) {
         NSDictionary* data=[dict valueForKey:@"data"];
-        NSDictionary* items=[data valueForKey:@"items"];
+        NSArray* items=[data valueForKey:@"items"];
         
         
         NSMutableArray* banners=[NSMutableArray array];
@@ -28,27 +29,30 @@
         NSMutableArray* productSections=[NSMutableArray array];
         
         ProductSection* lastMetSection=nil;
-        for (NSString* key1 in items.allKeys) {
-            NSDictionary* dic=[items valueForKey:key1];
-            NSString* idd=[dic valueForKey:@"id"];
-            NSDictionary* d2=[dic valueForKey:@"data"];
+        for (NSDictionary* it in items) {
+            NSString* idd=[it valueForKey:@"id"];
+            NSArray* d2=[it valueForKey:@"data"];
             
             if ([idd isEqualToString:@"banner"]&&banners.count==0) {
-                for (NSDictionary* bad in d2.allValues) {
+                for (NSDictionary* bad in d2) {
                     BannerModel* banm=[BannerModel yy_modelWithDictionary:bad];
                     [banners addObject:banm];
                 }
             }
-//            else if([idd isEqualToString:@"menu"])
-//            {
-//                for (NSDictionary* men in collection) {
-//                    statements
-//                }
-//            }
+            else if([idd isEqualToString:@"menu"])
+            {
+                for (NSDictionary* men in d2) {
+                    NSString* text=[men valueForKey:@"text"];
+                    NSString* imgurl=[men valueForKey:@"imgurl"];
+                    NSString* linkurl=[men valueForKey:@"linkurl"];
+                    SimpleButtonModel* btu=[[SimpleButtonModel alloc]initWithTitle:text imageName:imgurl identifier:linkurl type:0 badge:0];
+                    [collections addObject:btu];
+                }
+            }
             else if([idd isEqualToString:@"title"])
             {
                 lastMetSection=[[ProductSection alloc]init];
-                lastMetSection.title=[dic valueForKeyPath:@"params.title"];
+                lastMetSection.title=[it valueForKeyPath:@"params.title"];
             }
             else if([idd isEqualToString:@"goods"])
             {
@@ -56,7 +60,7 @@
                 if (!thisMeSection) {
                     thisMeSection=[[ProductSection alloc]init];
                 }
-                NSString* liststyle=[dic valueForKeyPath:@"style.liststyle"];
+                NSString* liststyle=[it valueForKeyPath:@"style.liststyle"];
                 if ([liststyle respondsToSelector:@selector(length)]) {
                     if (liststyle.length==0) {
                         thisMeSection.style=ProductSectionStyleOne;
@@ -68,9 +72,8 @@
                 }
                 
                 NSMutableArray* goods=[NSMutableArray array];
-                if ([d2 respondsToSelector:@selector(allKeys)]) {
-                    for (NSString* key2 in d2.allKeys) {
-                        NSDictionary* goo=[d2 valueForKey:key2];
+                if ([d2 respondsToSelector:@selector(firstObject)]) {
+                    for (NSDictionary* goo in d2) {
                         ProductModel* prom=[ProductModel yy_modelWithDictionary:goo];
                         [goods addObject:prom];
                     }

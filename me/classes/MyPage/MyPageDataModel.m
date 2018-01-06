@@ -10,7 +10,7 @@
 
 @implementation MyPageDataModel
 
-+(instancetype)modelWithType:(MyPageDataType)type imageName:(NSString *)imageName title:(NSString *)title detail:(NSString *)detail badge:(NSInteger)badge associateObject:(id)obj
++(instancetype)modelWithType:(MyPageDataType)type imageName:(NSString *)imageName title:(NSString *)title detail:(NSString *)detail badge:(NSInteger)badge action:(NSString *)action associateObject:(id)obj
 {
     MyPageDataModel* mo=[[MyPageDataModel alloc]init];
     mo.dataType=type;
@@ -18,6 +18,7 @@
     mo.title=title;
     mo.detail=detail;
     mo.badge=badge;
+    mo.action=action;
     mo.associateObject=obj;
     return mo;
 }
