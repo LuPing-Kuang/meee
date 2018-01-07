@@ -11,5 +11,6 @@
 @interface CorneredButton : UIButton
 
 @property (nonatomic) IBInspectable UIColor* borderColor;
+@property (nonatomic) IBInspectable CGFloat cornerRadius;
 
 @end

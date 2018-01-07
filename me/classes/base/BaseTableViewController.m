@@ -199,24 +199,26 @@
 
 #pragma mark - table view delegate
 
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UIView* bgView=cell.selectedBackgroundView;
-    if (!bgView) {
-        bgView=[[UIView alloc]init];
-        bgView.backgroundColor=[UIColor groupTableViewBackgroundColor];
-    }
-    bgView.frame=cell.bounds;
-    cell.selectedBackgroundView=bgView;
-    
-    bgView=cell.backgroundView;
-    if (!bgView) {
-        bgView=[[UIImageView alloc]init];
-        bgView.backgroundColor=[UIColor whiteColor];
-    }
-    bgView.frame=cell.bounds;
-    cell.backgroundView=bgView;
-}
+//-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    UIView* bgView=cell.selectedBackgroundView;
+//    if (!bgView) {
+//        bgView=[[UIView alloc]init];
+//    }
+//    bgView.frame=cell.bounds;
+//    
+//    bgView.backgroundColor=[UIColor redColor];
+//    cell.selectedBackgroundView=bgView;
+//    
+//    bgView=cell.backgroundView;
+//    if (!bgView) {
+//        bgView=[[UIImageView alloc]init];
+//    }
+//    
+//    bgView.backgroundColor=[UIColor whiteColor];
+//    bgView.frame=cell.bounds;
+//    cell.backgroundView=bgView;
+//}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

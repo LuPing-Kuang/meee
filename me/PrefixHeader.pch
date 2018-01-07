@@ -21,6 +21,7 @@
 #import "UIImage+ext.h"
 #import "UINavigationController+Children.h"
 #import "YYModel.h"
+#import "MBProgressHUD+ZZCustom.h"
 
 #import "ZZUrlTool.h"
 #import "ZZHttpTool.h"
@@ -71,7 +72,7 @@
 #define gray_9 gray_230
 
 #define _pinkColor rgb(233,0,117)
-#define _redColor rgb(253,85,85)
+#define _redColor rgb(236,97,97)
 #define _blueColor rgb(59,119,240)
 
 #define _mainColor _redColor

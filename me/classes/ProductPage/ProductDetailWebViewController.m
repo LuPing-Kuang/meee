@@ -1,25 +1,35 @@
 //
-//  LoginViewController.m
+//  ProductDetailWebViewController.m
 //  me
 //
-//  Created by jam on 2018/1/5.
+//  Created by jam on 2018/1/7.
 //  Copyright © 2018年 bangju. All rights reserved.
 //
 
-#import "LoginViewController.h"
+#import "ProductDetailWebViewController.h"
 
-@interface LoginViewController ()
-
-@property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
-@property (weak, nonatomic) IBOutlet UIView *otherLoginWayView;
+@interface ProductDetailWebViewController ()
 
 @end
 
-@implementation LoginViewController
+@implementation ProductDetailWebViewController
+
+-(instancetype)initWithProductId:(NSString *)productId token:(NSString *)token
+{
+    self=[super init];
+    self.productId=productId;
+    self.token=token;
+    return self;
+}
 
 - (void)viewDidLoad {
+    
+    NSString* str=[ZZUrlTool fullUrlWithTail:HTML_GoodDetail];
+    str=[NSString stringWithFormat:@"%@&id=%@&access_token=%@",str,self.productId,self.token];
+    self.url=[NSURL URLWithString:str];
+    
     [super viewDidLoad];
+    self.title=@"商品详情";
     // Do any additional setup after loading the view.
 }
 
@@ -37,20 +47,5 @@
     // Pass the selected object to the new view controller.
 }
 */
-- (IBAction)closelogin:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (IBAction)forgetPassword:(id)sender {
-}
-
-- (IBAction)gologin:(id)sender {
-}
-
-- (IBAction)gocreateNew:(id)sender {
-}
-
-- (IBAction)wechatLogin:(id)sender {
-}
 
 @end

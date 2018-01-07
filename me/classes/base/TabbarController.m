@@ -31,6 +31,15 @@
 //        item.image=[img_n imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         item.selectedImage=[img_s imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         
+        if ([item respondsToSelector:@selector(setBadgeColor:)]) {
+            [item setBadgeColor:_mainColor];
+        }
+        if ([vc isKindOfClass:[UINavigationController class]]) {
+            UINavigationController* nav=(UINavigationController*)vc;
+            if (nav.topViewController) {
+                nav.topViewController.view.backgroundColor=nav.topViewController.view.backgroundColor;
+            }
+        }
     }
     
 //    self.tabBar.shadowImage=[UIImage imageWithColor:[UIColor groupTableViewBackgroundColor] size:CGSizeMake(self.tabBar.bounds.size.width, 0.5)];

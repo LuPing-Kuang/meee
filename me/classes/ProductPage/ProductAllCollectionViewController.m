@@ -16,6 +16,8 @@
 
 #import "ProductPageHttpTool.h"
 
+#import "ProductDetailWebViewController.h"
+
 typedef NS_ENUM(NSInteger,ProductCollectionLayoutStyle)
 {
     ProductCollectionLayoutStyleSmall,
@@ -77,11 +79,11 @@ typedef NS_ENUM(NSInteger,ProductCollectionLayoutStyle)
     
     menuHeader=[[MenuHeaderTableViewCell alloc]initWithFrame:header.bounds];
     menuHeaderButtonModels=[NSMutableArray arrayWithObjects:
-                            [MenuHeaderButtonModel modelWithTitle:@"综合" selected:NO ordered:NO ascending:NO ascendingString:@"" descendingString:@"" imageName:nil alone:NO],
+                            [MenuHeaderButtonModel modelWithTitle:@"综合" selected:YES ordered:NO ascending:NO ascendingString:@"" descendingString:@"" imageName:nil alone:NO],
                             
-                            [MenuHeaderButtonModel modelWithTitle:@"销量" selected:NO ordered:NO ascending:NO ascendingString:@"" descendingString:@"" imageName:nil alone:NO],
+                            [MenuHeaderButtonModel modelWithTitle:@"销量" selected:NO ordered:NO ascending:NO ascendingString:@"sales" descendingString:@"sales" imageName:nil alone:NO],
                             
-                            [MenuHeaderButtonModel modelWithTitle:@"价格" selected:NO ordered:YES ascending:NO ascendingString:@"" descendingString:@"" imageName:nil alone:NO],
+                            [MenuHeaderButtonModel modelWithTitle:@"价格" selected:NO ordered:YES ascending:NO ascendingString:@"minprice" descendingString:@"minprice" imageName:nil alone:NO],
                             
                             [MenuHeaderButtonModel modelWithTitle:@"筛选" selected:NO ordered:NO ascending:NO ascendingString:@"" descendingString:@"" imageName:@"sift" alone:YES],
                             nil];
@@ -92,7 +94,7 @@ typedef NS_ENUM(NSInteger,ProductCollectionLayoutStyle)
     
     
     UIView* bottomLine=[[UIView alloc]initWithFrame:CGRectMake(0, header.frame.size.height-0.5, header.frame.size.width, 0.5)];
-    bottomLine.backgroundColor=gray_6;
+    bottomLine.backgroundColor=gray_8;
     [header addSubview:bottomLine];
     
     
@@ -126,7 +128,19 @@ typedef NS_ENUM(NSInteger,ProductCollectionLayoutStyle)
     BOOL issendfree=NO;
     BOOL istime=NO;
     NSString* order=nil;
-    NSString* by=nil;
+    NSString* by=@"desc";
+    
+    for (MenuHeaderButtonModel* menum in menuHeaderButtonModels) {
+        if (!menum.alone) {
+            if (menum.selected) {
+                order=menum.sortString;
+                if (menum.ascending) {
+                    by=@"asc";
+                }
+                break;
+            }
+        }
+    }
     
     
     [ProductPageHttpTool getProductPageCache:NO token:access_token page:page pagesize:pagesize keywords:keywords cate:cate recommand:isrecommand new:isnew hot:ishot discount:isdiscount sendfree:issendfree time:istime order:order by:by success:^(NSArray *result) {
@@ -212,7 +226,7 @@ typedef NS_ENUM(NSInteger,ProductCollectionLayoutStyle)
     }
     
     CGFloat www=scrW*0.5-13;
-    return CGSizeMake(www,www+67);
+    return CGSizeMake(www,www+77);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
@@ -239,16 +253,19 @@ typedef NS_ENUM(NSInteger,ProductCollectionLayoutStyle)
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     NSLog(@"%@ did selected %@",collectionView,indexPath);
+    ProductionModel* mo=[self.dataSource objectAtIndex:indexPath.row];
+    ProductDetailWebViewController* detailWeb=[[ProductDetailWebViewController alloc]initWithProductId:mo.idd token:[UserModel token]];
+    [self.navigationController pushViewController:detailWeb animated:YES];
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     if (scrollView==self.collectionView) {
         CGFloat offY=scrollView.contentOffset.y;
-        CGFloat insetTop=scrollView.contentInset.top;
-        NSLog(@"y:%f",offY);
-        NSLog(@"t:%f",insetTop);
-        
+//        CGFloat insetTop=scrollView.contentInset.top;
+//        NSLog(@"y:%f",offY);
+//        NSLog(@"t:%f",insetTop);
+//        
 //        CGFloat navHeight=self.navigationController.navigationBar.frame.size.height;
 //        CGFloat staHeight=[[UIApplication sharedApplication]statusBarFrame].size.height;
         
@@ -271,12 +288,12 @@ typedef NS_ENUM(NSInteger,ProductCollectionLayoutStyle)
 {
     if (currentLayoutStyle==ProductCollectionLayoutStyleLarge) {
         currentLayoutStyle=ProductCollectionLayoutStyleSmall;
-        exchangeLayoutItem.title=@"大";
+//        exchangeLayoutItem.title=@"大";
     }
     else
     {
         currentLayoutStyle=ProductCollectionLayoutStyleLarge;
-        exchangeLayoutItem.title=@"小";
+//        exchangeLayoutItem.title=@"小";
     }
     [self.collectionView reloadData];
 }
@@ -297,6 +314,14 @@ typedef NS_ENUM(NSInteger,ProductCollectionLayoutStyle)
     [self refresh];
     [textField resignFirstResponder];
     return YES;
+}
+
+#pragma mark menuheader delegate
+
+-(void)menuHeaderTableViewCell:(MenuHeaderTableViewCell *)cell didChangeModels:(NSArray<MenuHeaderButtonModel *> *)models
+{
+    menuHeaderButtonModels=[NSMutableArray arrayWithArray:models];
+    [self refresh];
 }
 
 @end

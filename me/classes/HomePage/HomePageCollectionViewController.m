@@ -17,6 +17,8 @@
 
 #import "HomePageHttpTool.h"
 
+#import "ProductDetailWebViewController.h"
+
 @interface HomePageCollectionViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,SimpleButtonsTableViewCellDelegate>
 
 @end
@@ -210,6 +212,15 @@
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     NSLog(@"%@ did selected %@",collectionView,indexPath);
+    
+    if (indexPath.section>0) {
+        ProductSection* sectionP=[productSections objectAtIndex:indexPath.section-1];
+        ProductModel* promo=[sectionP.products objectAtIndex:indexPath.row];
+        
+        ProductDetailWebViewController* detailWeb=[[ProductDetailWebViewController alloc]initWithProductId:promo.gid token:[UserModel token]];
+        [self.navigationController pushViewController:detailWeb animated:YES];
+    }
+    
 }
 
 #pragma mark actions

@@ -134,7 +134,7 @@
 //            NSLog(@"erro:\n%@",error);
             
             NSLog(@"%@",response);
-            NSDictionary* result=[ZZHttpTool dictionaryWithResponseData:data];
+            
             [session finishTasksAndInvalidate];
             
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -153,6 +153,7 @@
                 }
                 if (data) {
                     if (success) {
+                        NSDictionary* result=[ZZHttpTool dictionaryWithResponseData:data];
                         success(result);
                         
                     }

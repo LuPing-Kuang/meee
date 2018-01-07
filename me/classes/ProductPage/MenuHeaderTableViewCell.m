@@ -140,6 +140,11 @@
     NSInteger tag=button.tag;
     MenuHeaderButtonModel* mo=[self.buttonModelArray objectAtIndex:tag];
     BOOL oldSelected=mo.selected;
+    if (mo.selected) {
+        if (!mo.ordered) {
+            return;
+        }
+    }
     if(!mo.alone)
     {
         for (MenuHeaderButtonModel* m in self.buttonModelArray) {

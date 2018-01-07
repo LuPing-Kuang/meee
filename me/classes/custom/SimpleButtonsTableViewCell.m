@@ -88,6 +88,7 @@ const NSInteger simpleButtonRowCount=4;
         if(!img)
         {
             [imageView setImageUrl:mo.imageName];
+            imageView.contentMode=UIViewContentModeScaleAspectFit;
         }
         
         if (mo.circledImage) {
@@ -134,6 +135,7 @@ const NSInteger simpleButtonRowCount=4;
         
         UIButton* btn=[[UIButton alloc]initWithFrame:bbg.bounds];
         btn.tag=i;
+        [btn setBackgroundImage:[UIImage imageNamed:@"button_highlighted_bg"] forState:UIControlStateHighlighted];
         [btn addTarget:self action:@selector(buttonClicks:) forControlEvents:UIControlEventTouchUpInside];
         [bbg addSubview:btn];
     }
