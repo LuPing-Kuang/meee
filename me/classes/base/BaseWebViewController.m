@@ -12,7 +12,7 @@
 #import "UserModel.h"
 //#import "WBWebProgressBar.h"
 
-@interface BaseWebViewController ()<UIWebViewDelegate>
+@interface BaseWebViewController ()
 {
     UIView* bottomBg;
     CGFloat bottomSafe;
@@ -259,7 +259,7 @@
         self.title=netitle;
     }
 
-    NSLog(@"%@",[self.ios8WebView stringByEvaluatingJavaScriptFromString:@"document.documentElement.innerHTML"]);
+//    NSLog(@"%@",[self.ios8WebView stringByEvaluatingJavaScriptFromString:@"document.documentElement.innerHTML"]);
 }
 
 @end

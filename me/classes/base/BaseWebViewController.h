@@ -8,7 +8,7 @@
 
 #define HTML_GoodDetail @"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=goods.detailpage"
 
-@interface BaseWebViewController : UIViewController
+@interface BaseWebViewController : UIViewController<UIWebViewDelegate>
 
 -(instancetype)initWithUrl:(NSURL*)url;
 -(instancetype)initWithHtml:(NSString*)html;

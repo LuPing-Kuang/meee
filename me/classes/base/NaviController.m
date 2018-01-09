@@ -19,7 +19,7 @@
     
     self.delegate=self;
     
-    self.navigationBar.tintColor=[UIColor blackColor];
+    self.navigationBar.tintColor=gray_4;
     
     self.navigationBar.translucent=NO;
     
@@ -34,9 +34,9 @@
 //    
 //    [self setNavigationColorShowImage:YES];
 //    
-//    [self.navigationBar setBackIndicatorImage:[UIImage imageNamed:@"back"]];
-//    [self.navigationBar setBackIndicatorTransitionMaskImage:[UIImage imageNamed:@"back"]];
-//    
+    [self.navigationBar setBackIndicatorImage:[UIImage imageNamed:@"back"]];
+    [self.navigationBar setBackIndicatorTransitionMaskImage:[UIImage imageNamed:@"back"]];
+//
 //    if([[[UIDevice currentDevice]systemVersion]doubleValue]>=11){
 //        [[UIBarButtonItem appearance] setTitlePositionAdjustment:UIOffsetMake(5, 0) forBarMetrics:UIBarMetricsDefault];
 //    }

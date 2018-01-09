@@ -86,7 +86,11 @@
     if (tail.length==0) {
         tail=@"";
     }
-    return [NSString stringWithFormat:@"%@%.2f%@",head,doubleValue,tail];
+    double dou=doubleValue;
+    if (dou<0) {
+        dou=-dou;
+    }
+    return [NSString stringWithFormat:@"%@%@%.2f%@",doubleValue<0?@"-":@"",head,dou,tail];
 }
 
 -(NSString*)stringAppendingUnit:(NSString *)unit

@@ -10,7 +10,7 @@
 
 @interface BannerModel : NSObject
 
-@property NSString* imgurl;
-@property NSString* linkurl;
+@property (nonatomic,strong) NSString* imgurl;
+@property (nonatomic,strong) NSString* linkurl;
 
 @end

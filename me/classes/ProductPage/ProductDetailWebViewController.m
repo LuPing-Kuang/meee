@@ -7,6 +7,8 @@
 //
 
 #import "ProductDetailWebViewController.h"
+#import "ProductOrderComfirmTableViewController.h"
+#import "CartPageViewController.h"
 
 @interface ProductDetailWebViewController ()
 
@@ -38,14 +40,61 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    NSString* abs=request.URL.absoluteString;
+    NSLog(@"%@",abs);
+    
+    //ht tp://192.168.1.131:8094//app/index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=order.create&mid=3292&id=23&optionid=0&total=1&giftid&liveid=0
+    //create order
+    
+    
+    //app9vcom:%23%23//getOrder/?./index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=order.create&mid=3292&id=3&optionid=19&total=1&gdid=427&giftid&liveid=0&access_token=666
+    //create order 2
+    
+    //h ttp://192.168.1.131:8094//app/index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=member.cart&mid=3292
+    //cart
+    
+    NSString* valueR=[abs stringValueFromUrlParamsKey:@"r"];
+    if ([abs containsString:@"app9vcom"]&&[abs containsString:@"getOrder"])
+    {
+        NSLog(@"creat 2");
+        [self actionWithCreateOrderUrl:abs];
+        return NO;
+    }
+    else if ([valueR isEqualToString:@"order.create"]) {
+        NSLog(@"creat");
+        [self actionWithCreateOrderUrl:abs];
+        return NO;
+    }
+    else if([valueR isEqualToString:@"member.cart"]) {
+        NSLog(@"cart ");
+        [self actionWithCartUrl:abs];
+        return NO;
+    }
+    
+    return YES;
 }
-*/
+
+#pragma mark action with url
+
+-(void)actionWithCreateOrderUrl:(NSString*)url
+{
+    NSString* access_token=[UserModel token];
+    if (access_token.length==0) {
+        NSLog(@"did not login");
+        return;
+    }
+    
+    ProductOrderComfirmTableViewController* orderComfirm=[[UIStoryboard storyboardWithName:@"ProductPage" bundle:nil]instantiateViewControllerWithIdentifier:@"ProductOrderComfirmTableViewController"];
+    orderComfirm.url=url;
+    [self.navigationController pushViewController:orderComfirm animated:YES];
+}
+
+-(void)actionWithCartUrl:(NSString*)url
+{
+    CartPageViewController* cart=[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CartPageViewController"];
+    [self.navigationController pushViewController:cart animated:YES];
+}
 
 @end

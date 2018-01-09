@@ -10,20 +10,20 @@
 
 @interface ProductionModel : NSObject
 
-@property NSString* idd;
-@property NSString* title;
-@property NSString* subtitle;
-@property NSString* thumb;
-@property NSString* thumb_url;
-@property NSNumber* minprice;
-@property NSNumber* isdiscount;
-@property NSNumber* isdiscount_time;
-@property NSNumber* sales;
-@property NSNumber* salesreal;
-@property NSNumber* bargain;
-@property NSNumber* type;
-@property NSNumber* ispresell;
-@property NSNumber* virtuall;
-@property NSNumber* hasoption;
+@property (nonatomic,strong) NSString* idd;
+@property (nonatomic,strong) NSString* title;
+@property (nonatomic,strong) NSString* subtitle;
+@property (nonatomic,strong) NSString* thumb;
+@property (nonatomic,strong) NSString* thumb_url;
+@property (nonatomic,strong) NSNumber* minprice;
+@property (nonatomic,strong) NSNumber* isdiscount;
+@property (nonatomic,strong) NSNumber* isdiscount_time;
+@property (nonatomic,strong) NSNumber* sales;
+@property (nonatomic,strong) NSNumber* salesreal;
+@property (nonatomic,strong) NSNumber* bargain;
+@property (nonatomic,strong) NSNumber* type;
+@property (nonatomic,strong) NSNumber* ispresell;
+@property (nonatomic,strong) NSNumber* virtuall;
+@property (nonatomic,strong) NSNumber* hasoption;
 
 @end

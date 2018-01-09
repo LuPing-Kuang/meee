@@ -16,17 +16,17 @@ typedef NS_ENUM(NSInteger,ProductSectionStyle)
 
 @interface ProductModel : NSObject
 
-@property NSString* thumb;
-@property NSString* title;
-@property NSString* subtitle;
-@property NSString* price;
-@property NSString* gid;
-@property NSString* total;
-@property NSString* bargain;
-@property NSString* productprice;
-@property NSString* credit;
-@property NSString* ctype;
-@property NSString* gtype;
+@property (nonatomic,strong) NSString* thumb;
+@property (nonatomic,strong) NSString* title;
+@property (nonatomic,strong) NSString* subtitle;
+@property (nonatomic,strong) NSString* price;
+@property (nonatomic,strong) NSString* gid;
+@property (nonatomic,strong) NSString* total;
+@property (nonatomic,strong) NSString* bargain;
+@property (nonatomic,strong) NSString* productprice;
+@property (nonatomic,strong) NSString* credit;
+@property (nonatomic,strong) NSString* ctype;
+@property (nonatomic,strong) NSString* gtype;
 @property NSInteger sales;
 
 @end
@@ -34,7 +34,7 @@ typedef NS_ENUM(NSInteger,ProductSectionStyle)
 @interface ProductSection : NSObject
 
 @property NSInteger style;
-@property NSString* title;
+@property (nonatomic,strong) NSString* title;
 @property NSArray* products;
 
 @end

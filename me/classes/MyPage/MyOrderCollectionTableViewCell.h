@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "SimpleButtonsTableViewCell.h"
+#import "LinedTableViewCell.h"
 
-@interface MyOrderCollectionTableViewCell : UITableViewCell
+@interface MyOrderCollectionTableViewCell : LinedTableViewCell
 @property (weak, nonatomic) IBOutlet SimpleButtonsTableViewCell *buttonsView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightConstraint;
 

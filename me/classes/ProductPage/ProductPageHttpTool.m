@@ -62,4 +62,44 @@
     }];
 }
 
++(void)getCreateOrderDetailCache:(BOOL)cache token:(NSString*)token idd:(NSString*)idd optionid:(NSString*)optionid total:(NSString*)total gdid:(NSString*)gdid giftid:(NSString*)giftid liveid:(NSString*)liveid success:(void(^)(NSArray* goods,ProductionOrderAddressModel* address,ProductionOrderDetailPriceModel* pricedetail))success failure:(void(^)(NSError* error))failure;
+{
+    NSString* str=[ZZUrlTool fullUrlWithTail:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=order.create"];
+    NSMutableDictionary* par=[NSMutableDictionary dictionary];
+    [par setValue:token forKey:@"access_token"];
+    [par setValue:idd forKey:@"id"];
+    [par setValue:optionid forKey:@"optionid"];
+    [par setValue:total forKey:@"total"];
+    [par setValue:gdid forKey:@"gdid"];
+    [par setValue:giftid forKey:@"giftid"];
+    [par setValue:liveid forKey:@"liveid"];
+    
+    [self get:str params:par usingCache:cache success:^(NSDictionary *dict) {
+        NSDictionary* data=[dict valueForKey:@"data"];
+        NSArray* goods=[data valueForKey:@"goods"];
+        NSDictionary* addr=[data valueForKey:@"address"];
+        
+        NSMutableArray* goodsRes=[NSMutableArray array];
+        for (NSDictionary* g1d in goods) {
+            NSArray* g2oods=[g1d valueForKey:@"goods"];
+            for (NSDictionary* g2d in g2oods) {
+                ProductionOrderGoodModel* goodmodel=[ProductionOrderGoodModel yy_modelWithDictionary:g2d];
+                [goodsRes addObject:goodmodel];
+            }
+        }
+        
+        ProductionOrderAddressModel* addressmodel=[ProductionOrderAddressModel yy_modelWithDictionary:addr];
+        ProductionOrderDetailPriceModel* detailmodel=[ProductionOrderDetailPriceModel yy_modelWithDictionary:data];
+        
+        if (success) {
+            success(goodsRes,addressmodel,detailmodel);
+        }
+        
+    } failure:^(NSError *err) {
+        if (failure) {
+            failure(err);
+        }
+    }];
+}
+
 @end

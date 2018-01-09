@@ -115,4 +115,17 @@
     }];
 }
 
++(void)postSelectCartsId:(NSString*)idd token:(NSString*)token selected:(BOOL)selected
+{
+    
+    NSString* str=[ZZUrlTool fullUrlWithTail:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=member.cart.select"];
+    
+    NSMutableDictionary* par=[NSMutableDictionary dictionary];
+    [par setValue:idd forKey:@"id"];
+    [par setValue:token forKey:@"access_token"];
+    [par setValue:[NSNumber numberWithBool:selected] forKey:@"select"];
+    
+    [self post:str params:par success:nil failure:nil];
+}
+
 @end

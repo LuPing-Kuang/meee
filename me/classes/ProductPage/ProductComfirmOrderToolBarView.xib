@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="17C88" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ProductComfirmOrderToolBarView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="164"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GNi-2X-RKe" userLabel="normal">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="164"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MSf-bs-haB">
+                            <rect key="frame" x="281" y="0.0" width="94" height="164"/>
+                            <color key="backgroundColor" red="0.85900753740000002" green="0.41600233320000002" blue="0.38030180340000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="94" id="sVa-96-5jT"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="立即支付">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kl9-IB-dej">
+                            <rect key="frame" x="252" y="73" width="19" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.85900753740000002" green="0.41600233320000002" blue="0.38030180340000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="需付：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83U-io-mqX">
+                            <rect key="frame" x="209" y="73.5" width="43" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="kl9-IB-dej" firstAttribute="leading" secondItem="83U-io-mqX" secondAttribute="trailing" id="9lT-Ke-UNz"/>
+                        <constraint firstItem="MSf-bs-haB" firstAttribute="top" secondItem="GNi-2X-RKe" secondAttribute="top" id="F4m-3t-qsZ"/>
+                        <constraint firstAttribute="trailing" secondItem="MSf-bs-haB" secondAttribute="trailing" id="U4L-Xg-RbO"/>
+                        <constraint firstItem="MSf-bs-haB" firstAttribute="leading" secondItem="kl9-IB-dej" secondAttribute="trailing" constant="10" id="cp2-Jp-syj"/>
+                        <constraint firstAttribute="bottom" secondItem="MSf-bs-haB" secondAttribute="bottom" id="jZj-Ff-36W"/>
+                        <constraint firstItem="83U-io-mqX" firstAttribute="centerY" secondItem="kl9-IB-dej" secondAttribute="centerY" id="k7I-eQ-gOh"/>
+                        <constraint firstItem="kl9-IB-dej" firstAttribute="centerY" secondItem="GNi-2X-RKe" secondAttribute="centerY" id="xuO-J8-haX"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="GNi-2X-RKe" secondAttribute="bottom" id="CDS-Ph-P3U"/>
+                <constraint firstItem="GNi-2X-RKe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="kwk-dl-uLP"/>
+                <constraint firstAttribute="trailing" secondItem="GNi-2X-RKe" secondAttribute="trailing" id="pWB-Ac-e7N"/>
+                <constraint firstItem="GNi-2X-RKe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="zph-iq-HUh"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="buyButton" destination="MSf-bs-haB" id="vRh-nH-Xs1"/>
+                <outlet property="money" destination="kl9-IB-dej" id="V0x-7h-jzY"/>
+            </connections>
+            <point key="canvasLocation" x="24.5" y="-199"/>
+        </view>
+    </objects>
+</document>

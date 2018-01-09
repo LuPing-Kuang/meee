@@ -12,6 +12,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.editing=self.editing;
     // Initialization code
 }
 
@@ -33,6 +34,7 @@
 
 - (IBAction)countStepperValueChanged:(ZZStepper*)sender {
     self.cartModel.total=[NSNumber numberWithInteger:sender.value];
+    self.countLabel.text=[NSString stringWithFormat:@"x%ld",(long)sender.value];
     if ([self.delegate respondsToSelector:@selector(cartEditTableViewCell:didChangeModelCount:)]) {
         [self.delegate cartEditTableViewCell:self didChangeModelCount:self.cartModel];
     }
@@ -41,6 +43,13 @@
 
 - (IBAction)optionButtonClick:(id)sender {
     
+}
+
+-(void)setEditing:(BOOL)editing
+{
+    [super setEditing:editing];
+    self.stepper.hidden=!editing;
+    self.countLabel.hidden=editing;
 }
 
 @end

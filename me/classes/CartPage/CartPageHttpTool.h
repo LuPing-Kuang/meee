@@ -19,4 +19,6 @@
 
 +(void)postAttentionCarts:(NSArray*)cartItems token:(NSString*)token complete:(void(^)(BOOL result, NSArray* deletedItems, NSString* msg))complete;
 
++(void)postSelectCartsId:(NSString*)idd token:(NSString*)token selected:(BOOL)selected;
+
 @end

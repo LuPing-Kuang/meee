@@ -15,10 +15,10 @@
 +(NSString*)token;
 +(void)saveToken:(NSString*)token;
 
-@property NSString* avatar;
-@property NSString* nickname;
-@property NSString* levelname;
-@property NSString* money;
-@property NSNumber* credit;
+@property (nonatomic,strong) NSString* avatar;
+@property (nonatomic,strong) NSString* nickname;
+@property (nonatomic,strong) NSString* levelname;
+@property (nonatomic,strong) NSString* money;
+@property (nonatomic,strong) NSNumber* credit;
 
 @end

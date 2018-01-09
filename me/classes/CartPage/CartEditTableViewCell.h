@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *money;
 @property (weak, nonatomic) IBOutlet UILabel *discountLabel;
 @property (weak, nonatomic) IBOutlet ZZStepper *stepper;
+@property (weak, nonatomic) IBOutlet UILabel *countLabel;
 
 @property (strong,nonatomic) CartItemModel* cartModel;
 @property (weak,nonatomic) id<CartEditTableViewCellDelegate> delegate;

@@ -12,6 +12,7 @@
 #import "CartPageHttpTool.h"
 #import "RentCartEditToolBar.h"
 #import "ProductDetailWebViewController.h"
+#import "ProductOrderComfirmTableViewController.h"
 
 @interface CartPageViewController ()<CartEditTableViewCellDelegate>
 
@@ -78,6 +79,13 @@
     editing=!editing;
     editToolBar.editing=editing;
     editBtn.title=editing?@"完成":@"编辑";
+    
+    NSArray* allCells=[self.tableView visibleCells];
+    for (CartEditTableViewCell* ce in allCells) {
+        if ([ce isKindOfClass:[CartEditTableViewCell class]]) {
+            ce.editing=editing;
+        }
+    }
 }
 
 -(NSArray*)seletedItems
@@ -116,6 +124,8 @@
     }
     
     editToolBar.seletedAll=shouldSelectedAll;
+    
+    [CartPageHttpTool postSelectCartsId:nil token:[UserModel token] selected:shouldSelectedAll];
     [self calculateTotalAmount];
 }
 
@@ -160,6 +170,28 @@
 -(void)buySelectedItems
 {
     NSLog(@"buy selected");
+    
+    NSArray* items=[self seletedItems];
+    if (items.count==0) {
+        [MBProgressHUD showErrorMessage:@"请选择要购买的商品"];
+        return;
+    }
+    
+    // if something done
+    [self actionWithCreateOrderUrl:nil];
+}
+
+-(void)actionWithCreateOrderUrl:(NSString*)url
+{
+    NSString* access_token=[UserModel token];
+    if (access_token.length==0) {
+        NSLog(@"did not login");
+        return;
+    }
+    
+    ProductOrderComfirmTableViewController* orderComfirm=[[UIStoryboard storyboardWithName:@"ProductPage" bundle:nil]instantiateViewControllerWithIdentifier:@"ProductOrderComfirmTableViewController"];
+    orderComfirm.url=url;
+    [self.navigationController pushViewController:orderComfirm animated:YES];
 }
 
 -(void)calculateTotalAmount
@@ -184,18 +216,21 @@
     editToolBar.money.text=[NSString stringWithFloat:amount headUnit:@"¥" tailUnit:nil];
     [editToolBar.account setTitle:[NSString stringWithFormat:@"结算(%ld)",(long)count] forState:UIControlStateNormal];
     
-    NSInteger itemCount=self.dataSource.count;
-    NSString* tabbString=nil;
-    if (itemCount>0) {
-        tabbString=[NSString stringWithFormat:@"%ld",(long)itemCount];
+    if (self==self.navigationController.viewControllers.firstObject) {
+        NSInteger itemCount=self.dataSource.count;
+        NSString* tabbString=nil;
+        if (itemCount>0) {
+            tabbString=[NSString stringWithFormat:@"%ld",(long)itemCount];
+        }
+        self.navigationController.tabBarItem.badgeValue=tabbString;
     }
-    self.navigationController.tabBarItem.badgeValue=tabbString;
 }
 
 #pragma mark cart cell delegate
 
 -(void)cartEditTableViewCell:(CartEditTableViewCell *)cell didChangeModelSelection:(CartItemModel *)cartModel
 {
+    [CartPageHttpTool postSelectCartsId:cartModel.idd token:[UserModel token] selected:cartModel.selected.boolValue];
     BOOL isSelectedAll=YES;
     for (CartItemModel* mo in self.dataSource) {
         if(mo.selected.boolValue==NO)
@@ -251,6 +286,7 @@
     cell.stepper.min=mo.minbuy.integerValue;
     cell.stepper.max=mo.totalmaxbuy.integerValue;
     cell.stepper.value=mo.total.integerValue;
+    cell.countLabel.text=[NSString stringWithFormat:@"x%ld",(long)mo.total.integerValue];
     if (cell.stepper.min<=0) {
         cell.stepper.min=1;
     }
@@ -258,13 +294,17 @@
     cell.delegate=self;
     cell.cartModel=mo;
     
+    cell.editing=editing;
+    
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    if (editing) {
+        return;
+    }
     CartItemModel* mo=[self.dataSource objectAtIndex:indexPath.row];
     ProductDetailWebViewController* detailWeb=[[ProductDetailWebViewController alloc]initWithProductId:mo.goodsid token:[UserModel token]];
     [self.navigationController pushViewController:detailWeb animated:YES];

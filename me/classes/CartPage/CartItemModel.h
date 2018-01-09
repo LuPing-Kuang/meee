@@ -10,23 +10,23 @@
 
 @interface CartItemModel : NSObject
 
-@property NSString* idd;
-@property NSNumber* total;
-@property NSString* goodsid;
-@property NSNumber* stock;
-@property NSString* optionstock;
-@property NSString* title;
-@property NSString* thumb;
-@property NSNumber* marketprice;
-@property NSNumber* productprice;
-@property NSString* optiontitle;
-@property NSString* optionid;
-@property NSString* specs;
-@property NSNumber* minbuy;
-@property NSString* unit;
-@property NSString* merchid;
-@property NSString* merchsale;
-@property NSNumber* selected;
-@property NSNumber* totalmaxbuy;
+@property (nonatomic,strong) NSString* idd;
+@property (nonatomic,strong) NSNumber* total;
+@property (nonatomic,strong) NSString* goodsid;
+@property (nonatomic,strong) NSNumber* stock;
+@property (nonatomic,strong) NSString* optionstock;
+@property (nonatomic,strong) NSString* title;
+@property (nonatomic,strong) NSString* thumb;
+@property (nonatomic,strong) NSNumber* marketprice;
+@property (nonatomic,strong) NSNumber* productprice;
+@property (nonatomic,strong) NSString* optiontitle;
+@property (nonatomic,strong) NSString* optionid;
+@property (nonatomic,strong) NSString* specs;
+@property (nonatomic,strong) NSNumber* minbuy;
+@property (nonatomic,strong) NSString* unit;
+@property (nonatomic,strong) NSString* merchid;
+@property (nonatomic,strong) NSString* merchsale;
+@property (nonatomic,strong) NSNumber* selected;
+@property (nonatomic,strong) NSNumber* totalmaxbuy;
 
 @end

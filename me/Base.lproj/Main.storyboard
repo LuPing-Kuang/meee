@@ -497,20 +497,20 @@
                                             <rect key="frame" x="285" y="19.5" width="20" height="21"/>
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JuS-8s-WZS">
-                                            <rect key="frame" x="249" y="19.5" width="26" height="22"/>
+                                            <rect key="frame" x="250" y="20.5" width="25" height="20"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zxz-Lc-0zQ">
-                                                    <rect key="frame" x="8" y="2" width="10" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <rect key="frame" x="8" y="1.5" width="9" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.91897296910000004" green="0.38060939310000003" blue="0.36067986489999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="backgroundColor" red="0.85900753740000002" green="0.41600233320000002" blue="0.38030180340000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
-                                                <constraint firstItem="Zxz-Lc-0zQ" firstAttribute="top" secondItem="JuS-8s-WZS" secondAttribute="top" constant="2" id="E9s-Wc-8oL"/>
                                                 <constraint firstItem="Zxz-Lc-0zQ" firstAttribute="centerY" secondItem="JuS-8s-WZS" secondAttribute="centerY" id="Itz-Re-uLT"/>
                                                 <constraint firstItem="Zxz-Lc-0zQ" firstAttribute="leading" secondItem="JuS-8s-WZS" secondAttribute="leading" constant="8" id="Wpe-8d-xyR"/>
+                                                <constraint firstAttribute="height" constant="20" id="aNu-rN-TVs"/>
                                                 <constraint firstItem="Zxz-Lc-0zQ" firstAttribute="centerX" secondItem="JuS-8s-WZS" secondAttribute="centerX" id="hNu-uX-Bc9"/>
                                             </constraints>
                                         </view>
@@ -738,7 +738,7 @@
         <!--Cart Page View Controller-->
         <scene sceneID="uJq-7k-EMc">
             <objects>
-                <tableViewController id="2Bx-Yu-Tv2" customClass="CartPageViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CartPageViewController" id="2Bx-Yu-Tv2" customClass="CartPageViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="127" sectionHeaderHeight="18" sectionFooterHeight="18" id="D9Q-Aq-q8e">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -824,12 +824,20 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="x1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YE8-fA-8lC">
+                                            <rect key="frame" x="293" y="84" width="12" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="QZ7-cb-zEX" firstAttribute="leading" secondItem="3HH-1W-vFV" secondAttribute="trailing" constant="12" id="30a-bw-qCJ"/>
                                         <constraint firstItem="bir-jO-0LX" firstAttribute="centerY" secondItem="mFF-FV-0KY" secondAttribute="centerY" id="6Zl-c1-amO"/>
                                         <constraint firstItem="QZ7-cb-zEX" firstAttribute="top" secondItem="3HH-1W-vFV" secondAttribute="top" id="9rZ-EP-SZ0"/>
                                         <constraint firstItem="ABe-1v-L1d" firstAttribute="leading" secondItem="rXX-zp-Os3" secondAttribute="leading" constant="15" id="Nsl-ro-0Mk"/>
+                                        <constraint firstItem="YE8-fA-8lC" firstAttribute="centerY" secondItem="IZC-LW-8hd" secondAttribute="centerY" id="Pf7-ub-QeW"/>
+                                        <constraint firstItem="YE8-fA-8lC" firstAttribute="trailing" secondItem="IZC-LW-8hd" secondAttribute="trailing" id="Rb4-Z4-fwj"/>
                                         <constraint firstItem="ABe-1v-L1d" firstAttribute="centerY" secondItem="rXX-zp-Os3" secondAttribute="centerY" id="WYs-FK-BsQ"/>
                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="3HH-1W-vFV" secondAttribute="bottom" constant="20" id="bf7-Qk-aAZ"/>
                                         <constraint firstItem="IZC-LW-8hd" firstAttribute="trailing" secondItem="QZ7-cb-zEX" secondAttribute="trailing" id="cAc-p1-XtH"/>
@@ -847,6 +855,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="countLabel" destination="YE8-fA-8lC" id="LAA-3a-AmG"/>
                                     <outlet property="discountLabel" destination="dzB-8C-4Es" id="ItD-nX-uGp"/>
                                     <outlet property="image" destination="3HH-1W-vFV" id="TFn-9p-82Q"/>
                                     <outlet property="money" destination="Z6o-Pb-WhD" id="EQd-tT-gsX"/>
