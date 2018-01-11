@@ -6,9 +6,9 @@
 //  Copyright © 2018年 bangju. All rights reserved.
 //
 
-#import "ProductModel.h"
+#import "ProductAdvModel.h"
 
-@implementation ProductModel
+@implementation ProductAdvModel
 
 @end
 

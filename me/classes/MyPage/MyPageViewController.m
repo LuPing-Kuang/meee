@@ -116,7 +116,38 @@
     return [[UITableViewCell alloc]init];
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NSArray* sectionArr=[self.dataSource objectAtIndex:indexPath.section];
+    MyPageDataModel* mo=[sectionArr objectAtIndex:indexPath.row];
+
+    NSString* link=mo.action;
+    
+    if ([link isEqualToString:@"member.address"]) {
+        [self pushViewControllerForStoryBoardId:@"MyAddressesTableViewController"];
+    }
+    else if([link isEqualToString:@"member.history"])
+    {
+        [self pushViewControllerForStoryBoardId:@"MyFootPrintTableViewController"];
+    }
+    else if([link isEqualToString:@"member.favorite"])
+    {
+        
+    }
+    else if([link isEqualToString:@"member.cart"])
+    {
+        [self.navigationController pushViewController:[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CartPageViewController"] animated:YES];
+    }
+}
+
 #pragma mark actions
+
+-(void)pushViewControllerForStoryBoardId:(NSString*)ident
+{
+    [self.navigationController pushViewController:[[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:ident] animated:YES];
+}
 
 -(void)goToSetting
 {

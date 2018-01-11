@@ -8,6 +8,8 @@
 
 #import "ProductOrderComfirmTableViewController.h"
 
+#import "MyAddressesTableViewController.h"
+
 #import "ProductOrderTotalTableViewCell.h"
 #import "ProductOrderAddressTableViewCell.h"
 #import "ProductOrderDetailTableViewCell.h"
@@ -27,7 +29,7 @@ typedef NS_ENUM(NSInteger,ProductOrderTableViewSection)
     ProductOrderTableViewSectionTotalCount,
 };
 
-@interface ProductOrderComfirmTableViewController ()<ProductOrderMessageTableViewCellDelegate>
+@interface ProductOrderComfirmTableViewController ()<ProductOrderMessageTableViewCellDelegate,MyAddressesTableViewControllerDelegate>
 {
     NSArray<ProductionOrderGoodModel*>* goodModels;
     ProductionOrderDetailPriceModel* detailPriceModel;
@@ -140,8 +142,8 @@ typedef NS_ENUM(NSInteger,ProductOrderTableViewSection)
         if (addressModel.area.length>0) {
             addressStr=[addressStr stringByAppendingString:addressModel.area];
         }
-        if (addressModel.street.length>0) {
-            addressStr=[addressStr stringByAppendingString:addressModel.street];
+        if (addressModel.address.length>0) {
+            addressStr=[addressStr stringByAppendingString:addressModel.address];
         }
         cell.address.text=addressStr;
         
@@ -210,11 +212,29 @@ typedef NS_ENUM(NSInteger,ProductOrderTableViewSection)
     return [[UITableViewCell alloc]init];
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section==ProductOrderTableViewSectionAddress) {
+        MyAddressesTableViewController* myadd=[[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"MyAddressesTableViewController"];
+        myadd.delegate=self;
+        [self.navigationController pushViewController:myadd animated:YES];
+    }
+}
+
 #pragma mark ProductOrderMessageTableViewCellDelegate
 
 -(void)productOrderMessageTableViewCell:(ProductOrderMessageTableViewCell *)cell textViewTextDidChanged:(UITextView *)textView
 {
     customMessage=textView.text;
+}
+
+#pragma mark AddressTableviewController delegate
+
+-(void)myAddressesTableViewController:(MyAddressesTableViewController *)controller didSelectedAddress:(ProductionOrderAddressModel *)address
+{
+    addressModel=address;
+    [self.tableView reloadData];
 }
 
 @end

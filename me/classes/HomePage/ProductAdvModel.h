@@ -14,7 +14,7 @@ typedef NS_ENUM(NSInteger,ProductSectionStyle)
     ProductSectionStyleTwo,
 };
 
-@interface ProductModel : NSObject
+@interface ProductAdvModel : NSObject
 
 @property (nonatomic,strong) NSString* thumb;
 @property (nonatomic,strong) NSString* title;

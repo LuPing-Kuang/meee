@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="17C88" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BEz-Se-kvu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BEz-Se-kvu">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <deployment identifier="iOS"/>
+        <development version="8000" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -35,11 +37,10 @@
                 <navigationController id="yPM-Xy-ohk" customClass="NaviController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="商城首页" image="tab_home_n" selectedImage="tab_home_h" id="fK1-9C-yrM"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6u5-ns-suA">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="PlK-eJ-JK6">
-                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
@@ -261,7 +262,7 @@
                 <navigationController id="I2B-HX-qgM" customClass="NaviController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="全部商品" image="tab_good_n" selectedImage="tab_good_h" id="Yf8-7W-euD"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Chy-eB-mRO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -278,7 +279,7 @@
                 <navigationController id="5bu-Li-Ypd" customClass="NaviController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="个人中心" image="tab_my_n" selectedImage="tab_my_h" id="v1X-uB-2ij"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pu6-kg-XlB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -497,10 +498,10 @@
                                             <rect key="frame" x="285" y="19.5" width="20" height="21"/>
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JuS-8s-WZS">
-                                            <rect key="frame" x="250" y="20.5" width="25" height="20"/>
+                                            <rect key="frame" x="252" y="20.5" width="23" height="20"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zxz-Lc-0zQ">
-                                                    <rect key="frame" x="8" y="1.5" width="9" height="17"/>
+                                                    <rect key="frame" x="7" y="1.5" width="9" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -509,7 +510,7 @@
                                             <color key="backgroundColor" red="0.85900753740000002" green="0.41600233320000002" blue="0.38030180340000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
                                                 <constraint firstItem="Zxz-Lc-0zQ" firstAttribute="centerY" secondItem="JuS-8s-WZS" secondAttribute="centerY" id="Itz-Re-uLT"/>
-                                                <constraint firstItem="Zxz-Lc-0zQ" firstAttribute="leading" secondItem="JuS-8s-WZS" secondAttribute="leading" constant="8" id="Wpe-8d-xyR"/>
+                                                <constraint firstItem="Zxz-Lc-0zQ" firstAttribute="leading" secondItem="JuS-8s-WZS" secondAttribute="leading" constant="7" id="Wpe-8d-xyR"/>
                                                 <constraint firstAttribute="height" constant="20" id="aNu-rN-TVs"/>
                                                 <constraint firstItem="Zxz-Lc-0zQ" firstAttribute="centerX" secondItem="JuS-8s-WZS" secondAttribute="centerX" id="hNu-uX-Bc9"/>
                                             </constraints>
@@ -573,7 +574,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="heg-gY-uxN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1245" y="952"/>
+            <point key="canvasLocation" x="1245" y="951.76056338028172"/>
         </scene>
         <!--购物车-->
         <scene sceneID="pOw-Bh-tNV">
@@ -581,7 +582,7 @@
                 <navigationController id="qBS-Bk-jEB" customClass="NaviController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="购物车" image="tab_cart_n" selectedImage="tab_cart_h" id="6qb-3s-WVG"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DaR-BZ-dl3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>

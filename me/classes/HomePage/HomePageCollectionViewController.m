@@ -93,7 +93,7 @@
     }
     
     ProductSection* prosec=[productSections objectAtIndex:section-1];
-    ProductModel* promo=[prosec.products objectAtIndex:row];
+    ProductAdvModel* promo=[prosec.products objectAtIndex:row];
     if (prosec.style==ProductSectionStyleOne) {
         ProductLargeCollectionViewCell* ce=[collectionView dequeueReusableCellWithReuseIdentifier:@"ProductLargeCollectionViewCell" forIndexPath:indexPath];
         ce.title.text=promo.title;
@@ -215,7 +215,7 @@
     
     if (indexPath.section>0) {
         ProductSection* sectionP=[productSections objectAtIndex:indexPath.section-1];
-        ProductModel* promo=[sectionP.products objectAtIndex:indexPath.row];
+        ProductAdvModel* promo=[sectionP.products objectAtIndex:indexPath.row];
         
         ProductDetailWebViewController* detailWeb=[[ProductDetailWebViewController alloc]initWithProductId:promo.gid token:[UserModel token]];
         [self.navigationController pushViewController:detailWeb animated:YES];

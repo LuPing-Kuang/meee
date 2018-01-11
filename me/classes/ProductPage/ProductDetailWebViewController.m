@@ -31,6 +31,7 @@
     self.url=[NSURL URLWithString:str];
     
     [super viewDidLoad];
+    self.view.backgroundColor=[UIColor whiteColor];
     self.title=@"商品详情";
     // Do any additional setup after loading the view.
 }

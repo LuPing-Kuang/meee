@@ -8,7 +8,7 @@
 
 #import "ZZHttpTool.h"
 
-#import "ProductModel.h"
+#import "ProductAdvModel.h"
 #import "BannerModel.h"
 
 @interface HomePageHttpTool : ZZHttpTool

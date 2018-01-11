@@ -259,7 +259,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     if (contentOffset.y >= contentSize.height - frame.size.height || contentSize.height < frame.size.height)
     {
-        if (loadMoreFooter.loading==NO) {
+        if (loadMoreFooter.loading==NO&&loadMoreFooter.superview) {
             NSLog(@"should loadmore");
             [self loadMoreFooterViewShouldStartLoadMore:loadMoreFooter];
         }

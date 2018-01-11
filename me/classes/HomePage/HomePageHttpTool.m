@@ -74,7 +74,7 @@
                 NSMutableArray* goods=[NSMutableArray array];
                 if ([d2 respondsToSelector:@selector(firstObject)]) {
                     for (NSDictionary* goo in d2) {
-                        ProductModel* prom=[ProductModel yy_modelWithDictionary:goo];
+                        ProductAdvModel* prom=[ProductAdvModel yy_modelWithDictionary:goo];
                         [goods addObject:prom];
                     }
                     thisMeSection.products=goods;

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="17C88" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SelectedAllActionView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uha-Dr-6Mb">
+                    <rect key="frame" x="15" y="17" width="58" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="Q1B-Jj-2PD"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="  全选" image="selected_no">
+                        <color key="titleColor" white="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <state key="selected" image="selected_yes"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAc-7J-Rcn">
+                    <rect key="frame" x="88" y="17" width="272" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="HGf-Kd-sDN"/>
+                    </constraints>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" white="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="cAc-7J-Rcn" secondAttribute="trailing" constant="15" id="UVY-lG-G2N"/>
+                <constraint firstItem="Uha-Dr-6Mb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="gOe-MW-8iT"/>
+                <constraint firstItem="cAc-7J-Rcn" firstAttribute="leading" secondItem="Uha-Dr-6Mb" secondAttribute="trailing" constant="15" id="kKJ-3Z-fOU"/>
+                <constraint firstItem="Uha-Dr-6Mb" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="nG7-a1-XQY"/>
+                <constraint firstItem="cAc-7J-Rcn" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="pYg-v2-Ozk"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="actionButton" destination="cAc-7J-Rcn" id="A0F-pI-EDG"/>
+                <outlet property="selectAllButton" destination="Uha-Dr-6Mb" id="yd9-rk-Uhl"/>
+            </connections>
+            <point key="canvasLocation" x="24.5" y="-244.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="selected_no" width="19" height="19"/>
+        <image name="selected_yes" width="19" height="19"/>
+    </resources>
+</document>

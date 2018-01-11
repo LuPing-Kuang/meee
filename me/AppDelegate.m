@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 
+#import "BaseWebViewController.h"
+
 @interface AppDelegate ()
 
 @end
@@ -17,6 +19,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    BaseWebViewController* preloadWeb=[[BaseWebViewController alloc]initWithUrl:nil];
+    preloadWeb.view.backgroundColor=[UIColor whiteColor];
     return YES;
 }
 

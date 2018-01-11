@@ -84,4 +84,77 @@
     }];
 }
 
++(void)getMyAddressesCache:(BOOL)cache token:(NSString*)token page:(NSInteger)page pagesize:(NSInteger)pagesize success:(void(^)(NSArray* myAddress))success failure:(void(^)(NSError* error))failure;
+{
+    NSDictionary* d=[ZZHttpTool pageParamsWithPage:page size:pagesize];
+    [d setValue:token forKey:@"access_token"];;
+    NSString* str=[ZZUrlTool fullUrlWithTail:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=member.address.get_list"];
+    [self get:str params:d usingCache:cache success:^(NSDictionary *dict) {
+        NSDictionary* data=[dict valueForKey:@"data"];
+        NSArray* list=[data valueForKey:@"list"];
+        NSMutableArray* res=[NSMutableArray array];
+        for (NSDictionary* addict in list) {
+            ProductionOrderAddressModel* ad=[ProductionOrderAddressModel yy_modelWithDictionary:addict];
+            [res addObject:ad];
+        }
+        if (success) {
+            success(res);
+        }
+    } failure:^(NSError *err) {
+        if (failure) {
+            failure(err);
+        }
+     }];
+}
+
++(void)getMyFootprintsCache:(BOOL)cache token:(NSString *)token page:(NSInteger)page pagesize:(NSInteger)pagesize success:(void (^)(NSArray *))success failure:(void (^)(NSError *))failure
+{
+    NSDictionary* d=[ZZHttpTool pageParamsWithPage:page size:pagesize];
+    [d setValue:token forKey:@"access_token"];;
+    NSString* str=[ZZUrlTool fullUrlWithTail:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=member.history.get_list"];
+    [self get:str params:d usingCache:cache success:^(NSDictionary *dict) {
+        NSDictionary* data=[dict valueForKey:@"data"];
+        NSArray* list=[data valueForKey:@"list"];
+        NSMutableArray* res=[NSMutableArray array];
+        for (NSDictionary* addict in list) {
+            FootPrintModel* ad=[FootPrintModel yy_modelWithDictionary:addict];
+            [res addObject:ad];
+        }
+        if (success) {
+            success(res);
+        }
+    } failure:^(NSError *err) {
+        if (failure) {
+            failure(err);
+        }
+    }];
+}
+
++(void)postRemoveMyFootprints:(NSArray*)footprints token:(NSString*)token complete:(void(^)(BOOL result,NSString* msg))completion;
+{
+    NSString* str=[ZZUrlTool fullUrlWithTail:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=member.history.remove"];
+    NSMutableArray* ids=[NSMutableArray array];
+    for (FootPrintModel* foo in footprints) {
+        if (foo.idd.length>0) {
+            [ids addObject:foo.idd];
+        }
+    }
+    NSString* idsString=[ids componentsJoinedByString:@","];
+    NSMutableDictionary* dic=[NSMutableDictionary dictionary];
+    [dic setValue:token forKey:@"access_token"];
+    [dic setValue:idsString forKey:@"ids"];
+    
+    [self post:str params:dic success:^(NSDictionary *responseObject) {
+        BOOL result=responseObject.code==0;
+        NSString* msg=[responseObject valueForKey:@"message"];
+        if (completion) {
+            completion(result,msg);
+        }
+    } failure:^(NSError *error) {
+        if (completion) {
+            completion(NO,BadNetworkDescription);
+        }
+    }];
+}
+
 @end

@@ -82,11 +82,12 @@
                                                     </constraints>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y0l-78-zfK">
-                                                    <rect key="frame" x="38" y="11" width="237" height="42"/>
+                                                    <rect key="frame" x="32" y="11" width="243" height="42"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="收货人：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r4m-tc-RDO">
-                                                            <rect key="frame" x="0.0" y="0.0" width="57.5" height="21"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="58" height="21"/>
                                                             <constraints>
+                                                                <constraint firstAttribute="width" constant="58" id="AVO-OF-GVw"/>
                                                                 <constraint firstAttribute="height" constant="21" id="nlu-z5-8ST"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -94,7 +95,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="详细地址" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I6t-pU-c72">
-                                                            <rect key="frame" x="0.0" y="21" width="54" height="21"/>
+                                                            <rect key="frame" x="0.0" y="21" width="243" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="CvQ-by-f73"/>
                                                             </constraints>
@@ -102,8 +103,8 @@
                                                             <color key="textColor" white="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qik-Am-sR5">
-                                                            <rect key="frame" x="57.5" y="0.0" width="29" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="姓名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qik-Am-sR5">
+                                                            <rect key="frame" x="58" y="0.0" width="29" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="AAH-G7-ToB"/>
                                                             </constraints>
@@ -111,8 +112,8 @@
                                                             <color key="textColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="电话" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="axF-aP-1xd">
-                                                            <rect key="frame" x="116.5" y="0.0" width="29" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="电话" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="axF-aP-1xd">
+                                                            <rect key="frame" x="107" y="0.0" width="136" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="A0k-6I-yhc"/>
                                                             </constraints>
@@ -127,11 +128,13 @@
                                                         <constraint firstItem="I6t-pU-c72" firstAttribute="leading" secondItem="r4m-tc-RDO" secondAttribute="leading" id="8fS-bf-C2s"/>
                                                         <constraint firstAttribute="bottom" secondItem="I6t-pU-c72" secondAttribute="bottom" id="Mhx-Xh-5e1"/>
                                                         <constraint firstItem="I6t-pU-c72" firstAttribute="top" secondItem="r4m-tc-RDO" secondAttribute="bottom" id="RcN-Uh-tgA"/>
+                                                        <constraint firstAttribute="trailing" secondItem="I6t-pU-c72" secondAttribute="trailing" id="cjp-Vi-4ZJ"/>
                                                         <constraint firstItem="r4m-tc-RDO" firstAttribute="top" secondItem="y0l-78-zfK" secondAttribute="top" id="d7G-Uz-qxr"/>
                                                         <constraint firstItem="r4m-tc-RDO" firstAttribute="leading" secondItem="y0l-78-zfK" secondAttribute="leading" id="fNd-UP-8v8"/>
                                                         <constraint firstItem="Qik-Am-sR5" firstAttribute="centerY" secondItem="r4m-tc-RDO" secondAttribute="centerY" id="jtp-pK-4cD"/>
                                                         <constraint firstItem="axF-aP-1xd" firstAttribute="centerY" secondItem="r4m-tc-RDO" secondAttribute="centerY" id="ntU-5y-ool"/>
-                                                        <constraint firstItem="axF-aP-1xd" firstAttribute="leading" secondItem="Qik-Am-sR5" secondAttribute="trailing" constant="30" id="zg4-P3-ZCR"/>
+                                                        <constraint firstAttribute="trailing" secondItem="axF-aP-1xd" secondAttribute="trailing" id="oww-Gd-adU"/>
+                                                        <constraint firstItem="axF-aP-1xd" firstAttribute="leading" secondItem="Qik-Am-sR5" secondAttribute="trailing" constant="20" id="zg4-P3-ZCR"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -140,7 +143,7 @@
                                                 <constraint firstItem="Y9W-Xr-IQs" firstAttribute="leading" secondItem="Fgn-L9-QwK" secondAttribute="leading" id="DA4-QO-tLf"/>
                                                 <constraint firstItem="Y9W-Xr-IQs" firstAttribute="centerY" secondItem="Fgn-L9-QwK" secondAttribute="centerY" id="DyH-yF-eUO"/>
                                                 <constraint firstItem="y0l-78-zfK" firstAttribute="centerY" secondItem="Fgn-L9-QwK" secondAttribute="centerY" id="Zen-TM-bZy"/>
-                                                <constraint firstItem="y0l-78-zfK" firstAttribute="leading" secondItem="Y9W-Xr-IQs" secondAttribute="trailing" constant="18" id="nU1-bm-tNo"/>
+                                                <constraint firstItem="y0l-78-zfK" firstAttribute="leading" secondItem="Y9W-Xr-IQs" secondAttribute="trailing" constant="12" id="nU1-bm-tNo"/>
                                                 <constraint firstAttribute="trailing" secondItem="y0l-78-zfK" secondAttribute="trailing" id="xKV-sT-i2J"/>
                                             </constraints>
                                         </view>
@@ -372,7 +375,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ProductOrderDetailTableViewCell" rowHeight="50" id="Glf-Jl-54f" customClass="ProductOrderDetailTableViewCell">
-                                <rect key="frame" x="0.0" y="452" width="320" height="50"/>
+                                <rect key="frame" x="0.0" y="451.5" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Glf-Jl-54f" id="sx1-A4-6wh">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
