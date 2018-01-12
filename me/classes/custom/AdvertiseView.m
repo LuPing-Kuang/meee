@@ -23,7 +23,7 @@ const CGFloat advertiseViewAutoScrollTime=3.0;
 
 +(instancetype)defaultAdvertiseView
 {
-    AdvertiseView* a=[[AdvertiseView alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen]bounds].size.width, [[UIScreen mainScreen]bounds].size.width/3*2)];
+    AdvertiseView* a=[[AdvertiseView alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen]bounds].size.width, [[UIScreen mainScreen]bounds].size.width/75*38)];
 //    a.backgroundColor=[UIColor lightGrayColor];
     return a;
 }

@@ -81,7 +81,7 @@
 {
 //    NSString* urlstr=[url absoluteString];
 //    NSLog(@"load image: %@",urlstr);
-    UIImage* defaultImage=[UIImage imageNamed:@"image_loading"];
+    UIImage* defaultImage=[UIImage imageNamed:@"loading"];
     //    CGFloat rate=self.frame.size.width/self.frame.size.height;
     //    if (rate>1.5) {
     //        defaultImage=[UIImage imageNamed:@"default_16_9"];

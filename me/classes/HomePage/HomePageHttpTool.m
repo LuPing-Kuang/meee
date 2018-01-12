@@ -11,15 +11,14 @@
 
 @implementation HomePageHttpTool
 
-+(void)getHomePageDatasCache:(BOOL)cache token:(NSString*)token success:(void(^)(NSArray* banners, NSArray* collections, NSArray* productSections))success failure:(void(^)(NSError* error))failure;
++(void)getHomePageDatasCache:(BOOL)cache token:(NSString*)token local:(BOOL)local success:(void(^)(NSArray* banners, NSArray* collections, NSArray* productSections))success failure:(void(^)(NSError* error))failure;
 {
     NSString* str=[ZZUrlTool fullUrlWithTail:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api"];
     NSDictionary* paar=nil;
     if (token.length>0) {
         paar=[NSDictionary dictionaryWithObject:token forKey:@"access_token"];
     }
-    
-    [self get:str params:paar usingCache:cache success:^(NSDictionary *dict) {
+    void(^mysuccess)(NSDictionary*)=^(NSDictionary *dict) {
         NSDictionary* data=[dict valueForKey:@"data"];
         NSArray* items=[data valueForKey:@"items"];
         
@@ -80,15 +79,24 @@
                     thisMeSection.products=goods;
                     [productSections addObject:thisMeSection];
                 }
-                
             }
         }
-        
-        
         if (success) {
             success(banners,collections,productSections);
         }
-    } failure:^(NSError *err) {
+    };
+    if (local) {
+        
+        NSString *filePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"homepagejson.txt"];
+        
+        NSError* err=nil;
+        NSString* json=[NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&err];
+        NSDictionary* di=[NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableLeaves error:nil];
+        
+        mysuccess(di);
+        return;
+    }
+    [self get:str params:paar usingCache:cache success:mysuccess failure:^(NSError *err) {
         if (failure) {
             failure(err);
         }

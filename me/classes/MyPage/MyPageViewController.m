@@ -31,13 +31,19 @@
     self.navigationItem.title=@"会员中心";
     
     self.tableView.estimatedRowHeight=100;
+    [self loadDataFromLocal:YES];
     [self refresh];
     // Do any additional setup after loading the view.
 }
 
 -(void)refresh
 {
-    [MyPageHttpTool getMyPageDataCache:NO token:[UserModel token] success:^(NSArray *myPageSections) {
+    [self loadDataFromLocal:NO];
+}
+
+-(void)loadDataFromLocal:(BOOL)local
+{
+    [MyPageHttpTool getMyPageDataCache:NO token:[UserModel token] local:local success:^(NSArray *myPageSections) {
         [self.dataSource removeAllObjects];
         [self.dataSource addObjectsFromArray:myPageSections];
         [self.tableView reloadData];

@@ -75,6 +75,8 @@
 		39574C2E2008568100FD87B6 /* MyOrdersPagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39574C2D2008568100FD87B6 /* MyOrdersPagerViewController.m */; };
 		39574C312008574E00FD87B6 /* MyOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 39574C302008574E00FD87B6 /* MyOrderModel.m */; };
 		39574C34200884A800FD87B6 /* MyOrderListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39574C33200884A800FD87B6 /* MyOrderListTableViewCell.m */; };
+		39574C362008BA4800FD87B6 /* mypagejson.txt in Resources */ = {isa = PBXBuildFile; fileRef = 39574C352008BA4800FD87B6 /* mypagejson.txt */; };
+		39574C382008BF5200FD87B6 /* homepagejson.txt in Resources */ = {isa = PBXBuildFile; fileRef = 39574C372008BF5200FD87B6 /* homepagejson.txt */; };
 		397C073D2001BCFF0073A57A /* CartPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 397C073C2001BCFF0073A57A /* CartPageViewController.m */; };
 		397C07412001BD990073A57A /* CartEditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 397C07402001BD990073A57A /* CartEditTableViewCell.m */; };
 		397C07442001C1360073A57A /* ZZStepper.m in Sources */ = {isa = PBXBuildFile; fileRef = 397C07432001C1360073A57A /* ZZStepper.m */; };
@@ -234,6 +236,8 @@
 		39574C302008574E00FD87B6 /* MyOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderModel.m; sourceTree = "<group>"; };
 		39574C32200884A800FD87B6 /* MyOrderListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderListTableViewCell.h; sourceTree = "<group>"; };
 		39574C33200884A800FD87B6 /* MyOrderListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderListTableViewCell.m; sourceTree = "<group>"; };
+		39574C352008BA4800FD87B6 /* mypagejson.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mypagejson.txt; sourceTree = "<group>"; };
+		39574C372008BF5200FD87B6 /* homepagejson.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = homepagejson.txt; sourceTree = "<group>"; };
 		397C073B2001BCFF0073A57A /* CartPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartPageViewController.h; sourceTree = "<group>"; };
 		397C073C2001BCFF0073A57A /* CartPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartPageViewController.m; sourceTree = "<group>"; };
 		397C073F2001BD990073A57A /* CartEditTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartEditTableViewCell.h; sourceTree = "<group>"; };
@@ -533,6 +537,7 @@
 				3946D2EF1FF33B510074E77A /* HomePageCollectionViewController.m */,
 				39F37F931FFF718D00781706 /* HomePageHttpTool.h */,
 				39F37F941FFF718D00781706 /* HomePageHttpTool.m */,
+				39574C372008BF5200FD87B6 /* homepagejson.txt */,
 			);
 			path = HomePage;
 			sourceTree = "<group>";
@@ -668,6 +673,7 @@
 				39F37F6B1FFF238900781706 /* MyPage.storyboard */,
 				39BCC4AF200071CA008688B7 /* MyPageHttpTool.h */,
 				39BCC4B0200071CA008688B7 /* MyPageHttpTool.m */,
+				39574C352008BA4800FD87B6 /* mypagejson.txt */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -788,11 +794,13 @@
 				394D377B1FEDF4330001CB48 /* Main.storyboard in Resources */,
 				39186321200209900057C491 /* hhh.txt in Resources */,
 				39F37F6C1FFF238900781706 /* MyPage.storyboard in Resources */,
+				39574C362008BA4800FD87B6 /* mypagejson.txt in Resources */,
 				3918633120021FE60057C491 /* Checkmark@3x.png in Resources */,
 				3918632F20021FE60057C491 /* Checkmark@2x.png in Resources */,
 				3918633A200469C30057C491 /* address.txt in Resources */,
 				397C07492001C3E70073A57A /* RentCartEditToolBar.xib in Resources */,
 				39186336200460DE0057C491 /* ProductPage.storyboard in Resources */,
+				39574C382008BF5200FD87B6 /* homepagejson.txt in Resources */,
 				3918638B20074ABA0057C491 /* SelectedAllActionView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

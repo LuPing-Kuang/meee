@@ -1,0 +1,144 @@
+{
+"code": 0,
+"message": "success",
+"data": {
+"items": [
+{
+"params": {
+"style": "default1",
+"levellink": "",
+"seticon": "icon-settings",
+"setlink": "./index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=member.info",
+"leftnav": "充值",
+"leftnavlink": "./index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=member.recharge",
+"rightnav": "兑换",
+"rightnavlink": "./index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=creditshop"
+},
+"info": {
+"avatar": "",
+"nickname": "用户名",
+"levelname": "会员等级",
+"textmoney": "余额",
+"textcredit": "积分",
+"money": "",
+"credit": 0
+},
+"id": "member"
+},
+{
+"data": [
+{
+"text": "我的订单",
+"linkurl": "./index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=order&mid=3292",
+"iconclass": "icon-list",
+"remark": "查看全部",
+"dotnum": 0
+}
+],
+"id": "listmenu"
+},
+{
+"data": [
+{
+"iconclass": "icon-card",
+"text": "待付款",
+"linkurl": "./index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=order&status=0&mid=3292",
+"dotnum": ""
+},
+{
+"iconclass": "icon-box",
+"text": "待发货",
+"linkurl": "./index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=order&status=1&mid=3292",
+"dotnum": ""
+},
+{
+"iconclass": "icon-deliver",
+"text": "待收货",
+"linkurl": "./index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=order&status=2&mid=3292",
+"dotnum": ""
+},
+{
+"iconclass": "icon-electrical",
+"text": "退换货",
+"linkurl": "./index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=order&status=4&mid=3292",
+"dotnum": ""
+}
+],
+"id": "icongroup"
+},
+{
+"data": [
+{
+"text": "推荐凭证查询",
+"linkurl": "./index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=sale.coupon.my&mid=3292",
+"iconclass": "icon-likefill",
+"remark": "查看",
+"dotnum": "0"
+}
+],
+"id": "listmenu"
+},
+{
+"data": [
+{
+"text": "合伙人中心",
+"linkurl": "./index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=commission&mid=3292",
+"iconclass": "icon-fenxiao",
+"remark": "查看",
+"dotnum": 0
+},
+{
+"text": "M币商城",
+"linkurl": "./index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=creditshop&mid=3292",
+"iconclass": "icon-creditlevel",
+"remark": "查看",
+"dotnum": 0
+}
+],
+"id": "listmenu"
+},
+{
+"id": "blank"
+},
+{
+"data": [
+{
+"text": "我的采购",
+"linkurl": "./index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=member.cart&mid=3292",
+"iconclass": "icon-cart",
+"remark": "查看",
+"dotnum": "0"
+},
+{
+"text": "我的收藏",
+"linkurl": "./index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=member.favorite&mid=3292",
+"iconclass": "icon-like",
+"remark": "查看",
+"dotnum": "0"
+},
+{
+"text": "我的足迹",
+"linkurl": "./index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=member.history&mid=3292",
+"iconclass": "icon-footprint",
+"remark": "查看",
+"dotnum": 0
+}
+],
+"id": "listmenu"
+},
+{
+
+"data": [
+{
+"text": "收货地址管理",
+"linkurl": "./index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=member.address&mid=3292",
+"iconclass": "icon-address",
+"remark": "查看",
+"dotnum": 0
+}
+],
+"id": "listmenu"
+}
+]
+}
+}

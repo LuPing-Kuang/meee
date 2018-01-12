@@ -34,13 +34,18 @@
     [super viewDidLoad];
     self.collectionView.backgroundColor=[UIColor whiteColor];
     self.navigationItem.title=@"ME微光电";
-    
+    [self loadDataFromLocal:YES];
     [self refresh];
 }
 
 -(void)refresh
 {
-    [HomePageHttpTool getHomePageDatasCache:NO token:[UserModel token] success:^(NSArray *banners, NSArray *collections, NSArray *productSecns) {
+    [self loadDataFromLocal:NO];
+}
+
+-(void)loadDataFromLocal:(BOOL)local
+{
+    [HomePageHttpTool getHomePageDatasCache:NO token:[UserModel token] local:local success:^(NSArray *banners, NSArray *collections, NSArray *productSecns) {
         productSections=[NSMutableArray arrayWithArray:productSecns];
         bannersArray=[NSMutableArray arrayWithArray:banners];
         collArray=[NSMutableArray arrayWithArray:collections];

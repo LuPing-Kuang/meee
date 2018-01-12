@@ -17,12 +17,12 @@
 +(NSString*)token
 {
 //    #warning test user token
-#if DEBUG
+//#if DEBUG
     return @"666";
-#else
-    NSString* to=[[NSUserDefaults standardUserDefaults]valueForKey:UserTokenKey];
-    return to;
-#endif
+//#else
+//    NSString* to=[[NSUserDefaults standardUserDefaults]valueForKey:UserTokenKey];
+//    return to;
+//#endif
 }
 
 +(void)saveToken:(NSString *)token

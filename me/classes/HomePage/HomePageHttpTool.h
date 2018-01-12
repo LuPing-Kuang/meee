@@ -13,6 +13,6 @@
 
 @interface HomePageHttpTool : ZZHttpTool
 
-+(void)getHomePageDatasCache:(BOOL)cache token:(NSString*)token success:(void(^)(NSArray* banners, NSArray* collections, NSArray* productSections))success failure:(void(^)(NSError* error))failure;
++(void)getHomePageDatasCache:(BOOL)cache token:(NSString*)token local:(BOOL)local success:(void(^)(NSArray* banners, NSArray* collections, NSArray* productSections))success failure:(void(^)(NSError* error))failure;
 
 @end

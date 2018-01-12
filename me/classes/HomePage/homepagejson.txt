@@ -1,0 +1,88 @@
+{
+"code": 0,
+"message": "success",
+"data": {
+"page": {
+"type": "2",
+"title": "ME时代微光电新零售",
+"name": "自定义首页",
+"desc": "ME微光电新零售，合伙人系统。ME微光电新零售系统，来一把彻底颠覆！",
+"icon": "images/1/2017/07/zB5dy2kZ2d22Fx5a7khFBAdyWsA2d5.png",
+"keyword": "微光电系统",
+"background": "#fafafa",
+"diymenu": "0",
+"diylayer": "1",
+"diygotop": "1",
+"followbar": "1",
+"danmu": "1",
+"visitlevel": {
+"member": [],
+"commission": []
+},
+"novisit": {
+"title": [],
+"link": []
+}
+},
+"items": [
+{
+"style": {
+"dotstyle": "round",
+"dotalign": "center",
+"background": "#ffffff",
+"leftright": "5",
+"bottom": "5",
+"opacity": "0.8"
+},
+"data": [
+{
+"imgurl": "",
+"linkurl": ""
+},
+{
+"imgurl": "",
+"linkurl": ""
+}
+],
+"id": "banner"
+},
+{
+"style": {
+"navstyle": "",
+"background": "#ffffff",
+"rownum": "4",
+"showtype": "1",
+"pagenum": "4",
+"showdot": "1"
+},
+"data": [
+{
+"imgurl": "",
+"linkurl": "",
+"text": "",
+"color": "#666666"
+},
+{
+"imgurl": "",
+"linkurl": "",
+"text": "",
+"color": "#666666"
+},
+{
+"imgurl": "",
+"linkurl": "",
+"text": "",
+"color": "#666666"
+},
+{
+"imgurl": "",
+"linkurl": "",
+"text": "",
+"color": "#666666"
+}
+],
+"id": "menu"
+}
+]
+}
+}

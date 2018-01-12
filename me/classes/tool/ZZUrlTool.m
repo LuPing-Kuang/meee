@@ -15,7 +15,7 @@
 #if DEBUG
     return @"http://192.168.1.131:8094";
 #else
-    return @"http://ewei.bangju.com";
+    return @"http://192.168.1.131:8094";
 #endif
 }
 
