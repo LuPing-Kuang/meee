@@ -31,7 +31,7 @@
     [[NSNotificationCenter defaultCenter]postNotificationName:UITableViewReloadDataNotification object:nil userInfo:dic];
     [self myReloadData];
     self.separatorColor=gray_8;
-    self.showsVerticalScrollIndicator=NO;
+//    self.showsVerticalScrollIndicator=NO;
 }
 
 @end

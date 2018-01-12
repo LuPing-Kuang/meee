@@ -70,6 +70,11 @@
 		394D377D1FEDF4330001CB48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 394D377C1FEDF4330001CB48 /* Assets.xcassets */; };
 		394D37801FEDF4330001CB48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 394D377E1FEDF4330001CB48 /* LaunchScreen.storyboard */; };
 		394D37891FEDF6910001CB48 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 394D37881FEDF6910001CB48 /* AVKit.framework */; };
+		39574C272008560800FD87B6 /* MyOrderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39574C262008560800FD87B6 /* MyOrderTableViewController.m */; };
+		39574C2B2008566900FD87B6 /* ZZPagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39574C2A2008566900FD87B6 /* ZZPagerController.m */; };
+		39574C2E2008568100FD87B6 /* MyOrdersPagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39574C2D2008568100FD87B6 /* MyOrdersPagerViewController.m */; };
+		39574C312008574E00FD87B6 /* MyOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 39574C302008574E00FD87B6 /* MyOrderModel.m */; };
+		39574C34200884A800FD87B6 /* MyOrderListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39574C33200884A800FD87B6 /* MyOrderListTableViewCell.m */; };
 		397C073D2001BCFF0073A57A /* CartPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 397C073C2001BCFF0073A57A /* CartPageViewController.m */; };
 		397C07412001BD990073A57A /* CartEditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 397C07402001BD990073A57A /* CartEditTableViewCell.m */; };
 		397C07442001C1360073A57A /* ZZStepper.m in Sources */ = {isa = PBXBuildFile; fileRef = 397C07432001C1360073A57A /* ZZStepper.m */; };
@@ -78,6 +83,7 @@
 		397C074C2001C5310073A57A /* BaseToolBarTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 397C074B2001C5310073A57A /* BaseToolBarTableViewController.m */; };
 		397C074F2001CA340073A57A /* CartPageHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 397C074E2001CA340073A57A /* CartPageHttpTool.m */; };
 		397C07522001CB230073A57A /* CartItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 397C07512001CB230073A57A /* CartItemModel.m */; };
+		398DC9BA200848100083343D /* ProductOrderBillViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 398DC9B9200848100083343D /* ProductOrderBillViewController.m */; };
 		39BCC4AB1FFF7818008688B7 /* BannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 39BCC4AA1FFF7818008688B7 /* BannerModel.m */; };
 		39BCC4AE1FFF8215008688B7 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 39BCC4AD1FFF8215008688B7 /* UserModel.m */; };
 		39BCC4B1200071CA008688B7 /* MyPageHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 39BCC4B0200071CA008688B7 /* MyPageHttpTool.m */; };
@@ -218,6 +224,16 @@
 		394D377F1FEDF4330001CB48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		394D37811FEDF4330001CB48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		394D37881FEDF6910001CB48 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		39574C252008560800FD87B6 /* MyOrderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderTableViewController.h; sourceTree = "<group>"; };
+		39574C262008560800FD87B6 /* MyOrderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderTableViewController.m; sourceTree = "<group>"; };
+		39574C292008566900FD87B6 /* ZZPagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZPagerController.h; sourceTree = "<group>"; };
+		39574C2A2008566900FD87B6 /* ZZPagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZPagerController.m; sourceTree = "<group>"; };
+		39574C2C2008568100FD87B6 /* MyOrdersPagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrdersPagerViewController.h; sourceTree = "<group>"; };
+		39574C2D2008568100FD87B6 /* MyOrdersPagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrdersPagerViewController.m; sourceTree = "<group>"; };
+		39574C2F2008574E00FD87B6 /* MyOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderModel.h; sourceTree = "<group>"; };
+		39574C302008574E00FD87B6 /* MyOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderModel.m; sourceTree = "<group>"; };
+		39574C32200884A800FD87B6 /* MyOrderListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderListTableViewCell.h; sourceTree = "<group>"; };
+		39574C33200884A800FD87B6 /* MyOrderListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderListTableViewCell.m; sourceTree = "<group>"; };
 		397C073B2001BCFF0073A57A /* CartPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartPageViewController.h; sourceTree = "<group>"; };
 		397C073C2001BCFF0073A57A /* CartPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartPageViewController.m; sourceTree = "<group>"; };
 		397C073F2001BD990073A57A /* CartEditTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartEditTableViewCell.h; sourceTree = "<group>"; };
@@ -233,6 +249,8 @@
 		397C074E2001CA340073A57A /* CartPageHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartPageHttpTool.m; sourceTree = "<group>"; };
 		397C07502001CB230073A57A /* CartItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartItemModel.h; sourceTree = "<group>"; };
 		397C07512001CB230073A57A /* CartItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartItemModel.m; sourceTree = "<group>"; };
+		398DC9B8200848100083343D /* ProductOrderBillViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductOrderBillViewController.h; sourceTree = "<group>"; };
+		398DC9B9200848100083343D /* ProductOrderBillViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductOrderBillViewController.m; sourceTree = "<group>"; };
 		39BCC4A91FFF7818008688B7 /* BannerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerModel.h; sourceTree = "<group>"; };
 		39BCC4AA1FFF7818008688B7 /* BannerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerModel.m; sourceTree = "<group>"; };
 		39BCC4AC1FFF8215008688B7 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
@@ -385,6 +403,8 @@
 				3918633220045D990057C491 /* ProductOrderComfirmTableViewController.h */,
 				3918633320045D990057C491 /* ProductOrderComfirmTableViewController.m */,
 				39186335200460DE0057C491 /* ProductPage.storyboard */,
+				398DC9B8200848100083343D /* ProductOrderBillViewController.h */,
+				398DC9B9200848100083343D /* ProductOrderBillViewController.m */,
 			);
 			path = ProductPage;
 			sourceTree = "<group>";
@@ -431,6 +451,8 @@
 		3946D27B1FF335F20074E77A /* custom */ = {
 			isa = PBXGroup;
 			children = (
+				39574C292008566900FD87B6 /* ZZPagerController.h */,
+				39574C2A2008566900FD87B6 /* ZZPagerController.m */,
 				39186339200469C30057C491 /* address.txt */,
 				39186373200715050057C491 /* PickerShadowContainer.h */,
 				39186374200715050057C491 /* PickerShadowContainer.m */,
@@ -571,6 +593,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		39574C282008560D00FD87B6 /* myorder */ = {
+			isa = PBXGroup;
+			children = (
+				39574C2C2008568100FD87B6 /* MyOrdersPagerViewController.h */,
+				39574C2D2008568100FD87B6 /* MyOrdersPagerViewController.m */,
+				39574C252008560800FD87B6 /* MyOrderTableViewController.h */,
+				39574C262008560800FD87B6 /* MyOrderTableViewController.m */,
+				39574C2F2008574E00FD87B6 /* MyOrderModel.h */,
+				39574C302008574E00FD87B6 /* MyOrderModel.m */,
+				39574C32200884A800FD87B6 /* MyOrderListTableViewCell.h */,
+				39574C33200884A800FD87B6 /* MyOrderListTableViewCell.m */,
+			);
+			name = myorder;
+			sourceTree = "<group>";
+		};
 		397C073A2001BCD20073A57A /* CartPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -619,6 +656,7 @@
 		39F37F641FFF228D00781706 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				39574C282008560D00FD87B6 /* myorder */,
 				39186386200748520057C491 /* favourite */,
 				3918637C200737F80057C491 /* footprint */,
 				39186372200704C70057C491 /* address */,
@@ -776,12 +814,14 @@
 				39F37F701FFF489F00781706 /* MySimpleTableViewCell.m in Sources */,
 				397C073D2001BCFF0073A57A /* CartPageViewController.m in Sources */,
 				39186377200715050057C491 /* PickerShadowContainer.m in Sources */,
+				39574C34200884A800FD87B6 /* MyOrderListTableViewCell.m in Sources */,
 				3918636A200701880057C491 /* MyAddressesTableViewController.m in Sources */,
 				393F286A1FF34FDF009D5D2E /* CorneredButton.m in Sources */,
 				390B25B11FF4D33500282A90 /* MenuHeaderTableViewCell.m in Sources */,
 				39186343200498730057C491 /* ProductOrderTotalTableViewCell.m in Sources */,
 				393F287C1FF384EE009D5D2E /* SimpleButtonsTableViewCell.m in Sources */,
 				3946D2F71FF34D290074E77A /* ProductLargeCollectionViewCell.m in Sources */,
+				39574C272008560800FD87B6 /* MyOrderTableViewController.m in Sources */,
 				3946D2D61FF3362A0074E77A /* NSString+ext.m in Sources */,
 				3946D2F01FF33B510074E77A /* HomePageCollectionViewController.m in Sources */,
 				39BCC4B82000B6A0008688B7 /* ProductPageHttpTool.m in Sources */,
@@ -793,12 +833,15 @@
 				391EB37C1FF4C35D009A8A01 /* ProductAllCollectionViewController.m in Sources */,
 				39F37F771FFF50A700781706 /* MyPageDataModel.m in Sources */,
 				3918634C2004AC5B0057C491 /* ProductionOrderModel.m in Sources */,
+				398DC9BA200848100083343D /* ProductOrderBillViewController.m in Sources */,
 				3946D2681FF332B20074E77A /* TabbarController.m in Sources */,
 				39186340200498040057C491 /* ProductOrderGoodInfoTableViewCell.m in Sources */,
 				39186385200740040057C491 /* FootPrintModel.m in Sources */,
 				3918637B200716430057C491 /* MyAddressAddNewTableViewController.m in Sources */,
 				39F37F671FFF22BF00781706 /* LoginViewController.m in Sources */,
 				39186378200715050057C491 /* CitySelectionPicker.m in Sources */,
+				39574C2B2008566900FD87B6 /* ZZPagerController.m in Sources */,
+				39574C312008574E00FD87B6 /* MyOrderModel.m in Sources */,
 				3946D2D81FF3362A0074E77A /* NSDictionary+ext.m in Sources */,
 				39F37F871FFF6F9A00781706 /* NSObject+YYModel.m in Sources */,
 				3918637F2007380F0057C491 /* MyFootPrintTableViewController.m in Sources */,
@@ -822,6 +865,7 @@
 				397C07522001CB230073A57A /* CartItemModel.m in Sources */,
 				39186349200498B00057C491 /* ProductOrderDetailTableViewCell.m in Sources */,
 				39F37F6A1FFF233900781706 /* MyPageViewController.m in Sources */,
+				39574C2E2008568100FD87B6 /* MyOrdersPagerViewController.m in Sources */,
 				39F37F951FFF718D00781706 /* HomePageHttpTool.m in Sources */,
 				3946D2F31FF33F730074E77A /* ZZnotificationName.m in Sources */,
 				393F287F1FF38519009D5D2E /* HomeFourCollectionViewCell.m in Sources */,

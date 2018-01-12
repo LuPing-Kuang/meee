@@ -72,6 +72,7 @@
     
     self.tableView.estimatedRowHeight=100;
     self.tableView.rowHeight=UITableViewAutomaticDimension;
+    self.tableView.separatorInset=UIEdgeInsetsMake(0, 15, 0, 0);
     
     self.refreshControl=[[UIRefreshControl alloc]init];
     [self.tableView addSubview:self.refreshControl];
@@ -138,8 +139,6 @@
         lastCount=self.dataSource.count;
     }
 }
-
-
 
 #pragma mark - Refresh And Load More
 
@@ -230,7 +229,7 @@
     if (tableView.style==UITableViewStylePlain) {
         return 0.0001;
     }
-    return 8;
+    return 12;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

@@ -9,6 +9,7 @@
 #import "ProductOrderComfirmTableViewController.h"
 
 #import "MyAddressesTableViewController.h"
+#import "ProductOrderBillViewController.h"
 
 #import "ProductOrderTotalTableViewCell.h"
 #import "ProductOrderAddressTableViewCell.h"
@@ -92,6 +93,11 @@ typedef NS_ENUM(NSInteger,ProductOrderTableViewSection)
 {
     NSLog(@"buy");
     [MBProgressHUD showSuccessMessage:@"买"];
+    
+    //you should do many things before push
+    
+    ProductOrderBillViewController* bill=[[UIStoryboard storyboardWithName:@"ProductPage" bundle:nil]instantiateViewControllerWithIdentifier:@"ProductOrderBillViewController"];
+    [self.navigationController pushViewController:bill animated:YES];
 }
 
 #pragma mark tableview datasource delegate

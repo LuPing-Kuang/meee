@@ -29,7 +29,7 @@
     
     
     
-//    [self.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName, nil]];
+    [self.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:gray_2,NSForegroundColorAttributeName, nil]];
 //    // Do any additional setup after loading the view.
 //    
 //    [self setNavigationColorShowImage:YES];

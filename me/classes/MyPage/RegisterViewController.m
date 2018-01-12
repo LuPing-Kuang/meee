@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UIView *otherLoginWayView;
+@property (weak, nonatomic) IBOutlet UIButton *codeButton;
 
 @end
 
@@ -38,6 +39,8 @@
 
 
 - (IBAction)wechatLogin:(id)sender {
+}
+- (IBAction)getVerifyCode:(id)sender {
 }
 
 @end

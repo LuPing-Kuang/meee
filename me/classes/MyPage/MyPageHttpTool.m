@@ -54,11 +54,13 @@
             {
                 NSMutableArray* collections=[NSMutableArray array];
                 for (NSDictionary* but in subdata) {
+                    NSString* linkUrl=[but valueForKey:@"linkurl"];
                     NSString* iconclass=[but valueForKey:@"iconclass"];
                     NSString* text=[but valueForKey:@"text"];
-                    NSString* link=[[but valueForKey:@"linkurl"]stringValueFromUrlParamsKey:@"r"];
+                    NSString* link=[linkUrl stringValueFromUrlParamsKey:@"r"];
                     NSInteger dotnum=[[but valueForKey:@"dotnum"]integerValue];
-                    SimpleButtonModel* bm=[[SimpleButtonModel alloc]initWithTitle:text imageName:iconclass identifier:link type:0 badge:dotnum];
+                    NSInteger status=[[linkUrl stringValueFromUrlParamsKey:@"status"]integerValue];
+                    SimpleButtonModel* bm=[[SimpleButtonModel alloc]initWithTitle:text imageName:iconclass identifier:link type:status badge:dotnum];
                     [collections addObject:bm];
                 }
                 MyPageDataModel* mo=[MyPageDataModel modelWithType:MyPageDataTypeCollection imageName:nil title:nil detail:nil badge:0 action:nil associateObject:collections];
@@ -153,6 +155,44 @@
     } failure:^(NSError *error) {
         if (completion) {
             completion(NO,BadNetworkDescription);
+        }
+    }];
+}
+
++(void)getMyOrdersCache:(BOOL)cache token:(NSString*)token status:(NSInteger)status page:(NSInteger)page pagesize:(NSInteger)pagesize merchid:(NSString*)merchid success:(void(^)(NSArray* myAddress))success failure:(void(^)(NSError* error))failure;
+{
+    NSDictionary* d=[ZZHttpTool pageParamsWithPage:page size:pagesize];
+    [d setValue:token forKey:@"access_token"];
+    if (merchid.length==0) {
+        merchid=@"0";
+    }
+    [d setValue:merchid forKey:@"merchid"];
+    [d setValue:[NSNumber numberWithInteger:status] forKey:@"status"];
+    NSString* str=[ZZUrlTool fullUrlWithTail:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=order.get_list"];
+    [self get:str params:d usingCache:cache success:^(NSDictionary *dict) {
+        NSDictionary* data=[dict valueForKey:@"data"];
+        NSArray* list=[data valueForKey:@"list"];
+        NSMutableArray* res=[NSMutableArray array];
+        for (NSDictionary* orderDictionary in list) {
+            MyOrderModel* orderModel=[MyOrderModel yy_modelWithDictionary:orderDictionary];
+            NSMutableArray* products=[NSMutableArray array];
+            NSArray* goods=[orderDictionary valueForKey:@"goods"];
+            for (NSDictionary* gd in goods) {
+                NSArray* go2ods=[gd valueForKey:@"goods"];
+                for (NSDictionary* g2d in go2ods) {
+                    MyOrderProductModel* pro=[MyOrderProductModel yy_modelWithDictionary:g2d];
+                    [products addObject:pro];
+                }
+            }
+            orderModel.products=products;
+            [res addObject:orderModel];
+        }
+        if (success) {
+            success(res);
+        }
+    } failure:^(NSError *err) {
+        if (failure) {
+            failure(err);
         }
     }];
 }
