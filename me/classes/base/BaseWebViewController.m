@@ -254,10 +254,10 @@
 //    self.ios8WebView.hidden=NO;
     [loadingIndicator stopAnimating];
 
-    NSString* netitle = [self.ios8WebView stringByEvaluatingJavaScriptFromString:@"document.title"];
-    if (netitle.length>0) {
-        self.title=netitle;
-    }
+//    NSString* netitle = [self.ios8WebView stringByEvaluatingJavaScriptFromString:@"document.title"];
+//    if (netitle.length>0) {
+//        self.title=netitle;
+//    }
 
 //    NSLog(@"%@",[self.ios8WebView stringByEvaluatingJavaScriptFromString:@"document.documentElement.innerHTML"]);
 }
