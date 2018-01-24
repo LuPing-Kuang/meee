@@ -13,9 +13,10 @@
 +(NSString*)main
 {
 #if DEBUG
-    return @"http://192.168.1.131:8094";
+    return @"http://ewei.bangju.com";
 #else
-    return @"http://192.168.1.131:8094";
+//    return @"http://192.168.1.131:8094";
+    return @"http://ewei.bangju.com";
 #endif
 }
 

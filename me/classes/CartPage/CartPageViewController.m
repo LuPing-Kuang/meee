@@ -133,17 +133,17 @@
 {
     NSLog(@"delete selected");
     NSArray* items=[self seletedItems];
-    [MBProgressHUD showProgressMessage:@"正在删除"];
+    [HUDManager showLoading:@"正在删除"];
     [CartPageHttpTool postDeleteCarts:items token:[UserModel token] complete:^(BOOL result, NSArray *deletedItems, NSString* msg) {
         if (result) {
-            [MBProgressHUD showSuccessMessage:@"已删除"];
+            [HUDManager showSuccessMsg:@"已删除"];
             [self.dataSource removeObjectsInArray:deletedItems];
             [self.tableView reloadData];
             [self calculateTotalAmount];
         }
         else
         {
-            [MBProgressHUD showErrorMessage:msg];
+            [HUDManager showErrorMsg:msg];
         }
     }];
 }
@@ -152,17 +152,17 @@
 {
     NSLog(@"attent selected");
     NSArray* items=[self seletedItems];
-    [MBProgressHUD showProgressMessage:@"正在移动"];
+    [HUDManager showLoading:@"正在移动"];
     [CartPageHttpTool postDeleteCarts:items token:[UserModel token] complete:^(BOOL result, NSArray *deletedItems, NSString* msg) {
         if (result) {
-            [MBProgressHUD showSuccessMessage:@"已移到关注"];
+            [HUDManager showSuccessMsg:@"已移到关注"];
             [self.dataSource removeObjectsInArray:deletedItems];
             [self.tableView reloadData];
             [self calculateTotalAmount];
         }
         else
         {
-            [MBProgressHUD showErrorMessage:msg];
+            [HUDManager showErrorMsg:msg];
         }
     }];
 }
@@ -173,7 +173,7 @@
     
     NSArray* items=[self seletedItems];
     if (items.count==0) {
-        [MBProgressHUD showErrorMessage:@"请选择要购买的商品"];
+        [HUDManager showErrorMsg:@"请选择要购买的商品"];
         return;
     }
     

@@ -18,6 +18,8 @@
 
 #import "MyOrdersPagerViewController.h"
 #import "MyOrderTableViewController.h"
+#import "MyPartnerViewController.h"
+#import "ApplyPartnerController.h"
 
 @interface MyPageViewController ()<SimpleButtonsTableViewCellDelegate>
 
@@ -47,7 +49,7 @@
         [self.dataSource removeAllObjects];
         [self.dataSource addObjectsFromArray:myPageSections];
         [self.tableView reloadData];
-    } failure:^(NSError *error) {
+    } failure:^(NSString *errorMsg) {
         [self.tableView reloadData];
     }];
 }
@@ -106,7 +108,6 @@
         MyHeaderTableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"MyHeaderTableViewCell" forIndexPath:indexPath];
         [cell.headImageView setImageUrl:us.avatar];
         cell.moneyLabel.text=us.money;
-        cell.scoreLabel.text=[NSString stringWithFormat:@"%ld",(long)us.credit.integerValue];
         cell.nameLabel.text=us.nickname;
         cell.levelName.text=[NSString stringWithFormat:@"[%@]",us.levelname];
         if (us.levelname.length==0) {
@@ -114,7 +115,6 @@
         }
 
         [cell.topupButton addTarget:self action:@selector(goToTopUp) forControlEvents:UIControlEventTouchUpInside];
-        [cell.settingButton addTarget:self action:@selector(goToSetting) forControlEvents:UIControlEventTouchUpInside];
         [cell.headButton addTarget:self action:@selector(goToChangeAvatar) forControlEvents:UIControlEventTouchUpInside];
         
         return cell;
@@ -153,6 +153,23 @@
     {
         [self pushOrderViewControllerWithShowingOrderType:MyOrderTypeAll];
     }
+    else if([link isEqualToString:@"commission"])
+    {
+        [self pushViewControllerForStoryBoardId:@"MyPartnerViewController"];
+        
+    }
+//    else if([link isEqualToString:@"member.info"])
+//    {
+//        [self pushViewControllerForStoryBoardId:@"PartnerMaterialController"];
+//
+//    }
+    
+    else if([link isEqualToString:@"member.info"])
+    {
+        [self pushViewControllerForStoryBoardId:@"ApplyPartnerController"];
+        
+    }
+    
 }
 
 #pragma mark SimpleButtonsTableViewCellDelegate
@@ -188,10 +205,7 @@
     [self.navigationController pushViewController:pag animated:YES];
 }
 
--(void)goToSetting
-{
-    NSLog(@"setting");
-}
+
 
 -(void)goToTopUp
 {

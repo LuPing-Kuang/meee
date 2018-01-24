@@ -32,4 +32,20 @@
 
 -(void)tableViewReloadData;
 
+- (void)startAnimation;
+- (void)stopAnimation;
+- (void)showErrorMsg:(NSString *)errmsg;
+- (void)showSuccessMsg:(NSString *)msg;
+- (void)showLoading:(NSString *)msg;
+
+-(void)showSystemAlertWithTitle:(NSString *)title
+                        message:(NSString*)message
+                    buttonTitle:(NSString *)btntitle
+                needDestructive:(BOOL)needDistory
+                    cancleBlock: (void (^)(UIAlertAction *action))cancleBlock
+                       btnBlock:(void (^)(UIAlertAction *action))btnBlock ;
+
+
+
+
 @end

@@ -10,7 +10,7 @@
 
 @implementation MyPageHttpTool
 
-+(void)getMyPageDataCache:(BOOL)cache token:(NSString*)token local:(BOOL)local success:(void(^)(NSArray* myPageSections))success failure:(void(^)(NSError* error))failure;
++(void)getMyPageDataCache:(BOOL)cache token:(NSString*)token local:(BOOL)local success:(void(^)(NSArray* myPageSections))success failure:(void(^)(NSString* errorMsg))failure;
 {
     NSDictionary* d=[ZZHttpTool pageParams];
     [d setValue:token forKey:@"access_token"];;
@@ -18,8 +18,14 @@
     
     void(^mysuccess)(NSDictionary*)=^(NSDictionary *dict) {
         
+        if ([[dict valueForKey:@"code"] integerValue]!=0) {
+            failure(dict[@"message"]);
+            return;
+        }
+        
         NSDictionary* data=[dict valueForKey:@"data"];
-        NSArray* items=[data valueForKey:@"items"];
+    
+        NSArray* items=[data valueForKey:@"items"];   //调试中
         
         NSMutableArray* totalSections=[NSMutableArray array];
         
@@ -47,8 +53,11 @@
                     NSString* text=[menu valueForKey:@"text"];
                     NSString* link=[[menu valueForKey:@"linkurl"]stringValueFromUrlParamsKey:@"r"];
                     NSInteger dotnum=[[menu valueForKey:@"dotnum"]integerValue];
-                    MyPageDataModel* mo=[MyPageDataModel modelWithType:MyPageDataTypeNormal imageName:iconclass title:text detail:nil badge:dotnum action:link associateObject:nil];
-                    [thisOneSection addObject:mo];
+                    if (![link containsString:@"sale.coupon.my"]) {   //不显示推荐凭证查询
+                        MyPageDataModel* mo=[MyPageDataModel modelWithType:MyPageDataTypeNormal imageName:iconclass title:text detail:nil badge:dotnum action:link associateObject:nil];
+                        [thisOneSection addObject:mo];
+                    }
+                    
                 }
             }
             else if([idd isEqualToString:@"icongroup"])
@@ -67,10 +76,22 @@
                 MyPageDataModel* mo=[MyPageDataModel modelWithType:MyPageDataTypeCollection imageName:nil title:nil detail:nil badge:0 action:nil associateObject:collections];
                 [thisOneSection addObject:mo];
             }
+            else if([idd isEqualToString:@"title"])   //合伙人资料完善
+            {
+                NSDictionary *params = [d2 valueForKey:@"params"];
+                NSString* title=@"合伙人资料完善";
+                NSString* link=[[params valueForKey:@"link"] stringValueFromUrlParamsKey:@"r"];
+                
+                //调试中
+                MyPageDataModel* mo=[MyPageDataModel modelWithType:MyPageDataTypeNormal imageName:@"icon-fenxiao" title:title detail:nil badge:0 action:link associateObject:nil];
+                [thisOneSection addObject:mo];
+            }
+            
             else if([idd isEqualToString:@"blank"])
             {
                 thisOneSection=[NSMutableArray array];
             }
+            
             
             if (![totalSections containsObject:thisOneSection]) {
                 [totalSections addObject:thisOneSection];
@@ -87,12 +108,17 @@
         NSError* err=nil;
         NSString* json=[NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&err];
         NSDictionary* di=[NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableLeaves error:nil];
-        mysuccess(di);
+        if ([[di valueForKey:@"code"] integerValue]!=0) {
+            failure(err.localizedDescription);
+        }else{
+            mysuccess(di);
+        }
+        
         return;
     }
     [self get:str params:d usingCache:cache success:mysuccess failure:^(NSError *err) {
         if (failure) {
-            failure(err);
+            failure(err.localizedDescription);
         }
     }];
 }
@@ -207,5 +233,202 @@
         }
     }];
 }
+
+
++(void)getMyPartnerCache:(BOOL)cache token:(NSString*)token  success:(void(^)(MyPartnerModel* partner))success failure:(void(^)(NSString* errorMsg))failure{
+    
+    NSDictionary* d=[NSMutableDictionary dictionary];
+    [d setValue:token forKey:@"access_token"];
+   
+    NSString* str=[ZZUrlTool fullUrlWithTail:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=commission"];
+    [self get:str params:d usingCache:cache success:^(NSDictionary *dict) {
+        NSDictionary* data=[dict valueForKey:@"data"];
+        if (success) {
+            if ([dict[@"message"] isKindOfClass:[NSString class]] && [[dict[@"message"] lowercaseString] isEqualToString:@"ok"]) {
+                MyPartnerModel* partner=[MyPartnerModel yy_modelWithDictionary:data];
+                success(partner);
+            }else{
+                if (failure) {
+                    NSString *msg = dict[@"message"];
+                    failure(msg);
+                }
+            }
+            
+        }
+    } failure:^(NSError *err) {
+        if (failure) {
+            failure(err.localizedDescription);
+        }
+    }];
+    
+}
+
+
+
+//合伙人佣金
++(void)getMyPartnerCommissionCache:(BOOL)cache token:(NSString*)token  success:(void(^)(PartnerCommissionModel* partner))success failure:(void(^)(NSString* errorMsg))failure{
+    
+    NSDictionary* d=[NSMutableDictionary dictionary];
+    [d setValue:token forKey:@"access_token"];
+    
+    NSString* str=[ZZUrlTool fullUrlWithTail:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=commission.withdraw"];
+    [self get:str params:d usingCache:cache success:^(NSDictionary *dict) {
+        NSDictionary* data=[dict valueForKey:@"data"];
+        if (success) {
+            if ([dict[@"message"] isKindOfClass:[NSString class]] && [[dict[@"message"] lowercaseString] isEqualToString:@"ok"]) {
+                PartnerCommissionModel* partner=[PartnerCommissionModel yy_modelWithDictionary:data[@"member"]];
+                success(partner);
+            }else{
+                if (failure) {
+                    NSString *msg = dict[@"message"];
+                    failure(msg);
+                }
+            }
+            
+        }
+    } failure:^(NSError *err) {
+        if (failure) {
+            failure(err.localizedDescription);
+        }
+    }];
+    
+}
+
+
+//佣金明细
++(void)getMyDistributionOrderCache:(BOOL)cache token:(NSString*)token status:(NSInteger)status page:(NSInteger)page pagesize:(NSInteger)pagesize success:(void(^)(DistributionTotalOrderModel* model))success failure:(void(^)(NSString* errorMsg))failure{
+    
+    NSDictionary* d=[ZZHttpTool pageParamsWithPage:page size:pagesize];
+    [d setValue:token forKey:@"access_token"];
+
+    [d setValue:[NSNumber numberWithInteger:status] forKey:@"status"];
+    NSString* str=[ZZUrlTool fullUrlWithTail:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=commission.order.get_list"];
+    [self get:str params:d usingCache:cache success:^(NSDictionary *dict) {
+        NSDictionary* data=[dict valueForKey:@"data"];
+    
+        DistributionTotalOrderModel *model = [DistributionTotalOrderModel mj_objectWithKeyValues:data];
+        
+        if (success) {
+            success(model);
+        }
+    } failure:^(NSError *err) {
+        if (failure) {
+            failure(err.localizedDescription);
+        }
+    }];
+    
+}
+
+//提现明细
++(void)getMyCashDetailCache:(BOOL)cache token:(NSString*)token status:(NSInteger)status page:(NSInteger)page pagesize:(NSInteger)pagesize success:(void(^)(GetCashDetailTotalModel* model))success failure:(void(^)(NSString* errorMsg))failure{
+    
+    NSDictionary* d=[ZZHttpTool pageParamsWithPage:page size:pagesize];
+    [d setValue:token forKey:@"access_token"];
+    
+    [d setValue:[NSNumber numberWithInteger:status] forKey:@"status"];
+    NSString* str=[ZZUrlTool fullUrlWithTail:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=commission.log.get_list"];
+    [self get:str params:d usingCache:cache success:^(NSDictionary *dict) {
+        NSDictionary* data=[dict valueForKey:@"data"];
+        
+        GetCashDetailTotalModel *model = [GetCashDetailTotalModel mj_objectWithKeyValues:data];
+        
+        if (success) {
+            success(model);
+        }
+    } failure:^(NSError *err) {
+        if (failure) {
+            failure(err.localizedDescription);
+        }
+    }];
+    
+}
+
+//我的下线
++(void)getMyOtherPartnerCache:(BOOL)cache token:(NSString*)token level:(NSInteger)level page:(NSInteger)page pagesize:(NSInteger)pagesize success:(void(^)(MyOtherPartnerTotalModel* model))success failure:(void(^)(NSString* errorMsg))failure{
+    
+    NSDictionary* d=[ZZHttpTool pageParamsWithPage:page size:pagesize];
+    [d setValue:token forKey:@"access_token"];
+    
+    [d setValue:[NSNumber numberWithInteger:level] forKey:@"level"];
+    NSString* str=[ZZUrlTool fullUrlWithTail:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=commission.down.get_list"];
+    [self get:str params:d usingCache:cache success:^(NSDictionary *dict) {
+        NSDictionary* data=[dict valueForKey:@"data"];
+        
+        MyOtherPartnerTotalModel *model = [MyOtherPartnerTotalModel mj_objectWithKeyValues:data];
+        
+        if (success) {
+            success(model);
+        }
+    } failure:^(NSError *err) {
+        if (failure) {
+            failure(err.localizedDescription);
+        }
+    }];
+    
+}
+
+
+//合伙人资料
++(void)getMyMaterialPartnerCache:(BOOL)cache token:(NSString*)token success:(void(^)(PartnerMaterialModel* model))success failure:(void(^)(NSString* errorMsg))failure{
+    
+    NSMutableDictionary* d=[NSMutableDictionary dictionary];
+    [d setValue:token forKey:@"access_token"];
+    
+    NSString* str=[ZZUrlTool fullUrlWithTail:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=member.info"];
+    [self get:str params:d usingCache:cache success:^(NSDictionary *dict) {
+        NSDictionary* data=[dict valueForKey:@"data"];
+        
+
+        if (data[@"diyform"]) {
+            NSDictionary *f_dataDic = [data[@"diyform"] valueForKey:@"f_data"];
+            NSDictionary *fieldsDic = [data[@"diyform"] valueForKey:@"fields"];
+            
+            PartnerMaterialModel *model = [PartnerMaterialModel initWithf_dataDic:f_dataDic fields:fieldsDic];
+            
+            if (success) {
+                success(model);
+            }
+            
+        }else{
+            if (failure) {
+                failure(@"没有数据");
+            }
+        }
+        
+    } failure:^(NSError *err) {
+        if (failure) {
+            failure(err.localizedDescription);
+        }
+    }];
+    
+}
+
+
+//申请成为合伙人
++(void)applyPartnerCache:(BOOL)cache mid:(NSInteger)mid realname:(NSString*)realname mobile:(NSString*)mobile token:(NSString*)token success:(void(^)(PartnerMaterialModel* model))success failure:(void(^)(NSString* errorMsg))failure{
+    
+    NSMutableDictionary* d=[NSMutableDictionary dictionary];
+    [d setValue:token forKey:@"access_token"];
+    [d setValue:[NSNumber numberWithInteger:mid] forKey:@"mid"];
+    [d setValue:realname forKey:@"realname"];
+    [d setValue:mobile forKey:@"mobile"];
+    
+    NSString* str=[ZZUrlTool fullUrlWithTail:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=commission.register"];
+    [self get:str params:d usingCache:cache success:^(NSDictionary *dict) {
+        NSDictionary* data=[dict valueForKey:@"data"];
+        
+        if (success) {
+            success(nil);
+        }
+        
+        
+    } failure:^(NSError *err) {
+        if (failure) {
+            failure(err.localizedDescription);
+        }
+    }];
+    
+}
+
 
 @end

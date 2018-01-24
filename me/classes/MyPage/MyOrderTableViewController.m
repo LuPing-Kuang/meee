@@ -20,10 +20,10 @@
     [super viewDidLoad];
 //    self.tableView.backgroundColor=_randomColor;
     
-    UILabel * lab=[[UILabel alloc]initWithFrame:CGRectMake(100, 100, 100,30)];
-    lab.text=self.title;
-    lab.backgroundColor=[UIColor redColor];
-    [self.tableView addSubview:lab];
+//    UILabel * lab=[[UILabel alloc]initWithFrame:CGRectMake(100, 100, 100,30)];
+//    lab.text=self.title;
+//    lab.backgroundColor=[UIColor redColor];
+//    [self.tableView addSubview:lab];
     
     [self refresh];
     // Do any additional setup after loading the view.

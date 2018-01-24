@@ -17,6 +17,7 @@
     NSDictionary* paar=nil;
     if (token.length>0) {
         paar=[NSDictionary dictionaryWithObject:token forKey:@"access_token"];
+        paar=[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:1] forKey:@"ios"];
     }
     void(^mysuccess)(NSDictionary*)=^(NSDictionary *dict) {
         NSDictionary* data=[dict valueForKey:@"data"];
@@ -28,8 +29,16 @@
         NSMutableArray* productSections=[NSMutableArray array];
         
         ProductSection* lastMetSection=nil;
-        for (NSDictionary* it in items) {
+        for (id it in items) {
+            
+            NSLog(@"it---%@",it);
+            
+            if ([it isKindOfClass:[NSString class]]) {
+                continue;
+            }
+            
             NSString* idd=[it valueForKey:@"id"];
+            NSLog(@"idd---:%@",idd);
             NSArray* d2=[it valueForKey:@"data"];
             
             if ([idd isEqualToString:@"banner"]&&banners.count==0) {

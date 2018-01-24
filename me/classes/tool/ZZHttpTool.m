@@ -119,8 +119,18 @@
                 if (cachedData) {
                     
                     NSDictionary* cachedDict=[ZZHttpTool dictionaryWithResponseData:cacheResp.data];
-                    if (success) {
+                    if ([cachedDict[@"code"] integerValue]==0) {
                         success(cachedDict);
+                    }else{
+                        
+                        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:cachedDict[@"message"]                                                                      forKey:NSLocalizedDescriptionKey];
+                        
+                        
+                        NSError *error = [NSError errorWithDomain:@"com.bangju.ewei" code:-1000 userInfo:userInfo];
+                        
+                        failure(error);
+                        
+                        failure(error);
                     }
                     return;
                 }
@@ -154,7 +164,17 @@
                 if (data) {
                     if (success) {
                         NSDictionary* result=[ZZHttpTool dictionaryWithResponseData:data];
-                        success(result);
+                        if ([result[@"code"] integerValue]==0) {
+                            success(result);
+                        }else{
+                            NSDictionary *userInfo = [NSDictionary dictionaryWithObject:result[@"message"]                                                                      forKey:NSLocalizedDescriptionKey];
+                            
+                            NSError *error = [NSError errorWithDomain:@"com.bangju.ewei" code:-1000 userInfo:userInfo];
+                            
+                            failure(error);
+                        }
+                        
+                        
                         
                     }
 //                    [dataTast cancel];

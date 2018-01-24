@@ -102,18 +102,18 @@
         }
     }
     if (selectedItems.count==0) {
-        [MBProgressHUD showErrorMessage:@"至少选择一个"];
+        [HUDManager showErrorMsg:@"至少选择一个"];
         return;
     }
     [MyPageHttpTool postRemoveMyFootprints:selectedItems token:[UserModel token] complete:^(BOOL result, NSString *msg) {
         if (result) {
-            [MBProgressHUD showSuccessMessage:msg];
+            [HUDManager showSuccessMsg:msg];
             [self.dataSource removeObjectsInArray:selectedItems];
             [self.tableView reloadData];
         }
         else
         {
-            [MBProgressHUD showErrorMessage:msg];
+            [HUDManager showErrorMsg:msg];
         }
     }];
 }

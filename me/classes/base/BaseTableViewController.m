@@ -154,7 +154,7 @@
 
 -(void)stopRefreshAfterSeconds
 {
-//    [self.refreshControl performSelector:@selector(endRefreshing) withObject:nil afterDelay:2];
+    [self.refreshControl performSelector:@selector(endRefreshing) withObject:nil afterDelay:1];
 }
 
 -(void)loadMore
@@ -311,5 +311,55 @@
     footerView.loading=YES;
     [self loadMore];
 }
+
+
+#pragma mark -
+#pragma mark - 提示
+
+- (void)startAnimation{
+    [HUDManager showLoading:@"加载中..."];
+}
+- (void)stopAnimation{
+    [HUDManager dismiss];
+}
+- (void)showErrorMsg:(NSString *)errmsg{
+    [HUDManager showErrorMsg:errmsg];
+}
+- (void)showSuccessMsg:(NSString *)msg{
+    [HUDManager showSuccessMsg:msg];
+}
+- (void)showLoading:(NSString *)msg{
+    [HUDManager showLoading:msg];
+}
+
+
+-(void)showSystemAlertWithTitle:(NSString *)title
+                        message:(NSString*)message
+                    buttonTitle:(NSString *)btntitle
+                needDestructive:(BOOL)needDistory
+                    cancleBlock: (void (^)(UIAlertAction *action))cancleBlock
+                       btnBlock:(void (^)(UIAlertAction *action))btnBlock {
+    
+    UIAlertController *vc = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *act1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:cancleBlock];
+    
+    UIAlertActionStyle style = UIAlertActionStyleDefault;
+    if (needDistory) {
+        style = UIAlertActionStyleDestructive;
+    }else{
+        style = UIAlertActionStyleDefault;
+    }
+    
+    UIAlertAction *act2 = [UIAlertAction actionWithTitle:btntitle style:style handler:btnBlock];
+    
+    [vc addAction:act1];
+    [vc addAction:act2];
+    [self presentViewController:vc animated:true completion:nil];
+    
+    
+}
+
+
 
 @end

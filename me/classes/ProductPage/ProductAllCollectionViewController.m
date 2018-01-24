@@ -17,6 +17,7 @@
 #import "ProductPageHttpTool.h"
 
 #import "ProductDetailWebViewController.h"
+#import "ProductScreeningView.h"
 
 typedef NS_ENUM(NSInteger,ProductCollectionLayoutStyle)
 {
@@ -25,6 +26,16 @@ typedef NS_ENUM(NSInteger,ProductCollectionLayoutStyle)
 };
 
 @interface ProductAllCollectionViewController ()<UITextFieldDelegate,MenuHeaderTableViewCellDelegate>
+@property (nonatomic, strong) ProductScreeningView *ScreeningView;
+@property (nonatomic, strong) UIView *coverV;
+
+@property (nonatomic, copy) NSString *cate;
+@property (nonatomic, assign) BOOL isrecommand;
+@property (nonatomic, assign) BOOL isnew;
+@property (nonatomic, assign) BOOL ishot;
+@property (nonatomic, assign) BOOL isdiscount;
+@property (nonatomic, assign) BOOL issendfree;
+@property (nonatomic, assign) BOOL istime;
 
 @end
 
@@ -79,23 +90,60 @@ typedef NS_ENUM(NSInteger,ProductCollectionLayoutStyle)
     
     menuHeader=[[MenuHeaderTableViewCell alloc]initWithFrame:header.bounds];
     menuHeaderButtonModels=[NSMutableArray arrayWithObjects:
-                            [MenuHeaderButtonModel modelWithTitle:@"综合" selected:YES ordered:NO ascending:NO ascendingString:@"" descendingString:@"" imageName:nil alone:NO],
+                            [MenuHeaderButtonModel modelWithTitle:@"综合" selected:YES ordered:NO ascending:NO ascendingString:@"" descendingString:@"" imageName:nil alone:NO needReload:YES],
                             
-                            [MenuHeaderButtonModel modelWithTitle:@"销量" selected:NO ordered:NO ascending:NO ascendingString:@"sales" descendingString:@"sales" imageName:nil alone:NO],
+                            [MenuHeaderButtonModel modelWithTitle:@"销量" selected:NO ordered:NO ascending:NO ascendingString:@"sales" descendingString:@"sales" imageName:nil alone:NO needReload:YES],
                             
-                            [MenuHeaderButtonModel modelWithTitle:@"价格" selected:NO ordered:YES ascending:NO ascendingString:@"minprice" descendingString:@"minprice" imageName:nil alone:NO],
+                            [MenuHeaderButtonModel modelWithTitle:@"价格" selected:NO ordered:YES ascending:NO ascendingString:@"minprice" descendingString:@"minprice" imageName:nil alone:NO needReload:YES],
                             
-                            [MenuHeaderButtonModel modelWithTitle:@"筛选" selected:NO ordered:NO ascending:NO ascendingString:@"" descendingString:@"" imageName:@"sift" alone:YES],
+                            [MenuHeaderButtonModel modelWithTitle:@"筛选" selected:NO ordered:NO ascending:NO ascendingString:@"" descendingString:@"" imageName:@"sift" alone:NO needReload:NO],
                             nil];
     menuHeader.buttonModelArray=menuHeaderButtonModels;
     menuHeader.delegate=self;
     [header addSubview:menuHeader];
     
-    
+    //默认值
+    self.cate = nil;
+    self.isrecommand = NO;
+    self.isnew = NO;
+    self.ishot = NO;
+    self.isdiscount = NO;
+    self.issendfree = NO;
+    self.istime = NO;
     
     UIView* bottomLine=[[UIView alloc]initWithFrame:CGRectMake(0, header.frame.size.height-0.5, header.frame.size.width, 0.5)];
     bottomLine.backgroundColor=gray_8;
     [header addSubview:bottomLine];
+    
+    self.coverV = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(header.frame), UIScreenWidth, self.view.frame.size.height - CGRectGetMaxY(header.frame))];
+    self.coverV.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
+    self.coverV.hidden = YES;
+    
+    [self.view addSubview:self.coverV];
+    
+    self.ScreeningView = LOAD_XIB_CLASS(ProductScreeningView);
+    self.ScreeningView.frame = CGRectMake(0, -self.ScreeningView.frame.size.height, UIScreenWidth, self.ScreeningView.frame.size.height);
+    
+    [self.coverV addSubview:self.ScreeningView];
+    MJWeakSelf;
+    
+    [self.ScreeningView setCancelBlock:^{
+        [weakSelf hideScreeningView];
+    }];
+    
+    [self.ScreeningView setSureBlock:^(NSString *cate, BOOL isrecommand, BOOL isnew, BOOL ishot, BOOL isdiscount, BOOL issendfree, BOOL istime) {
+        [weakSelf hideScreeningView];
+        weakSelf.cate = cate;
+        weakSelf.isrecommand = isrecommand;
+        weakSelf.isnew = isnew;
+        weakSelf.ishot = ishot;
+        weakSelf.isdiscount = isdiscount;
+        weakSelf.issendfree = issendfree;
+        weakSelf.istime = istime;
+        
+        [weakSelf refresh];
+    }];
+    
     
     
     [self performSelector:@selector(scrollViewDidScroll:) withObject:self.collectionView afterDelay:0.01];
@@ -120,19 +168,13 @@ typedef NS_ENUM(NSInteger,ProductCollectionLayoutStyle)
     if (refreshing) {
         page=1;
     }
-    NSString* cate=nil;
-    BOOL isrecommand=NO;
-    BOOL isnew=NO;
-    BOOL ishot=NO;
-    BOOL isdiscount=NO;
-    BOOL issendfree=NO;
-    BOOL istime=NO;
+    
     NSString* order=nil;
     NSString* by=@"desc";
     
     for (MenuHeaderButtonModel* menum in menuHeaderButtonModels) {
         if (!menum.alone) {
-            if (menum.selected) {
+            if (menum.selected && menum.needReload) {
                 order=menum.sortString;
                 if (menum.ascending) {
                     by=@"asc";
@@ -142,8 +184,8 @@ typedef NS_ENUM(NSInteger,ProductCollectionLayoutStyle)
         }
     }
     
-    
-    [ProductPageHttpTool getProductPageCache:NO token:access_token page:page pagesize:pagesize keywords:keywords cate:cate recommand:isrecommand new:isnew hot:ishot discount:isdiscount sendfree:issendfree time:istime order:order by:by success:^(NSArray *result) {
+    //调试中
+    [ProductPageHttpTool getProductPageCache:NO token:access_token page:page pagesize:pagesize keywords:keywords cate:self.cate recommand:self.isrecommand new:self.isnew hot:self.ishot discount:self.isdiscount sendfree:self.issendfree time:self.istime order:order by:by success:^(NSArray *result) {
         if(refreshing)
         {
             [self.dataSource removeAllObjects];
@@ -321,7 +363,53 @@ typedef NS_ENUM(NSInteger,ProductCollectionLayoutStyle)
 -(void)menuHeaderTableViewCell:(MenuHeaderTableViewCell *)cell didChangeModels:(NSArray<MenuHeaderButtonModel *> *)models
 {
     menuHeaderButtonModels=[NSMutableArray arrayWithArray:models];
+    
+    for (MenuHeaderButtonModel* menum in menuHeaderButtonModels) {
+        
+        if (!menum.needReload) {        // 不需要重新加载的，筛选
+            if (menum.selected) {
+                [self showScreeningView];
+            }else{
+                [self hideScreeningView];
+            }
+        }
+    }
+    
+    
     [self refresh];
 }
+
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+}
+
+
+- (void)showScreeningView{
+    self.coverV.hidden = NO;
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        self.coverV.backgroundColor = [UIColor colorWithWhite:0 alpha:0.2];
+        self.ScreeningView.frame = CGRectMake(0, 0, UIScreenWidth, self.ScreeningView.frame.size.height);
+        
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
+- (void)hideScreeningView{
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        self.coverV.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
+        self.ScreeningView.frame = CGRectMake(0, -self.ScreeningView.frame.size.height, UIScreenWidth, self.ScreeningView.frame.size.height);
+        
+    } completion:^(BOOL finished) {
+        self.coverV.hidden = YES;
+    }];
+}
+
+
 
 @end

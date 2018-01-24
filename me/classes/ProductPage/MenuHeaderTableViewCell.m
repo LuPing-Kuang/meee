@@ -10,7 +10,7 @@
 
 @implementation MenuHeaderButtonModel
 
-+(instancetype)modelWithTitle:(NSString *)title selected:(BOOL)selected ordered:(BOOL)ordered ascending:(BOOL)ascending ascendingString:(NSString*)ascendingString descendingString:(NSString*)descendingString imageName:(NSString *)imageName alone:(BOOL)alone
++(instancetype)modelWithTitle:(NSString*)title selected:(BOOL)selected ordered:(BOOL)ordered ascending:(BOOL)ascending ascendingString:(NSString*)ascendingString descendingString:(NSString*)descendingString imageName:(NSString*)imageName alone:(BOOL)alone needReload:(BOOL)needReload
 {
     MenuHeaderButtonModel* m=[[MenuHeaderButtonModel alloc]init];
     m.title=title;
@@ -21,6 +21,7 @@
     m.descendingString=descendingString;
     m.imageName=imageName;
     m.alone=alone;
+    m.needReload = needReload;
     return m;
 }
 
@@ -140,22 +141,22 @@
     NSInteger tag=button.tag;
     MenuHeaderButtonModel* mo=[self.buttonModelArray objectAtIndex:tag];
     BOOL oldSelected=mo.selected;
-    if (mo.selected) {
-        if (!mo.ordered) {
-            return;
-        }
-    }
-    if(!mo.alone)
-    {
-        for (MenuHeaderButtonModel* m in self.buttonModelArray) {
-            if (m.alone) {
-                break;
-            }
-            m.selected=NO;
-        }
+    
+    if (!mo.ordered && mo.selected && mo.needReload) {
+        return;
     }
     
-    mo.selected=YES;
+    if (!mo.needReload) {
+        mo.selected = !oldSelected;
+    }else{
+        for (MenuHeaderButtonModel* m in self.buttonModelArray) {
+            if (m.needReload) {
+                m.selected = NO;
+            }
+        }
+        mo.selected = YES;
+    }
+    
     if (mo.ordered) {
         mo.ascending=!mo.ascending;
         if (oldSelected==NO) {
@@ -163,6 +164,7 @@
         }
     }
     self.buttonModelArray=self.buttonModelArray;
+    
     if ([self.delegate respondsToSelector:@selector(menuHeaderTableViewCell:didChangeModels:)]) {
         [self.delegate menuHeaderTableViewCell:self didChangeModels:self.buttonModelArray];
     }

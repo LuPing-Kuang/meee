@@ -94,7 +94,7 @@ const NSInteger simpleButtonRowCount=4;
         if (mo.circledImage) {
             CGFloat w=imageHeight+12;
             UIView* circle=[[UIView alloc]initWithFrame:CGRectMake(0, 0, w,w)];
-            circle.backgroundColor=rgb(86,133,229);
+            circle.backgroundColor=RGB(86,133,229);
             circle.layer.cornerRadius=circle.frame.size.width/2;
             circle.center=imageView.center;
             if (mo.circleColor) {

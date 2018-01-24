@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "WechatHandler.h"
 #import "BaseWebViewController.h"
 
 @interface AppDelegate ()
@@ -22,6 +22,11 @@
     
     BaseWebViewController* preloadWeb=[[BaseWebViewController alloc]initWithUrl:nil];
     preloadWeb.view.backgroundColor=[UIColor whiteColor];
+    
+    [WXApi registerApp:kWechatAppKey];
+    
+    [HUDManager changeHudToBlack];
+    
     return YES;
 }
 
@@ -50,6 +55,20 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options{
+    if ([WXApi handleOpenURL:url delegate:[WechatHandler sharedInstance]]) {
+        return YES;
+    }
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
+    if ([WXApi handleOpenURL:url delegate:[WechatHandler sharedInstance]]) {
+        return YES;
+    }
+    return YES;
 }
 
 

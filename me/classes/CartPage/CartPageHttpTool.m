@@ -18,8 +18,10 @@
     }
     NSString* str=[ZZUrlTool fullUrlWithTail:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=member.cart.get_cart"];
     [self get:str params:par usingCache:cache success:^(NSDictionary *dict) {
+        
         NSDictionary* data=[dict valueForKey:@"data"];
-        NSArray* list=[data valueForKey:@"list"];
+        NSArray* list=[data valueForKey:@"list"];         //调试中
+//        NSArray* list=@[];
         NSMutableArray* res=[NSMutableArray array];
         
         BOOL ischeckall=YES;

@@ -14,6 +14,17 @@
 
 #import "ZZNotificationName.h"
 
+#import "AllEnums.h"
+#import <AFNetworking/AFNetworking.h>
+#import "HUDManager.h"
+#import "NetworkManager.h"
+#import <WXApi.h>
+#import <SVProgressHUD/SVProgressHUD.h>
+
+#import <MJExtension/MJExtension.h>
+#import <IQKeyboardManager/IQKeyboardManager.h>
+#import <IQKeyboardManager/IQUIView+Hierarchy.h>
+
 #import "UIImageView+ZZWebImage.h"
 #import "UIView+ext.h"
 #import "NSDictionary+ext.h"
@@ -23,6 +34,8 @@
 #import "YYModel.h"
 #import "MBProgressHUD+ZZCustom.h"
 
+
+
 #import "ZZUrlTool.h"
 #import "ZZHttpTool.h"
 
@@ -31,6 +44,10 @@
 #import "NaviController.h"
 
 #import "CorneredImageView.h"
+#import "UIView+Meee.h"
+
+
+
 
 //#import "UserModel.h"
 
@@ -43,19 +60,25 @@
 //Xcode Version
 #define XcodeSDK11 (__IPHONE_OS_VERSION_MAX_ALLOWED>=110000)
 
+#define kWechatAppKey @"wxa544f4ffe0ce6025"
+#define kWechatAppSecret @"b37c0a51ffda7d109272229fe28a3311"//已修改
+
 //Strings
 
 #define BadNetworkDescription @"网络不通畅"
 #define AskToLoginDescription @"需要登录"
 
+// 弱引用
+#define MJWeakSelf __weak typeof(self) weakSelf = self;
 
 //UIcolors
 
-#define rgba(a, b, c, d) ([UIColor colorWithRed:(a/255.0) green:(b/255.0) blue:(c/255.0) alpha:d])
-#define rgb(a, b, c) ([UIColor colorWithRed:(a/255.0) green:(b/255.0) blue:(c/255.0) alpha:1])
+#define RGBA(a, b, c, d) ([UIColor colorWithRed:(a/255.0) green:(b/255.0) blue:(c/255.0) alpha:d])
+#define RGB(a, b, c) ([UIColor colorWithRed:(a/255.0) green:(b/255.0) blue:(c/255.0) alpha:1])
 
 #define graya(w,a) [UIColor colorWithWhite:(w/255.0) alpha:a]
 #define gray(w) [UIColor colorWithWhite:(w/255.0) alpha:1]
+
 
 
 //grays
@@ -71,12 +94,21 @@
 #define gray_8 gray_221
 #define gray_9 gray_230
 
-#define _pinkColor rgb(233,0,117)
-#define _redColor rgb(236,97,97)
-#define _blueColor rgb(59,119,240)
+#define _pinkColor RGB(233,0,117)
+#define _redColor RGB(236,97,97)
+#define _blueColor RGB(59,119,240)
 
 #define _mainColor _redColor
 
+#define _importantColor RGB(255, 160, 80)
+
 #define _randomColor [UIColor colorWithHue:((CGFloat)(arc4random())/255.0) saturation:1 brightness:1 alpha:1]
+
+//--------------------------加载视图-----------------------------------------
+
+#define LOAD_XIB_CLASS( __X ) [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass( [ __X class] ) owner:nil options:nil] objectAtIndex:0]
+//屏幕宽高
+#define UIScreenHeight [[UIScreen mainScreen] bounds].size.height
+#define UIScreenWidth [[UIScreen mainScreen] bounds].size.width
 
 #endif /* PrefixHeader_pch */

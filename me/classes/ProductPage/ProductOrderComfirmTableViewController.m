@@ -92,7 +92,8 @@ typedef NS_ENUM(NSInteger,ProductOrderTableViewSection)
 -(void)buyIt
 {
     NSLog(@"buy");
-    [MBProgressHUD showSuccessMessage:@"买"];
+    
+    [HUDManager showSuccessMsg:@"买"];
     
     //you should do many things before push
     

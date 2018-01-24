@@ -7,6 +7,8 @@
 //
 
 #import "LoginViewController.h"
+#import "WechatHandler.h"
+#import "UserDataLoader.h"
 
 @interface LoginViewController ()
 
@@ -23,34 +25,44 @@
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 - (IBAction)closelogin:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)forgetPassword:(id)sender {
+    
 }
 
 - (IBAction)gologin:(id)sender {
+    
+    if (self.phoneTextField.text.length==0) {
+        [HUDManager showErrorMsg:@"请输入手机号码"];
+        return;
+    }
+    
+    if (self.passwordTextField.text.length==0) {
+        [HUDManager showErrorMsg:@"请输入密码"];
+        return;
+    }
+    
+    [HUDManager showLoading:@"登录中..."];
+    MJWeakSelf;
+    [UserDataLoader loginWithMobile:self.phoneTextField.text WithPwd:self.passwordTextField.text withCompleted:^(id result, BOOL success) {
+        if (success) {
+            [HUDManager showSuccessMsg:@"登录成功"];
+            [weakSelf dismissViewControllerAnimated:YES completion:nil];
+        }else{
+            [HUDManager showErrorMsg:result];
+        }
+    }];
+    
 }
 
-- (IBAction)gocreateNew:(id)sender {
-}
+
 
 - (IBAction)wechatLogin:(id)sender {
+//    [[WechatHandler sharedInstance] wechatLogin];
 }
 
 @end

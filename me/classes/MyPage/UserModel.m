@@ -18,7 +18,10 @@
 {
 //    #warning test user token
 //#if DEBUG
-    return @"666";
+//    return @"123";
+    return @" ";
+//    return @" ";
+//    return @"456";
 //#else
 //    NSString* to=[[NSUserDefaults standardUserDefaults]valueForKey:UserTokenKey];
 //    return to;
