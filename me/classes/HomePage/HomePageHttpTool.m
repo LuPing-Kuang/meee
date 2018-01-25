@@ -14,11 +14,13 @@
 +(void)getHomePageDatasCache:(BOOL)cache token:(NSString*)token local:(BOOL)local success:(void(^)(NSArray* banners, NSArray* collections, NSArray* productSections))success failure:(void(^)(NSError* error))failure;
 {
     NSString* str=[ZZUrlTool fullUrlWithTail:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api"];
-    NSDictionary* paar=nil;
+    NSDictionary* paar=[NSMutableDictionary dictionary];
+    paar=[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:1] forKey:@"ios"];
     if (token.length>0) {
         paar=[NSDictionary dictionaryWithObject:token forKey:@"access_token"];
-        paar=[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:1] forKey:@"ios"];
+        
     }
+    
     void(^mysuccess)(NSDictionary*)=^(NSDictionary *dict) {
         NSDictionary* data=[dict valueForKey:@"data"];
         NSArray* items=[data valueForKey:@"items"];
@@ -32,10 +34,6 @@
         for (id it in items) {
             
             NSLog(@"it---%@",it);
-            
-            if ([it isKindOfClass:[NSString class]]) {
-                continue;
-            }
             
             NSString* idd=[it valueForKey:@"id"];
             NSLog(@"idd---:%@",idd);

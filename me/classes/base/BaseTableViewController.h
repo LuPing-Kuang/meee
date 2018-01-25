@@ -34,6 +34,7 @@
 
 - (void)startAnimation;
 - (void)stopAnimation;
+-(void)showMessage:(NSString *)msg;
 - (void)showErrorMsg:(NSString *)errmsg;
 - (void)showSuccessMsg:(NSString *)msg;
 - (void)showLoading:(NSString *)msg;
@@ -45,6 +46,7 @@
                     cancleBlock: (void (^)(UIAlertAction *action))cancleBlock
                        btnBlock:(void (^)(UIAlertAction *action))btnBlock ;
 
+- (void)showloginVc;
 
 
 

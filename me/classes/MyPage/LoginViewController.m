@@ -50,6 +50,8 @@
     MJWeakSelf;
     [UserDataLoader loginWithMobile:self.phoneTextField.text WithPwd:self.passwordTextField.text withCompleted:^(id result, BOOL success) {
         if (success) {
+            [UserModel saveToken:result[@"access_token"]];
+            [[NSNotificationCenter defaultCenter] postNotificationName:UserLogin_Notification object:nil];
             [HUDManager showSuccessMsg:@"登录成功"];
             [weakSelf dismissViewControllerAnimated:YES completion:nil];
         }else{

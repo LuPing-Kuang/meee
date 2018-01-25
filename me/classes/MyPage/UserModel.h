@@ -21,4 +21,15 @@
 @property (nonatomic,strong) NSString* money;
 @property (nonatomic,strong) NSNumber* credit;
 
+
+/*
+ status:1,isagent:1 合伙人
+ status:0,isagent:1 申请中，待审核
+ status:0,isagent:0 未申请
+ */
+@property (nonatomic, strong) NSString *status;
+@property (nonatomic, strong) NSString *isagent;
+@property (nonatomic, strong) NSString *weixin;
+
+
 @end

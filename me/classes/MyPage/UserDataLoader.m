@@ -9,6 +9,24 @@
 #import "UserDataLoader.h"
 
 @implementation UserDataLoader
+
+//获取个人信息
++ (void)getPersonalMsgwithCompleted:(LoadServerDataFinishedBlock)finish{
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setValue:[UserModel token] forKey:@"access_token"];
+    
+    [[NetworkManager getManager] postPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=member.info.face" parameters:dic success_status_ok:^(NSURLSessionDataTask *task, id data) {
+        UserModel *model = [UserModel mj_objectWithKeyValues:data];
+        if (finish) {
+            finish(model,YES);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSString *errorMsg) {
+        if (finish) {
+            finish(errorMsg,NO);
+        }
+    }];
+}
+
 //获取手机验证码
 + (void)getCodeWithMobile:(NSString*)mobile WithTemp:(NSString*)temp withCompleted:(LoadServerDataFinishedBlock)finish{
     
@@ -56,6 +74,23 @@
     [dic setValue:pwd forKey:@"pwd"];
     
     [[NetworkManager getManager] postPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=account.login" parameters:dic success_status_ok:^(NSURLSessionDataTask *task, id data) {
+        if (finish) {
+            finish(data,YES);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSString *errorMsg) {
+        if (finish) {
+            finish(errorMsg,NO);
+        }
+    }];
+}
+
+
+//退出登陆
++ (void)logoutwithCompleted:(LoadServerDataFinishedBlock)finish{
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setValue:[UserModel token] forKey:@"access_token"];
+    
+    [[NetworkManager getManager] postPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=account.logout" parameters:dic success_status_ok:^(NSURLSessionDataTask *task, id data) {
         if (finish) {
             finish(data,YES);
         }

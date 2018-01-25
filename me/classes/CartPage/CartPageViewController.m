@@ -45,6 +45,8 @@
     self.navigationItem.rightBarButtonItem=editBtn;
     
     [self calculateTotalAmount];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:UserLogin_Notification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -308,6 +310,13 @@
     CartItemModel* mo=[self.dataSource objectAtIndex:indexPath.row];
     ProductDetailWebViewController* detailWeb=[[ProductDetailWebViewController alloc]initWithProductId:mo.goodsid token:[UserModel token]];
     [self.navigationController pushViewController:detailWeb animated:YES];
+    
+    
+}
+
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

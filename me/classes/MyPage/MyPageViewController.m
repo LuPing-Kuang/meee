@@ -11,6 +11,7 @@
 #import "MySimpleTableViewCell.h"
 #import "MyHeaderTableViewCell.h"
 #import "MyOrderCollectionTableViewCell.h"
+#import "MyPageLogoutAndForgetPsCell.h"
 
 #import "MyPageDataModel.h"
 
@@ -20,9 +21,10 @@
 #import "MyOrderTableViewController.h"
 #import "MyPartnerViewController.h"
 #import "ApplyPartnerController.h"
+#import "UserDataLoader.h"
 
 @interface MyPageViewController ()<SimpleButtonsTableViewCellDelegate>
-
+@property (nonatomic, strong) UserModel *userModel;
 @end
 
 @implementation MyPageViewController
@@ -35,7 +37,9 @@
     self.tableView.estimatedRowHeight=100;
     [self loadDataFromLocal:YES];
     [self refresh];
-    // Do any additional setup after loading the view.
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:UserLogin_Notification object:nil];
 }
 
 -(void)refresh
@@ -45,12 +49,22 @@
 
 -(void)loadDataFromLocal:(BOOL)local
 {
-    [MyPageHttpTool getMyPageDataCache:NO token:[UserModel token] local:local success:^(NSArray *myPageSections) {
-        [self.dataSource removeAllObjects];
-        [self.dataSource addObjectsFromArray:myPageSections];
-        [self.tableView reloadData];
-    } failure:^(NSString *errorMsg) {
-        [self.tableView reloadData];
+    MJWeakSelf;
+    [UserDataLoader getPersonalMsgwithCompleted:^(id result, BOOL success) {
+        if (success) {
+            weakSelf.userModel = result;
+            
+            [MyPageHttpTool getMyPageDataCache:NO token:[UserModel token] local:local success:^(NSArray *myPageSections) {
+                [self.dataSource removeAllObjects];
+                [self.dataSource addObjectsFromArray:myPageSections];
+                [self.tableView reloadData];
+            } failure:^(NSString *errorMsg) {
+                [self.tableView reloadData];
+            }];
+            
+        }else{
+            
+        }
     }];
 }
 
@@ -119,8 +133,22 @@
         
         return cell;
     }
+    else if(mo.dataType==MyPageDataTypeLogout)
+    {
+        UserModel* us=mo.associateObject;
+        MyPageLogoutAndForgetPsCell* cell=[tableView dequeueReusableCellWithIdentifier:@"MyPageLogoutAndForgetPsCell" forIndexPath:indexPath];
+        MJWeakSelf;
+        [cell setLogoutBlock:^{
+            [weakSelf logout];
+        }];
+        
+        [cell setChangePsBlock:^{
+            [weakSelf gotoChangePs];
+        }];
+        
+        return cell;
+    }
     
-    //if nothing
     
     return [[UITableViewCell alloc]init];
 }
@@ -155,18 +183,67 @@
     }
     else if([link isEqualToString:@"commission"])
     {
-        [self pushViewControllerForStoryBoardId:@"MyPartnerViewController"];
+        
+        /*
+         status:1,isagent:1 合伙人
+         status:0,isagent:1 申请中，待审核
+         status:0,isagent:0 未申请
+         */
+        if ([self.userModel.status isEqualToString:@"1"] && [self.userModel.isagent isEqualToString:@"1"]) {
+            
+            [self pushViewControllerForStoryBoardId:@"MyPartnerViewController"];
+            
+        }else if ([self.userModel.status isEqualToString:@"0"] && [self.userModel.isagent isEqualToString:@"1"]){
+            
+            [self showMessage:@"合伙人资料申请中，等待审核"];
+            
+        }else if ([self.userModel.status isEqualToString:@"0"] && [self.userModel.isagent isEqualToString:@"0"]){
+            
+            [self showSystemAlertWithTitle:@"温馨提示" message:@"您还不是合伙人，要申请成为合伙人吗？" buttonTitle:@"确定" needDestructive:YES cancleBlock:^(UIAlertAction *action) {
+                
+            } btnBlock:^(UIAlertAction *action) {
+                
+                MJWeakSelf;
+                ApplyPartnerController *vc = [[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"ApplyPartnerController"];
+                vc.needRefreshBlock = ^{
+                    [weakSelf refresh];
+                };
+                
+                [self.navigationController pushViewController:vc animated:YES];
+            }];
+            
+            
+        }
         
     }
-//    else if([link isEqualToString:@"member.info"])
-//    {
-//        [self pushViewControllerForStoryBoardId:@"PartnerMaterialController"];
-//
-//    }
+
     
     else if([link isEqualToString:@"member.info"])
     {
-        [self pushViewControllerForStoryBoardId:@"ApplyPartnerController"];
+        /*
+         status:1,isagent:1 合伙人
+         status:0,isagent:1 申请中，待审核
+         status:0,isagent:0 未申请
+         */
+        if ([self.userModel.status isEqualToString:@"1"] && [self.userModel.isagent isEqualToString:@"1"]) {
+            
+            [self pushViewControllerForStoryBoardId:@"PartnerMaterialController"];
+            
+        }else if ([self.userModel.status isEqualToString:@"0"] && [self.userModel.isagent isEqualToString:@"1"]){
+            
+            [self showMessage:@"合伙人资料申请中，等待审核"];
+            
+        }else if ([self.userModel.status isEqualToString:@"0"] && [self.userModel.isagent isEqualToString:@"0"]){
+            
+            MJWeakSelf;
+            ApplyPartnerController *vc = [[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"ApplyPartnerController"];
+            vc.needRefreshBlock = ^{
+                [weakSelf refresh];
+            };
+            
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        
         
     }
     
@@ -215,8 +292,45 @@
 -(void)goToChangeAvatar
 {
     NSLog(@"avatar");
-    UIViewController* log=[[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"LoginViewController"];
-    [self presentViewController:log animated:YES completion:nil];
+    if (has_login) {
+        
+    }else{
+        UIViewController* log=[[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        [self presentViewController:log animated:YES completion:nil];
+    }
+    
+}
+
+//修改密码
+- (void)gotoChangePs{
+    
+}
+
+- (void)logout{
+    MJWeakSelf;
+    [self showSystemAlertWithTitle:@"温馨提示" message:@"您确定要退出ME微光电吗？" buttonTitle:@"确定" needDestructive:YES cancleBlock:^(UIAlertAction *action) {
+        
+    } btnBlock:^(UIAlertAction *action) {
+        [weakSelf showLoading:@"退出中..."];
+        
+        [UserDataLoader logoutwithCompleted:^(id result, BOOL success) {
+            [weakSelf stopAnimation];
+            if (success) {
+                [UserModel saveToken:nil];
+                [self.navigationController.tabBarController setSelectedIndex:0];
+                [[NSNotificationCenter defaultCenter] postNotificationName:UserLogin_Notification object:nil];
+                
+            }else{
+                [weakSelf showErrorMsg:result];
+            }
+        }];
+    
+    
+    }];
+}
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

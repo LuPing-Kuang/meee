@@ -86,8 +86,21 @@
 
 - (void)ApplyPartner{
     MJWeakSelf;
+    
+    if (self.phoneTf.text.length==0) {
+        [self showErrorMsg:@"请输入合伙人手机号"];
+        return;
+    }
+    
+    if (self.nameTf.text.length==0) {
+        [self showErrorMsg:@"请输入合伙人姓名"];
+        return;
+    }
+    
     [MyPageHttpTool applyPartnerCache:NO mid:self.inviteTf.text.integerValue realname:self.nameTf.text mobile:self.phoneTf.text token:[UserModel token] success:^(PartnerMaterialModel *model) {
-        
+        if (self.needRefreshBlock) {
+            self.needRefreshBlock();
+        }
         [weakSelf.navigationController popViewControllerAnimated:YES];
     } failure:^(NSString *errorMsg) {
         

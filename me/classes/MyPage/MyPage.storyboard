@@ -40,7 +40,7 @@
                                     <action selector="closelogin:" destination="nHv-iv-lNW" eventType="touchUpInside" id="gQb-0C-Nmc"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gez-r5-5IE" userLabel="other">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gez-r5-5IE" userLabel="other">
                                 <rect key="frame" x="0.0" y="533.5" width="375" height="133.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Ua-18-KOd">
@@ -197,7 +197,7 @@
                                     <action selector="gologin:" destination="nHv-iv-lNW" eventType="touchUpInside" id="BYZ-7v-zzt"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qo3-dD-iWq">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qo3-dD-iWq">
                                 <rect key="frame" x="154.5" y="453" width="66" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="创建账号">
@@ -1340,8 +1340,8 @@
                                                                 <constraint firstAttribute="height" constant="1" id="I2Y-EI-g1N"/>
                                                             </constraints>
                                                         </view>
-                                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="充值" translatesAutoresizingMaskIntoConstraints="NO" id="u7m-pJ-kQO">
-                                                            <rect key="frame" x="12" y="10" width="25" height="24"/>
+                                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="icon-vip" translatesAutoresizingMaskIntoConstraints="NO" id="u7m-pJ-kQO">
+                                                            <rect key="frame" x="12" y="15" width="25" height="14"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="25" id="eDk-td-R6p"/>
                                                             </constraints>
@@ -1423,8 +1423,8 @@
                                                                 <constraint firstAttribute="height" constant="1" id="zDk-Y8-VfL"/>
                                                             </constraints>
                                                         </view>
-                                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="充值" translatesAutoresizingMaskIntoConstraints="NO" id="Cs5-na-ev5">
-                                                            <rect key="frame" x="12" y="10" width="25" height="24"/>
+                                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="icon-distribute" translatesAutoresizingMaskIntoConstraints="NO" id="Cs5-na-ev5">
+                                                            <rect key="frame" x="12" y="14.5" width="25" height="15"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="25" id="CaX-WL-La8"/>
                                                             </constraints>
@@ -1554,7 +1554,7 @@
                                     <action selector="closelogin:" destination="sdG-Yy-VaG" eventType="touchUpInside" id="7ND-Hl-LbF"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HMv-13-0Gm" userLabel="other">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HMv-13-0Gm" userLabel="other">
                                 <rect key="frame" x="0.0" y="533.5" width="375" height="133.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="khT-RD-uob">
@@ -3365,6 +3365,8 @@
         <image name="P_MyPartner" width="27" height="27"/>
         <image name="add" width="14" height="14"/>
         <image name="downArrow" width="12" height="7"/>
+        <image name="icon-distribute" width="15" height="15"/>
+        <image name="icon-vip" width="14" height="14"/>
         <image name="login_close" width="22" height="22"/>
         <image name="logo_small" width="90" height="90"/>
         <image name="passwd" width="16" height="18"/>
@@ -3377,6 +3379,6 @@
         <image name="wechat" width="25" height="20"/>
         <image name="充值" width="24" height="24"/>
         <image name="可提现佣金" width="16" height="16"/>
-        <image name="合伙人申请" width="1000" height="635"/>
+        <image name="合伙人申请" width="750" height="346"/>
     </resources>
 </document>

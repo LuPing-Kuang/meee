@@ -32,7 +32,6 @@
 #import "UIImage+ext.h"
 #import "UINavigationController+Children.h"
 #import "YYModel.h"
-#import "MBProgressHUD+ZZCustom.h"
 
 
 
@@ -103,6 +102,8 @@
 #define _importantColor RGB(255, 160, 80)
 
 #define _randomColor [UIColor colorWithHue:((CGFloat)(arc4random())/255.0) saturation:1 brightness:1 alpha:1]
+
+#define has_login ([UserModel token].length==0?NO:YES)
 
 //--------------------------加载视图-----------------------------------------
 

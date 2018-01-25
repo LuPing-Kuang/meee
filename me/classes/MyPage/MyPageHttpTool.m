@@ -87,6 +87,18 @@
                 [thisOneSection addObject:mo];
             }
             
+            else if([idd isEqualToString:@"logout"])   //退出登录
+            {
+                NSDictionary *params = [d2 valueForKey:@"params"];
+
+//                NSString* bindurl=[[params valueForKey:@"bindurl"] stringValueFromUrlParamsKey:@"r"];
+                NSString* logouturl=[[params valueForKey:@"logouturl"] stringValueFromUrlParamsKey:@"r"];
+                
+                //调试中
+                MyPageDataModel* mo=[MyPageDataModel modelWithType:MyPageDataTypeLogout imageName:@"icon-fenxiao" title:@"登录模块" detail:nil badge:0 action:logouturl associateObject:nil];
+                [thisOneSection addObject:mo];
+            }
+            
             else if([idd isEqualToString:@"blank"])
             {
                 thisOneSection=[NSMutableArray array];
@@ -415,12 +427,13 @@
     
     NSString* str=[ZZUrlTool fullUrlWithTail:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=commission.register"];
     [self get:str params:d usingCache:cache success:^(NSDictionary *dict) {
-        NSDictionary* data=[dict valueForKey:@"data"];
+        NSString *code = [NSString stringWithFormat:@"%@",[dict valueForKey:@"code"]];
         
-        if (success) {
-            success(nil);
+        if ([code isEqualToString:@"0"]) {
+            success([dict valueForKey:@"data"]);
+        }else{
+            failure([dict valueForKey:@"message"]);
         }
-        
         
     } failure:^(NSError *err) {
         if (failure) {

@@ -70,7 +70,20 @@
     }
     else if([valueR isEqualToString:@"member.cart"]) {
         NSLog(@"cart ");
-        [self actionWithCartUrl:abs];
+        if (has_login) {
+            [self actionWithCartUrl:abs];
+        }else{
+            [self.navigationController popViewControllerAnimated:NO];
+            UIViewController* log=[[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"LoginViewController"];
+            [self presentViewController:log animated:YES completion:nil];
+        }
+        return NO;
+    }
+    else if([valueR isEqualToString:@"account.login"]) {
+        NSLog(@"account.login ");
+        [self.navigationController popViewControllerAnimated:NO];
+        UIViewController* log=[[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        [self presentViewController:log animated:YES completion:nil];
         return NO;
     }
     

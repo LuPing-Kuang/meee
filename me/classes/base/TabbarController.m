@@ -7,8 +7,12 @@
 //
 
 #import "TabbarController.h"
-
-@interface TabbarController ()
+#import "HomePageCollectionViewController.h"
+#import "ProductAllCollectionViewController.h"
+#import "CartPageViewController.h"
+#import "MyPageViewController.h"
+#import "NaviController.h"
+@interface TabbarController ()<UITabBarDelegate,UITabBarControllerDelegate>
 
 @end
 
@@ -20,6 +24,7 @@
     self.tabBar.translucent=NO;
     
     self.tabBar.tintColor=_mainColor;
+    self.delegate = self;
     
     NSArray* childs=self.childViewControllers;
     
@@ -41,15 +46,30 @@
             }
         }
     }
-    
-//    self.tabBar.shadowImage=[UIImage imageWithColor:[UIColor groupTableViewBackgroundColor] size:CGSizeMake(self.tabBar.bounds.size.width, 0.5)];
-    
-//    [self.tabBar setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor] size:self.tabBar.bounds.size]];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
+    NaviController *vc = (NaviController*)viewController;
+    UIViewController *myVc = vc.viewControllers[0];
+    if ([myVc isKindOfClass:[MyPageViewController class]] || [myVc isKindOfClass:[CartPageViewController class]]) {
+        if (has_login) {
+            return YES;
+        }else{
+            
+            UIViewController* log=[[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"LoginViewController"];
+            [self presentViewController:log animated:YES completion:nil];
+            
+            return NO;
+        }
+        
+    }
+    
+    return YES;
 }
+
+
+
+
 
 @end

@@ -36,6 +36,8 @@
     self.navigationItem.title=@"ME微光电";
     [self loadDataFromLocal:YES];
     [self refresh];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:UserLogin_Notification object:nil];
 }
 
 -(void)refresh
@@ -233,6 +235,11 @@
 -(void)checkmoreButtonClick:(UIButton*)button
 {
     NSLog(@"button tag:%ld",(long)button.tag);
+}
+
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

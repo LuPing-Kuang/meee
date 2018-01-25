@@ -71,6 +71,8 @@ typedef NS_ENUM(NSInteger,ProductCollectionLayoutStyle)
     
     [self refresh];
     
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:UserLogin_Notification object:nil];
     // Do any additional setup after loading the view.
 }
 
@@ -408,6 +410,11 @@ typedef NS_ENUM(NSInteger,ProductCollectionLayoutStyle)
     } completion:^(BOOL finished) {
         self.coverV.hidden = YES;
     }];
+}
+
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

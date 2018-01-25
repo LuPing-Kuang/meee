@@ -13,6 +13,7 @@ typedef NS_ENUM(NSInteger,MyPageDataType)
     MyPageDataTypeNormal,
     MyPageDataTypeHeader,
     MyPageDataTypeCollection,
+    MyPageDataTypeLogout
 };
 
 @interface MyPageDataModel : NSObject

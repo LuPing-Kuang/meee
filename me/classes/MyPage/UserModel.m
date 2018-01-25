@@ -19,12 +19,13 @@
 //    #warning test user token
 //#if DEBUG
 //    return @"123";
-    return @" ";
+//    return nil;
+//    return @"1190";
 //    return @" ";
 //    return @"456";
 //#else
-//    NSString* to=[[NSUserDefaults standardUserDefaults]valueForKey:UserTokenKey];
-//    return to;
+    NSString* to=[[NSUserDefaults standardUserDefaults]valueForKey:UserTokenKey];
+    return to;
 //#endif
 }
 

@@ -322,6 +322,9 @@
 - (void)stopAnimation{
     [HUDManager dismiss];
 }
+-(void)showMessage:(NSString *)msg{
+    [HUDManager showMessage:msg];
+}
 - (void)showErrorMsg:(NSString *)errmsg{
     [HUDManager showErrorMsg:errmsg];
 }
@@ -358,6 +361,12 @@
     [self presentViewController:vc animated:true completion:nil];
     
     
+}
+
+
+- (void)showloginVc{
+    UIViewController* log=[[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    [self presentViewController:log animated:YES completion:nil];
 }
 
 

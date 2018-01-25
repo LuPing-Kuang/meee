@@ -104,13 +104,12 @@
         [self.codeButton setEnabled:YES];
         [self.codeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
         [self.codeButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-        [self.codeButton addRoundlineWithColor:self.codeButton.currentTitleColor andWidth:1];
+        
     }else{
         [self.codeButton setEnabled:NO];
         NSString *sting = [NSString stringWithFormat:@"%lu秒",(NSInteger)self.count];
         [self.codeButton setTitle:sting forState:UIControlStateNormal];
         [self.codeButton setTitleColor:RGB(184, 184, 184) forState:UIControlStateNormal];
-        [self.codeButton addRoundlineWithColor:self.codeButton.currentTitleColor andWidth:1];
     }
     self.count --;
     

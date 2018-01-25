@@ -10,4 +10,6 @@
 
 @interface ApplyPartnerController : BaseTableViewController
 
+@property (nonatomic, copy) void(^needRefreshBlock)(void);
+
 @end
