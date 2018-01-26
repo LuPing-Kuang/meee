@@ -799,7 +799,7 @@
                                                 <action selector="toggleSelected:" destination="75M-an-0hW" eventType="touchUpInside" id="NNS-3M-O9w"/>
                                             </connections>
                                         </button>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3HH-1W-vFV">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3HH-1W-vFV">
                                             <rect key="frame" x="45" y="15" width="80" height="80"/>
                                             <color key="backgroundColor" red="0.91897296910000004" green="0.38060939310000003" blue="0.36067986489999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>

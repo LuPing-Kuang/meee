@@ -102,4 +102,25 @@
     }];
 }
 
+
++(void)CreateOrderIdCache:(BOOL)cache token:(NSString*)token Param:(NSDictionary*)dic success:(void(^)(NSString*orderId))success failure:(void(^)(NSString* errorMsg))failure{
+    
+    NSMutableDictionary *paramDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+    [paramDic setValue:token forKey:@"access_token"];
+    
+    NSString* str=[ZZUrlTool fullUrlWithTail:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=order.create.submit"];
+    
+    [self get:str params:paramDic usingCache:cache success:^(NSDictionary *dict) {
+       
+        NSLog(@"dict:%@",dict);
+        
+    } failure:^(NSError *err) {
+        if (failure) {
+            failure(err.localizedDescription);
+        }
+    }];
+}
+
+
+
 @end

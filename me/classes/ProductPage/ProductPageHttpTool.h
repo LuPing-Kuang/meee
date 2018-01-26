@@ -16,4 +16,9 @@
 
 +(void)getCreateOrderDetailCache:(BOOL)cache token:(NSString*)token idd:(NSString*)idd optionid:(NSString*)optionid total:(NSString*)total gdid:(NSString*)gdid giftid:(NSString*)giftid liveid:(NSString*)liveid success:(void(^)(NSArray* goods,ProductionOrderAddressModel* address,ProductionOrderDetailPriceModel* pricedetail))success failure:(void(^)(NSError* error))failure;
 
+//生成订单
++(void)CreateOrderIdCache:(BOOL)cache token:(NSString*)token Param:(NSDictionary*)dic success:(void(^)(NSString*orderId))success failure:(void(^)(NSString* errorMsg))failure;
+
+
+
 @end

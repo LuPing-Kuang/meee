@@ -14,6 +14,7 @@
     [super awakeFromNib];
     self.editing=self.editing;
     // Initialization code
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

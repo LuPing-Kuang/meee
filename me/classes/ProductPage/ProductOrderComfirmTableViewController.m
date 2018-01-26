@@ -39,7 +39,11 @@ typedef NS_ENUM(NSInteger,ProductOrderTableViewSection)
     NSString* customMessage;
     
     ProductComfirmOrderToolBarView* bottomComfirmView;
+    
 }
+
+@property (nonatomic, strong) NSString *gdid;
+
 
 @end
 
@@ -74,6 +78,7 @@ typedef NS_ENUM(NSInteger,ProductOrderTableViewSection)
     NSString* giftid=[url stringValueFromUrlParamsKey:@"giftid"];
     NSString* liveid=[url stringValueFromUrlParamsKey:@"liveid"];
     
+    self.gdid = gdid;
     //do get order comfirm detail
     
     [ProductPageHttpTool getCreateOrderDetailCache:NO token:[UserModel token] idd:idd optionid:optionid total:total gdid:gdid giftid:giftid liveid:liveid success:^(NSArray *goods, ProductionOrderAddressModel *address, ProductionOrderDetailPriceModel *pricedetail) {
@@ -91,7 +96,36 @@ typedef NS_ENUM(NSInteger,ProductOrderTableViewSection)
 
 -(void)buyIt
 {
+    
+    /*
+     关于参数，除了必传参数外，其他参数，秉持有就传,没有就不传的原则
+     两个参数尤为重要：1.gdid(用户填写表单返回的id) 2.fromcart( 0:非购物车;1:从购物车 )
+     1.立即购买:gdid有参数且不能等于0，fromcart=0; 2.购物车内购买:gdid=0,fromcart=1。
+     如果是购物车内购买，goods[]数组可以传多个，需要注意。
+     */
+    
     NSLog(@"buy");
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setValue:@"0" forKey:@"orderid"];
+    
+    if (self.isFromCart) {
+        [dic setValue:@"0" forKey:@"id"];
+    }else{
+        [dic setValue:goodModels.firstObject.goodsid forKey:@"id"];
+    }
+    
+    [dic setValue:self.gdid forKey:@"gdid"];
+    [dic setValue:detailPriceModel.fromcart forKey:@"fromcart"];
+    [dic setValue:addressModel.idd forKey:@"addressid"];
+    [dic setValue:addressModel.idd forKey:@"addressid"];
+    
+    [ProductPageHttpTool CreateOrderIdCache:NO token:[UserModel token] Param:nil success:^(NSString *orderId) {
+        
+    } failure:^(NSString *errorMsg) {
+        
+    }];
+    
+    
     
     [HUDManager showSuccessMsg:@"买"];
     

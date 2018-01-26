@@ -131,6 +131,12 @@
 		57AA7B172011179300F2C63E /* GetCashDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AA7B162011179300F2C63E /* GetCashDetailController.m */; };
 		57AA7B1A20116C1100F2C63E /* GetCashDetailPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AA7B1920116C1100F2C63E /* GetCashDetailPageController.m */; };
 		57AA7B1D2011711700F2C63E /* GetCashDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AA7B1C2011711700F2C63E /* GetCashDetailCell.m */; };
+		57B4014C201A182A000E5830 /* NSDictionary+ZXPUnicode.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B40142201A182A000E5830 /* NSDictionary+ZXPUnicode.m */; };
+		57B4014D201A182A000E5830 /* NSObject+ZXPUnicode.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B40144201A182A000E5830 /* NSObject+ZXPUnicode.m */; };
+		57B4014E201A182A000E5830 /* NSDictionary+ASCIICovertToString.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B40145201A182A000E5830 /* NSDictionary+ASCIICovertToString.m */; };
+		57B4014F201A182A000E5830 /* NSObject+ExtendNSLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B40148201A182A000E5830 /* NSObject+ExtendNSLog.m */; };
+		57B40150201A182A000E5830 /* NSArray+ ZXPUnicode.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B4014A201A182A000E5830 /* NSArray+ ZXPUnicode.m */; };
+		57B40153201AB6BB000E5830 /* ForgetPassWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B40152201AB6BB000E5830 /* ForgetPassWordController.m */; };
 		57F659CD2018007D000FDD93 /* ApplyPartnerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F659CC2018007D000FDD93 /* ApplyPartnerController.m */; };
 		57F659D0201800DC000FDD93 /* ApplyPartnerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F659CF201800DC000FDD93 /* ApplyPartnerCell.m */; };
 		57F659D82018A70D000FDD93 /* WechatHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F659D62018A70C000FDD93 /* WechatHandler.m */; };
@@ -379,6 +385,18 @@
 		57AA7B1920116C1100F2C63E /* GetCashDetailPageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetCashDetailPageController.m; sourceTree = "<group>"; };
 		57AA7B1B2011711600F2C63E /* GetCashDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetCashDetailCell.h; sourceTree = "<group>"; };
 		57AA7B1C2011711700F2C63E /* GetCashDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetCashDetailCell.m; sourceTree = "<group>"; };
+		57B40142201A182A000E5830 /* NSDictionary+ZXPUnicode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+ZXPUnicode.m"; sourceTree = "<group>"; };
+		57B40143201A182A000E5830 /* NSObject+ExtendNSLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ExtendNSLog.h"; sourceTree = "<group>"; };
+		57B40144201A182A000E5830 /* NSObject+ZXPUnicode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ZXPUnicode.m"; sourceTree = "<group>"; };
+		57B40145201A182A000E5830 /* NSDictionary+ASCIICovertToString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+ASCIICovertToString.m"; sourceTree = "<group>"; };
+		57B40146201A182A000E5830 /* NSArray+ZXPUnicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+ZXPUnicode.h"; sourceTree = "<group>"; };
+		57B40147201A182A000E5830 /* NSDictionary+ZXPUnicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+ZXPUnicode.h"; sourceTree = "<group>"; };
+		57B40148201A182A000E5830 /* NSObject+ExtendNSLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ExtendNSLog.m"; sourceTree = "<group>"; };
+		57B40149201A182A000E5830 /* NSObject+ZXPUnicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ZXPUnicode.h"; sourceTree = "<group>"; };
+		57B4014A201A182A000E5830 /* NSArray+ ZXPUnicode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+ ZXPUnicode.m"; sourceTree = "<group>"; };
+		57B4014B201A182A000E5830 /* NSDictionary+ASCIICovertToString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+ASCIICovertToString.h"; sourceTree = "<group>"; };
+		57B40151201AB6BB000E5830 /* ForgetPassWordController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForgetPassWordController.h; sourceTree = "<group>"; };
+		57B40152201AB6BB000E5830 /* ForgetPassWordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForgetPassWordController.m; sourceTree = "<group>"; };
 		57F659CB2018007D000FDD93 /* ApplyPartnerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplyPartnerController.h; sourceTree = "<group>"; };
 		57F659CC2018007D000FDD93 /* ApplyPartnerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplyPartnerController.m; sourceTree = "<group>"; };
 		57F659CE201800DC000FDD93 /* ApplyPartnerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplyPartnerCell.h; sourceTree = "<group>"; };
@@ -444,6 +462,8 @@
 				39F37F661FFF22BF00781706 /* LoginViewController.m */,
 				391863522006F8700057C491 /* RegisterViewController.h */,
 				391863532006F8700057C491 /* RegisterViewController.m */,
+				57B40151201AB6BB000E5830 /* ForgetPassWordController.h */,
+				57B40152201AB6BB000E5830 /* ForgetPassWordController.m */,
 				57F659E02018ECE2000FDD93 /* model */,
 			);
 			name = login;
@@ -605,6 +625,7 @@
 				39F37F8E1FFF710A00781706 /* ZZHttpTool.m */,
 				39F37F8F1FFF710A00781706 /* ZZUrlTool.h */,
 				39F37F901FFF710A00781706 /* ZZUrlTool.m */,
+				57B40141201A182A000E5830 /* 字典数组打印中文 */,
 				3946D2B91FF3362A0074E77A /* ZZWebImage */,
 			);
 			path = tool;
@@ -911,6 +932,23 @@
 			name = myPartner;
 			sourceTree = "<group>";
 		};
+		57B40141201A182A000E5830 /* 字典数组打印中文 */ = {
+			isa = PBXGroup;
+			children = (
+				57B40142201A182A000E5830 /* NSDictionary+ZXPUnicode.m */,
+				57B40143201A182A000E5830 /* NSObject+ExtendNSLog.h */,
+				57B40144201A182A000E5830 /* NSObject+ZXPUnicode.m */,
+				57B40145201A182A000E5830 /* NSDictionary+ASCIICovertToString.m */,
+				57B40146201A182A000E5830 /* NSArray+ZXPUnicode.h */,
+				57B40147201A182A000E5830 /* NSDictionary+ZXPUnicode.h */,
+				57B40148201A182A000E5830 /* NSObject+ExtendNSLog.m */,
+				57B40149201A182A000E5830 /* NSObject+ZXPUnicode.h */,
+				57B4014A201A182A000E5830 /* NSArray+ ZXPUnicode.m */,
+				57B4014B201A182A000E5830 /* NSDictionary+ASCIICovertToString.h */,
+			);
+			path = "字典数组打印中文";
+			sourceTree = "<group>";
+		};
 		57F659CA2017FFF3000FDD93 /* applyPartner */ = {
 			isa = PBXGroup;
 			children = (
@@ -1126,6 +1164,7 @@
 				3946D2F71FF34D290074E77A /* ProductLargeCollectionViewCell.m in Sources */,
 				39574C272008560800FD87B6 /* MyOrderTableViewController.m in Sources */,
 				3946D2D61FF3362A0074E77A /* NSString+ext.m in Sources */,
+				57B4014D201A182A000E5830 /* NSObject+ZXPUnicode.m in Sources */,
 				3946D2F01FF33B510074E77A /* HomePageCollectionViewController.m in Sources */,
 				57AA7B1A20116C1100F2C63E /* GetCashDetailPageController.m in Sources */,
 				39BCC4B82000B6A0008688B7 /* ProductPageHttpTool.m in Sources */,
@@ -1189,11 +1228,13 @@
 				57071DE720162C550028FF37 /* PartnerMaterialModel.m in Sources */,
 				57F659DB2018A866000FDD93 /* NetworkManager.m in Sources */,
 				57F659E32018ED03000FDD93 /* UserDataLoader.m in Sources */,
+				57B4014F201A182A000E5830 /* NSObject+ExtendNSLog.m in Sources */,
 				3946D2F31FF33F730074E77A /* ZZnotificationName.m in Sources */,
 				393F287F1FF38519009D5D2E /* HomeFourCollectionViewCell.m in Sources */,
 				573D4C5F2012D7CD00260123 /* GetCashDetailModel.m in Sources */,
 				57AA7B1D2011711700F2C63E /* GetCashDetailCell.m in Sources */,
 				39F37F731FFF4A8400781706 /* LinedTableViewCell.m in Sources */,
+				57B40150201A182A000E5830 /* NSArray+ ZXPUnicode.m in Sources */,
 				39F37F921FFF710A00781706 /* ZZUrlTool.m in Sources */,
 				57F659DE2018AAAD000FDD93 /* HUDManager.m in Sources */,
 				39186370200703DB0057C491 /* AddressOptionTableViewCell.m in Sources */,
@@ -1207,16 +1248,19 @@
 				39F37F7A1FFF581300781706 /* MyHeaderTableViewCell.m in Sources */,
 				39186382200738E10057C491 /* MyFootPrintTableViewCell.m in Sources */,
 				3946D2DB1FF3362A0074E77A /* UINavigationController+Children.m in Sources */,
+				57B40153201AB6BB000E5830 /* ForgetPassWordController.m in Sources */,
 				3918634F2004CFBC0057C491 /* ProductComfirmOrderToolBarView.m in Sources */,
 				3918631F200209880057C491 /* BaseWebViewController.m in Sources */,
 				3946D27A1FF335D50074E77A /* BaseLoadMoreFooterView.m in Sources */,
 				57F659E72018FF6A000FDD93 /* MyPageLogoutAndForgetPsCell.m in Sources */,
 				393F286D1FF37330009D5D2E /* ProductCateHeaderCollectionReusableView.m in Sources */,
+				57B4014E201A182A000E5830 /* NSDictionary+ASCIICovertToString.m in Sources */,
 				39F37F911FFF710A00781706 /* ZZHttpTool.m in Sources */,
 				57AA7AC82010D87400F2C63E /* MyPartnerModel.m in Sources */,
 				3946D2DF1FF3362A0074E77A /* UIImageView+ZZWebImage.m in Sources */,
 				3946D2EC1FF3362A0074E77A /* JRSwizzle.m in Sources */,
 				573D4C5C2012D7A300260123 /* GetCashDetailTotalModel.m in Sources */,
+				57B4014C201A182A000E5830 /* NSDictionary+ZXPUnicode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1376,7 +1420,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bangju.meee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a60fb589-d786-4b3c-b7a0-b90bea229ddf";
+				PROVISIONING_PROFILE = "5f2c8385-105a-4b2f-a436-954979ad333d";
 				PROVISIONING_PROFILE_SPECIFIER = MeeeAdhoc;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

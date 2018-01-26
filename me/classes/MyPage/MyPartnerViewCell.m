@@ -87,6 +87,7 @@
 //合伙人佣金
 - (IBAction)PartnerCommissionBtnClick:(UIButton *)sender {
     
+    //调试中
     [self.viewController.navigationController pushViewController:[[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"DistributionCashController"] animated:YES];
 }
 

@@ -13,6 +13,7 @@
 #import "AddressOptionTableViewCell.h"
 
 #import "MyAddressAddNewTableViewController.h"
+#import "UserDataLoader.h"
 
 @interface MyAddressesTableViewController ()<AddressOptionTableViewCellDelegate>
 
@@ -24,6 +25,7 @@
     [super viewDidLoad];
     
     self.title=@"收货地址";
+    self.tableView.estimatedRowHeight = 100;
     
     [self refresh];
     
@@ -121,7 +123,7 @@
         if (adr.length==0) {
             adr=@"";
         }
-        cell.address.text=[NSString stringWithFormat:@"%@%@%@%@",pro,cit,dis,adr];
+        cell.address.text=[NSString stringWithFormat:@"%@%@",dis,adr];
         return cell;
     }
     else if(indexPath.row==1)
@@ -152,71 +154,72 @@
 
 -(void)addressOtionTableViewCell:(AddressOptionTableViewCell *)cell doAction:(AddressOptionAction)action
 {
-//    NSString* token=[UserModel token];
-//    
-//    AddressModel* model=cell.model;
-//    NSLog(@"%@,%@",model.idd,model.address);
-//    if(action==AddressOptionActionDefault)
-//    {
-//        if(model.classic)
-//        {
-//            return;
-//        }
-//        [MBProgressHUD showProgressMessage:@"正在设定"];
-//        [MyPageHttpTool postDefaultAddressId:model.idd token:token success:^(BOOL result, NSString *msg) {
-//            if (result) {
-//                [MBProgressHUD showSuccessMessage:msg];
-//                model.classic=YES;
-//                [self.dataSource removeObject:model];
-//                for (AddressModel* mo in self.dataSource) {
-//                    mo.classic=NO;
-//                }
-//                [self.dataSource insertObject:model atIndex:0];
-//                [self.tableView reloadData];
-//                [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
-//            }
-//            else
-//            {
-//                [MBProgressHUD showErrorMessage:msg];
-//            }
-//        }];
-//    }
-//    else if(action==AddressOptionActionDelete)
-//    {
-//        UIAlertController* alert=[UIAlertController alertControllerWithTitle:@"提示" message:@"确定要删除该地址吗？" preferredStyle:UIAlertControllerStyleAlert];
-//        [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
-//        [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//            [MBProgressHUD showProgressMessage:@"正在删除"];
-//            [MyPageHttpTool postDeleteAddressId:model.idd token:token success:^(BOOL result, NSString *msg) {
-//                if (result) {
-//                    [MBProgressHUD showSuccessMessage:msg];
-//                    NSInteger ind=[self.dataSource indexOfObject:model];
-//                    [self.dataSource removeObject:model];
-//                    [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:ind] withRowAnimation:UITableViewRowAnimationAutomatic];
-//                    [self scrollViewDidScroll:self.tableView];
-//                }
-//                else
-//                {
-//                    [MBProgressHUD showErrorMessage:msg];
-//                }
-//            }];
-//        }]];
-//        [self presentViewController:alert animated:YES completion:nil];
-//        
-//    }
-//    else if(action==AddressOptionActionEdit)
-//    {
-//        AddressAddNewFormTableViewController* add=[[AddressAddNewFormTableViewController alloc]init];
-//        add.editAddress=model;
-//        [self.navigationController pushViewController:add animated:YES];
-//    }
+    
+    ProductionOrderAddressModel* model=cell.model;
+    if(action==AddressOptionActionDefault)
+    {
+        
+        MJWeakSelf;
+        [HUDManager showLoading:@"正在设定..."];
+        [UserDataLoader setDefaultAddress:model.idd withCompleted:^(id result, BOOL success) {
+            
+            if (success) {
+                [weakSelf showSuccessMsg:@"设定成功"];
+                [weakSelf refresh];
+            }else{
+                [weakSelf showErrorMsg:result];
+            }
+            
+        }];
+        
+    }
+    else if(action==AddressOptionActionDelete)
+    {
+        
+        
+        [self showSystemAlertWithTitle:@"温馨提示" message:@"确定要删除该地址吗？" buttonTitle:@"确定" needDestructive:YES cancleBlock:^(UIAlertAction *action) {
+            
+        } btnBlock:^(UIAlertAction *action) {
+            MJWeakSelf;
+            [UserDataLoader deleteAddress:model.idd withCompleted:^(id result, BOOL success) {
+                
+                if (success) {
+                    [weakSelf showSuccessMsg:@"成功删除"];
+                    [weakSelf refresh];
+                }else{
+                    [weakSelf showErrorMsg:result];
+                }
+                
+            }];
+            
+        }];
+        
+        
+    }
+    else if(action==AddressOptionActionEdit)
+    {
+        MJWeakSelf;
+        MyAddressAddNewTableViewController *vc = [[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"MyAddressAddNewTableViewController"];
+        vc.title = @"修改地址";
+        vc.addressModel = model;
+        vc.refreshBlock = ^{
+            [weakSelf refresh];
+        };
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 #pragma mark action
 
 -(void)addNewAddress
 {
-    [self.navigationController pushViewController:[[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"MyAddressAddNewTableViewController"] animated:YES];
+    MJWeakSelf;
+    MyAddressAddNewTableViewController *vc = [[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"MyAddressAddNewTableViewController"];
+    vc.title = @"新建地址";
+    vc.refreshBlock = ^{
+        [weakSelf refresh];
+    };
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

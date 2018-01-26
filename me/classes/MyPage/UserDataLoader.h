@@ -23,9 +23,21 @@
 //登陆提交
 + (void)loginWithMobile:(NSString*)mobile WithPwd:(NSString*)pwd withCompleted:(LoadServerDataFinishedBlock)finish;
 
-
 //退出登陆
 + (void)logoutwithCompleted:(LoadServerDataFinishedBlock)finish;
+
+
+#pragma mark -
+#pragma mark - 地址模块
+//添加和修改地址
++ (void)addAddressData:(NSDictionary*)addressdata withCompleted:(LoadServerDataFinishedBlock)finish;
+
+//删除地址
++ (void)deleteAddress:(NSString*)addressId withCompleted:(LoadServerDataFinishedBlock)finish;
+
+//设为默认地址
++ (void)setDefaultAddress:(NSString*)addressId withCompleted:(LoadServerDataFinishedBlock)finish;
+
 
 
 @end
