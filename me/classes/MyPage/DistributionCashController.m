@@ -151,9 +151,10 @@
         weakSelf.commissionMdodel = partner;
         
         [weakSelf.tableView reloadData];
+        [weakSelf endRefresh];
     } failure:^(NSString *errorMsg) {
         [HUDManager showErrorMsg:errorMsg];
-        [weakSelf.tableView reloadData];
+        [weakSelf endRefresh];
     }];
     
 }

@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#define UITableViewReloadDataNotification @"UITableViewReloadDataNotification"
-#define UICollectionViewReloadSectionsNotification @"UICollectionViewReloadSectionsNotification"
 
 @interface ZZnotificationName : NSObject
 

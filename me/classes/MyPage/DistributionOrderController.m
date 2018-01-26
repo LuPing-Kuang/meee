@@ -51,7 +51,7 @@
         [weakSelf.dataSource addObjectsFromArray:model.list];
         
         [weakSelf.tableView reloadData];
-        
+        [weakSelf endRefresh];
         if (model.list.count>0) {
             if (refreshing) {
                 weakSelf.currentPage=1;
@@ -64,7 +64,7 @@
         
     } failure:^(NSString *errorMsg) {
         [weakSelf showErrorMsg:errorMsg];
-        [weakSelf.tableView reloadData];
+        [weakSelf endRefresh];
     }];
 }
 

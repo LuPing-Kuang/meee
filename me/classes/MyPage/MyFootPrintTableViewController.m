@@ -105,15 +105,18 @@
         [HUDManager showErrorMsg:@"至少选择一个"];
         return;
     }
+    MJWeakSelf;
     [MyPageHttpTool postRemoveMyFootprints:selectedItems token:[UserModel token] complete:^(BOOL result, NSString *msg) {
         if (result) {
             [HUDManager showSuccessMsg:msg];
-            [self.dataSource removeObjectsInArray:selectedItems];
-            [self.tableView reloadData];
+            [weakSelf.dataSource removeObjectsInArray:selectedItems];
+            [weakSelf.tableView reloadData];
+            [weakSelf endRefresh];
         }
         else
         {
             [HUDManager showErrorMsg:msg];
+            [weakSelf endRefresh];
         }
     }];
 }
@@ -154,29 +157,30 @@
     if (refreshing) {
         page=1;
     }
+    MJWeakSelf;
     [MyPageHttpTool getMyFootprintsCache:NO token:[UserModel token] page:page pagesize:pagesize success:^(NSArray *result) {
         if(refreshing)
         {
-            [self.dataSource removeAllObjects];
+            [weakSelf.dataSource removeAllObjects];
         }
         
-        [self.dataSource addObjectsFromArray:result];
+        [weakSelf.dataSource addObjectsFromArray:result];
         
-        [self.tableView reloadData];
-        
+        [weakSelf.tableView reloadData];
+        [weakSelf endRefresh];
         if (result.count>0) {
             actionView.selectedAll=NO;
             if (refreshing) {
-                self.currentPage=1;
+                weakSelf.currentPage=1;
             }
             else
             {
-                self.currentPage=self.currentPage+1;
+                weakSelf.currentPage=weakSelf.currentPage+1;
             }
         }
         
     } failure:^(NSError *error) {
-        [self.tableView reloadData];
+        [weakSelf endRefresh];
     }];
 }
 

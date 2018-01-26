@@ -47,7 +47,11 @@
 
 -(void)loadDataFromLocal:(BOOL)local
 {
+    MJWeakSelf;
     [HomePageHttpTool getHomePageDatasCache:NO token:[UserModel token] local:local success:^(NSArray *banners, NSArray *collections, NSArray *productSecns) {
+        
+        
+        
         productSections=[NSMutableArray arrayWithArray:productSecns];
         bannersArray=[NSMutableArray arrayWithArray:banners];
         collArray=[NSMutableArray arrayWithArray:collections];
@@ -62,8 +66,9 @@
         [self setAdvertiseHeaderViewWithPicturesUrls:pics];
         
         [self.collectionView reloadData];
+        [weakSelf endRefresh];
     } failure:^(NSError *error) {
-        NSLog(@"%@",error);
+        [weakSelf endRefresh];
     }];
 }
 

@@ -39,10 +39,6 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.collectionView addSubview:refreshControl];
     [refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadSectionsNotification:) name:UICollectionViewReloadSectionsNotification object:nil];
-    
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
     
     // Register cell classes
     self.collectionView.collectionViewLayout=self.collectionViewLayout;
@@ -51,9 +47,6 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"h"];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"f"];
-    
-//    [self setAdvertiseHeaderViewWithPicturesUrls:@[@"",@""]];
-    // Do any additional setup after loading the view.
     
     [self showLoadMoreView];
     self.collectionView.backgroundColor=[UIColor whiteColor];
@@ -82,12 +75,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(NSInteger)pageSize
 {
-//    if (_pageSize<=0) {
-//        NSDictionary* d=[ZZHttpTool pageParams];
-//        
-//        _pageSize=[[d valueForKey:@"pagesize"]integerValue];
-//    }
-//    return _pageSize;
+
     return 30;
 }
 
@@ -99,35 +87,34 @@ static NSString * const reuseIdentifier = @"Cell";
     UICollectionView* collecVi=[userDef valueForKey:@"collectionView"];
     if (collecVi==self.collectionView) {
 
-        NSLog(@"%@ reloaded sections",NSStringFromClass([self class]));
-        [refreshControl performSelector:@selector(endRefreshing) withObject:nil afterDelay:1];
-
-        NSString* loadmoreText=@"加载更多";
-        if (lastCount==self.dataSource.count&&!refreshControl.refreshing) {
-            loadmoreText=@"没有更多了";
-        }
-        [loadMoreFooter performSelector:@selector(endLoadingWithText:) withObject:loadmoreText afterDelay:1];
-        lastCount=self.dataSource.count;
+        
     }
 }
 
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter]removeObserver:self];
-    NSLog(@"%@ deal",NSStringFromClass([self class]));
+    NSLog(@"%@ dealloc",NSStringFromClass([self class]));
 }
 
 #pragma mark - Refresh And Load More
-
--(void)firstLoad
-{
-    
-}
 
 -(void)refresh
 {
     [refreshControl performSelector:@selector(endRefreshing) withObject:nil afterDelay:1];
     [self.collectionView reloadData];
+}
+
+- (void)endRefresh{
+    NSLog(@"%@ reloaded sections",NSStringFromClass([self class]));
+    [refreshControl performSelector:@selector(endRefreshing) withObject:nil afterDelay:1];
+    
+    NSString* loadmoreText=@"加载更多";
+    if (lastCount==self.dataSource.count&&!refreshControl.refreshing) {
+        loadmoreText=@"没有更多了";
+    }
+    [loadMoreFooter performSelector:@selector(endLoadingWithText:) withObject:loadmoreText afterDelay:1];
+    lastCount=self.dataSource.count;
 }
 
 -(void)loadMore
@@ -161,7 +148,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(void)advertiseView:(AdvertiseView *)adver didSelectedIndex:(NSInteger)index
 {
-        NSLog(@"advertise:%@ did selected index:%d",adver,(int)index);
+    NSLog(@"advertise:%@ did selected index:%d",adver,(int)index);
 }
 
 -(UICollectionViewLayout*)collectionViewLayout
@@ -170,15 +157,6 @@ static NSString * const reuseIdentifier = @"Cell";
     return flow;
 }
 
--(void)setNothingFooterView
-{
-    
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 -(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -287,5 +265,63 @@ static NSString * const reuseIdentifier = @"Cell";
     footerView.loading=YES;
     [self loadMore];
 }
+
+
+#pragma mark -
+#pragma mark - 提示
+
+- (void)startAnimation{
+    [HUDManager showLoading:@"加载中..."];
+}
+- (void)stopAnimation{
+    [HUDManager dismiss];
+}
+-(void)showMessage:(NSString *)msg{
+    [HUDManager showMessage:msg];
+}
+- (void)showErrorMsg:(NSString *)errmsg{
+    [HUDManager showErrorMsg:errmsg];
+}
+- (void)showSuccessMsg:(NSString *)msg{
+    [HUDManager showSuccessMsg:msg];
+}
+- (void)showLoading:(NSString *)msg{
+    [HUDManager showLoading:msg];
+}
+
+
+-(void)showSystemAlertWithTitle:(NSString *)title
+                        message:(NSString*)message
+                    buttonTitle:(NSString *)btntitle
+                needDestructive:(BOOL)needDistory
+                    cancleBlock: (void (^)(UIAlertAction *action))cancleBlock
+                       btnBlock:(void (^)(UIAlertAction *action))btnBlock {
+    
+    UIAlertController *vc = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *act1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:cancleBlock];
+    
+    UIAlertActionStyle style = UIAlertActionStyleDefault;
+    if (needDistory) {
+        style = UIAlertActionStyleDestructive;
+    }else{
+        style = UIAlertActionStyleDefault;
+    }
+    
+    UIAlertAction *act2 = [UIAlertAction actionWithTitle:btntitle style:style handler:btnBlock];
+    
+    [vc addAction:act1];
+    [vc addAction:act2];
+    [self presentViewController:vc animated:true completion:nil];
+    
+    
+}
+
+
+- (void)showloginVc{
+    UIViewController* log=[[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    [self presentViewController:log animated:YES completion:nil];
+}
+
 
 @end

@@ -12,17 +12,8 @@
 @interface NSObject (SwizzleClasses)
 @end
 
-@interface UITableView (SwizzleClasses)
-@end
-
-@interface UICollectionView (SwizzleClasses)
-@end
-
-@interface UIViewController (SwizzleClasses)
-@end
 
 @interface UIImageView (SwizzleClasses)
 @end
 
-@interface UIScrollView (SwizzleClasses)
-@end
+

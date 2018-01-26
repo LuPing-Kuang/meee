@@ -36,10 +36,11 @@
     MJWeakSelf;
     [MyPageHttpTool getMyMaterialPartnerCache:local token:[UserModel token] success:^(PartnerMaterialModel *model) {
         weakSelf.model = model;
-        [self.tableView reloadData];
+        [weakSelf.tableView reloadData];
+        [weakSelf endRefresh];
     } failure:^(NSString *errormsg) {
         [weakSelf showErrorMsg:errormsg];
-        [weakSelf.tableView reloadData];
+        [weakSelf endRefresh];
     }];
 }
 

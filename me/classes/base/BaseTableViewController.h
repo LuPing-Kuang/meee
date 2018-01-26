@@ -19,8 +19,8 @@
 @property (nonatomic,assign) NSInteger pageSize;
 @property (nonatomic,assign) BOOL shouldLoadMore;
 
--(void)firstLoad;
 -(void)refresh;
+-(void)endRefresh;
 -(void)stopRefreshAfterSeconds;
 
 -(void)loadMore;
@@ -30,7 +30,6 @@
 -(void)showLoadMoreView;
 -(void)hideLoadMoreView;
 
--(void)tableViewReloadData;
 
 - (void)startAnimation;
 - (void)stopAnimation;

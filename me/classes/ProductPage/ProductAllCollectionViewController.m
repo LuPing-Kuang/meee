@@ -187,29 +187,31 @@ typedef NS_ENUM(NSInteger,ProductCollectionLayoutStyle)
     }
     
     //调试中
+    MJWeakSelf;
     [ProductPageHttpTool getProductPageCache:NO token:access_token page:page pagesize:pagesize keywords:keywords cate:self.cate recommand:self.isrecommand new:self.isnew hot:self.ishot discount:self.isdiscount sendfree:self.issendfree time:self.istime order:order by:by success:^(NSArray *result) {
         if(refreshing)
         {
-            [self.dataSource removeAllObjects];
+            [weakSelf.dataSource removeAllObjects];
         }
 
-        [self.dataSource addObjectsFromArray:result];
+        [weakSelf.dataSource addObjectsFromArray:result];
         
-        [self.collectionView reloadData];
+        [weakSelf.collectionView reloadData];
+        [weakSelf endRefresh];
         
         if (result.count>0) {
             [searchBar resignFirstResponder];
             if (refreshing) {
-                self.currentPage=1;
+                weakSelf.currentPage=1;
             }
             else
             {
-                self.currentPage=self.currentPage+1;
+                weakSelf.currentPage=self.currentPage+1;
             }
         }
         
     } failure:^(NSError *error) {
-        [self.collectionView reloadData];
+        [weakSelf endRefresh];
     }];
 }
 
@@ -340,6 +342,7 @@ typedef NS_ENUM(NSInteger,ProductCollectionLayoutStyle)
 //        exchangeLayoutItem.title=@"小";
     }
     [self.collectionView reloadData];
+    [self endRefresh];
 }
 
 #pragma mark textfield delegate

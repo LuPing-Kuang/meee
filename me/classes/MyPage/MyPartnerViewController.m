@@ -76,9 +76,9 @@
     [MyPageHttpTool getMyPartnerCache:NO token:[UserModel token] success:^(MyPartnerModel* partner) {
         weakSelf.partner = partner;
         [weakSelf.tableView reloadData];
-        
+        [weakSelf endRefresh];
     } failure:^(NSString *errorMsg) {
-        [weakSelf.tableView reloadData];
+        [weakSelf endRefresh];
         [HUDManager showErrorMsg:errorMsg];
         
     }];

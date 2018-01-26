@@ -18,9 +18,8 @@
 @property (nonatomic,assign) NSInteger pageSize;
 @property (nonatomic,assign) BOOL shouldLoadMore;
 
--(void)firstLoad;
 -(void)refresh;
-
+-(void)endRefresh;
 -(void)loadMore;
 
 -(void)setAdvertiseHeaderViewWithPicturesUrls:(NSArray*)picturesUrls;
@@ -29,5 +28,21 @@
 
 -(void)showLoadMoreView;
 -(void)hideLoadMoreView;
+
+- (void)startAnimation;
+- (void)stopAnimation;
+-(void)showMessage:(NSString *)msg;
+- (void)showErrorMsg:(NSString *)errmsg;
+- (void)showSuccessMsg:(NSString *)msg;
+- (void)showLoading:(NSString *)msg;
+
+-(void)showSystemAlertWithTitle:(NSString *)title
+                        message:(NSString*)message
+                    buttonTitle:(NSString *)btntitle
+                needDestructive:(BOOL)needDistory
+                    cancleBlock: (void (^)(UIAlertAction *action))cancleBlock
+                       btnBlock:(void (^)(UIAlertAction *action))btnBlock ;
+
+- (void)showloginVc;
 
 @end

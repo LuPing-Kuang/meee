@@ -51,19 +51,22 @@
 {
     MJWeakSelf;
     [UserDataLoader getPersonalMsgwithCompleted:^(id result, BOOL success) {
+        
         if (success) {
             weakSelf.userModel = result;
             
             [MyPageHttpTool getMyPageDataCache:NO token:[UserModel token] local:local success:^(NSArray *myPageSections) {
-                [self.dataSource removeAllObjects];
-                [self.dataSource addObjectsFromArray:myPageSections];
-                [self.tableView reloadData];
+                
+                [weakSelf.dataSource removeAllObjects];
+                [weakSelf.dataSource addObjectsFromArray:myPageSections];
+                [weakSelf.tableView reloadData];
+                [weakSelf endRefresh];
             } failure:^(NSString *errorMsg) {
-                [self.tableView reloadData];
+                [weakSelf endRefresh];
             }];
             
         }else{
-            
+            [weakSelf endRefresh];
         }
     }];
 }

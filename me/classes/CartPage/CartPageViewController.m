@@ -64,15 +64,17 @@
 
 -(void)refresh
 {
+    MJWeakSelf;
     [CartPageHttpTool getCartPageCache:NO token:[UserModel token] success:^(NSArray *result,BOOL selectedAll) {
-        [self.dataSource removeAllObjects];
-        [self.dataSource addObjectsFromArray:result];
+        [weakSelf.dataSource removeAllObjects];
+        [weakSelf.dataSource addObjectsFromArray:result];
         editToolBar.seletedAll=selectedAll;
-        [self.tableView reloadData];
-        [self calculateTotalAmount];
+        [weakSelf.tableView reloadData];
+        [weakSelf endRefresh];
+        [weakSelf calculateTotalAmount];
     } failure:^(NSError *error) {
-        [self.tableView reloadData];
-        [self calculateTotalAmount];
+        [weakSelf endRefresh];
+        [weakSelf calculateTotalAmount];
     }];
 }
 
@@ -136,11 +138,13 @@
     NSLog(@"delete selected");
     NSArray* items=[self seletedItems];
     [HUDManager showLoading:@"正在删除"];
+    MJWeakSelf;
     [CartPageHttpTool postDeleteCarts:items token:[UserModel token] complete:^(BOOL result, NSArray *deletedItems, NSString* msg) {
         if (result) {
             [HUDManager showSuccessMsg:@"已删除"];
-            [self.dataSource removeObjectsInArray:deletedItems];
-            [self.tableView reloadData];
+            [weakSelf.dataSource removeObjectsInArray:deletedItems];
+            [weakSelf.tableView reloadData];
+            [weakSelf endRefresh];
             [self calculateTotalAmount];
         }
         else
@@ -155,12 +159,14 @@
     NSLog(@"attent selected");
     NSArray* items=[self seletedItems];
     [HUDManager showLoading:@"正在移动"];
+    MJWeakSelf;
     [CartPageHttpTool postDeleteCarts:items token:[UserModel token] complete:^(BOOL result, NSArray *deletedItems, NSString* msg) {
         if (result) {
             [HUDManager showSuccessMsg:@"已移到关注"];
-            [self.dataSource removeObjectsInArray:deletedItems];
-            [self.tableView reloadData];
-            [self calculateTotalAmount];
+            [weakSelf.dataSource removeObjectsInArray:deletedItems];
+            [weakSelf.tableView reloadData];
+            [weakSelf endRefresh];
+            [weakSelf calculateTotalAmount];
         }
         else
         {

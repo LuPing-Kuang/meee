@@ -46,25 +46,25 @@
     [MyPageHttpTool getMyOtherPartnerCache:NO token:[UserModel token] level:self.levelType page:page pagesize:pagesize success:^(MyOtherPartnerTotalModel *model) {
         if(refreshing)
         {
-            [self.dataSource removeAllObjects];
+            [weakSelf.dataSource removeAllObjects];
         }
         
-        [self.dataSource addObjectsFromArray:model.list];
+        [weakSelf.dataSource addObjectsFromArray:model.list];
         
-        [self.tableView reloadData];
-        
+        [weakSelf.tableView reloadData];
+        [weakSelf endRefresh];
         if (model.list.count>0) {
             if (refreshing) {
-                self.currentPage=1;
+                weakSelf.currentPage=1;
             }
             else
             {
-                self.currentPage=self.currentPage+1;
+                weakSelf.currentPage=weakSelf.currentPage+1;
             }
         }
     } failure:^(NSString *errorMsg) {
         [weakSelf showErrorMsg:errorMsg];
-        [self.tableView reloadData];
+        [weakSelf endRefresh];
     }];
 }
 

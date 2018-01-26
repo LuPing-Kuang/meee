@@ -80,16 +80,17 @@ typedef NS_ENUM(NSInteger,ProductOrderTableViewSection)
     
     self.gdid = gdid;
     //do get order comfirm detail
-    
+    MJWeakSelf;
     [ProductPageHttpTool getCreateOrderDetailCache:NO token:[UserModel token] idd:idd optionid:optionid total:total gdid:gdid giftid:giftid liveid:liveid success:^(NSArray *goods, ProductionOrderAddressModel *address, ProductionOrderDetailPriceModel *pricedetail) {
         goodModels=goods;
         detailPriceModel=pricedetail;
         addressModel=address;
         
         bottomComfirmView.money.text=[NSString stringWithFloat:detailPriceModel.realprice.doubleValue headUnit:@"¥" tailUnit:nil];
-        [self.tableView reloadData];
+        [weakSelf.tableView reloadData];
+        [weakSelf endRefresh];
     } failure:^(NSError *error) {
-        [self.tableView reloadData];
+        [weakSelf endRefresh];
     }];
     
 }
@@ -276,6 +277,7 @@ typedef NS_ENUM(NSInteger,ProductOrderTableViewSection)
 {
     addressModel=address;
     [self.tableView reloadData];
+    [self endRefresh];
 }
 
 @end
