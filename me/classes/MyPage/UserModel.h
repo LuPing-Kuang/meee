@@ -20,6 +20,7 @@
 @property (nonatomic,strong) NSString* levelname;
 @property (nonatomic,strong) NSString* money;
 @property (nonatomic,strong) NSNumber* credit;
+@property (nonatomic, strong) NSString *mobile;
 
 
 /*
@@ -30,6 +31,8 @@
 @property (nonatomic, strong) NSString *status;
 @property (nonatomic, strong) NSString *isagent;
 @property (nonatomic, strong) NSString *weixin;
+
+
 
 
 @end

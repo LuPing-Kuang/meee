@@ -16,11 +16,17 @@ typedef void (^LoadServerDataFinishedBlock) (id result,BOOL success);
 static NSString *const LOADING_WORD = @"加载中...";
 static NSString *const SERVEERROR_WORD = @"服务器返回错误";
 static NSInteger const DefaultCountDownSecond = 60;
-
+//
 
 #pragma mark -
 #pragma mark - 通知
 static NSString *const UserLogin_Notification = @"UserLogin_Notification";
+
+#pragma mark -
+#pragma mark - 第三方sdk
+static NSString *const kbuglyAppid = @"acc2efc4be";
+static NSString *const kbuglySecect = @"453870ab-e89e-40ee-ac8e-a0b18af4601a";
+
 
 
 #endif /* AllEnums_h */

@@ -7,7 +7,7 @@
 //
 
 #import "UserDataLoader.h"
-
+#import "MyfavouriteModel.h"
 @implementation UserDataLoader
 
 //获取个人信息
@@ -101,7 +101,47 @@
     }];
 }
 
+//忘记密码
++ (void)forgetPsWithMobile:(NSString*)mobile WithPwd:(NSString*)pwd WithVerifycode:(NSString*)verifycode withCompleted:(LoadServerDataFinishedBlock)finish{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setValue:mobile forKey:@"mobile"];
+    [dic setValue:pwd forKey:@"pwd"];
+    [dic setValue:verifycode forKey:@"verifycode"];
+    
+    [[NetworkManager getManager] postPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=account.forget" parameters:dic success_status_ok:^(NSURLSessionDataTask *task, id data) {
+        if (finish) {
+            finish(data,YES);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSString *errorMsg) {
+        if (finish) {
+            finish(errorMsg,NO);
+        }
+    }];
+}
 
+
+//修改密码
++ (void)changePsWithMobile:(NSString*)mobile WithPwd:(NSString*)pwd WithVerifycode:(NSString*)verifycode withCompleted:(LoadServerDataFinishedBlock)finish{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setValue:[UserModel token] forKey:@"access_token"];
+    [dic setValue:mobile forKey:@"mobile"];
+    [dic setValue:pwd forKey:@"pwd"];
+    [dic setValue:verifycode forKey:@"verifycode"];
+    [dic setValue:pwd forKey:@"rpwd"];
+    
+    [[NetworkManager getManager] postPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=member.changepwd" parameters:dic success_status_ok:^(NSURLSessionDataTask *task, id data) {
+        if (finish) {
+            finish(data,YES);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSString *errorMsg) {
+        if (finish) {
+            finish(errorMsg,NO);
+        }
+    }];
+    
+}
 
 //添加地址
 + (void)addAddressData:(NSDictionary*)addressdata withCompleted:(LoadServerDataFinishedBlock)finish{
@@ -150,6 +190,45 @@
     [dic setValue:addressId forKey:@"id"];
     
     [[NetworkManager getManager] postPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=member.address.set_default" parameters:dic success_status_ok:^(NSURLSessionDataTask *task, id data) {
+        if (finish) {
+            finish(data,YES);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSString *errorMsg) {
+        if (finish) {
+            finish(errorMsg,NO);
+        }
+    }];
+}
+
+
++ (void)getMyFavouriteProductPage:(NSInteger)page pagesize:(NSInteger)pagesize withCompleted:(LoadServerDataFinishedBlock)finish{
+    
+    NSMutableDictionary *dic = [ZZHttpTool pageParamsWithPage:page size:pagesize];
+    [dic setValue:[UserModel token] forKey:@"access_token"];
+    
+    [[NetworkManager getManager] postPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=member.favorite.get_list" parameters:dic success_status_ok:^(NSURLSessionDataTask *task, id data) {
+        if (finish) {
+            NSArray *modelArr = [MyfavouriteModel mj_objectArrayWithKeyValuesArray:data[@"list"]];
+            finish(modelArr,YES);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSString *errorMsg) {
+        if (finish) {
+            finish(errorMsg,NO);
+        }
+    }];
+    
+}
+
+
+
+//取消收藏
++ (void)CancelFocusMyFavouriteProductIds:(NSString*)Ids withCompleted:(LoadServerDataFinishedBlock)finish{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setValue:[UserModel token] forKey:@"access_token"];
+    [dic setValue:Ids forKey:@"ids"];
+    
+    [[NetworkManager getManager] postPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=member.favorite.remove" parameters:dic success_status_ok:^(NSURLSessionDataTask *task, id data) {
         if (finish) {
             finish(data,YES);
         }

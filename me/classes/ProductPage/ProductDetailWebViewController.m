@@ -60,12 +60,12 @@
     if ([abs containsString:@"app9vcom"]&&[abs containsString:@"getOrder"])
     {
         NSLog(@"creat 2");
-        [self actionWithCreateOrderUrl:abs fromCart:NO];
+        [self actionWithCreateOrderUrl:abs];
         return NO;
     }
     else if ([valueR isEqualToString:@"order.create"]) {
         NSLog(@"creat");
-        [self actionWithCreateOrderUrl:abs fromCart:NO];
+        [self actionWithCreateOrderUrl:abs];
         return NO;
     }
     else if([valueR isEqualToString:@"member.cart"]) {
@@ -92,7 +92,7 @@
 
 #pragma mark action with url
 
--(void)actionWithCreateOrderUrl:(NSString*)url fromCart:(BOOL)isfromCart
+-(void)actionWithCreateOrderUrl:(NSString*)url
 {
     NSString* access_token=[UserModel token];
     if (access_token.length==0) {

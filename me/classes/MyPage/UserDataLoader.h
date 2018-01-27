@@ -26,6 +26,11 @@
 //退出登陆
 + (void)logoutwithCompleted:(LoadServerDataFinishedBlock)finish;
 
+//忘记密码
++ (void)forgetPsWithMobile:(NSString*)mobile WithPwd:(NSString*)pwd WithVerifycode:(NSString*)verifycode withCompleted:(LoadServerDataFinishedBlock)finish;
+
+//修改密码
++ (void)changePsWithMobile:(NSString*)mobile WithPwd:(NSString*)pwd WithVerifycode:(NSString*)verifycode withCompleted:(LoadServerDataFinishedBlock)finish;
 
 #pragma mark -
 #pragma mark - 地址模块
@@ -38,6 +43,12 @@
 //设为默认地址
 + (void)setDefaultAddress:(NSString*)addressId withCompleted:(LoadServerDataFinishedBlock)finish;
 
+#pragma mark -
+#pragma mark - 我的收藏
+//获取我的收藏
++ (void)getMyFavouriteProductPage:(NSInteger)page pagesize:(NSInteger)pagesize withCompleted:(LoadServerDataFinishedBlock)finish;
+//取消收藏
++ (void)CancelFocusMyFavouriteProductIds:(NSString*)Ids withCompleted:(LoadServerDataFinishedBlock)finish;
 
 
 @end

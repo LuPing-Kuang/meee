@@ -111,8 +111,10 @@
     NSString* str=[ZZUrlTool fullUrlWithTail:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=order.create.submit"];
     
     [self get:str params:paramDic usingCache:cache success:^(NSDictionary *dict) {
-       
-        NSLog(@"dict:%@",dict);
+        
+        if (success) {
+            success(dict[@"orderid"]);
+        }
         
     } failure:^(NSError *err) {
         if (failure) {

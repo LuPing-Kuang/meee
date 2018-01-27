@@ -12,7 +12,6 @@
 
 @property (nonatomic,strong) NSString* url;
 
-@property (nonatomic, assign) BOOL isFromCart;
 
 
 //@property (nonatomic,strong) NSString* idd;

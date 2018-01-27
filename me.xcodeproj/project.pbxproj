@@ -137,6 +137,14 @@
 		57B4014F201A182A000E5830 /* NSObject+ExtendNSLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B40148201A182A000E5830 /* NSObject+ExtendNSLog.m */; };
 		57B40150201A182A000E5830 /* NSArray+ ZXPUnicode.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B4014A201A182A000E5830 /* NSArray+ ZXPUnicode.m */; };
 		57B40153201AB6BB000E5830 /* ForgetPassWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B40152201AB6BB000E5830 /* ForgetPassWordController.m */; };
+		57B401C5201C0A44000E5830 /* changePsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B401C4201C0A44000E5830 /* changePsController.m */; };
+		57B401C8201C0D0B000E5830 /* changePsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B401C7201C0D0B000E5830 /* changePsCell.m */; };
+		57B401CB201C132D000E5830 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B401CA201C132D000E5830 /* AccountManager.m */; };
+		57B401CE201C4D71000E5830 /* MyFavouriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B401CD201C4D71000E5830 /* MyFavouriteViewController.m */; };
+		57B401D1201C5017000E5830 /* MyfavouriteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B401D0201C5017000E5830 /* MyfavouriteModel.m */; };
+		57B401D4201C5322000E5830 /* MyFavouriteViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B401D3201C5322000E5830 /* MyFavouriteViewCell.m */; };
+		57B401D7201C60D0000E5830 /* MyFavouriteSelectedAllActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B401D6201C60D0000E5830 /* MyFavouriteSelectedAllActionView.m */; };
+		57B401D9201C60DE000E5830 /* MyFavouriteSelectedAllActionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57B401D8201C60DE000E5830 /* MyFavouriteSelectedAllActionView.xib */; };
 		57F659CD2018007D000FDD93 /* ApplyPartnerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F659CC2018007D000FDD93 /* ApplyPartnerController.m */; };
 		57F659D0201800DC000FDD93 /* ApplyPartnerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F659CF201800DC000FDD93 /* ApplyPartnerCell.m */; };
 		57F659D82018A70D000FDD93 /* WechatHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F659D62018A70C000FDD93 /* WechatHandler.m */; };
@@ -397,6 +405,21 @@
 		57B4014B201A182A000E5830 /* NSDictionary+ASCIICovertToString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+ASCIICovertToString.h"; sourceTree = "<group>"; };
 		57B40151201AB6BB000E5830 /* ForgetPassWordController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForgetPassWordController.h; sourceTree = "<group>"; };
 		57B40152201AB6BB000E5830 /* ForgetPassWordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForgetPassWordController.m; sourceTree = "<group>"; };
+		57B401C3201C0A44000E5830 /* changePsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = changePsController.h; sourceTree = "<group>"; };
+		57B401C4201C0A44000E5830 /* changePsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = changePsController.m; sourceTree = "<group>"; };
+		57B401C6201C0D0B000E5830 /* changePsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = changePsCell.h; sourceTree = "<group>"; };
+		57B401C7201C0D0B000E5830 /* changePsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = changePsCell.m; sourceTree = "<group>"; };
+		57B401C9201C132D000E5830 /* AccountManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountManager.h; sourceTree = "<group>"; };
+		57B401CA201C132D000E5830 /* AccountManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
+		57B401CC201C4D71000E5830 /* MyFavouriteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFavouriteViewController.h; sourceTree = "<group>"; };
+		57B401CD201C4D71000E5830 /* MyFavouriteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFavouriteViewController.m; sourceTree = "<group>"; };
+		57B401CF201C5017000E5830 /* MyfavouriteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyfavouriteModel.h; sourceTree = "<group>"; };
+		57B401D0201C5017000E5830 /* MyfavouriteModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyfavouriteModel.m; sourceTree = "<group>"; };
+		57B401D2201C5322000E5830 /* MyFavouriteViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFavouriteViewCell.h; sourceTree = "<group>"; };
+		57B401D3201C5322000E5830 /* MyFavouriteViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFavouriteViewCell.m; sourceTree = "<group>"; };
+		57B401D5201C60D0000E5830 /* MyFavouriteSelectedAllActionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFavouriteSelectedAllActionView.h; sourceTree = "<group>"; };
+		57B401D6201C60D0000E5830 /* MyFavouriteSelectedAllActionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFavouriteSelectedAllActionView.m; sourceTree = "<group>"; };
+		57B401D8201C60DE000E5830 /* MyFavouriteSelectedAllActionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyFavouriteSelectedAllActionView.xib; sourceTree = "<group>"; };
 		57F659CB2018007D000FDD93 /* ApplyPartnerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplyPartnerController.h; sourceTree = "<group>"; };
 		57F659CC2018007D000FDD93 /* ApplyPartnerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplyPartnerController.m; sourceTree = "<group>"; };
 		57F659CE201800DC000FDD93 /* ApplyPartnerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplyPartnerCell.h; sourceTree = "<group>"; };
@@ -464,6 +487,10 @@
 				391863532006F8700057C491 /* RegisterViewController.m */,
 				57B40151201AB6BB000E5830 /* ForgetPassWordController.h */,
 				57B40152201AB6BB000E5830 /* ForgetPassWordController.m */,
+				57B401C3201C0A44000E5830 /* changePsController.h */,
+				57B401C4201C0A44000E5830 /* changePsController.m */,
+				57B401C6201C0D0B000E5830 /* changePsCell.h */,
+				57B401C7201C0D0B000E5830 /* changePsCell.m */,
 				57F659E02018ECE2000FDD93 /* model */,
 			);
 			name = login;
@@ -500,6 +527,15 @@
 		39186386200748520057C491 /* favourite */ = {
 			isa = PBXGroup;
 			children = (
+				57B401CC201C4D71000E5830 /* MyFavouriteViewController.h */,
+				57B401CD201C4D71000E5830 /* MyFavouriteViewController.m */,
+				57B401CF201C5017000E5830 /* MyfavouriteModel.h */,
+				57B401D0201C5017000E5830 /* MyfavouriteModel.m */,
+				57B401D2201C5322000E5830 /* MyFavouriteViewCell.h */,
+				57B401D3201C5322000E5830 /* MyFavouriteViewCell.m */,
+				57B401D5201C60D0000E5830 /* MyFavouriteSelectedAllActionView.h */,
+				57B401D6201C60D0000E5830 /* MyFavouriteSelectedAllActionView.m */,
+				57B401D8201C60DE000E5830 /* MyFavouriteSelectedAllActionView.xib */,
 			);
 			name = favourite;
 			sourceTree = "<group>";
@@ -969,6 +1005,8 @@
 				57F659DA2018A866000FDD93 /* NetworkManager.m */,
 				57F659DD2018AAAD000FDD93 /* HUDManager.h */,
 				57F659DC2018AAAC000FDD93 /* HUDManager.m */,
+				57B401C9201C132D000E5830 /* AccountManager.h */,
+				57B401CA201C132D000E5830 /* AccountManager.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1064,6 +1102,7 @@
 				3918633A200469C30057C491 /* address.txt in Resources */,
 				397C07492001C3E70073A57A /* RentCartEditToolBar.xib in Resources */,
 				39186336200460DE0057C491 /* ProductPage.storyboard in Resources */,
+				57B401D9201C60DE000E5830 /* MyFavouriteSelectedAllActionView.xib in Resources */,
 				39574C382008BF5200FD87B6 /* homepagejson.txt in Resources */,
 				3918638B20074ABA0057C491 /* SelectedAllActionView.xib in Resources */,
 			);
@@ -1155,6 +1194,7 @@
 				39186377200715050057C491 /* PickerShadowContainer.m in Sources */,
 				39574C34200884A800FD87B6 /* MyOrderListTableViewCell.m in Sources */,
 				3918636A200701880057C491 /* MyAddressesTableViewController.m in Sources */,
+				57B401CB201C132D000E5830 /* AccountManager.m in Sources */,
 				393F286A1FF34FDF009D5D2E /* CorneredButton.m in Sources */,
 				390B25B11FF4D33500282A90 /* MenuHeaderTableViewCell.m in Sources */,
 				57AA7B172011179300F2C63E /* GetCashDetailController.m in Sources */,
@@ -1170,6 +1210,7 @@
 				39BCC4B82000B6A0008688B7 /* ProductPageHttpTool.m in Sources */,
 				3918636F200703DB0057C491 /* AddressListTableViewCell.m in Sources */,
 				39F37F7D1FFF582400781706 /* MyOrderCollectionTableViewCell.m in Sources */,
+				57B401D7201C60D0000E5830 /* MyFavouriteSelectedAllActionView.m in Sources */,
 				397C07482001C3E70073A57A /* RentCartEditToolBar.m in Sources */,
 				394D37751FEDF4330001CB48 /* AppDelegate.m in Sources */,
 				39BCC4B1200071CA008688B7 /* MyPageHttpTool.m in Sources */,
@@ -1194,6 +1235,7 @@
 				39574C2B2008566900FD87B6 /* ZZPagerController.m in Sources */,
 				573D4C5320125A4300260123 /* DistributionOrderModel.m in Sources */,
 				39574C312008574E00FD87B6 /* MyOrderModel.m in Sources */,
+				57B401D1201C5017000E5830 /* MyfavouriteModel.m in Sources */,
 				3946D2D81FF3362A0074E77A /* NSDictionary+ext.m in Sources */,
 				39F37F871FFF6F9A00781706 /* NSObject+YYModel.m in Sources */,
 				3918637F2007380F0057C491 /* MyFootPrintTableViewController.m in Sources */,
@@ -1216,6 +1258,7 @@
 				3918638920074AAC0057C491 /* SelectedAllActionView.m in Sources */,
 				39BCC4AE1FFF8215008688B7 /* UserModel.m in Sources */,
 				39F37F801FFF677100781706 /* BaseTableViewController.m in Sources */,
+				57B401CE201C4D71000E5830 /* MyFavouriteViewController.m in Sources */,
 				57071DAF2014F72E0028FF37 /* UIView+Meee.m in Sources */,
 				39BCC4AB1FFF7818008688B7 /* BannerModel.m in Sources */,
 				391863462004988F0057C491 /* ProductOrderMessageTableViewCell.m in Sources */,
@@ -1238,6 +1281,7 @@
 				39F37F921FFF710A00781706 /* ZZUrlTool.m in Sources */,
 				57F659DE2018AAAD000FDD93 /* HUDManager.m in Sources */,
 				39186370200703DB0057C491 /* AddressOptionTableViewCell.m in Sources */,
+				57B401D4201C5322000E5830 /* MyFavouriteViewCell.m in Sources */,
 				573D4C652012E8B600260123 /* MyOtherPartnerPageController.m in Sources */,
 				3946D2D71FF3362A0074E77A /* UIView+ext.m in Sources */,
 				57F659CD2018007D000FDD93 /* ApplyPartnerController.m in Sources */,
@@ -1246,6 +1290,7 @@
 				3918632420020AA80057C491 /* ProductDetailWebViewController.m in Sources */,
 				397C074F2001CA340073A57A /* CartPageHttpTool.m in Sources */,
 				39F37F7A1FFF581300781706 /* MyHeaderTableViewCell.m in Sources */,
+				57B401C5201C0A44000E5830 /* changePsController.m in Sources */,
 				39186382200738E10057C491 /* MyFootPrintTableViewCell.m in Sources */,
 				3946D2DB1FF3362A0074E77A /* UINavigationController+Children.m in Sources */,
 				57B40153201AB6BB000E5830 /* ForgetPassWordController.m in Sources */,
@@ -1253,6 +1298,7 @@
 				3918631F200209880057C491 /* BaseWebViewController.m in Sources */,
 				3946D27A1FF335D50074E77A /* BaseLoadMoreFooterView.m in Sources */,
 				57F659E72018FF6A000FDD93 /* MyPageLogoutAndForgetPsCell.m in Sources */,
+				57B401C8201C0D0B000E5830 /* changePsCell.m in Sources */,
 				393F286D1FF37330009D5D2E /* ProductCateHeaderCollectionReusableView.m in Sources */,
 				57B4014E201A182A000E5830 /* NSDictionary+ASCIICovertToString.m in Sources */,
 				39F37F911FFF710A00781706 /* ZZHttpTool.m in Sources */,

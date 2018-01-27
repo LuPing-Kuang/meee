@@ -34,7 +34,12 @@
         [config setURLCache:cache];
         obj = [[NetworkManager alloc] initWithBaseURL:baseURL
                                  sessionConfiguration:config];
+        
+        obj.requestSerializer= [AFHTTPRequestSerializer serializer];
         obj.responseSerializer = [AFJSONResponseSerializer serializer];
+        
+        obj.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/plain", nil];
+
         
     });
     return obj;

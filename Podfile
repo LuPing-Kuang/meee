@@ -8,6 +8,7 @@ use_frameworks!
     pod 'WechatOpenSDK', '~> 1.7.7'#微信sdk
     pod 'AFNetworking', '~> 3.1.0'
     pod 'SVProgressHUD', '~> 2.0.4'
+    pod 'Bugly', '~> 2.5.0'
     
 end
 

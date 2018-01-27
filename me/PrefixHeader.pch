@@ -18,7 +18,9 @@
 #import <AFNetworking/AFNetworking.h>
 #import "HUDManager.h"
 #import "NetworkManager.h"
+#import "AccountManager.h"
 #import <WXApi.h>
+#import <Bugly/Bugly.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 
 #import <MJExtension/MJExtension.h>

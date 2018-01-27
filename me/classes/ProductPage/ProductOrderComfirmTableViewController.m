@@ -42,7 +42,11 @@ typedef NS_ENUM(NSInteger,ProductOrderTableViewSection)
     
 }
 
+@property (nonatomic, strong) NSString *optionid;
+@property (nonatomic, strong) NSString *total;
 @property (nonatomic, strong) NSString *gdid;
+@property (nonatomic, strong) NSString *giftid;
+@property (nonatomic, strong) NSString *liveid;
 
 
 @end
@@ -60,13 +64,9 @@ typedef NS_ENUM(NSInteger,ProductOrderTableViewSection)
     bottomComfirmView.frame=fra;
     [self setBottomSubView:bottomComfirmView];
     [bottomComfirmView.buyButton addTarget:self action:@selector(buyIt) forControlEvents:UIControlEventTouchUpInside];
-    // Do any additional setup after loading the view.
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 -(void)refresh
 {
@@ -78,7 +78,12 @@ typedef NS_ENUM(NSInteger,ProductOrderTableViewSection)
     NSString* giftid=[url stringValueFromUrlParamsKey:@"giftid"];
     NSString* liveid=[url stringValueFromUrlParamsKey:@"liveid"];
     
+    self.optionid = optionid;
+    self.total = total;
     self.gdid = gdid;
+    self.giftid = giftid;
+    self.liveid = liveid;
+
     //do get order comfirm detail
     MJWeakSelf;
     [ProductPageHttpTool getCreateOrderDetailCache:NO token:[UserModel token] idd:idd optionid:optionid total:total gdid:gdid giftid:giftid liveid:liveid success:^(NSArray *goods, ProductionOrderAddressModel *address, ProductionOrderDetailPriceModel *pricedetail) {
@@ -109,7 +114,7 @@ typedef NS_ENUM(NSInteger,ProductOrderTableViewSection)
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setValue:@"0" forKey:@"orderid"];
     
-    if (self.isFromCart) {
+    if (detailPriceModel.fromcart.integerValue==1) {
         [dic setValue:@"0" forKey:@"id"];
     }else{
         [dic setValue:goodModels.firstObject.goodsid forKey:@"id"];
@@ -118,9 +123,39 @@ typedef NS_ENUM(NSInteger,ProductOrderTableViewSection)
     [dic setValue:self.gdid forKey:@"gdid"];
     [dic setValue:detailPriceModel.fromcart forKey:@"fromcart"];
     [dic setValue:addressModel.idd forKey:@"addressid"];
-    [dic setValue:addressModel.idd forKey:@"addressid"];
     
-    [ProductPageHttpTool CreateOrderIdCache:NO token:[UserModel token] Param:nil success:^(NSString *orderId) {
+    
+    NSMutableArray *arr = [NSMutableArray array];
+    for (NSInteger i=0; i<goodModels.count; i++) {
+        ProductionOrderGoodModel *model = goodModels[i];
+        NSMutableDictionary *goodsDic = [NSMutableDictionary dictionary];
+        [goodsDic setValue:model.goodsid forKey:@"goodsid"];
+        [goodsDic setValue:model.title forKey:@"title"];
+        [goodsDic setValue:model.thumb forKey:@"thumb"];
+        [goodsDic setValue:model.optionid forKey:@"optionid"];
+        [goodsDic setValue:model.optiontitle forKey:@"optiontitle"];
+        [goodsDic setValue:model.hasdiscount forKey:@"hasdiscount"];
+        [goodsDic setValue:model.total forKey:@"total"];
+        [goodsDic setValue:model.price forKey:@"price"];
+        [goodsDic setValue:model.marketprice forKey:@"marketprice"];
+        [goodsDic setValue:model.merchid forKey:@"merchid"];
+        [goodsDic setValue:model.cates forKey:@"cates"];
+        [goodsDic setValue:model.unit forKey:@"unit"];
+        [goodsDic setValue:model.totalmaxbuy forKey:@"totalmaxbuy"];
+        [goodsDic setValue:model.minbuy forKey:@"minbuy"];
+        
+        [arr addObject:goodsDic];
+        
+    }
+    
+    [dic setValue:arr forKey:@"goods"];
+    [dic setValue:self.giftid forKey:@"giftid"];
+    [dic setValue:self.liveid forKey:@"liveid"];
+    [dic setValue:@"0" forKey:@"dispatchtype"];
+    [dic setValue:customMessage forKey:@"remark"];
+    
+    
+    [ProductPageHttpTool CreateOrderIdCache:NO token:[UserModel token] Param:dic success:^(NSString *orderId) {
         
     } failure:^(NSString *errorMsg) {
         

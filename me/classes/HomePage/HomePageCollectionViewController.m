@@ -63,9 +63,9 @@
             }
             [pics addObject:picur];
         }
-        [self setAdvertiseHeaderViewWithPicturesUrls:pics];
+        [weakSelf setAdvertiseHeaderViewWithPicturesUrls:pics];
         
-        [self.collectionView reloadData];
+        [weakSelf.collectionView reloadData];
         [weakSelf endRefresh];
     } failure:^(NSError *error) {
         [weakSelf endRefresh];

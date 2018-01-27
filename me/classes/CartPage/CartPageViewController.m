@@ -199,7 +199,6 @@
     
     ProductOrderComfirmTableViewController* orderComfirm=[[UIStoryboard storyboardWithName:@"ProductPage" bundle:nil]instantiateViewControllerWithIdentifier:@"ProductOrderComfirmTableViewController"];
     orderComfirm.url=url;
-    orderComfirm.isFromCart = YES;
     [self.navigationController pushViewController:orderComfirm animated:YES];
 }
 

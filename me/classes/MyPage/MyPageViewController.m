@@ -21,6 +21,7 @@
 #import "MyOrderTableViewController.h"
 #import "MyPartnerViewController.h"
 #import "ApplyPartnerController.h"
+#import "MyFavouriteViewController.h"
 #import "UserDataLoader.h"
 
 @interface MyPageViewController ()<SimpleButtonsTableViewCellDelegate>
@@ -54,6 +55,7 @@
         
         if (success) {
             weakSelf.userModel = result;
+            [AccountManager sharedInstance].currentUser = result;
             
             [MyPageHttpTool getMyPageDataCache:NO token:[UserModel token] local:local success:^(NSArray *myPageSections) {
                 
@@ -174,7 +176,7 @@
     }
     else if([link isEqualToString:@"member.favorite"])
     {
-        
+        [self gotoMyFavourite];
     }
     else if([link isEqualToString:@"member.cart"])
     {
@@ -306,6 +308,11 @@
 
 //修改密码
 - (void)gotoChangePs{
+
+    NSLog(@"changePs");
+    
+    UIViewController* vc=[[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"changePsController"];
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 
@@ -319,6 +326,7 @@
         [UserDataLoader logoutwithCompleted:^(id result, BOOL success) {
             [weakSelf stopAnimation];
             if (success) {
+                [weakSelf showSuccessMsg:@"退出成功"];
                 [UserModel saveToken:nil];
                 [self.navigationController.tabBarController setSelectedIndex:0];
                 [[NSNotificationCenter defaultCenter] postNotificationName:UserLogin_Notification object:nil];
@@ -330,6 +338,18 @@
     
     
     }];
+}
+
+
+//跳转到我的收藏模块
+- (void)gotoMyFavourite{
+    MJWeakSelf;
+    MyFavouriteViewController *vc = [[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"MyFavouriteViewController"];
+    vc.needRefreshBlock = ^{
+        [weakSelf refresh];
+    };
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)dealloc{

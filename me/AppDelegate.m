@@ -25,6 +25,9 @@
     
     [WXApi registerApp:kWechatAppKey];
     
+   
+    [Bugly startWithAppId:kbuglyAppid];
+    
     [HUDManager changeHudToBlack];
     
     return YES;
