@@ -37,6 +37,7 @@
 	<array>
 		<string>weixin</string>
 		<string>wechat</string>
+		<string>baidumap</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
@@ -70,5 +71,13 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>ME微光电将使用定位为您提供展示门店位置的功能</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>ME微光电将使用定位为您提供展示门店位置的功能</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>ME微光电将使用定位为您提供展示门店位置的功能</string>
+	<key>NSLocationWhenInUseDescription</key>
+	<string>ME微光电将使用定位为您提供展示门店位置的功能</string>
 </dict>
 </plist>

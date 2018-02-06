@@ -21,6 +21,7 @@
 @property (nonatomic,strong) NSString* money;
 @property (nonatomic,strong) NSNumber* credit;
 @property (nonatomic, strong) NSString *mobile;
+@property (nonatomic, strong) NSString *idd;
 
 
 /*

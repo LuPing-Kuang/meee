@@ -51,4 +51,10 @@
 + (void)CancelFocusMyFavouriteProductIds:(NSString*)Ids withCompleted:(LoadServerDataFinishedBlock)finish;
 
 
+#pragma mark -
+#pragma mark - 消息公告
+//获取消息公告
++ (void)getMyReportNewsPage:(NSInteger)page pagesize:(NSInteger)pagesize withCompleted:(LoadServerDataFinishedBlock)finish;
+
+
 @end

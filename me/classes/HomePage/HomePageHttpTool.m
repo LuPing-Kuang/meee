@@ -8,6 +8,7 @@
 
 #import "HomePageHttpTool.h"
 #import "SimpleButtonsTableViewCell.h"
+#import "StoreModel.h"
 
 @implementation HomePageHttpTool
 
@@ -109,5 +110,29 @@
         }
     }];
 }
+
+
+
+//获取所有门店列表
++ (void)getAllStoreListWithType:(NSString*)type WithCompleted:(LoadServerDataFinishedBlock)finish{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setValue:[UserModel token] forKey:@"access_token"];
+    [dic setValue:type forKey:@"type"];
+    
+    [[NetworkManager getManager] postPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=store.selector" parameters:dic success_status_ok:^(NSURLSessionDataTask *task, id data) {
+        if (finish) {
+            NSLog(@"%@",data);
+            NSArray *arr = [StoreModel mj_objectArrayWithKeyValuesArray:data[@"list"]];
+            finish(arr,YES);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSString *errorMsg) {
+        if (finish) {
+            finish(errorMsg,NO);
+        }
+    }];
+}
+
+
 
 @end

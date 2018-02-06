@@ -42,6 +42,8 @@ typedef NS_ENUM(NSInteger,MyOrderType)
 @property (nonatomic,strong) NSString* finishtime;
 @property (nonatomic,strong) NSString* remarksend;
 @property (nonatomic,strong) NSNumber* seckilltask;
+@property (nonatomic,strong) NSString *storeids;
+
 
 @end
 

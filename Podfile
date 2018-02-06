@@ -9,6 +9,7 @@ use_frameworks!
     pod 'AFNetworking', '~> 3.1.0'
     pod 'SVProgressHUD', '~> 2.0.4'
     pod 'Bugly', '~> 2.5.0'
+    pod 'BaiduMapKit', '~> 3.4.2'
     
 end
 

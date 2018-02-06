@@ -247,6 +247,130 @@
 }
 
 
+//取消订单
++ (void)cancelOrderId:(NSString*)oriderId withCompleted:(LoadServerDataFinishedBlock)finish{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setValue:[UserModel token] forKey:@"access_token"];
+    [dic setValue:oriderId forKey:@"id"];
+    
+    [[NetworkManager getManager] postPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=order.op.cancel" parameters:dic success_status_ok:^(NSURLSessionDataTask *task, id data) {
+        if (finish) {
+            NSLog(@"%@",data);
+            finish(data,YES);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSString *errorMsg) {
+        if (finish) {
+            finish(errorMsg,NO);
+        }
+    }];
+    
+}
+
+//确认收货
++ (void)confirmGetProduct:(NSString*)oriderId withCompleted:(LoadServerDataFinishedBlock)finish{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setValue:[UserModel token] forKey:@"access_token"];
+    [dic setValue:oriderId forKey:@"id"];
+    
+    [[NetworkManager getManager] postPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=order.op.finish" parameters:dic success_status_ok:^(NSURLSessionDataTask *task, id data) {
+        if (finish) {
+            NSLog(@"%@",data);
+            finish(data,YES);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSString *errorMsg) {
+        if (finish) {
+            finish(errorMsg,NO);
+        }
+    }];
+    
+}
+
+//查看物流
++ (void)queryTransportWithOriderId:(NSString*)oriderId WithSendtype:(NSString*)sendtype IsFotBundel:(BOOL)isforBundle withCompleted:(LoadServerDataFinishedBlock)finish{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setValue:[UserModel token] forKey:@"access_token"];
+    [dic setValue:oriderId forKey:@"id"];
+    [dic setValue:sendtype forKey:@"sendtype"];
+    
+    [[NetworkManager getManager] postPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=order.express" parameters:dic success_status_ok:^(NSURLSessionDataTask *task, id data) {
+        if (finish) {
+            NSLog(@"%@",data);
+            
+            if (isforBundle==NO) {
+                if (data[@"express"]!=nil) {
+                    TransportMsgModel *model = [[TransportMsgModel alloc]init];
+                    model.statusstr = FORMAT(@"%@",data[@"express"][@"statusstr"]);
+                    model.express = FORMAT(@"%@",data[@"express"][@"express"]);
+                    model.expresssn = FORMAT(@"%@",data[@"express"][@"expresssn"]);
+                    
+                    NSArray *productArr = [MyOrderProductModel mj_objectArrayWithKeyValuesArray:data[@"express"][@"goods"]];
+                    model.productArr = productArr;
+                    NSArray *expressList = [TransportMsgListModel mj_objectArrayWithKeyValuesArray:data[@"expresslist"]];
+                    model.expresslist = expressList;
+                    finish(model,YES);
+                }else{
+                    finish(SERVEERROR_WORD,NO);
+                }
+            }else{
+                if (data[@"bundlelist"]!=nil) {
+                    NSMutableArray *arr = [NSMutableArray array];
+                    for (NSInteger i=0; i<[data[@"bundlelist"] count]; i++) {
+                        NSDictionary *dic = data[@"bundlelist"][i];
+                        
+                        BundlelistMsgModel *model = [[BundlelistMsgModel alloc]init];
+                        model.sendtype = FORMAT(@"%@",dic[@"sendtype"]);
+                        model.orderid = FORMAT(@"%@",dic[@"orderid"]);
+                        
+                        NSArray *productArr = [MyOrderProductModel mj_objectArrayWithKeyValuesArray:dic[@"goods"]];
+                        model.productArr = productArr;
+                        
+                        [arr addObject:model];
+                        
+                        finish(arr,YES);
+                    }
+                    
+                    
+                }else{
+                    finish(SERVEERROR_WORD,NO);
+                }
+                
+            }
+            
+            
+    
+        }
+    } failure:^(NSURLSessionDataTask *task, NSString *errorMsg) {
+        if (finish) {
+            finish(errorMsg,NO);
+        }
+    }];
+}
+
+
+//删除订单或者恢复订单
++ (void)deleteOrderId:(NSString*)oriderId WithUserdeleted:(NSString*)userdeleted withCompleted:(LoadServerDataFinishedBlock)finish{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setValue:[UserModel token] forKey:@"access_token"];
+    [dic setValue:oriderId forKey:@"id"];
+    [dic setValue:userdeleted forKey:@"userdeleted"];
+    
+    [[NetworkManager getManager] postPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=order.op.delete" parameters:dic success_status_ok:^(NSURLSessionDataTask *task, id data) {
+        if (finish) {
+            NSLog(@"%@",data);
+            finish(data,YES);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSString *errorMsg) {
+        if (finish) {
+            finish(errorMsg,NO);
+        }
+    }];
+}
+
+
 +(void)getMyPartnerCache:(BOOL)cache token:(NSString*)token  success:(void(^)(MyPartnerModel* partner))success failure:(void(^)(NSString* errorMsg))failure{
     
     NSDictionary* d=[NSMutableDictionary dictionary];

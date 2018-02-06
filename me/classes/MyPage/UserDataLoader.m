@@ -8,6 +8,7 @@
 
 #import "UserDataLoader.h"
 #import "MyfavouriteModel.h"
+#import "ReportNewsModel.h"`
 @implementation UserDataLoader
 
 //获取个人信息
@@ -238,5 +239,30 @@
         }
     }];
 }
+
+
+
+//获取消息公告
++ (void)getMyReportNewsPage:(NSInteger)page pagesize:(NSInteger)pagesize withCompleted:(LoadServerDataFinishedBlock)finish{
+    
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setValue:[UserModel token] forKey:@"access_token"];
+    [dic setValue:[NSNumber numberWithInteger:page] forKey:@"page"];
+    [dic setValue:[NSNumber numberWithInteger:pagesize] forKey:@"pagesize"];
+    
+    [[NetworkManager getManager] postPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=shop.notice.get_list" parameters:dic success_status_ok:^(NSURLSessionDataTask *task, id data) {
+        if (finish) {
+            NSArray *arr = [ReportNewsModel mj_objectArrayWithKeyValuesArray:data[@"list"]];
+            finish(arr,YES);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSString *errorMsg) {
+        if (finish) {
+            finish(errorMsg,NO);
+        }
+    }];
+    
+}
+
 
 @end

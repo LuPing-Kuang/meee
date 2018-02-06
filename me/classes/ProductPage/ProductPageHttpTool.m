@@ -102,25 +102,153 @@
     }];
 }
 
-
+//生成订单
 +(void)CreateOrderIdCache:(BOOL)cache token:(NSString*)token Param:(NSDictionary*)dic success:(void(^)(NSString*orderId))success failure:(void(^)(NSString* errorMsg))failure{
     
     NSMutableDictionary *paramDic = [NSMutableDictionary dictionaryWithDictionary:dic];
     [paramDic setValue:token forKey:@"access_token"];
     
-    NSString* str=[ZZUrlTool fullUrlWithTail:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=order.create.submit"];
     
-    [self get:str params:paramDic usingCache:cache success:^(NSDictionary *dict) {
-        
+    [[NetworkManager getManager] postPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=order.create.submit" parameters:paramDic success_status_ok:^(NSURLSessionDataTask *task, id data) {
         if (success) {
-            success(dict[@"orderid"]);
+            success(data[@"orderid"]);
         }
-        
-    } failure:^(NSError *err) {
+    } failure:^(NSURLSessionDataTask *task, NSString *errorMsg) {
         if (failure) {
-            failure(err.localizedDescription);
+            failure(errorMsg);
         }
     }];
+    
+}
+
+
+
+//获取支付方式
++ (void)payOrderWithOrderNum:(NSString*)orderId withCompleted:(LoadServerDataFinishedBlock)finish{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setValue:[UserModel token] forKey:@"access_token"];
+    [dic setValue:orderId forKey:@"id"];
+    
+    [[NetworkManager getManager] postPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=order.pay" parameters:dic success_status_ok:^(NSURLSessionDataTask *task, id data) {
+        if (finish) {
+            NSLog(@"%@",data);
+            if (data[@"order"] && data[@"paytype"]) {
+                
+                ProductionPayTypeModel *model = [ProductionPayTypeModel mj_objectWithKeyValues:data[@"order"]];
+                
+                myPayTypeModel *credit = [myPayTypeModel mj_objectWithKeyValues:data[@"paytype"][@"credit"]];
+                myPayTypeModel *wechat = [myPayTypeModel mj_objectWithKeyValues:data[@"paytype"][@"wechat"]];
+                myPayTypeModel *alipay = [myPayTypeModel mj_objectWithKeyValues:data[@"paytype"][@"alipay"]];
+                myPayTypeModel *cash = [myPayTypeModel mj_objectWithKeyValues:data[@"paytype"][@"cash"]];
+                
+                model.credit = credit;
+                model.wechat = wechat;
+                model.alipay = alipay;
+                model.cash = cash;
+                
+                finish(model,YES);
+                
+            }else{
+                finish(SERVEERROR_WORD,NO);
+            }
+            
+        }
+    } failure:^(NSURLSessionDataTask *task, NSString *errorMsg) {
+        if (finish) {
+            finish(errorMsg,NO);
+        }
+    }];
+    
+}
+
+
+//支付前检测
++ (void)checkOrderWithOrderNum:(NSString*)orderId withCompleted:(LoadServerDataFinishedBlock)finish{
+    
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setValue:[UserModel token] forKey:@"access_token"];
+    [dic setValue:orderId forKey:@"id"];
+    
+    [[NetworkManager getManager] postPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=order.pay.check" parameters:dic success_status_ok:^(NSURLSessionDataTask *task, id data) {
+        if (finish) {
+            NSLog(@"%@",data);
+            finish(data,YES);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSString *errorMsg) {
+        if (finish) {
+            finish(errorMsg,NO);
+        }
+    }];
+    
+}
+
+//支付请求
++ (void)getPayRequestWithtype:(NSString*)type WithOrderNum:(NSString*)orderId withCompleted:(LoadServerDataFinishedBlock)finish{
+    
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setValue:[UserModel token] forKey:@"access_token"];
+    [dic setValue:orderId forKey:@"id"];
+    [dic setValue:type forKey:@"type"];
+    
+    [[NetworkManager getManager] postPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=order.pay.get_pay_qr" parameters:dic success_status_ok:^(NSURLSessionDataTask *task, id data) {
+        if (finish) {
+            NSLog(@"%@",data);
+            finish(data[@"jumpurl"],YES);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSString *errorMsg) {
+        if (finish) {
+            finish(errorMsg,NO);
+        }
+    }];
+}
+
+
+//余额支付
++ (void)payWithOrdersn:(NSString*)ordersn WithOrderNum:(NSString*)orderId withCompleted:(LoadServerDataFinishedBlock)finish{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setValue:[UserModel token] forKey:@"access_token"];
+    [dic setValue:orderId forKey:@"id"];
+    [dic setValue:ordersn forKey:@"ordersn"];
+    [dic setValue:@"credit" forKey:@"type"];
+    
+    [[NetworkManager getManager] postPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=order.pay.complete" parameters:dic success_status_ok:^(NSURLSessionDataTask *task, id data) {
+        if (finish) {
+            NSLog(@"%@",data);
+            finish(data[@"jumpurl"],YES);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSString *errorMsg) {
+        if (finish) {
+            finish(errorMsg,NO);
+        }
+    }];
+    
+}
+
+
+
+//余额支付
++ (void)queryResultWithOrderNum:(NSString*)orderId WithCompleted:(LoadServerDataFinishedBlock)finish{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setValue:[UserModel token] forKey:@"access_token"];
+    [dic setValue:orderId forKey:@"id"];
+    
+    [[NetworkManager getManager] postPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=order.pay.orderstatus" parameters:dic success_status_ok:^(NSURLSessionDataTask *task, id data) {
+        if (finish) {
+            NSLog(@"%@",data);
+            finish(data,YES);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSString *errorMsg) {
+        if (finish) {
+            finish(errorMsg,NO);
+        }
+    }];
+    
+    
 }
 
 

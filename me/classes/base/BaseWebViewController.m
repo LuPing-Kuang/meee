@@ -10,6 +10,7 @@
 #import "ZZUrlTool.h"
 #import "ZZHttpTool.h"
 #import "UserModel.h"
+#import "ProductPageHttpTool.h"
 //#import "WBWebProgressBar.h"
 
 @interface BaseWebViewController ()
@@ -232,6 +233,10 @@
         [loadingIndicator startAnimating];
         
     }
+    
+    if (self.isNeedQuery) {
+        [self queryPayResult];
+    }
 }
 
 #pragma mark action
@@ -261,5 +266,30 @@
 
 //    NSLog(@"%@",[self.ios8WebView stringByEvaluatingJavaScriptFromString:@"document.documentElement.innerHTML"]);
 }
+
+
+- (void)queryPayResult{
+    
+    MJWeakSelf;
+    [ProductPageHttpTool queryResultWithOrderNum:self.orderId WithCompleted:^(id result, BOOL success) {
+        
+        if (success) {
+            
+            if ([result isKindOfClass:[NSString class]] && [result isEqualToString:@"1"]) {
+                [HUDManager showSuccessMsg:@"支付成功"];
+                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+            }else{
+                [weakSelf queryPayResult];
+            }
+            
+        }else{
+            
+        }
+        
+    }];
+    
+    
+}
+
 
 @end

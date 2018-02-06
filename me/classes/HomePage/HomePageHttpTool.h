@@ -15,4 +15,9 @@
 
 +(void)getHomePageDatasCache:(BOOL)cache token:(NSString*)token local:(BOOL)local success:(void(^)(NSArray* banners, NSArray* collections, NSArray* productSections))success failure:(void(^)(NSError* error))failure;
 
+
+//获取所有门店列表
++ (void)getAllStoreListWithType:(NSString*)type WithCompleted:(LoadServerDataFinishedBlock)finish;
+
+
 @end

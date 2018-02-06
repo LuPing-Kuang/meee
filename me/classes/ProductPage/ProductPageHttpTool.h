@@ -9,6 +9,7 @@
 #import "ZZHttpTool.h"
 #import "ProductionModel.h"
 #import "ProductionOrderModel.h"
+#import "ProductionPayTypeModel.h"
 
 @interface ProductPageHttpTool : ZZHttpTool
 
@@ -18,6 +19,23 @@
 
 //生成订单
 +(void)CreateOrderIdCache:(BOOL)cache token:(NSString*)token Param:(NSDictionary*)dic success:(void(^)(NSString*orderId))success failure:(void(^)(NSString* errorMsg))failure;
+
+//获取支付方式
++ (void)payOrderWithOrderNum:(NSString*)orderId withCompleted:(LoadServerDataFinishedBlock)finish;
+
+//支付前检测
++ (void)checkOrderWithOrderNum:(NSString*)orderId withCompleted:(LoadServerDataFinishedBlock)finish;
+
+//支付请求
++ (void)getPayRequestWithtype:(NSString*)type WithOrderNum:(NSString*)orderId withCompleted:(LoadServerDataFinishedBlock)finish;
+
+//余额支付
++ (void)payWithOrdersn:(NSString*)ordersn WithOrderNum:(NSString*)orderId withCompleted:(LoadServerDataFinishedBlock)finish;
+
+//余额支付
++ (void)queryResultWithOrderNum:(NSString*)orderId WithCompleted:(LoadServerDataFinishedBlock)finish;
+
+
 
 
 

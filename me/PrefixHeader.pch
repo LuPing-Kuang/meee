@@ -19,6 +19,7 @@
 #import "HUDManager.h"
 #import "NetworkManager.h"
 #import "AccountManager.h"
+#import "BaiduNavManager.h"
 #import <WXApi.h>
 #import <Bugly/Bugly.h>
 #import <SVProgressHUD/SVProgressHUD.h>
@@ -26,6 +27,12 @@
 #import <MJExtension/MJExtension.h>
 #import <IQKeyboardManager/IQKeyboardManager.h>
 #import <IQKeyboardManager/IQUIView+Hierarchy.h>
+#import <BaiduMapAPI_Map/BMKMapComponent.h>
+#import <BaiduMapAPI_Map/BMKMapView.h>
+#import <BaiduMapAPI_Location/BMKLocationService.h>
+#import <BaiduMapAPI_Utils/BMKGeometry.h>
+#import "BaseWebViewController.h"
+
 
 #import "UIImageView+ZZWebImage.h"
 #import "UIView+ext.h"
@@ -63,6 +70,8 @@
 
 #define kWechatAppKey @"wxa544f4ffe0ce6025"
 #define kWechatAppSecret @"b37c0a51ffda7d109272229fe28a3311"//已修改
+
+#define FORMAT(format, ...) [NSString stringWithFormat:(format), ##__VA_ARGS__]
 
 //Strings
 

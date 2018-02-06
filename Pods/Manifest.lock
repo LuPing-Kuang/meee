@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - BaiduMapKit (3.4.2)
   - Bugly (2.5.0)
   - IQKeyboardManager (4.0.13)
   - MJExtension (3.0.13)
@@ -25,6 +26,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
+  - BaiduMapKit (~> 3.4.2)
   - Bugly (~> 2.5.0)
   - IQKeyboardManager (~> 4.0.8)
   - MJExtension (~> 3.0.13)
@@ -34,6 +36,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  BaiduMapKit: f61b19ecf07a3f2deede72b221b366bf698739ed
   Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
   IQKeyboardManager: 8eab4d8111418414619d1df8e4779ce5d0f8d7e2
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
@@ -41,6 +44,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: bfde85ed6c573ea802b9cb37894ed9b629034f1b
   WechatOpenSDK: 1fe7e3b07db860d6a936c3ff4a5aba6b890958d9
 
-PODFILE CHECKSUM: 73bbe9b8413b913bbaf25443bef16c0d0673a7c6
+PODFILE CHECKSUM: b8fc10ef42d24be14419070cf3b3dede6b55c3e1
 
 COCOAPODS: 1.4.0.beta.2

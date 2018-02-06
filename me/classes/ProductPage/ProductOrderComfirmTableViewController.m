@@ -110,12 +110,17 @@ typedef NS_ENUM(NSInteger,ProductOrderTableViewSection)
      如果是购物车内购买，goods[]数组可以传多个，需要注意。
      */
     
+    if (!addressModel) {
+        [self showErrorMsg:@"请选择收货地址"];
+        return;
+    }
+    
     NSLog(@"buy");
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic setValue:@"0" forKey:@"orderid"];
+    [dic setValue:[NSNumber numberWithInt:0] forKey:@"orderid"];
     
     if (detailPriceModel.fromcart.integerValue==1) {
-        [dic setValue:@"0" forKey:@"id"];
+        [dic setValue:[NSNumber numberWithInt:0] forKey:@"id"];
     }else{
         [dic setValue:goodModels.firstObject.goodsid forKey:@"id"];
     }
@@ -125,50 +130,105 @@ typedef NS_ENUM(NSInteger,ProductOrderTableViewSection)
     [dic setValue:addressModel.idd forKey:@"addressid"];
     
     
-    NSMutableArray *arr = [NSMutableArray array];
     for (NSInteger i=0; i<goodModels.count; i++) {
         ProductionOrderGoodModel *model = goodModels[i];
-        NSMutableDictionary *goodsDic = [NSMutableDictionary dictionary];
-        [goodsDic setValue:model.goodsid forKey:@"goodsid"];
-        [goodsDic setValue:model.title forKey:@"title"];
-        [goodsDic setValue:model.thumb forKey:@"thumb"];
-        [goodsDic setValue:model.optionid forKey:@"optionid"];
-        [goodsDic setValue:model.optiontitle forKey:@"optiontitle"];
-        [goodsDic setValue:model.hasdiscount forKey:@"hasdiscount"];
-        [goodsDic setValue:model.total forKey:@"total"];
-        [goodsDic setValue:model.price forKey:@"price"];
-        [goodsDic setValue:model.marketprice forKey:@"marketprice"];
-        [goodsDic setValue:model.merchid forKey:@"merchid"];
-        [goodsDic setValue:model.cates forKey:@"cates"];
-        [goodsDic setValue:model.unit forKey:@"unit"];
-        [goodsDic setValue:model.totalmaxbuy forKey:@"totalmaxbuy"];
-        [goodsDic setValue:model.minbuy forKey:@"minbuy"];
+
+        [dic setValue:model.goodsid forKey:
+         [NSString stringWithFormat:@"goods[%lu][goodsid]",i]];
         
-        [arr addObject:goodsDic];
+        [dic setValue:model.total forKey:
+         [NSString stringWithFormat:@"goods[%lu][total]",i]];
+        
+        [dic setValue:model.optionid forKey:
+         [NSString stringWithFormat:@"goods[%lu][optionid]",i]];
+        
+        [dic setValue:model.marketprice forKey:
+         [NSString stringWithFormat:@"goods[%lu][marketprice]",i]];
+        
+        [dic setValue:model.merchid forKey:
+         [NSString stringWithFormat:@"goods[%lu][merchid]",i]];
+        
+        [dic setValue:model.cates forKey:
+         [NSString stringWithFormat:@"goods[%lu][cates]",i]];
+        
+        [dic setValue:@"" forKey:
+         [NSString stringWithFormat:@"goods[%lu][discounttype]",i]];
+        
+        [dic setValue:@"" forKey:
+         [NSString stringWithFormat:@"goods[%lu][isdiscountprice]",i]];
+        
+        [dic setValue:@"" forKey:
+         [NSString stringWithFormat:@"goods[%lu][discountprice]",i]];
+        
+        [dic setValue:@"" forKey:
+         [NSString stringWithFormat:@"goods[%lu][isdiscountunitprice]",i]];
+        
+        [dic setValue:@"" forKey:
+         [NSString stringWithFormat:@"goods[%lu][discountunitprice]",i]];
+        
+        [dic setValue:@"" forKey:
+         [NSString stringWithFormat:@"goods[%lu][type]",i]];
+        
+        [dic setValue:@"" forKey:
+         [NSString stringWithFormat:@"goods[%lu][intervalfloor]",i]];
+        
+        [dic setValue:@"" forKey:
+         [NSString stringWithFormat:@"goods[%lu][intervalprice1]",i]];
+        
+        [dic setValue:@"" forKey:
+         [NSString stringWithFormat:@"goods[%lu][intervalnum1]",i]];
+        
+        [dic setValue:@"" forKey:
+         [NSString stringWithFormat:@"goods[%lu][intervalprice2]",i]];
+        
+        [dic setValue:@"" forKey:
+         [NSString stringWithFormat:@"goods[%lu][intervalnum2]",i]];
+        
+        [dic setValue:@"" forKey:
+         [NSString stringWithFormat:@"goods[%lu][intervalprice3]",i]];
+        
+        [dic setValue:@"" forKey:
+         [NSString stringWithFormat:@"goods[%lu][intervalnum3]",i]];
+        
+        [dic setValue:@"" forKey:
+         [NSString stringWithFormat:@"goods[%lu][wholesaleprice]",i]];
+        
+        [dic setValue:@"" forKey:
+         [NSString stringWithFormat:@"goods[%lu][goodsalltotal]",i]];
+
         
     }
     
-    [dic setValue:arr forKey:@"goods"];
+    
     [dic setValue:self.giftid forKey:@"giftid"];
-    [dic setValue:self.liveid forKey:@"liveid"];
-    [dic setValue:@"0" forKey:@"dispatchtype"];
-    [dic setValue:customMessage forKey:@"remark"];
+    [dic setValue:@"" forKey:@"liveid"];
+    [dic setValue:@"" forKey:@"dispatchtype"];
+    [dic setValue:(customMessage==nil?@"":customMessage) forKey:@"remark"];
+    [dic setValue:@"" forKey:@"diydata"];
+    [dic setValue:@"" forKey:@"carrierid"];
+    [dic setValue:@"" forKey:@"carriers"];
+    [dic setValue:@"" forKey:@"deduct"];
+    [dic setValue:@"" forKey:@"deduct2"];
+    [dic setValue:@"" forKey:@"contype"];
+    [dic setValue:@"" forKey:@"couponid"];
+    [dic setValue:@"" forKey:@"wxid"];
+    [dic setValue:@"" forKey:@"wxcardid"];
+    [dic setValue:@"" forKey:@"wxcode"];
+    [dic setValue:@"" forKey:@"submit"];
+    [dic setValue:@"" forKey:@"packageid"];
+    [dic setValue:@"" forKey:@"fromquick"];
     
-    
+    MJWeakSelf;
     [ProductPageHttpTool CreateOrderIdCache:NO token:[UserModel token] Param:dic success:^(NSString *orderId) {
         
-    } failure:^(NSString *errorMsg) {
+        ProductOrderBillViewController* bill=[[UIStoryboard storyboardWithName:@"ProductPage" bundle:nil]instantiateViewControllerWithIdentifier:@"ProductOrderBillViewController"];
+        bill.orderId = orderId;
+        [weakSelf.navigationController pushViewController:bill animated:YES];
         
+    } failure:^(NSString *errorMsg) {
+        [weakSelf showErrorMsg:errorMsg];
     }];
     
-    
-    
-    [HUDManager showSuccessMsg:@"买"];
-    
-    //you should do many things before push
-    
-    ProductOrderBillViewController* bill=[[UIStoryboard storyboardWithName:@"ProductPage" bundle:nil]instantiateViewControllerWithIdentifier:@"ProductOrderBillViewController"];
-    [self.navigationController pushViewController:bill animated:YES];
 }
 
 #pragma mark tableview datasource delegate

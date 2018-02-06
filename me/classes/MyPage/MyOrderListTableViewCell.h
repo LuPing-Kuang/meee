@@ -24,7 +24,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *orderButtonCancel;
 @property (weak, nonatomic) IBOutlet UIButton *orderButtonPay;
 @property (weak, nonatomic) IBOutlet UIButton *orderButtonDelete;
-@property (weak, nonatomic) IBOutlet UIButton *orderButtonJudge;
 @property (weak, nonatomic) IBOutlet UIButton *orderButtonTransport;
 @property (weak, nonatomic) IBOutlet UIButton *orderButtonComfirm;
 

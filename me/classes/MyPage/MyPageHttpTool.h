@@ -22,6 +22,8 @@
 #import "GetCashDetailTotalModel.h"
 #import "MyOtherPartnerTotalModel.h"
 #import "PartnerMaterialModel.h"
+#import "TransportMsgModel.h"
+#import "BundlelistMsgModel.h"
 
 @interface MyPageHttpTool : ZZHttpTool
 
@@ -34,6 +36,19 @@
 +(void)postRemoveMyFootprints:(NSArray*)footprints token:(NSString*)token complete:(void(^)(BOOL result,NSString* msg))completion;
 
 +(void)getMyOrdersCache:(BOOL)cache token:(NSString*)token status:(NSInteger)status page:(NSInteger)page pagesize:(NSInteger)pagesize merchid:(NSString*)merchid success:(void(^)(NSArray* myAddress))success failure:(void(^)(NSError* error))failure;
+
+//取消订单
++ (void)cancelOrderId:(NSString*)oriderId withCompleted:(LoadServerDataFinishedBlock)finish;
+
+//确认收货
++ (void)confirmGetProduct:(NSString*)oriderId withCompleted:(LoadServerDataFinishedBlock)finish;
+
+//查看物流
++ (void)queryTransportWithOriderId:(NSString*)oriderId WithSendtype:(NSString*)sendtype IsFotBundel:(BOOL)isforBundle withCompleted:(LoadServerDataFinishedBlock)finish;
+
+
+//删除订单或者恢复订单
++ (void)deleteOrderId:(NSString*)oriderId WithUserdeleted:(NSString*)userdeleted withCompleted:(LoadServerDataFinishedBlock)finish;
 
 //合伙人信息
 +(void)getMyPartnerCache:(BOOL)cache token:(NSString*)token  success:(void(^)(MyPartnerModel* partner))success failure:(void(^)(NSString* errorMsg))failure;

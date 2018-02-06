@@ -9,6 +9,9 @@
 #import "MyOrderTableViewController.h"
 #import "MyPageHttpTool.h"
 #import "MyOrderListTableViewCell.h"
+#import "ProductOrderBillViewController.h"
+#import "TransportMsgViewController.h"
+#import "TransportViewController.h"
 
 @interface MyOrderTableViewController ()
 
@@ -158,9 +161,9 @@
         [cell.orderButtonPay addTarget:self action:@selector(orderPayClick:) forControlEvents:UIControlEventTouchUpInside];
         [cell.orderButtonTransport addTarget:self action:@selector(orderTransportClick:) forControlEvents:UIControlEventTouchUpInside];
         [cell.orderButtonComfirm addTarget:self action:@selector(orderComfirmClick:) forControlEvents:UIControlEventTouchUpInside];
-        [cell.orderButtonJudge addTarget:self action:@selector(orderJudgeClick:) forControlEvents:UIControlEventTouchUpInside];
         [cell.orderButtonDelete addTarget:self action:@selector(orderDeleteClick:) forControlEvents:UIControlEventTouchUpInside];
         
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     return [[UITableViewCell alloc]init];
@@ -179,43 +182,98 @@
 
 -(void)orderCancelClick:(UIButton*)button
 {
-    [self testButton:button];
+    [self ActionButton:button];
 }
 
 -(void)orderPayClick:(UIButton*)button
 {
-    [self testButton:button];
+    [self ActionButton:button];
 }
 
 -(void)orderTransportClick:(UIButton*)button
 {
-    [self testButton:button];
+    [self ActionButton:button];
 }
 
 -(void)orderComfirmClick:(UIButton*)button
 {
-    [self testButton:button];
+    [self ActionButton:button];
 }
 
--(void)orderJudgeClick:(UIButton*)button
-{
-    [self testButton:button];
-}
 
 -(void)orderDeleteClick:(UIButton*)button
 {
-    [self testButton:button];
+    [self ActionButton:button];
 }
 
--(void)testButton:(UIButton*)button
+-(void)ActionButton:(UIButton*)button
 {
     MyOrderModel* order=[self orderWithTagFromButton:button];
     
     NSString* msg=[button titleForState:UIControlStateNormal];
     NSString* testStr=[NSString stringWithFormat:@"%@\n%@",order.ordersn,msg];
     
-    UIAlertView* alert=[[UIAlertView alloc]initWithTitle:nil message:testStr delegate:nil cancelButtonTitle:@"哦" otherButtonTitles:nil];
-    [alert show];
+    if ([msg isEqualToString:@"取消订单"]) {
+        MJWeakSelf;
+        [self showLoading:@"正在取消中..."];
+        [MyPageHttpTool cancelOrderId:order.idd withCompleted:^(id result, BOOL success) {
+            if (success) {
+                [weakSelf showSuccessMsg:@"成功取消订单"];
+                [weakSelf refresh];
+            }else{
+                [weakSelf showErrorMsg:result];
+            }
+        }];
+    }else if ([msg isEqualToString:@"支付订单"]){
+        
+        ProductOrderBillViewController* bill=[[UIStoryboard storyboardWithName:@"ProductPage" bundle:nil]instantiateViewControllerWithIdentifier:@"ProductOrderBillViewController"];
+        bill.orderId = order.idd;
+        [self.navigationController pushViewController:bill animated:YES];
+        
+    }else if ([msg isEqualToString:@"确认收货"]){
+        
+        MJWeakSelf;
+        [self showLoading:@"确认收货中..."];
+        [MyPageHttpTool confirmGetProduct:order.idd withCompleted:^(id result, BOOL success) {
+            if (success) {
+                [weakSelf showSuccessMsg:@"确认收货成功"];
+                [weakSelf refresh];
+            }else{
+                [weakSelf showErrorMsg:result];
+            }
+        }];
+        
+    }else if ([msg isEqualToString:@"删除订单"]){
+        
+        MJWeakSelf;
+        [self showLoading:@"删除订单中..."];
+        
+        [MyPageHttpTool deleteOrderId:order.idd WithUserdeleted:@"1" withCompleted:^(id result, BOOL success) {
+            if (success) {
+                [weakSelf showSuccessMsg:@"删除成功"];
+                [weakSelf refresh];
+            }else{
+                [weakSelf showErrorMsg:result];
+            }
+        }];
+    
+        
+    }else if ([msg isEqualToString:@"查看物流"]){
+        
+        if (order.sendtype.integerValue==0) {
+            TransportMsgViewController *vc = [[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"TransportMsgViewController"];
+            vc.orderId = order.idd;
+            vc.productModel = order.products.firstObject;
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{
+            TransportViewController *vc = [[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"TransportViewController"];
+            vc.orderId = order.idd;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        
+    }
+    
+    
 }
 
 @end

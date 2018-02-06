@@ -10,4 +10,7 @@
 
 @interface ProductOrderBillViewController : BaseTableViewController
 
+@property (nonatomic, strong) NSString *orderId;
+
+
 @end

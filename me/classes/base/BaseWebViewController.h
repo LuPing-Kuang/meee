@@ -25,4 +25,8 @@
 
 @property (nonatomic,strong) NSMutableDictionary* params;
 
+@property (nonatomic, strong) NSString *orderId;
+@property (nonatomic, assign) BOOL isNeedQuery;
+
+
 @end

@@ -19,6 +19,10 @@
 
 #import "ProductDetailWebViewController.h"
 
+#import "MyOrdersPagerViewController.h"
+#import "MyFavouriteViewController.h"
+#import "StoresMapController.h"
+
 @interface HomePageCollectionViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,SimpleButtonsTableViewCellDelegate>
 
 @end
@@ -240,6 +244,32 @@
 -(void)checkmoreButtonClick:(UIButton*)button
 {
     NSLog(@"button tag:%ld",(long)button.tag);
+}
+
+-(void)simpleButtonsTableViewCell:(SimpleButtonsTableViewCell*)cell didSelectedModel:(SimpleButtonModel*)model{
+    NSString *action = [model.identifier stringValueFromUrlParamsKey:@"r"];
+    if ([action isEqualToString:@"order"]) {
+        
+        MyOrdersPagerViewController* pag=[[MyOrdersPagerViewController alloc]init];
+        pag.originalPageIndex=MyOrderTypeNotSent ;
+        [self.navigationController pushViewController:pag animated:YES];
+        
+    }else if ([action isEqualToString:@"member.favorite"]){
+        
+        MyFavouriteViewController *vc = [[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"MyFavouriteViewController"];
+       
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }else if ([action isEqualToString:@"goods"]){
+        
+        StoresMapController *vc = [[StoresMapController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }else{
+        
+    }
+
+
 }
 
 

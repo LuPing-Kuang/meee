@@ -128,7 +128,8 @@
         [cell.headImageView setImageUrl:us.avatar];
         cell.moneyLabel.text=us.money;
         cell.nameLabel.text=us.nickname;
-        cell.levelName.text=[NSString stringWithFormat:@"[%@]",us.levelname];
+        cell.levelName.text=[NSString stringWithFormat:@"[%@] ID:%@",us.levelname,us.idd];
+        
         if (us.levelname.length==0) {
             cell.levelName.text=nil;
         }
@@ -250,7 +251,10 @@
         }
         
         
+    }else if ([link isEqualToString:@"shop.notice"]){
+        [self pushViewControllerForStoryBoardId:@"ReportNewsController"];
     }
+    
     
 }
 
