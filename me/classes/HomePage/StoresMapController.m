@@ -9,13 +9,25 @@
 #import "StoresMapController.h"
 #import "HomePageHttpTool.h"
 #import "StoreModel.h"
+#import "CustomAnnotationView.h"
+#import "StoresAddressView.h"
+#import "CustomeAnnoPoint.h"
 
 @interface StoresMapController ()<BMKMapViewDelegate,BMKLocationServiceDelegate>
-@property (nonatomic, strong) BMKMapView *mapView;
 @property (nonatomic, strong) BMKLocationService *locationService;
 @property (nonatomic, strong) NSArray *dataArr;
 
 @property (nonatomic, assign) BOOL isAlreadyUpdate;
+@property (weak, nonatomic) IBOutlet UIView *contentV;
+@property (weak, nonatomic) IBOutlet UITextField *searchTf;
+
+@property (nonatomic, strong) StoresAddressView *dropDownV;
+@property (weak, nonatomic) IBOutlet UIView *titleBgV;
+
+@property (nonatomic, strong) NSArray *allAnno;
+@property (weak, nonatomic) IBOutlet BMKMapView *mapView;
+
+
 
 
 
@@ -26,9 +38,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"门店地图";
+    
     [self setUpSubViews];
     [self getStoreListData];
+    
 }
+
+
 
 - (void)setUpSubViews{
     //适配ios7
@@ -36,31 +52,66 @@
     {
         self.navigationController.navigationBar.translucent = NO;
     }
-    
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"custom_config_清新蓝" ofType:@""];
-    [BMKMapView customMapStyle:path];
+
+    self.contentV.frame = CGRectMake(self.contentV.frame.origin.x, self.contentV.frame.origin.y, UIScreenWidth, self.contentV.frame.size.height);
     
     self.locationService = [[BMKLocationService alloc]init];
-    self.locationService.delegate = self;
     [self.locationService startUserLocationService];
     
-    self.mapView = [[BMKMapView alloc]init];
-    self.mapView.delegate = self;
     self.mapView.mapType = BMKMapTypeStandard;
     self.mapView.frame = self.view.bounds;
     self.mapView.showMapScaleBar = YES;
-    self.mapView.gesturesEnabled = YES;
     self.mapView.showsUserLocation = YES;
     self.mapView.userTrackingMode = BMKUserTrackingModeFollow;
-    [self.view addSubview:self.mapView];
+    self.mapView.buildingsEnabled = YES;
+    
+    BMKLocationViewDisplayParam* param = [[BMKLocationViewDisplayParam alloc] init];
+    param.locationViewOffsetY = 0;//偏移量
+    param.locationViewOffsetX = 0;
+    param.isAccuracyCircleShow = YES;//设置是否显示定位的那个精度圈
+    param.isRotateAngleValid = YES;
+    param.canShowCallOut = NO;
+    [_mapView updateLocationViewWithParam:param];
+    
+    [self.contentV insertSubview:self.mapView atIndex:0];
+    
+    self.searchTf.layer.cornerRadius = 4.0;
+    self.searchTf.layer.masksToBounds = YES;
+    
+    self.searchTf.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 8, 20)];
+    self.searchTf.leftViewMode = UITextFieldViewModeAlways;
+    
     
 }
 
 
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    [_mapView viewWillAppear];
+    _mapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
+    _locationService.delegate = self;
+}
+
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    _mapView.delegate = nil; // 不用时，置nil
+    _locationService.delegate = nil;
+}
+
 - (void)getStoreListData{
     MJWeakSelf;
     [HUDManager showLoading:@"加载中..."];
-    [HomePageHttpTool getAllStoreListWithType:nil WithCompleted:^(id result, BOOL success) {
+    [HomePageHttpTool getAllStoreListWithKeyWord:nil WithCompleted:^(id result, BOOL success) {
         if (success) {
             weakSelf.dataArr = result;
             [HUDManager dismiss];
@@ -88,11 +139,10 @@
         NSMutableArray *lonArr = [NSMutableArray array];
         
         for (NSInteger i=0; i<_dataArr.count; i++) {
-            BMKPointAnnotation *anno = [[BMKPointAnnotation alloc]init];
+            CustomeAnnoPoint *anno = [[CustomeAnnoPoint alloc]init];
             StoreModel *model = _dataArr[i];
 //            anno.title = [NSString stringWithFormat:@"%lu",i+1];
-            anno.title = model.storename;
-            anno.coordinate = CLLocationCoordinate2DMake(model.lat.doubleValue, model.lng.doubleValue);
+            anno.model = model;
             
             sumLat = sumLat + model.lat.doubleValue;
             sumlon = sumlon + model.lng.doubleValue;
@@ -102,7 +152,7 @@
             
             [arr addObject:anno];
         }
-        
+        self.allAnno = arr;
         
         [latArr sortUsingComparator:^NSComparisonResult(NSString *obj1, NSString *obj2) {
             if (obj1.doubleValue<obj2.doubleValue) {
@@ -128,9 +178,13 @@
         BMKCoordinateSpan span = BMKCoordinateSpanMake((maxlat-minlat)/2.0+0.3, (maxlon-minlon)/2.0+0.3);
         BMKCoordinateRegion region = BMKCoordinateRegionMake(center, span);
         [self.mapView addAnnotations:arr];
+        
         [self.mapView setRegion:region animated:YES];
         
     }
+    
+    
+    
 }
 
 
@@ -163,29 +217,22 @@
 - (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation{
     NSLog(@"生成大头针");
     
-    //如果是注释点
-    if ([annotation isKindOfClass:[BMKPointAnnotation class]]) {
-        
-        //根据注释点,创建并初始化注释点视图
-        static NSString *reuseIdentifier = @"an";
-        BMKPinAnnotationView  *newAnnotation;
-        newAnnotation = (BMKPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIdentifier];
-        
-        if (!newAnnotation) {
-            newAnnotation = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
+    if ([annotation isKindOfClass:[CustomeAnnoPoint class]])
+    {
+        static NSString *reuseIndetifier = @"annotationReuseIndetifier";
+        CustomAnnotationView *annotationView = (CustomAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
+        if (annotationView == nil)
+        {
+            annotationView = [[CustomAnnotationView alloc] initWithAnnotation:annotation
+                                                              reuseIdentifier:reuseIndetifier];
+            annotationView.canShowCallout = NO;
         }
         
-        //设置大头针的颜色
-        newAnnotation.pinColor = BMKPinAnnotationColorRed;
-        //设置动画
-        newAnnotation.animatesDrop = YES;
-        
-        return newAnnotation;
-        
+        annotationView.image = [UIImage imageNamed:@"add_me"];
+        return annotationView;
     }
-    
-    
     return nil;
+    
 }
 
 
@@ -196,11 +243,14 @@
 
 - (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view{
     NSLog(@"选中了某个大头针");
+    [view setSelected:YES animated:YES];
+    [self.mapView setCenterCoordinate:view.annotation.coordinate animated:YES];
 }
 
 
 - (void)mapView:(BMKMapView *)mapView didDeselectAnnotationView:(BMKAnnotationView *)view{
     NSLog(@"取消选中大头针");
+    [view setSelected:NO animated:YES];
 }
 
 
@@ -246,6 +296,8 @@
 }
 
 
+
+
 #pragma mark -
 #pragma mark - BMKLocationServiceDelegate
 - (void)didStopLocatingUser{
@@ -274,6 +326,116 @@
 - (void)didFailToLocateUserWithError:(NSError *)error{
     NSLog(@"定位失败");
 }
+
+
+#pragma mark -
+#pragma mark - action
+
+- (IBAction)zoomInBtnClick:(UIButton *)sender {
+    [self.mapView zoomIn];
+}
+
+- (IBAction)zoomOutBtnClick:(UIButton *)sender {
+    [self.mapView zoomOut];
+}
+
+- (IBAction)navBackBtnClick:(UIButton *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
+
+
+- (IBAction)searchBtnClick:(UIButton *)sender {
+    
+    if (self.searchTf.text.length==0) {
+        [HUDManager showErrorMsg:@"请输入搜索门店地址"];
+        return;
+    }
+    
+    [self.dropDownV searchWithKeyword:self.searchTf.text];
+
+}
+
+
+- (IBAction)searchTfEditingDidBegin:(UITextField *)sender {
+    
+    [self.dropDownV showInView:self.searchTf];
+    
+}
+
+
+- (IBAction)searchTfDidEndEditing:(UITextField *)sender {
+    
+    [self.dropDownV dismiss];
+    sender.text = nil;
+}
+
+- (IBAction)searchTfDidChange:(UITextField *)sender {
+    
+    if (sender.text.length!=0) {
+        [self.dropDownV searchWithKeyword:sender.text];
+    }
+    
+}
+
+
+- (IBAction)locateMyselfBtnClick:(UIButton *)sender {
+    
+    [self.mapView setCenterCoordinate:self.locationService.userLocation.location.coordinate animated:YES];
+}
+
+
+
+
+#pragma mark -
+#pragma mark - 懒加载
+- (StoresAddressView*)dropDownV{
+    if (_dropDownV==nil) {
+        _dropDownV = LOAD_XIB_CLASS(StoresAddressView);
+        
+        [self.view insertSubview:_dropDownV belowSubview:self.titleBgV];
+        MJWeakSelf;
+        _dropDownV.selectblock = ^(StoreModel *model) {
+            [weakSelf selectAnnotatonModel:model];
+        };
+    }
+    return _dropDownV;
+}
+
+
+- (void)selectAnnotatonModel:(StoreModel*)model{
+    if (model) {
+        
+        CustomeAnnoPoint *myAnno;
+        for (NSInteger i=0; i<self.allAnno.count; i++) {
+            CustomeAnnoPoint *anno = self.allAnno[i];
+            if ([anno.model.ID isEqualToString:model.ID]) {
+                myAnno = anno;
+                break;
+            }
+        }
+        
+        if (myAnno==nil) {
+            myAnno = self.allAnno.firstObject;
+        }
+        
+        [self.mapView selectAnnotation:myAnno animated:YES];
+        
+        CLLocationCoordinate2D center = myAnno.coordinate;
+        BMKCoordinateSpan span = BMKCoordinateSpanMake(0.01, 0.01);
+        BMKCoordinateRegion region = BMKCoordinateRegionMake(center, span);
+        
+        [self.mapView setRegion:region animated:YES];
+
+    }
+}
+
+
+- (void)dealloc{
+    self.mapView = nil;
+}
+
+
 
 
 @end

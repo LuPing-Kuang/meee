@@ -518,8 +518,9 @@
         if (data[@"diyform"]) {
             NSDictionary *f_dataDic = [data[@"diyform"] valueForKey:@"f_data"];
             NSDictionary *fieldsDic = [data[@"diyform"] valueForKey:@"fields"];
+            NSDictionary *member = data[@"member"] ;
             
-            PartnerMaterialModel *model = [PartnerMaterialModel initWithf_dataDic:f_dataDic fields:fieldsDic];
+            PartnerMaterialModel *model = [PartnerMaterialModel initWithf_dataDic:f_dataDic fields:fieldsDic member:member];
             
             if (success) {
                 success(model);
@@ -562,6 +563,84 @@
     } failure:^(NSError *err) {
         if (failure) {
             failure(err.localizedDescription);
+        }
+    }];
+    
+}
+
+
+//编辑完善合伙人资料
++ (void)editPartnerMaterial:(NSDictionary*)param withCompleted:(LoadServerDataFinishedBlock)finish{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:param];
+    [dic setValue:[UserModel token] forKey:@"access_token"];
+    
+    [[NetworkManager getManager] postPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=member.info.submit" parameters:dic success_status_ok:^(NSURLSessionDataTask *task, id data) {
+        if (finish) {
+            NSLog(@"%@",data);
+            finish(data,YES);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSString *errorMsg) {
+        if (finish) {
+            finish(errorMsg,NO);
+        }
+    }];
+}
+
+//上传个人头像
++ (void)uploadMyIcon:(UIImage*)image withCompleted:(LoadServerDataFinishedBlock)finish{
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setValue:[UserModel token] forKey:@"access_token"];
+    
+    [[NetworkManager getManager] uploadImagePostPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=util.uploader" parameters:dic image:image success_status_ok:^(NSURLSessionDataTask *task, id data) {
+        if (finish) {
+            NSLog(@"%@",data);
+            finish(data,YES);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSString *errorMsg) {
+        if (finish) {
+            finish(errorMsg,NO);
+        }
+    }];
+
+}
+
+//绑定手机
++ (void)bindMyPhone:(NSString*)phone verifycode:(NSString*)verifycode withCompleted:(LoadServerDataFinishedBlock)finish{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setValue:[UserModel token] forKey:@"access_token"];
+    [dic setValue:phone forKey:@"mobile"];
+    [dic setValue:verifycode forKey:@"verifycode"];
+    
+    [[NetworkManager getManager] postPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=member.bind.submit" parameters:dic success_status_ok:^(NSURLSessionDataTask *task, id data) {
+        if (finish) {
+            NSLog(@"%@",data);
+            finish(data,YES);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSString *errorMsg) {
+        if (finish) {
+            finish(errorMsg,NO);
+        }
+    }];
+}
+
+//保存个人信息
++ (void)saveMyNickName:(NSString*)nickName avatar:(NSString*)avatar withCompleted:(LoadServerDataFinishedBlock)finish{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setValue:[UserModel token] forKey:@"access_token"];
+    [dic setValue:nickName forKey:@"nickname"];
+    [dic setValue:avatar forKey:@"avatar"];
+    
+    [[NetworkManager getManager] postPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=member.info.face_post" parameters:dic success_status_ok:^(NSURLSessionDataTask *task, id data) {
+        if (finish) {
+            NSLog(@"%@",data);
+            finish(data,YES);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSString *errorMsg) {
+        if (finish) {
+            finish(errorMsg,NO);
         }
     }];
     

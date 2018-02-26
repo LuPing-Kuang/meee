@@ -72,7 +72,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="318" height="110"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="demo1.png" translatesAutoresizingMaskIntoConstraints="NO" id="emG-k0-5Le" customClass="CorneredImageView">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="demo1.png" translatesAutoresizingMaskIntoConstraints="NO" id="emG-k0-5Le" customClass="CorneredImageView">
                                             <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="emG-k0-5Le" secondAttribute="height" multiplier="1:1" id="hrB-2E-9Zu"/>
@@ -178,7 +178,7 @@
                                             <color key="textColor" red="0.91897296910000004" green="0.38060939310000003" blue="0.36067986489999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="demo2.png" translatesAutoresizingMaskIntoConstraints="NO" id="FH6-XP-7JG" customClass="CorneredImageView">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="demo2.png" translatesAutoresizingMaskIntoConstraints="NO" id="FH6-XP-7JG" customClass="CorneredImageView">
                                             <rect key="frame" x="0.0" y="0.0" width="136" height="136"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="FH6-XP-7JG" secondAttribute="height" multiplier="1:1" id="7We-6E-4Zs"/>
@@ -650,7 +650,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="302" height="110"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="demo1.png" translatesAutoresizingMaskIntoConstraints="NO" id="pjK-FD-VRf" customClass="CorneredImageView">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="demo1.png" translatesAutoresizingMaskIntoConstraints="NO" id="pjK-FD-VRf" customClass="CorneredImageView">
                                             <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="pjK-FD-VRf" secondAttribute="height" multiplier="1:1" id="48X-Ao-nA8"/>
@@ -732,7 +732,7 @@
                                             <color key="textColor" red="0.91897296910000004" green="0.38060939310000003" blue="0.36067986489999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="demo2.png" translatesAutoresizingMaskIntoConstraints="NO" id="p83-tL-bRJ">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="demo2.png" translatesAutoresizingMaskIntoConstraints="NO" id="p83-tL-bRJ">
                                             <rect key="frame" x="0.0" y="0.0" width="136" height="136"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="p83-tL-bRJ" secondAttribute="height" multiplier="1:1" id="VTP-y9-kOH"/>

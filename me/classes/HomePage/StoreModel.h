@@ -44,7 +44,9 @@
 @property (nonatomic,copy) NSString* diypage_ispage;
 @property (nonatomic,copy) NSString* diypage_list;
 @property (nonatomic,copy) NSString* storegroupid;
-@property (nonatomic,copy) NSString* cates;
+@property (nonatomic,copy) NSString* two;
+@property (nonatomic,copy) NSString* one;
+
 
 @end
 

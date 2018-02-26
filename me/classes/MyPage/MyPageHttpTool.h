@@ -71,5 +71,18 @@
 //申请成为合伙人
 +(void)applyPartnerCache:(BOOL)cache mid:(NSInteger)mid realname:(NSString*)realname mobile:(NSString*)mobile token:(NSString*)token success:(void(^)(PartnerMaterialModel* model))success failure:(void(^)(NSString* errorMsg))failure;
 
+//编辑完善合伙人资料
++ (void)editPartnerMaterial:(NSDictionary*)param withCompleted:(LoadServerDataFinishedBlock)finish;
+
+//上传个人头像
++ (void)uploadMyIcon:(UIImage*)image withCompleted:(LoadServerDataFinishedBlock)finish;
+
+//绑定手机
++ (void)bindMyPhone:(NSString*)phone verifycode:(NSString*)verifycode withCompleted:(LoadServerDataFinishedBlock)finish;
+
+//保存个人信息
++ (void)saveMyNickName:(NSString*)nickName avatar:(NSString*)avatar withCompleted:(LoadServerDataFinishedBlock)finish;
+
+
 
 @end

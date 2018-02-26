@@ -103,4 +103,38 @@
 }
 
 
+- (void)uploadImagePostPath:(NSString *)path parameters:(NSDictionary *)parameters image:(UIImage *)image success_status_ok:(successBlock)success failure:(failureBlock)failure{
+    
+    [self POST:path parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        if (image) {
+            NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
+            [formData appendPartWithFileData:imageData name:@"file" fileName:@"iconImgage.jpg" mimeType:@"image/jpg"];
+        }
+        
+    } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            NSDictionary*dic = responseObject;
+            NSString *code = [NSString stringWithFormat:@"%@",[dic valueForKey:@"code"]];
+            if ([code isEqualToString:@"0"]) {
+                
+                success(task,[dic valueForKey:@"data"]);
+            }else{
+                
+                failure(task,[dic valueForKey:@"message"]);
+            }
+        }else{
+            failure(task,@"解析数据出错");
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (error!=nil) {
+            
+            failure(task,error.localizedDescription);
+        }
+    }];
+    
+}
+
+
 @end

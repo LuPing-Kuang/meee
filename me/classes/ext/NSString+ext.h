@@ -28,4 +28,6 @@
 
 -(NSString*)stringValueFromUrlParamsKey:(NSString*)key;
 
+- (CGSize)sizeWithFont:(UIFont *)font maxSize:(CGSize)maxSize;
+
 @end

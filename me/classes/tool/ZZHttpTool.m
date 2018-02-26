@@ -130,7 +130,10 @@
                         
                         failure(error);
                         
-                        failure(error);
+                        if ([[NSString stringWithFormat:@"%@",cachedDict[@"code"]] isEqualToString:@"130"] && [cachedDict[@"message"] isEqualToString:@"登录已失效，请重新登录！"]) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:UserNeed_Login_Notification object:nil];
+                        }
+                        
                     }
                     return;
                 }
@@ -172,6 +175,10 @@
                             NSError *error = [NSError errorWithDomain:@"com.bangju.ewei" code:-1000 userInfo:userInfo];
                             
                             failure(error);
+                            
+                            if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"130"] && [result[@"message"] isEqualToString:@"登录已失效，请重新登录！"]) {
+                                [[NSNotificationCenter defaultCenter] postNotificationName:UserNeed_Login_Notification object:nil];
+                            }
                         }
                         
                         

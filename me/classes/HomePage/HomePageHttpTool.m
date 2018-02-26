@@ -114,11 +114,11 @@
 
 
 //获取所有门店列表
-+ (void)getAllStoreListWithType:(NSString*)type WithCompleted:(LoadServerDataFinishedBlock)finish{
++ (void)getAllStoreListWithKeyWord:(NSString*)keyWord WithCompleted:(LoadServerDataFinishedBlock)finish{
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setValue:[UserModel token] forKey:@"access_token"];
-    [dic setValue:type forKey:@"type"];
+    [dic setValue:keyWord forKey:@"keywords"];
     
     [[NetworkManager getManager] postPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=store.selector" parameters:dic success_status_ok:^(NSURLSessionDataTask *task, id data) {
         if (finish) {

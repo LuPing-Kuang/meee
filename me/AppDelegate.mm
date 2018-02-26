@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "WechatHandler.h"
 #import "BaseWebViewController.h"
+#import "LoginViewController.h"
 
 @interface AppDelegate ()
 
@@ -30,6 +31,8 @@
     
     [HUDManager changeHudToBlack];
     [SVProgressHUD setMinimumDismissTimeInterval:1];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goToLogin) name:UserNeed_Login_Notification object:nil];
     
     return YES;
 }
@@ -75,5 +78,19 @@
     return YES;
 }
 
+
+- (void)goToLogin{
+    [HUDManager showErrorMsg:@"登录已失效，请重新登录！"];
+    UINavigationController *nav = (UINavigationController*)self.window.rootViewController;
+    
+    if ([nav.presentedViewController isKindOfClass:[LoginViewController class]] || [nav.presentingViewController isKindOfClass:[LoginViewController class]]) {
+        return;
+    }
+    
+    LoginViewController *vc = [[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    
+    [nav presentViewController:vc animated:YES completion:nil];
+    
+}
 
 @end

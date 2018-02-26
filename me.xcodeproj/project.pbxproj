@@ -153,12 +153,20 @@
 		57B4020D201F583E000E5830 /* ReportNewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B4020C201F583E000E5830 /* ReportNewsController.m */; };
 		57B40210201F596B000E5830 /* ReportNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B4020F201F596B000E5830 /* ReportNewsCell.m */; };
 		57B40213201F5BA9000E5830 /* ReportNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B40212201F5BA9000E5830 /* ReportNewsModel.m */; };
+		57C6C3D220438E0B003EFC21 /* BindMobileController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C6C3D120438E0B003EFC21 /* BindMobileController.m */; };
+		57C6C3D520439B32003EFC21 /* ModifyMyAvatarAndNickNameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57C6C3D420439B32003EFC21 /* ModifyMyAvatarAndNickNameController.m */; };
 		57E091A82025B3670030C137 /* TransportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E091A72025B3670030C137 /* TransportViewController.m */; };
 		57E091AB2025B3F00030C137 /* TransportMsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E091AA2025B3F00030C137 /* TransportMsgViewController.m */; };
 		57E091AE2025BA3F0030C137 /* TransportMsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E091AD2025BA3F0030C137 /* TransportMsgCell.m */; };
 		57E091B12025D8150030C137 /* TransportMsgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E091B02025D8150030C137 /* TransportMsgModel.m */; };
 		57E091B42025E07C0030C137 /* TransportViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E091B32025E07C0030C137 /* TransportViewCell.m */; };
 		57E091B72025E2320030C137 /* BundlelistMsgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E091B62025E2320030C137 /* BundlelistMsgModel.m */; };
+		57EF8773202A9FE900FF3458 /* CustomPaopaotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 57EF8772202A9FE900FF3458 /* CustomPaopaotView.m */; };
+		57EF8776202AA0D300FF3458 /* CustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 57EF8775202AA0D300FF3458 /* CustomAnnotationView.m */; };
+		57EF8778202ABC9900FF3458 /* StoresMapController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57EF8777202ABC9900FF3458 /* StoresMapController.xib */; };
+		57EF877B202AD64F00FF3458 /* StoresAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 57EF877A202AD64F00FF3458 /* StoresAddressView.m */; };
+		57EF877D202AD66000FF3458 /* StoresAddressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57EF877C202AD66000FF3458 /* StoresAddressView.xib */; };
+		57EF8783202BFCEA00FF3458 /* CustomeAnnoPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 57EF8782202BFCEA00FF3458 /* CustomeAnnoPoint.m */; };
 		57F659CD2018007D000FDD93 /* ApplyPartnerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F659CC2018007D000FDD93 /* ApplyPartnerController.m */; };
 		57F659D0201800DC000FDD93 /* ApplyPartnerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F659CF201800DC000FDD93 /* ApplyPartnerCell.m */; };
 		57F659D82018A70D000FDD93 /* WechatHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F659D62018A70C000FDD93 /* WechatHandler.m */; };
@@ -450,6 +458,10 @@
 		57B4020F201F596B000E5830 /* ReportNewsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReportNewsCell.m; sourceTree = "<group>"; };
 		57B40211201F5BA9000E5830 /* ReportNewsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReportNewsModel.h; sourceTree = "<group>"; };
 		57B40212201F5BA9000E5830 /* ReportNewsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReportNewsModel.m; sourceTree = "<group>"; };
+		57C6C3D020438E0B003EFC21 /* BindMobileController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BindMobileController.h; sourceTree = "<group>"; };
+		57C6C3D120438E0B003EFC21 /* BindMobileController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BindMobileController.m; sourceTree = "<group>"; };
+		57C6C3D320439B32003EFC21 /* ModifyMyAvatarAndNickNameController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModifyMyAvatarAndNickNameController.h; sourceTree = "<group>"; };
+		57C6C3D420439B32003EFC21 /* ModifyMyAvatarAndNickNameController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModifyMyAvatarAndNickNameController.m; sourceTree = "<group>"; };
 		57E091A62025B3670030C137 /* TransportViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransportViewController.h; sourceTree = "<group>"; };
 		57E091A72025B3670030C137 /* TransportViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransportViewController.m; sourceTree = "<group>"; };
 		57E091A92025B3F00030C137 /* TransportMsgViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransportMsgViewController.h; sourceTree = "<group>"; };
@@ -462,6 +474,16 @@
 		57E091B32025E07C0030C137 /* TransportViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransportViewCell.m; sourceTree = "<group>"; };
 		57E091B52025E2320030C137 /* BundlelistMsgModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BundlelistMsgModel.h; sourceTree = "<group>"; };
 		57E091B62025E2320030C137 /* BundlelistMsgModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BundlelistMsgModel.m; sourceTree = "<group>"; };
+		57EF8771202A9FE900FF3458 /* CustomPaopaotView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomPaopaotView.h; sourceTree = "<group>"; };
+		57EF8772202A9FE900FF3458 /* CustomPaopaotView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomPaopaotView.m; sourceTree = "<group>"; };
+		57EF8774202AA0D300FF3458 /* CustomAnnotationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomAnnotationView.h; sourceTree = "<group>"; };
+		57EF8775202AA0D300FF3458 /* CustomAnnotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomAnnotationView.m; sourceTree = "<group>"; };
+		57EF8777202ABC9900FF3458 /* StoresMapController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoresMapController.xib; sourceTree = "<group>"; };
+		57EF8779202AD64F00FF3458 /* StoresAddressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoresAddressView.h; sourceTree = "<group>"; };
+		57EF877A202AD64F00FF3458 /* StoresAddressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoresAddressView.m; sourceTree = "<group>"; };
+		57EF877C202AD66000FF3458 /* StoresAddressView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoresAddressView.xib; sourceTree = "<group>"; };
+		57EF8781202BFCEA00FF3458 /* CustomeAnnoPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomeAnnoPoint.h; sourceTree = "<group>"; };
+		57EF8782202BFCEA00FF3458 /* CustomeAnnoPoint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomeAnnoPoint.m; sourceTree = "<group>"; };
 		57F659CB2018007D000FDD93 /* ApplyPartnerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplyPartnerController.h; sourceTree = "<group>"; };
 		57F659CC2018007D000FDD93 /* ApplyPartnerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplyPartnerController.m; sourceTree = "<group>"; };
 		57F659CE201800DC000FDD93 /* ApplyPartnerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplyPartnerCell.h; sourceTree = "<group>"; };
@@ -733,6 +755,12 @@
 				39F37F941FFF718D00781706 /* HomePageHttpTool.m */,
 				57B212322025926900D9A5FB /* StoresMapController.h */,
 				57B212332025926900D9A5FB /* StoresMapController.m */,
+				57EF8777202ABC9900FF3458 /* StoresMapController.xib */,
+				57EF8779202AD64F00FF3458 /* StoresAddressView.h */,
+				57EF877A202AD64F00FF3458 /* StoresAddressView.m */,
+				57EF8781202BFCEA00FF3458 /* CustomeAnnoPoint.h */,
+				57EF8782202BFCEA00FF3458 /* CustomeAnnoPoint.m */,
+				57EF877C202AD66000FF3458 /* StoresAddressView.xib */,
 				39574C372008BF5200FD87B6 /* homepagejson.txt */,
 			);
 			path = HomePage;
@@ -742,13 +770,17 @@
 			isa = PBXGroup;
 			children = (
 				393F287D1FF38519009D5D2E /* HomeFourCollectionViewCell.h */,
-				393F287E1FF38519009D5D2E /* HomeFourCollectionViewCell.m */,
 				393F286B1FF37330009D5D2E /* ProductCateHeaderCollectionReusableView.h */,
 				393F286C1FF37330009D5D2E /* ProductCateHeaderCollectionReusableView.m */,
+				393F287E1FF38519009D5D2E /* HomeFourCollectionViewCell.m */,
 				3946D2F51FF34D290074E77A /* ProductLargeCollectionViewCell.h */,
 				3946D2F61FF34D290074E77A /* ProductLargeCollectionViewCell.m */,
 				393F28741FF38035009D5D2E /* ProductSmallCollectionViewCell.h */,
 				393F28751FF38035009D5D2E /* ProductSmallCollectionViewCell.m */,
+				57EF8771202A9FE900FF3458 /* CustomPaopaotView.h */,
+				57EF8772202A9FE900FF3458 /* CustomPaopaotView.m */,
+				57EF8774202AA0D300FF3458 /* CustomAnnotationView.h */,
+				57EF8775202AA0D300FF3458 /* CustomAnnotationView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -873,6 +905,7 @@
 		39F37F641FFF228D00781706 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				57C6C3CF20438DEF003EFC21 /* BindMobile */,
 				57B4020A201F5819000E5830 /* reportNews */,
 				57F659CA2017FFF3000FDD93 /* applyPartner */,
 				57071DE020162B1D0028FF37 /* partnerMaterial */,
@@ -980,6 +1013,8 @@
 			children = (
 				57071DE120162B440028FF37 /* PartnerMaterialController.h */,
 				57071DE220162B440028FF37 /* PartnerMaterialController.m */,
+				57C6C3D320439B32003EFC21 /* ModifyMyAvatarAndNickNameController.h */,
+				57C6C3D420439B32003EFC21 /* ModifyMyAvatarAndNickNameController.m */,
 				57071DEB201633890028FF37 /* PartnerMaterialCell.h */,
 				57071DEC201633890028FF37 /* PartnerMaterialCell.m */,
 				57071DE420162C3C0028FF37 /* Model */,
@@ -1059,6 +1094,15 @@
 				57B40212201F5BA9000E5830 /* ReportNewsModel.m */,
 			);
 			name = reportNews;
+			sourceTree = "<group>";
+		};
+		57C6C3CF20438DEF003EFC21 /* BindMobile */ = {
+			isa = PBXGroup;
+			children = (
+				57C6C3D020438E0B003EFC21 /* BindMobileController.h */,
+				57C6C3D120438E0B003EFC21 /* BindMobileController.m */,
+			);
+			name = BindMobile;
 			sourceTree = "<group>";
 		};
 		57F659CA2017FFF3000FDD93 /* applyPartner */ = {
@@ -1172,9 +1216,11 @@
 				394D37801FEDF4330001CB48 /* LaunchScreen.storyboard in Resources */,
 				394D377D1FEDF4330001CB48 /* Assets.xcassets in Resources */,
 				57071DAB2014C3590028FF37 /* ProductScreeningView.xib in Resources */,
+				57EF8778202ABC9900FF3458 /* StoresMapController.xib in Resources */,
 				391863512004CFCF0057C491 /* ProductComfirmOrderToolBarView.xib in Resources */,
 				394D377B1FEDF4330001CB48 /* Main.storyboard in Resources */,
 				39186321200209900057C491 /* hhh.txt in Resources */,
+				57EF877D202AD66000FF3458 /* StoresAddressView.xib in Resources */,
 				39F37F6C1FFF238900781706 /* MyPage.storyboard in Resources */,
 				39574C362008BA4800FD87B6 /* mypagejson.txt in Resources */,
 				3918633A200469C30057C491 /* address.txt in Resources */,
@@ -1264,7 +1310,9 @@
 				3946D2DC1FF3362A0074E77A /* UIImage+ext.m in Sources */,
 				3918633420045D990057C491 /* ProductOrderComfirmTableViewController.m in Sources */,
 				573D4C5620125BAC00260123 /* DistributionTotalOrderModel.m in Sources */,
+				57EF8776202AA0D300FF3458 /* CustomAnnotationView.m in Sources */,
 				3946D2D91FF3362A0074E77A /* NSObject+SwizzleClasses.m in Sources */,
+				57C6C3D520439B32003EFC21 /* ModifyMyAvatarAndNickNameController.m in Sources */,
 				397C07412001BD990073A57A /* CartEditTableViewCell.m in Sources */,
 				39F37F701FFF489F00781706 /* MySimpleTableViewCell.m in Sources */,
 				573D4C4D20124AFF00260123 /* MyPartnerMsgModel.m in Sources */,
@@ -1317,6 +1365,7 @@
 				3918637B200716430057C491 /* MyAddressAddNewTableViewController.m in Sources */,
 				573D4C6E2012FE2100260123 /* MyOtherPartnerCell.m in Sources */,
 				39F37F671FFF22BF00781706 /* LoginViewController.m in Sources */,
+				57EF8783202BFCEA00FF3458 /* CustomeAnnoPoint.m in Sources */,
 				39186378200715050057C491 /* CitySelectionPicker.m in Sources */,
 				57F659D82018A70D000FDD93 /* WechatHandler.m in Sources */,
 				57B40210201F596B000E5830 /* ReportNewsCell.m in Sources */,
@@ -1341,6 +1390,7 @@
 				3946D2791FF335D50074E77A /* BaseCollectionViewController.m in Sources */,
 				39BCC4B42000B2EF008688B7 /* ProductionModel.m in Sources */,
 				397C07442001C1360073A57A /* ZZStepper.m in Sources */,
+				57C6C3D220438E0B003EFC21 /* BindMobileController.m in Sources */,
 				39F37F631FFF1C4300781706 /* ZZSearchBar.m in Sources */,
 				57AA7ABF201030EF00F2C63E /* MyPartnerViewController.m in Sources */,
 				3918638920074AAC0057C491 /* SelectedAllActionView.m in Sources */,
@@ -1351,6 +1401,7 @@
 				57B212352025926900D9A5FB /* StoresMapController.m in Sources */,
 				39BCC4AB1FFF7818008688B7 /* BannerModel.m in Sources */,
 				391863462004988F0057C491 /* ProductOrderMessageTableViewCell.m in Sources */,
+				57EF8773202A9FE900FF3458 /* CustomPaopaotView.m in Sources */,
 				397C07522001CB230073A57A /* CartItemModel.m in Sources */,
 				57AA7B082011052800F2C63E /* DistributionOrderPageController.m in Sources */,
 				39186349200498B00057C491 /* ProductOrderDetailTableViewCell.m in Sources */,
@@ -1379,6 +1430,7 @@
 				394D37721FEDF4330001CB48 /* main.m in Sources */,
 				39F37F8C1FFF700000781706 /* ProductAdvModel.m in Sources */,
 				3918632420020AA80057C491 /* ProductDetailWebViewController.m in Sources */,
+				57EF877B202AD64F00FF3458 /* StoresAddressView.m in Sources */,
 				57E091AB2025B3F00030C137 /* TransportMsgViewController.m in Sources */,
 				397C074F2001CA340073A57A /* CartPageHttpTool.m in Sources */,
 				39F37F7A1FFF581300781706 /* MyHeaderTableViewCell.m in Sources */,

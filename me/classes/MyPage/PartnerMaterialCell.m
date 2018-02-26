@@ -13,6 +13,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.saveBtn.layer.cornerRadius = 5.0;
+    self.saveBtn.layer.masksToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -31,6 +33,15 @@
     if (self.saveBlock) {
         self.saveBlock();
     }
+}
+
+
+- (IBAction)textfieldDidChange:(UITextField *)sender {
+    
+    if (self.textChangeBlock) {
+        self.textChangeBlock(sender.text);
+    }
+    
 }
 
 

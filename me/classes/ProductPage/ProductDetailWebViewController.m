@@ -27,7 +27,12 @@
 - (void)viewDidLoad {
     
     NSString* str=[ZZUrlTool fullUrlWithTail:HTML_GoodDetail];
-    str=[NSString stringWithFormat:@"%@&id=%@&access_token=%@",str,self.productId,self.token];
+    if (self.token) {
+        str=[NSString stringWithFormat:@"%@&id=%@&access_token=%@",str,self.productId,self.token];
+    }else{
+        str=[NSString stringWithFormat:@"%@&id=%@",str,self.productId];
+    }
+    
     self.url=[NSURL URLWithString:str];
     
     [super viewDidLoad];
