@@ -1601,9 +1601,9 @@
 			baseConfigurationReference = 7984CA6DE6CA9E40E51F6B72 /* Pods-me.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 9J7GGU5G9G;
+				DEVELOPMENT_TEAM = 5Q8QKERR7H;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1615,8 +1615,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bangju.meee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5f2c8385-105a-4b2f-a436-954979ad333d";
-				PROVISIONING_PROFILE_SPECIFIER = MeeeAdhoc;
+				PROVISIONING_PROFILE = "983b8431-7087-48b1-bad4-d3b7bf322852";
+				PROVISIONING_PROFILE_SPECIFIER = IOSDEV_2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
