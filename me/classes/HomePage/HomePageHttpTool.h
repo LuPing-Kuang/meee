@@ -19,5 +19,10 @@
 //获取所有门店列表
 + (void)getAllStoreListWithKeyWord:(NSString*)keyWord WithCompleted:(LoadServerDataFinishedBlock)finish;
 
+//获取兑换码信息
++ (void)exchangeNumMsg:(NSString*)key WithCompleted:(LoadServerDataFinishedBlock)finish;
+
+//兑换
++ (void)exchangeMoney:(NSString*)key WithCompleted:(LoadServerDataFinishedBlock)finish;
 
 @end

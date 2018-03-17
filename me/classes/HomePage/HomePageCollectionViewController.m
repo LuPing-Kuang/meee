@@ -22,6 +22,8 @@
 #import "MyOrdersPagerViewController.h"
 #import "MyFavouriteViewController.h"
 #import "StoresMapController.h"
+#import "QRCodeScanningController.h"
+#import "ExchangeController.h"
 
 @interface HomePageCollectionViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,SimpleButtonsTableViewCellDelegate>
 
@@ -42,7 +44,40 @@
     [self refresh];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:UserLogin_Notification object:nil];
+    
+    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44.0, 44.0)];
+    UIImage *image = [UIImage imageNamed:@"扫一扫"];
+    [btn setImage:image forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    btn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, image.size.width - 44.0);
+    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithCustomView:btn];
+    
+    self.navigationItem.rightBarButtonItem = rightBtn;
+    
 }
+
+
+- (void)rightBtnClick {
+    
+    
+    
+    QRCodeScanningController *vc = [[QRCodeScanningController alloc]init];
+    vc.title = @"扫一扫";
+    vc.hidesBottomBarWhenPushed = YES;
+    MJWeakSelf;
+    vc.ScanBlock = ^(NSString *str, BOOL success) {
+        if (success) {
+            ExchangeController *vc = [[ExchangeController alloc]initWithTitle:@"兑换中心"];
+            vc.key = str;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }else{
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        }
+    };
+    
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -253,13 +288,27 @@
 
 -(void)simpleButtonsTableViewCell:(SimpleButtonsTableViewCell*)cell didSelectedModel:(SimpleButtonModel*)model{
     NSString *action = [model.identifier stringValueFromUrlParamsKey:@"r"];
+    
+    
     if ([action isEqualToString:@"order"]) {
+        
+        if ([UserModel token].length == 0) {
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:UserNeed_Login_Notification object:@{@"needMsg":@"0"}];
+            return;
+        }
         
         MyOrdersPagerViewController* pag=[[MyOrdersPagerViewController alloc]init];
         pag.originalPageIndex=MyOrderTypeNotSent ;
         [self.navigationController pushViewController:pag animated:YES];
         
     }else if ([action isEqualToString:@"member.favorite"]){
+        
+        if ([UserModel token].length == 0) {
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:UserNeed_Login_Notification object:@{@"needMsg":@"0"}];
+            return;
+        }
         
         MyFavouriteViewController *vc = [[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"MyFavouriteViewController"];
        

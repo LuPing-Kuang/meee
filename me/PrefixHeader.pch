@@ -48,6 +48,7 @@
 #import "UINavigationController+Children.h"
 #import "YYModel.h"
 
+#import "SGQRCode.h"
 
 
 #import "ZZUrlTool.h"

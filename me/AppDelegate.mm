@@ -32,7 +32,7 @@
     [HUDManager changeHudToBlack];
     [SVProgressHUD setMinimumDismissTimeInterval:1];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goToLogin) name:UserNeed_Login_Notification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goToLogin:) name:UserNeed_Login_Notification object:nil];
     
     return YES;
 }
@@ -79,8 +79,12 @@
 }
 
 
-- (void)goToLogin{
-    [HUDManager showErrorMsg:@"登录已失效，请重新登录！"];
+- (void)goToLogin:(NSNotification*)notifcation{
+    NSDictionary *dic = notifcation.object;
+    if ([[dic valueForKey:@"needMsg"] isKindOfClass:[NSString class]] && [[dic valueForKey:@"needMsg"] isEqualToString:@"1"]) {
+        [HUDManager showErrorMsg:@"登录已失效，请重新登录！"];
+    }
+    
     UINavigationController *nav = (UINavigationController*)self.window.rootViewController;
     
     if ([nav.presentedViewController isKindOfClass:[LoginViewController class]] || [nav.presentingViewController isKindOfClass:[LoginViewController class]]) {

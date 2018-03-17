@@ -174,6 +174,23 @@
 		57F659DE2018AAAD000FDD93 /* HUDManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F659DC2018AAAC000FDD93 /* HUDManager.m */; };
 		57F659E32018ED03000FDD93 /* UserDataLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F659E22018ED03000FDD93 /* UserDataLoader.m */; };
 		57F659E72018FF6A000FDD93 /* MyPageLogoutAndForgetPsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F659E62018FF6A000FDD93 /* MyPageLogoutAndForgetPsCell.m */; };
+		B436426C20596D4B00AE1A84 /* ExchangeController.m in Sources */ = {isa = PBXBuildFile; fileRef = B436426920596D4A00AE1A84 /* ExchangeController.m */; };
+		B436426D20596D4B00AE1A84 /* ExchangeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B436426B20596D4B00AE1A84 /* ExchangeController.xib */; };
+		B436427420596D5700AE1A84 /* ExchangeResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = B436426E20596D5600AE1A84 /* ExchangeResultView.m */; };
+		B436427520596D5700AE1A84 /* ExchangeMsgView.m in Sources */ = {isa = PBXBuildFile; fileRef = B436426F20596D5700AE1A84 /* ExchangeMsgView.m */; };
+		B436427620596D5700AE1A84 /* ExchangeResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B436427120596D5700AE1A84 /* ExchangeResultView.xib */; };
+		B436427720596D5700AE1A84 /* ExchangeMsgView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B436427320596D5700AE1A84 /* ExchangeMsgView.xib */; };
+		B436428B20596D7E00AE1A84 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = B436427920596D7E00AE1A84 /* LICENSE */; };
+		B436428C20596D7E00AE1A84 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B436427A20596D7E00AE1A84 /* README.md */; };
+		B436428D20596D7E00AE1A84 /* SGQRCode.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B436427D20596D7E00AE1A84 /* SGQRCode.bundle */; };
+		B436428E20596D7E00AE1A84 /* UIImage+ImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = B436428020596D7E00AE1A84 /* UIImage+ImageSize.m */; };
+		B436428F20596D7E00AE1A84 /* SGQRCodeHelperTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B436428120596D7E00AE1A84 /* SGQRCodeHelperTool.m */; };
+		B436429020596D7E00AE1A84 /* SGQRCodeScanningView.m in Sources */ = {isa = PBXBuildFile; fileRef = B436428220596D7E00AE1A84 /* SGQRCodeScanningView.m */; };
+		B436429120596D7E00AE1A84 /* SGQRCodeScanManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B436428320596D7E00AE1A84 /* SGQRCodeScanManager.m */; };
+		B436429220596D7E00AE1A84 /* SGQRCodeGenerateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B436428420596D7E00AE1A84 /* SGQRCodeGenerateManager.m */; };
+		B436429320596D7E00AE1A84 /* SGQRCodeAlbumManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B436428920596D7E00AE1A84 /* SGQRCodeAlbumManager.m */; };
+		B436429620596DD000AE1A84 /* QRCodeScanningController.m in Sources */ = {isa = PBXBuildFile; fileRef = B436429520596DD000AE1A84 /* QRCodeScanningController.m */; };
+		B4364299205A9F6500AE1A84 /* exchangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B4364298205A9F6500AE1A84 /* exchangeModel.m */; };
 		C3FDB33377861E72EEAB7BCE /* Pods_me.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF4C412905958FEC54DEC39B /* Pods_me.framework */; };
 /* End PBXBuildFile section */
 
@@ -500,6 +517,35 @@
 		57F659E52018FF6A000FDD93 /* MyPageLogoutAndForgetPsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPageLogoutAndForgetPsCell.h; sourceTree = "<group>"; };
 		57F659E62018FF6A000FDD93 /* MyPageLogoutAndForgetPsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPageLogoutAndForgetPsCell.m; sourceTree = "<group>"; };
 		7984CA6DE6CA9E40E51F6B72 /* Pods-me.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-me.release.xcconfig"; path = "Pods/Target Support Files/Pods-me/Pods-me.release.xcconfig"; sourceTree = "<group>"; };
+		B436426920596D4A00AE1A84 /* ExchangeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeController.m; sourceTree = "<group>"; };
+		B436426A20596D4A00AE1A84 /* ExchangeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeController.h; sourceTree = "<group>"; };
+		B436426B20596D4B00AE1A84 /* ExchangeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExchangeController.xib; sourceTree = "<group>"; };
+		B436426E20596D5600AE1A84 /* ExchangeResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeResultView.m; sourceTree = "<group>"; };
+		B436426F20596D5700AE1A84 /* ExchangeMsgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeMsgView.m; sourceTree = "<group>"; };
+		B436427020596D5700AE1A84 /* ExchangeMsgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeMsgView.h; sourceTree = "<group>"; };
+		B436427120596D5700AE1A84 /* ExchangeResultView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExchangeResultView.xib; sourceTree = "<group>"; };
+		B436427220596D5700AE1A84 /* ExchangeResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeResultView.h; sourceTree = "<group>"; };
+		B436427320596D5700AE1A84 /* ExchangeMsgView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExchangeMsgView.xib; sourceTree = "<group>"; };
+		B436427920596D7E00AE1A84 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		B436427A20596D7E00AE1A84 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		B436427C20596D7E00AE1A84 /* SGQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCode.h; sourceTree = "<group>"; };
+		B436427D20596D7E00AE1A84 /* SGQRCode.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SGQRCode.bundle; sourceTree = "<group>"; };
+		B436427F20596D7E00AE1A84 /* UIImage+ImageSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageSize.h"; sourceTree = "<group>"; };
+		B436428020596D7E00AE1A84 /* UIImage+ImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageSize.m"; sourceTree = "<group>"; };
+		B436428120596D7E00AE1A84 /* SGQRCodeHelperTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeHelperTool.m; sourceTree = "<group>"; };
+		B436428220596D7E00AE1A84 /* SGQRCodeScanningView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeScanningView.m; sourceTree = "<group>"; };
+		B436428320596D7E00AE1A84 /* SGQRCodeScanManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeScanManager.m; sourceTree = "<group>"; };
+		B436428420596D7E00AE1A84 /* SGQRCodeGenerateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeGenerateManager.m; sourceTree = "<group>"; };
+		B436428520596D7E00AE1A84 /* SGQRCodeAlbumManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeAlbumManager.h; sourceTree = "<group>"; };
+		B436428620596D7E00AE1A84 /* SGQRCodeHelperTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeHelperTool.h; sourceTree = "<group>"; };
+		B436428720596D7E00AE1A84 /* SGQRCodeScanningView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeScanningView.h; sourceTree = "<group>"; };
+		B436428820596D7E00AE1A84 /* SGQRCodeScanManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeScanManager.h; sourceTree = "<group>"; };
+		B436428920596D7E00AE1A84 /* SGQRCodeAlbumManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeAlbumManager.m; sourceTree = "<group>"; };
+		B436428A20596D7E00AE1A84 /* SGQRCodeGenerateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeGenerateManager.h; sourceTree = "<group>"; };
+		B436429420596DD000AE1A84 /* QRCodeScanningController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QRCodeScanningController.h; sourceTree = "<group>"; };
+		B436429520596DD000AE1A84 /* QRCodeScanningController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QRCodeScanningController.m; sourceTree = "<group>"; };
+		B4364297205A9F6500AE1A84 /* exchangeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = exchangeModel.h; sourceTree = "<group>"; };
+		B4364298205A9F6500AE1A84 /* exchangeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = exchangeModel.m; sourceTree = "<group>"; };
 		CF4C412905958FEC54DEC39B /* Pods_me.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_me.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F00E9ECEB6B05EAF15536EBB /* Pods-me.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-me.debug.xcconfig"; path = "Pods/Target Support Files/Pods-me/Pods-me.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -751,6 +797,12 @@
 				3946D2F41FF34C8D0074E77A /* view */,
 				3946D2EE1FF33B510074E77A /* HomePageCollectionViewController.h */,
 				3946D2EF1FF33B510074E77A /* HomePageCollectionViewController.m */,
+				B436427820596D7E00AE1A84 /* SGQRCode */,
+				B436426A20596D4A00AE1A84 /* ExchangeController.h */,
+				B436426920596D4A00AE1A84 /* ExchangeController.m */,
+				B436426B20596D4B00AE1A84 /* ExchangeController.xib */,
+				B436429420596DD000AE1A84 /* QRCodeScanningController.h */,
+				B436429520596DD000AE1A84 /* QRCodeScanningController.m */,
 				39F37F931FFF718D00781706 /* HomePageHttpTool.h */,
 				39F37F941FFF718D00781706 /* HomePageHttpTool.m */,
 				57B212322025926900D9A5FB /* StoresMapController.h */,
@@ -781,6 +833,12 @@
 				57EF8772202A9FE900FF3458 /* CustomPaopaotView.m */,
 				57EF8774202AA0D300FF3458 /* CustomAnnotationView.h */,
 				57EF8775202AA0D300FF3458 /* CustomAnnotationView.m */,
+				B436427020596D5700AE1A84 /* ExchangeMsgView.h */,
+				B436426F20596D5700AE1A84 /* ExchangeMsgView.m */,
+				B436427320596D5700AE1A84 /* ExchangeMsgView.xib */,
+				B436427220596D5700AE1A84 /* ExchangeResultView.h */,
+				B436426E20596D5600AE1A84 /* ExchangeResultView.m */,
+				B436427120596D5700AE1A84 /* ExchangeResultView.xib */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -995,6 +1053,8 @@
 				39BCC4AA1FFF7818008688B7 /* BannerModel.m */,
 				57B2123720259E8500D9A5FB /* StoreModel.h */,
 				57B2123820259E8600D9A5FB /* StoreModel.m */,
+				B4364297205A9F6500AE1A84 /* exchangeModel.h */,
+				B4364298205A9F6500AE1A84 /* exchangeModel.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -1151,6 +1211,46 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B436427820596D7E00AE1A84 /* SGQRCode */ = {
+			isa = PBXGroup;
+			children = (
+				B436427920596D7E00AE1A84 /* LICENSE */,
+				B436427A20596D7E00AE1A84 /* README.md */,
+				B436427B20596D7E00AE1A84 /* SGQRCode */,
+			);
+			name = SGQRCode;
+			path = ../../../../sourcetreeManager/PiaoGen/Pods/SGQRCode;
+			sourceTree = "<group>";
+		};
+		B436427B20596D7E00AE1A84 /* SGQRCode */ = {
+			isa = PBXGroup;
+			children = (
+				B436427C20596D7E00AE1A84 /* SGQRCode.h */,
+				B436427D20596D7E00AE1A84 /* SGQRCode.bundle */,
+				B436427E20596D7E00AE1A84 /* Category */,
+				B436428120596D7E00AE1A84 /* SGQRCodeHelperTool.m */,
+				B436428220596D7E00AE1A84 /* SGQRCodeScanningView.m */,
+				B436428320596D7E00AE1A84 /* SGQRCodeScanManager.m */,
+				B436428420596D7E00AE1A84 /* SGQRCodeGenerateManager.m */,
+				B436428520596D7E00AE1A84 /* SGQRCodeAlbumManager.h */,
+				B436428620596D7E00AE1A84 /* SGQRCodeHelperTool.h */,
+				B436428720596D7E00AE1A84 /* SGQRCodeScanningView.h */,
+				B436428820596D7E00AE1A84 /* SGQRCodeScanManager.h */,
+				B436428920596D7E00AE1A84 /* SGQRCodeAlbumManager.m */,
+				B436428A20596D7E00AE1A84 /* SGQRCodeGenerateManager.h */,
+			);
+			path = SGQRCode;
+			sourceTree = "<group>";
+		};
+		B436427E20596D7E00AE1A84 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				B436427F20596D7E00AE1A84 /* UIImage+ImageSize.h */,
+				B436428020596D7E00AE1A84 /* UIImage+ImageSize.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1185,7 +1285,7 @@
 				TargetAttributes = {
 					394D376C1FEDF4330001CB48 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 5Q8QKERR7H;
+						DevelopmentTeam = 9J7GGU5G9G;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -1216,18 +1316,24 @@
 				394D37801FEDF4330001CB48 /* LaunchScreen.storyboard in Resources */,
 				394D377D1FEDF4330001CB48 /* Assets.xcassets in Resources */,
 				57071DAB2014C3590028FF37 /* ProductScreeningView.xib in Resources */,
+				B436428C20596D7E00AE1A84 /* README.md in Resources */,
 				57EF8778202ABC9900FF3458 /* StoresMapController.xib in Resources */,
 				391863512004CFCF0057C491 /* ProductComfirmOrderToolBarView.xib in Resources */,
 				394D377B1FEDF4330001CB48 /* Main.storyboard in Resources */,
+				B436428D20596D7E00AE1A84 /* SGQRCode.bundle in Resources */,
 				39186321200209900057C491 /* hhh.txt in Resources */,
 				57EF877D202AD66000FF3458 /* StoresAddressView.xib in Resources */,
+				B436427720596D5700AE1A84 /* ExchangeMsgView.xib in Resources */,
 				39F37F6C1FFF238900781706 /* MyPage.storyboard in Resources */,
+				B436426D20596D4B00AE1A84 /* ExchangeController.xib in Resources */,
 				39574C362008BA4800FD87B6 /* mypagejson.txt in Resources */,
 				3918633A200469C30057C491 /* address.txt in Resources */,
 				397C07492001C3E70073A57A /* RentCartEditToolBar.xib in Resources */,
+				B436428B20596D7E00AE1A84 /* LICENSE in Resources */,
 				39186336200460DE0057C491 /* ProductPage.storyboard in Resources */,
 				57B401D9201C60DE000E5830 /* MyFavouriteSelectedAllActionView.xib in Resources */,
 				39574C382008BF5200FD87B6 /* homepagejson.txt in Resources */,
+				B436427620596D5700AE1A84 /* ExchangeResultView.xib in Resources */,
 				3918638B20074ABA0057C491 /* SelectedAllActionView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1320,10 +1426,12 @@
 				57071DED201633890028FF37 /* PartnerMaterialCell.m in Sources */,
 				57071DEA20162FFA0028FF37 /* PartnerMaterialFieldModel.m in Sources */,
 				57F659D0201800DC000FDD93 /* ApplyPartnerCell.m in Sources */,
+				B436429120596D7E00AE1A84 /* SGQRCodeScanManager.m in Sources */,
 				39186377200715050057C491 /* PickerShadowContainer.m in Sources */,
 				39574C34200884A800FD87B6 /* MyOrderListTableViewCell.m in Sources */,
 				3918636A200701880057C491 /* MyAddressesTableViewController.m in Sources */,
 				57B401CB201C132D000E5830 /* AccountManager.m in Sources */,
+				B436427520596D5700AE1A84 /* ExchangeMsgView.m in Sources */,
 				57B4020D201F583E000E5830 /* ReportNewsController.m in Sources */,
 				57B2123920259E8600D9A5FB /* StoreModel.m in Sources */,
 				393F286A1FF34FDF009D5D2E /* CorneredButton.m in Sources */,
@@ -1358,6 +1466,7 @@
 				57AA7B1120110A4400F2C63E /* DistributionOrderCell.m in Sources */,
 				3946D2681FF332B20074E77A /* TabbarController.m in Sources */,
 				39186340200498040057C491 /* ProductOrderGoodInfoTableViewCell.m in Sources */,
+				B4364299205A9F6500AE1A84 /* exchangeModel.m in Sources */,
 				39186385200740040057C491 /* FootPrintModel.m in Sources */,
 				57AA7ACB2010E91F00F2C63E /* DistributionCashController.m in Sources */,
 				57071DA92014C3490028FF37 /* ProductScreeningView.m in Sources */,
@@ -1374,6 +1483,7 @@
 				39574C312008574E00FD87B6 /* MyOrderModel.m in Sources */,
 				57B401D1201C5017000E5830 /* MyfavouriteModel.m in Sources */,
 				3946D2D81FF3362A0074E77A /* NSDictionary+ext.m in Sources */,
+				B436429620596DD000AE1A84 /* QRCodeScanningController.m in Sources */,
 				39F37F871FFF6F9A00781706 /* NSObject+YYModel.m in Sources */,
 				3918637F2007380F0057C491 /* MyFootPrintTableViewController.m in Sources */,
 				573D4C5020124D2300260123 /* PartnerCommissionModel.m in Sources */,
@@ -1383,6 +1493,7 @@
 				39F37F881FFF6F9A00781706 /* YYClassInfo.m in Sources */,
 				397C074C2001C5310073A57A /* BaseToolBarTableViewController.m in Sources */,
 				3946D26F1FF332B20074E77A /* NaviController.m in Sources */,
+				B436428E20596D7E00AE1A84 /* UIImage+ImageSize.m in Sources */,
 				573D4C742013070100260123 /* MyOtherPartnerModel.m in Sources */,
 				3918633D200497E90057C491 /* ProductOrderAddressTableViewCell.m in Sources */,
 				391863542006F8700057C491 /* RegisterViewController.m in Sources */,
@@ -1408,6 +1519,7 @@
 				39F37F6A1FFF233900781706 /* MyPageViewController.m in Sources */,
 				39574C2E2008568100FD87B6 /* MyOrdersPagerViewController.m in Sources */,
 				39F37F951FFF718D00781706 /* HomePageHttpTool.m in Sources */,
+				B436426C20596D4B00AE1A84 /* ExchangeController.m in Sources */,
 				57071DE720162C550028FF37 /* PartnerMaterialModel.m in Sources */,
 				57F659DB2018A866000FDD93 /* NetworkManager.m in Sources */,
 				57F659E32018ED03000FDD93 /* UserDataLoader.m in Sources */,
@@ -1418,9 +1530,12 @@
 				57AA7B1D2011711700F2C63E /* GetCashDetailCell.m in Sources */,
 				39F37F731FFF4A8400781706 /* LinedTableViewCell.m in Sources */,
 				57B40150201A182A000E5830 /* NSArray+ ZXPUnicode.m in Sources */,
+				B436428F20596D7E00AE1A84 /* SGQRCodeHelperTool.m in Sources */,
 				39F37F921FFF710A00781706 /* ZZUrlTool.m in Sources */,
 				57E091A82025B3670030C137 /* TransportViewController.m in Sources */,
 				57F659DE2018AAAD000FDD93 /* HUDManager.m in Sources */,
+				B436429220596D7E00AE1A84 /* SGQRCodeGenerateManager.m in Sources */,
+				B436429020596D7E00AE1A84 /* SGQRCodeScanningView.m in Sources */,
 				39186370200703DB0057C491 /* AddressOptionTableViewCell.m in Sources */,
 				57B401D4201C5322000E5830 /* MyFavouriteViewCell.m in Sources */,
 				573D4C652012E8B600260123 /* MyOtherPartnerPageController.m in Sources */,
@@ -1435,8 +1550,10 @@
 				397C074F2001CA340073A57A /* CartPageHttpTool.m in Sources */,
 				39F37F7A1FFF581300781706 /* MyHeaderTableViewCell.m in Sources */,
 				57B401C5201C0A44000E5830 /* changePsController.m in Sources */,
+				B436427420596D5700AE1A84 /* ExchangeResultView.m in Sources */,
 				39186382200738E10057C491 /* MyFootPrintTableViewCell.m in Sources */,
 				57B40213201F5BA9000E5830 /* ReportNewsModel.m in Sources */,
+				B436429320596D7E00AE1A84 /* SGQRCodeAlbumManager.m in Sources */,
 				3946D2DB1FF3362A0074E77A /* UINavigationController+Children.m in Sources */,
 				57E091B42025E07C0030C137 /* TransportViewCell.m in Sources */,
 				57B40153201AB6BB000E5830 /* ForgetPassWordController.m in Sources */,
@@ -1576,9 +1693,9 @@
 			baseConfigurationReference = F00E9ECEB6B05EAF15536EBB /* Pods-me.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 5Q8QKERR7H;
+				DEVELOPMENT_TEAM = 9J7GGU5G9G;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1590,8 +1707,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bangju.meee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "983b8431-7087-48b1-bad4-d3b7bf322852";
-				PROVISIONING_PROFILE_SPECIFIER = IOSDEV_2;
+				PROVISIONING_PROFILE = "23ae48d5-142f-490b-8240-d502946a1e41";
+				PROVISIONING_PROFILE_SPECIFIER = MeeeAdhoc;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1601,9 +1718,9 @@
 			baseConfigurationReference = 7984CA6DE6CA9E40E51F6B72 /* Pods-me.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 5Q8QKERR7H;
+				DEVELOPMENT_TEAM = 9J7GGU5G9G;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1615,8 +1732,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bangju.meee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "983b8431-7087-48b1-bad4-d3b7bf322852";
-				PROVISIONING_PROFILE_SPECIFIER = IOSDEV_2;
+				PROVISIONING_PROFILE = "23ae48d5-142f-490b-8240-d502946a1e41";
+				PROVISIONING_PROFILE_SPECIFIER = MeeeAdhoc;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

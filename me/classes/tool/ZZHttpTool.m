@@ -131,7 +131,7 @@
                         failure(error);
                         
                         if ([[NSString stringWithFormat:@"%@",cachedDict[@"code"]] isEqualToString:@"130"] && [cachedDict[@"message"] isEqualToString:@"登录已失效，请重新登录！"]) {
-                            [[NSNotificationCenter defaultCenter] postNotificationName:UserNeed_Login_Notification object:nil];
+                            [[NSNotificationCenter defaultCenter] postNotificationName:UserNeed_Login_Notification object:@{@"needMsg":@"1"}];
                         }
                         
                     }
@@ -177,7 +177,7 @@
                             failure(error);
                             
                             if ([[NSString stringWithFormat:@"%@",result[@"code"]] isEqualToString:@"130"] && [result[@"message"] isEqualToString:@"登录已失效，请重新登录！"]) {
-                                [[NSNotificationCenter defaultCenter] postNotificationName:UserNeed_Login_Notification object:nil];
+                                [[NSNotificationCenter defaultCenter] postNotificationName:UserNeed_Login_Notification object:@{@"needMsg":@"1"}];
                             }
                         }
                         

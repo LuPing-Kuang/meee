@@ -79,12 +79,17 @@
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             NSDictionary*dic = responseObject;
             NSString *code = [NSString stringWithFormat:@"%@",[dic valueForKey:@"code"]];
+            NSString *message = [NSString stringWithFormat:@"%@",[dic valueForKey:@"message"]];
             if ([code isEqualToString:@"0"]) {
                 
                 success(task,[dic valueForKey:@"data"]);
             }else{
                 
                 failure(task,[dic valueForKey:@"message"]);
+                
+                if ([code isEqualToString:@"130"] && [message isEqualToString:@"登录已失效，请重新登录！"]) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:UserNeed_Login_Notification object:@{@"needMsg":@"1"}];
+                }
             }
         }else{
             failure(task,@"解析数据出错");
@@ -96,6 +101,7 @@
             
             failure(task,error.localizedDescription);
         }
+        
         
     }];
     
