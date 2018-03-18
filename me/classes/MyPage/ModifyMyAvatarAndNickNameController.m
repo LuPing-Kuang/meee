@@ -31,6 +31,8 @@
     self.saveBtn.layer.cornerRadius = 5.0;
     self.saveBtn.layer.masksToBounds = YES;
     
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     MJWeakSelf;
     [self.iconImageV setTapAction:^(UITapGestureRecognizer *tap) {
         [weakSelf goToSelectImage];

@@ -10,12 +10,14 @@
 #import "DistributionCashCell.h"
 #import "MyPageHttpTool.h"
 #import "PartnerCommissionModel.h"
+#import "GetCashDetailPageController.h"
+#import "GetCashController.h"
 
 @interface DistributionCashController ()
 @property (nonatomic, strong) NSArray *titleArr;
 @property (nonatomic, strong) UIButton *bottomBtn;
 @property (nonatomic, strong) PartnerCommissionModel *commissionMdodel;
-
+@property (nonatomic,assign) BOOL isHasData;
 
 @end
 
@@ -26,10 +28,6 @@
     [super viewDidLoad];
     self.title = @"分销佣金";
     
-    UIBarButtonItem *getCashDetailBtn=[[UIBarButtonItem alloc]initWithTitle:@"提现明细" style:UIBarButtonItemStylePlain target:self action:@selector(getCashDetailBtnClick)];
-    self.navigationItem.rightBarButtonItem=getCashDetailBtn;
-
-    
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 44, 0);
     self.bottomBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height-44 - 64, self.view.frame.size.width, 44)];
     self.bottomBtn.backgroundColor = _importantColor;
@@ -37,13 +35,17 @@
     [self.bottomBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.view addSubview:self.bottomBtn];
     [self.bottomBtn addTarget:self action:@selector(getCashBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    self.bottomBtn.hidden = YES;
     
     [self refresh];
+    self.isHasData = NO;
 }
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
+    if (!self.isHasData) {
+        return 0;
+    }
     return 5;
 }
 
@@ -130,12 +132,25 @@
     return [[UITableViewCell alloc]init];
 }
 
-
+- (void)setIsHasData:(BOOL)isHasData{
+    _isHasData = isHasData;
+    
+    if (_isHasData) {
+        UIBarButtonItem *getCashDetailBtn=[[UIBarButtonItem alloc]initWithTitle:@"提现明细" style:UIBarButtonItemStylePlain target:self action:@selector(getCashDetailBtnClick)];
+        self.navigationItem.rightBarButtonItem=getCashDetailBtn;
+        
+        
+        self.bottomBtn.hidden = NO;
+    }
+    
+    
+}
 
 -(void)refresh
 {
     [self loadingDataRefreshing:YES];
 }
+
 
 
 
@@ -149,7 +164,7 @@
     MJWeakSelf;
     [MyPageHttpTool getMyPartnerCommissionCache:NO token:[UserModel token] success:^(PartnerCommissionModel *partner) {
         weakSelf.commissionMdodel = partner;
-        
+        weakSelf.isHasData = YES;
         [weakSelf.tableView reloadData];
         [weakSelf endRefresh];
     } failure:^(NSString *errorMsg) {
@@ -181,13 +196,28 @@
 
 //提现明细
 - (void)getCashDetailBtnClick{
-    [self showSuccessMsg:@"提现明细"];
+    
+    GetCashDetailPageController* pag=[[GetCashDetailPageController alloc]init];
+    pag.originalPageIndex=0;
+    [self.navigationController pushViewController:pag animated:YES];
 }
 
 
 //我要提现
 - (void)getCashBtnClick{
-    [self showSuccessMsg:@"我要提现"];
+    
+    NSInteger cash = self.commissionMdodel.commission_ok.integerValue;
+    
+    if (cash >= 1) {
+        [self.navigationController pushViewController:[[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"GetCashController"] animated:YES];
+    }else{
+    
+        [self showErrorMsg:@"佣金要满1元才可以提现"];
+    }
+    
+    
+    
+    
 }
 
 

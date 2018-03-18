@@ -13,6 +13,7 @@
 
 @interface MyPartnerViewController ()
 @property (nonatomic, strong) MyPartnerModel *partner;
+@property (nonatomic,assign) BOOL isHasData;
 
 @end
 
@@ -22,11 +23,14 @@
     [super viewDidLoad];
     self.title = @"合伙人中心";
     [self refresh];
+    self.isHasData = NO;
 }
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
+    if (!self.isHasData) {
+        return 0;
+    }
     return 1;
 }
 
@@ -75,6 +79,7 @@
     MJWeakSelf;
     [MyPageHttpTool getMyPartnerCache:NO token:[UserModel token] success:^(MyPartnerModel* partner) {
         weakSelf.partner = partner;
+        weakSelf.isHasData = YES;
         [weakSelf.tableView reloadData];
         [weakSelf endRefresh];
     } failure:^(NSString *errorMsg) {

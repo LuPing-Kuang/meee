@@ -191,6 +191,9 @@
 		B436429320596D7E00AE1A84 /* SGQRCodeAlbumManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B436428920596D7E00AE1A84 /* SGQRCodeAlbumManager.m */; };
 		B436429620596DD000AE1A84 /* QRCodeScanningController.m in Sources */ = {isa = PBXBuildFile; fileRef = B436429520596DD000AE1A84 /* QRCodeScanningController.m */; };
 		B4364299205A9F6500AE1A84 /* exchangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B4364298205A9F6500AE1A84 /* exchangeModel.m */; };
+		B48CC021205CF37E00A04E96 /* GetCashController.m in Sources */ = {isa = PBXBuildFile; fileRef = B48CC020205CF37E00A04E96 /* GetCashController.m */; };
+		B48CC024205CF74900A04E96 /* GetCashCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B48CC023205CF74800A04E96 /* GetCashCell.m */; };
+		B4B97D0F205DF611002D8916 /* PayTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B97D0E205DF611002D8916 /* PayTypeModel.m */; };
 		C3FDB33377861E72EEAB7BCE /* Pods_me.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF4C412905958FEC54DEC39B /* Pods_me.framework */; };
 /* End PBXBuildFile section */
 
@@ -546,6 +549,12 @@
 		B436429520596DD000AE1A84 /* QRCodeScanningController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QRCodeScanningController.m; sourceTree = "<group>"; };
 		B4364297205A9F6500AE1A84 /* exchangeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = exchangeModel.h; sourceTree = "<group>"; };
 		B4364298205A9F6500AE1A84 /* exchangeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = exchangeModel.m; sourceTree = "<group>"; };
+		B48CC01F205CF37E00A04E96 /* GetCashController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetCashController.h; sourceTree = "<group>"; };
+		B48CC020205CF37E00A04E96 /* GetCashController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetCashController.m; sourceTree = "<group>"; };
+		B48CC022205CF74800A04E96 /* GetCashCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetCashCell.h; sourceTree = "<group>"; };
+		B48CC023205CF74800A04E96 /* GetCashCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetCashCell.m; sourceTree = "<group>"; };
+		B4B97D0D205DF611002D8916 /* PayTypeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PayTypeModel.h; sourceTree = "<group>"; };
+		B4B97D0E205DF611002D8916 /* PayTypeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PayTypeModel.m; sourceTree = "<group>"; };
 		CF4C412905958FEC54DEC39B /* Pods_me.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_me.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F00E9ECEB6B05EAF15536EBB /* Pods-me.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-me.debug.xcconfig"; path = "Pods/Target Support Files/Pods-me/Pods-me.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -999,6 +1008,8 @@
 				3918638720074AAC0057C491 /* SelectedAllActionView.h */,
 				3918638820074AAC0057C491 /* SelectedAllActionView.m */,
 				3918638A20074ABA0057C491 /* SelectedAllActionView.xib */,
+				B48CC022205CF74800A04E96 /* GetCashCell.h */,
+				B48CC023205CF74800A04E96 /* GetCashCell.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -1028,6 +1039,8 @@
 				573D4C702013056200260123 /* MyOtherPartnerTotalModel.m */,
 				573D4C722013070100260123 /* MyOtherPartnerModel.h */,
 				573D4C732013070100260123 /* MyOtherPartnerModel.m */,
+				B4B97D0D205DF611002D8916 /* PayTypeModel.h */,
+				B4B97D0E205DF611002D8916 /* PayTypeModel.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -1112,6 +1125,8 @@
 				57AA7B1020110A4400F2C63E /* DistributionOrderCell.m */,
 				57AA7B1820116C1100F2C63E /* GetCashDetailPageController.h */,
 				57AA7B1920116C1100F2C63E /* GetCashDetailPageController.m */,
+				B48CC01F205CF37E00A04E96 /* GetCashController.h */,
+				B48CC020205CF37E00A04E96 /* GetCashController.m */,
 				57AA7B152011179300F2C63E /* GetCashDetailController.h */,
 				57AA7B162011179300F2C63E /* GetCashDetailController.m */,
 				57AA7B1B2011711600F2C63E /* GetCashDetailCell.h */,
@@ -1285,7 +1300,7 @@
 				TargetAttributes = {
 					394D376C1FEDF4330001CB48 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 9J7GGU5G9G;
+						DevelopmentTeam = 5Q8QKERR7H;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -1461,6 +1476,7 @@
 				57AA7AC52010CDAA00F2C63E /* MyPartnerViewCell.m in Sources */,
 				57E091B72025E2320030C137 /* BundlelistMsgModel.m in Sources */,
 				39F37F771FFF50A700781706 /* MyPageDataModel.m in Sources */,
+				B48CC021205CF37E00A04E96 /* GetCashController.m in Sources */,
 				3918634C2004AC5B0057C491 /* ProductionOrderModel.m in Sources */,
 				398DC9BA200848100083343D /* ProductOrderBillViewController.m in Sources */,
 				57AA7B1120110A4400F2C63E /* DistributionOrderCell.m in Sources */,
@@ -1497,6 +1513,7 @@
 				573D4C742013070100260123 /* MyOtherPartnerModel.m in Sources */,
 				3918633D200497E90057C491 /* ProductOrderAddressTableViewCell.m in Sources */,
 				391863542006F8700057C491 /* RegisterViewController.m in Sources */,
+				B48CC024205CF74900A04E96 /* GetCashCell.m in Sources */,
 				57AA7ACE2010EB0000F2C63E /* DistributionCashCell.m in Sources */,
 				3946D2791FF335D50074E77A /* BaseCollectionViewController.m in Sources */,
 				39BCC4B42000B2EF008688B7 /* ProductionModel.m in Sources */,
@@ -1538,6 +1555,7 @@
 				B436429020596D7E00AE1A84 /* SGQRCodeScanningView.m in Sources */,
 				39186370200703DB0057C491 /* AddressOptionTableViewCell.m in Sources */,
 				57B401D4201C5322000E5830 /* MyFavouriteViewCell.m in Sources */,
+				B4B97D0F205DF611002D8916 /* PayTypeModel.m in Sources */,
 				573D4C652012E8B600260123 /* MyOtherPartnerPageController.m in Sources */,
 				3946D2D71FF3362A0074E77A /* UIView+ext.m in Sources */,
 				57E091B12025D8150030C137 /* TransportMsgModel.m in Sources */,
@@ -1693,9 +1711,9 @@
 			baseConfigurationReference = F00E9ECEB6B05EAF15536EBB /* Pods-me.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 9J7GGU5G9G;
+				DEVELOPMENT_TEAM = 5Q8QKERR7H;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1707,8 +1725,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bangju.meee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "23ae48d5-142f-490b-8240-d502946a1e41";
-				PROVISIONING_PROFILE_SPECIFIER = MeeeAdhoc;
+				PROVISIONING_PROFILE = "a213e51d-c9e1-4a71-b85a-3d2376646128";
+				PROVISIONING_PROFILE_SPECIFIER = IOSDEV_2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;

@@ -28,4 +28,6 @@ typedef void (^failureBlock) (NSURLSessionDataTask *task , NSString *errorMsg);
 - (void)uploadImagePostPath:(NSString *)path parameters:(NSDictionary *)parameters image:(UIImage *)image success_status_ok:(successBlock)success failure:(failureBlock)failure;
 
 
+- (void)getPath:(NSString *)path parameters:(NSDictionary *)parameters success_status_ok:(successBlock)success failure:(failureBlock)failure;
+
 @end

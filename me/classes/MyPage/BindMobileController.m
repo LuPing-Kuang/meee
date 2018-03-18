@@ -28,6 +28,7 @@
     self.mobileTf.text = self.mobile;
     self.saveBtn.layer.cornerRadius = 5.0;
     self.saveBtn.layer.masksToBounds = YES;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{

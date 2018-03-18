@@ -647,4 +647,44 @@
 }
 
 
+//佣金提现页面
++ (void)getCashPageWithCompleted:(LoadServerDataFinishedBlock)finish{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setValue:[UserModel token] forKey:@"access_token"];
+    
+    [[NetworkManager getManager] getPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=commission.apply" parameters:dic success_status_ok:^(NSURLSessionDataTask *task, id data) {
+        if (finish) {
+            NSLog(@"%@",data);
+            finish(data,YES);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSString *errorMsg) {
+        if (finish) {
+            finish(errorMsg,NO);
+        }
+    }];
+    
+}
+
+//提交提现申请
++ (void)applyCash:(NSDictionary*)param withCompleted:(LoadServerDataFinishedBlock)finish{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:param];
+    [dic setValue:[UserModel token] forKey:@"access_token"];
+    
+    [[NetworkManager getManager] postPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=commission.apply" parameters:dic success_status_ok:^(NSURLSessionDataTask *task, id data) {
+        if (finish) {
+            NSLog(@"%@",data);
+            finish(data,YES);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSString *errorMsg) {
+        if (finish) {
+            finish(errorMsg,NO);
+        }
+    }];
+    
+}
+
+
+
 @end

@@ -83,6 +83,12 @@
 //保存个人信息
 + (void)saveMyNickName:(NSString*)nickName avatar:(NSString*)avatar withCompleted:(LoadServerDataFinishedBlock)finish;
 
+//佣金提现页面
++ (void)getCashPageWithCompleted:(LoadServerDataFinishedBlock)finish;
+
+//提交提现申请
++ (void)applyCash:(NSDictionary*)param withCompleted:(LoadServerDataFinishedBlock)finish;
+
 
 
 @end
