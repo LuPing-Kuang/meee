@@ -316,7 +316,13 @@
         
     }else if ([action isEqualToString:@"goods"]){
         
-        StoresMapController *vc = [[StoresMapController alloc]init];
+        /*
+         StoresMapController *vc = [[StoresMapController alloc]init];
+         [self.navigationController pushViewController:vc animated:YES];
+         */
+        
+        BaseWebViewController *vc = [[BaseWebViewController alloc]initWithUrl:[NSURL URLWithString:kMapStoreUrl]];
+        vc.title = @"在线地图";
         [self.navigationController pushViewController:vc animated:YES];
         
     }else{

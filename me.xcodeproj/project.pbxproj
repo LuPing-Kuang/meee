@@ -180,15 +180,6 @@
 		B436427520596D5700AE1A84 /* ExchangeMsgView.m in Sources */ = {isa = PBXBuildFile; fileRef = B436426F20596D5700AE1A84 /* ExchangeMsgView.m */; };
 		B436427620596D5700AE1A84 /* ExchangeResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B436427120596D5700AE1A84 /* ExchangeResultView.xib */; };
 		B436427720596D5700AE1A84 /* ExchangeMsgView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B436427320596D5700AE1A84 /* ExchangeMsgView.xib */; };
-		B436428B20596D7E00AE1A84 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = B436427920596D7E00AE1A84 /* LICENSE */; };
-		B436428C20596D7E00AE1A84 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B436427A20596D7E00AE1A84 /* README.md */; };
-		B436428D20596D7E00AE1A84 /* SGQRCode.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B436427D20596D7E00AE1A84 /* SGQRCode.bundle */; };
-		B436428E20596D7E00AE1A84 /* UIImage+ImageSize.m in Sources */ = {isa = PBXBuildFile; fileRef = B436428020596D7E00AE1A84 /* UIImage+ImageSize.m */; };
-		B436428F20596D7E00AE1A84 /* SGQRCodeHelperTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B436428120596D7E00AE1A84 /* SGQRCodeHelperTool.m */; };
-		B436429020596D7E00AE1A84 /* SGQRCodeScanningView.m in Sources */ = {isa = PBXBuildFile; fileRef = B436428220596D7E00AE1A84 /* SGQRCodeScanningView.m */; };
-		B436429120596D7E00AE1A84 /* SGQRCodeScanManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B436428320596D7E00AE1A84 /* SGQRCodeScanManager.m */; };
-		B436429220596D7E00AE1A84 /* SGQRCodeGenerateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B436428420596D7E00AE1A84 /* SGQRCodeGenerateManager.m */; };
-		B436429320596D7E00AE1A84 /* SGQRCodeAlbumManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B436428920596D7E00AE1A84 /* SGQRCodeAlbumManager.m */; };
 		B436429620596DD000AE1A84 /* QRCodeScanningController.m in Sources */ = {isa = PBXBuildFile; fileRef = B436429520596DD000AE1A84 /* QRCodeScanningController.m */; };
 		B4364299205A9F6500AE1A84 /* exchangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B4364298205A9F6500AE1A84 /* exchangeModel.m */; };
 		B48CC021205CF37E00A04E96 /* GetCashController.m in Sources */ = {isa = PBXBuildFile; fileRef = B48CC020205CF37E00A04E96 /* GetCashController.m */; };
@@ -529,22 +520,6 @@
 		B436427120596D5700AE1A84 /* ExchangeResultView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExchangeResultView.xib; sourceTree = "<group>"; };
 		B436427220596D5700AE1A84 /* ExchangeResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeResultView.h; sourceTree = "<group>"; };
 		B436427320596D5700AE1A84 /* ExchangeMsgView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExchangeMsgView.xib; sourceTree = "<group>"; };
-		B436427920596D7E00AE1A84 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		B436427A20596D7E00AE1A84 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		B436427C20596D7E00AE1A84 /* SGQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCode.h; sourceTree = "<group>"; };
-		B436427D20596D7E00AE1A84 /* SGQRCode.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SGQRCode.bundle; sourceTree = "<group>"; };
-		B436427F20596D7E00AE1A84 /* UIImage+ImageSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageSize.h"; sourceTree = "<group>"; };
-		B436428020596D7E00AE1A84 /* UIImage+ImageSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageSize.m"; sourceTree = "<group>"; };
-		B436428120596D7E00AE1A84 /* SGQRCodeHelperTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeHelperTool.m; sourceTree = "<group>"; };
-		B436428220596D7E00AE1A84 /* SGQRCodeScanningView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeScanningView.m; sourceTree = "<group>"; };
-		B436428320596D7E00AE1A84 /* SGQRCodeScanManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeScanManager.m; sourceTree = "<group>"; };
-		B436428420596D7E00AE1A84 /* SGQRCodeGenerateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeGenerateManager.m; sourceTree = "<group>"; };
-		B436428520596D7E00AE1A84 /* SGQRCodeAlbumManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeAlbumManager.h; sourceTree = "<group>"; };
-		B436428620596D7E00AE1A84 /* SGQRCodeHelperTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeHelperTool.h; sourceTree = "<group>"; };
-		B436428720596D7E00AE1A84 /* SGQRCodeScanningView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeScanningView.h; sourceTree = "<group>"; };
-		B436428820596D7E00AE1A84 /* SGQRCodeScanManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeScanManager.h; sourceTree = "<group>"; };
-		B436428920596D7E00AE1A84 /* SGQRCodeAlbumManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeAlbumManager.m; sourceTree = "<group>"; };
-		B436428A20596D7E00AE1A84 /* SGQRCodeGenerateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeGenerateManager.h; sourceTree = "<group>"; };
 		B436429420596DD000AE1A84 /* QRCodeScanningController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QRCodeScanningController.h; sourceTree = "<group>"; };
 		B436429520596DD000AE1A84 /* QRCodeScanningController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QRCodeScanningController.m; sourceTree = "<group>"; };
 		B4364297205A9F6500AE1A84 /* exchangeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = exchangeModel.h; sourceTree = "<group>"; };
@@ -806,7 +781,6 @@
 				3946D2F41FF34C8D0074E77A /* view */,
 				3946D2EE1FF33B510074E77A /* HomePageCollectionViewController.h */,
 				3946D2EF1FF33B510074E77A /* HomePageCollectionViewController.m */,
-				B436427820596D7E00AE1A84 /* SGQRCode */,
 				B436426A20596D4A00AE1A84 /* ExchangeController.h */,
 				B436426920596D4A00AE1A84 /* ExchangeController.m */,
 				B436426B20596D4B00AE1A84 /* ExchangeController.xib */,
@@ -1226,46 +1200,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		B436427820596D7E00AE1A84 /* SGQRCode */ = {
-			isa = PBXGroup;
-			children = (
-				B436427920596D7E00AE1A84 /* LICENSE */,
-				B436427A20596D7E00AE1A84 /* README.md */,
-				B436427B20596D7E00AE1A84 /* SGQRCode */,
-			);
-			name = SGQRCode;
-			path = ../../../../sourcetreeManager/PiaoGen/Pods/SGQRCode;
-			sourceTree = "<group>";
-		};
-		B436427B20596D7E00AE1A84 /* SGQRCode */ = {
-			isa = PBXGroup;
-			children = (
-				B436427C20596D7E00AE1A84 /* SGQRCode.h */,
-				B436427D20596D7E00AE1A84 /* SGQRCode.bundle */,
-				B436427E20596D7E00AE1A84 /* Category */,
-				B436428120596D7E00AE1A84 /* SGQRCodeHelperTool.m */,
-				B436428220596D7E00AE1A84 /* SGQRCodeScanningView.m */,
-				B436428320596D7E00AE1A84 /* SGQRCodeScanManager.m */,
-				B436428420596D7E00AE1A84 /* SGQRCodeGenerateManager.m */,
-				B436428520596D7E00AE1A84 /* SGQRCodeAlbumManager.h */,
-				B436428620596D7E00AE1A84 /* SGQRCodeHelperTool.h */,
-				B436428720596D7E00AE1A84 /* SGQRCodeScanningView.h */,
-				B436428820596D7E00AE1A84 /* SGQRCodeScanManager.h */,
-				B436428920596D7E00AE1A84 /* SGQRCodeAlbumManager.m */,
-				B436428A20596D7E00AE1A84 /* SGQRCodeGenerateManager.h */,
-			);
-			path = SGQRCode;
-			sourceTree = "<group>";
-		};
-		B436427E20596D7E00AE1A84 /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				B436427F20596D7E00AE1A84 /* UIImage+ImageSize.h */,
-				B436428020596D7E00AE1A84 /* UIImage+ImageSize.m */,
-			);
-			path = Category;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1300,8 +1234,8 @@
 				TargetAttributes = {
 					394D376C1FEDF4330001CB48 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 5Q8QKERR7H;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = 9J7GGU5G9G;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -1331,11 +1265,9 @@
 				394D37801FEDF4330001CB48 /* LaunchScreen.storyboard in Resources */,
 				394D377D1FEDF4330001CB48 /* Assets.xcassets in Resources */,
 				57071DAB2014C3590028FF37 /* ProductScreeningView.xib in Resources */,
-				B436428C20596D7E00AE1A84 /* README.md in Resources */,
 				57EF8778202ABC9900FF3458 /* StoresMapController.xib in Resources */,
 				391863512004CFCF0057C491 /* ProductComfirmOrderToolBarView.xib in Resources */,
 				394D377B1FEDF4330001CB48 /* Main.storyboard in Resources */,
-				B436428D20596D7E00AE1A84 /* SGQRCode.bundle in Resources */,
 				39186321200209900057C491 /* hhh.txt in Resources */,
 				57EF877D202AD66000FF3458 /* StoresAddressView.xib in Resources */,
 				B436427720596D5700AE1A84 /* ExchangeMsgView.xib in Resources */,
@@ -1344,7 +1276,6 @@
 				39574C362008BA4800FD87B6 /* mypagejson.txt in Resources */,
 				3918633A200469C30057C491 /* address.txt in Resources */,
 				397C07492001C3E70073A57A /* RentCartEditToolBar.xib in Resources */,
-				B436428B20596D7E00AE1A84 /* LICENSE in Resources */,
 				39186336200460DE0057C491 /* ProductPage.storyboard in Resources */,
 				57B401D9201C60DE000E5830 /* MyFavouriteSelectedAllActionView.xib in Resources */,
 				39574C382008BF5200FD87B6 /* homepagejson.txt in Resources */,
@@ -1385,6 +1316,7 @@
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SGQRCode/SGQRCode.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -1393,6 +1325,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SGQRCode.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1411,7 +1344,7 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/mapapi.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1441,7 +1374,6 @@
 				57071DED201633890028FF37 /* PartnerMaterialCell.m in Sources */,
 				57071DEA20162FFA0028FF37 /* PartnerMaterialFieldModel.m in Sources */,
 				57F659D0201800DC000FDD93 /* ApplyPartnerCell.m in Sources */,
-				B436429120596D7E00AE1A84 /* SGQRCodeScanManager.m in Sources */,
 				39186377200715050057C491 /* PickerShadowContainer.m in Sources */,
 				39574C34200884A800FD87B6 /* MyOrderListTableViewCell.m in Sources */,
 				3918636A200701880057C491 /* MyAddressesTableViewController.m in Sources */,
@@ -1509,7 +1441,6 @@
 				39F37F881FFF6F9A00781706 /* YYClassInfo.m in Sources */,
 				397C074C2001C5310073A57A /* BaseToolBarTableViewController.m in Sources */,
 				3946D26F1FF332B20074E77A /* NaviController.m in Sources */,
-				B436428E20596D7E00AE1A84 /* UIImage+ImageSize.m in Sources */,
 				573D4C742013070100260123 /* MyOtherPartnerModel.m in Sources */,
 				3918633D200497E90057C491 /* ProductOrderAddressTableViewCell.m in Sources */,
 				391863542006F8700057C491 /* RegisterViewController.m in Sources */,
@@ -1547,12 +1478,9 @@
 				57AA7B1D2011711700F2C63E /* GetCashDetailCell.m in Sources */,
 				39F37F731FFF4A8400781706 /* LinedTableViewCell.m in Sources */,
 				57B40150201A182A000E5830 /* NSArray+ ZXPUnicode.m in Sources */,
-				B436428F20596D7E00AE1A84 /* SGQRCodeHelperTool.m in Sources */,
 				39F37F921FFF710A00781706 /* ZZUrlTool.m in Sources */,
 				57E091A82025B3670030C137 /* TransportViewController.m in Sources */,
 				57F659DE2018AAAD000FDD93 /* HUDManager.m in Sources */,
-				B436429220596D7E00AE1A84 /* SGQRCodeGenerateManager.m in Sources */,
-				B436429020596D7E00AE1A84 /* SGQRCodeScanningView.m in Sources */,
 				39186370200703DB0057C491 /* AddressOptionTableViewCell.m in Sources */,
 				57B401D4201C5322000E5830 /* MyFavouriteViewCell.m in Sources */,
 				B4B97D0F205DF611002D8916 /* PayTypeModel.m in Sources */,
@@ -1571,7 +1499,6 @@
 				B436427420596D5700AE1A84 /* ExchangeResultView.m in Sources */,
 				39186382200738E10057C491 /* MyFootPrintTableViewCell.m in Sources */,
 				57B40213201F5BA9000E5830 /* ReportNewsModel.m in Sources */,
-				B436429320596D7E00AE1A84 /* SGQRCodeAlbumManager.m in Sources */,
 				3946D2DB1FF3362A0074E77A /* UINavigationController+Children.m in Sources */,
 				57E091B42025E07C0030C137 /* TransportViewCell.m in Sources */,
 				57B40153201AB6BB000E5830 /* ForgetPassWordController.m in Sources */,
@@ -1712,32 +1639,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 5Q8QKERR7H;
-				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/me/classes/tool/AlipaySDK",
-				);
-				GCC_PREFIX_HEADER = "$(SRCROOT)/me/PrefixHeader.pch";
-				INFOPLIST_FILE = me/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bangju.meee;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a213e51d-c9e1-4a71-b85a-3d2376646128";
-				PROVISIONING_PROFILE_SPECIFIER = IOSDEV_2;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		394D37861FEDF4330001CB48 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7984CA6DE6CA9E40E51F6B72 /* Pods-me.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9J7GGU5G9G;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1750,8 +1652,33 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bangju.meee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "23ae48d5-142f-490b-8240-d502946a1e41";
-				PROVISIONING_PROFILE_SPECIFIER = MeeeAdhoc;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		394D37861FEDF4330001CB48 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7984CA6DE6CA9E40E51F6B72 /* Pods-me.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9J7GGU5G9G;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/me/classes/tool/AlipaySDK",
+				);
+				GCC_PREFIX_HEADER = "$(SRCROOT)/me/PrefixHeader.pch";
+				INFOPLIST_FILE = me/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bangju.meee;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

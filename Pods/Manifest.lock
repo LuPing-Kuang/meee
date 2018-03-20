@@ -21,6 +21,7 @@ PODS:
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
+  - SGQRCode (2.1.9)
   - SVProgressHUD (2.0.4)
   - WechatOpenSDK (1.7.9)
 
@@ -31,6 +32,7 @@ DEPENDENCIES:
   - IQKeyboardManager (~> 4.0.8)
   - MJExtension (~> 3.0.13)
   - SDWebImage (~> 4.0.0)
+  - SGQRCode (~> 2.1.8)
   - SVProgressHUD (~> 2.0.4)
   - WechatOpenSDK (~> 1.7.7)
 
@@ -41,9 +43,10 @@ SPEC CHECKSUMS:
   IQKeyboardManager: 8eab4d8111418414619d1df8e4779ce5d0f8d7e2
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  SGQRCode: b13f93b5c0f16f840beff8009e0c129a5f3d4d8f
   SVProgressHUD: bfde85ed6c573ea802b9cb37894ed9b629034f1b
   WechatOpenSDK: 1fe7e3b07db860d6a936c3ff4a5aba6b890958d9
 
-PODFILE CHECKSUM: b8fc10ef42d24be14419070cf3b3dede6b55c3e1
+PODFILE CHECKSUM: 400a870ed18c52331ef1d1af24546687ef847c29
 
-COCOAPODS: 1.4.0.beta.2
+COCOAPODS: 1.4.0

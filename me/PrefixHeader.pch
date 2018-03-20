@@ -39,6 +39,8 @@
 #import <IQKeyboardManager/IQUIView+Hierarchy.h>
 #import "BaseWebViewController.h"
 
+#import "SGQRCode.h"
+
 
 #import "UIImageView+ZZWebImage.h"
 #import "UIView+ext.h"
@@ -48,7 +50,7 @@
 #import "UINavigationController+Children.h"
 #import "YYModel.h"
 
-#import "SGQRCode.h"
+
 
 
 #import "ZZUrlTool.h"
@@ -84,6 +86,7 @@
 
 #define BadNetworkDescription @"网络不通畅"
 #define AskToLoginDescription @"需要登录"
+#define kMapStoreUrl @"https://www.dituwuyou.com/map/viewer?mid=F7668_b3QZvZmMaGiUAmIw&from=singlemessage&isappinstalled=0"
 
 // 弱引用
 #define MJWeakSelf __weak typeof(self) weakSelf = self;

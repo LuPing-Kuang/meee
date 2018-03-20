@@ -10,6 +10,7 @@ use_frameworks!
     pod 'SVProgressHUD', '~> 2.0.4'
     pod 'Bugly', '~> 2.5.0'
     pod 'BaiduMapKit', '~> 3.4.2'
+    pod 'SGQRCode', '~> 2.1.8'
     
 end
 
