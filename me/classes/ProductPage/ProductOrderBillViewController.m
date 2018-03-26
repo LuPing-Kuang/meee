@@ -103,7 +103,10 @@
                     
                     if (success) {
                         [weakSelf showSuccessMsg:@"余额支付成功"];
-                        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+                        
+                        UIViewController* vc=[[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"ProductPaySuccessController"];
+                        [self.navigationController pushViewController:vc animated:YES];
+                        
                     }else{
                         [weakSelf showErrorMsg:@"余额不足,请充值"];
                     }

@@ -23,6 +23,7 @@
 #import "ApplyPartnerController.h"
 #import "MyFavouriteViewController.h"
 #import "UserDataLoader.h"
+#import "ModifyMyAvatarAndNickNameController.h"
 
 @interface MyPageViewController ()<SimpleButtonsTableViewCellDelegate>
 @property (nonatomic, strong) UserModel *userModel;
@@ -301,7 +302,15 @@
 -(void)goToChangeAvatar
 {
     NSLog(@"avatar");
+    MJWeakSelf;
     if (has_login) {
+        ModifyMyAvatarAndNickNameController *bindVc = [[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:NSStringFromClass([ModifyMyAvatarAndNickNameController class])];
+        bindVc.isFromHome = YES;
+        bindVc.needToReload = ^{
+            [weakSelf refresh];
+        };
+        
+        [self.navigationController pushViewController:bindVc animated:YES];
         
     }else{
         UIViewController* log=[[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"LoginViewController"];

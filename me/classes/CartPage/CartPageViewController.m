@@ -47,6 +47,7 @@
     [self calculateTotalAmount];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:UserLogin_Notification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:UserNeed_RefreshCart_Notification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {

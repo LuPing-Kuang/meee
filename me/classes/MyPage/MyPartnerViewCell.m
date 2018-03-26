@@ -54,6 +54,11 @@
     
     self.bgHeaderV.layer.cornerRadius = self.bgHeaderV.frame.size.height/2.0;
     self.bgHeaderV.layer.masksToBounds = YES;
+    
+    MJWeakSelf;
+    [self.rebateCashLb setTapAction:^(UITapGestureRecognizer *tap) {
+        [weakSelf PartnerCommissionBtnClick:nil];
+    }];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

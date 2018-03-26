@@ -8,6 +8,7 @@
 
 #import "ModifyMyAvatarAndNickNameController.h"
 #import "MyPageHttpTool.h"
+#import "PartnerMaterialModel.h"
 
 @interface ModifyMyAvatarAndNickNameController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -18,12 +19,19 @@
 
 @property (nonatomic,strong)UIImagePickerController *imgPicController;
 
+
+@property (nonatomic, strong) PartnerMaterialModel *model;
+@property (nonatomic,assign) BOOL hasData;
+
 @end
 
 @implementation ModifyMyAvatarAndNickNameController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.title = @"编辑用户头像";
+    
     [self.iconImageV setImageUrl:self.avatar];
     self.nickNameTf.text = self.nickName;
     self.mobileTf.text = self.mobile;
@@ -37,7 +45,70 @@
     [self.iconImageV setTapAction:^(UITapGestureRecognizer *tap) {
         [weakSelf goToSelectImage];
     }];
+    
+    
+    if (self.isFromHome) {
+        [self refresh];
+    }
+    
+    
 }
+
+-(void)refresh
+{
+    if (self.isFromHome) {
+        [self loadDataFromLocal:NO];
+    }
+    
+}
+
+-(void)loadDataFromLocal:(BOOL)local
+{
+    MJWeakSelf;
+    [MyPageHttpTool getMyMaterialPartnerCache:local token:[UserModel token] success:^(PartnerMaterialModel *model) {
+        weakSelf.model = model;
+        
+        [weakSelf endRefresh];
+        weakSelf.hasData = true;
+        [weakSelf.tableView reloadData];
+    } failure:^(NSString *errormsg) {
+        
+        [weakSelf showErrorMsg:errormsg];
+        [weakSelf endRefresh];
+        weakSelf.hasData = false;
+    }];
+}
+
+
+- (void)setModel:(PartnerMaterialModel *)model{
+    _model = model;
+    
+    self.nickName = _model.nickname;
+    self.avatar = _model.avatar;
+    self.mobile = _model.mobile;
+    
+    [self.iconImageV setImageUrl:self.avatar];
+    self.nickNameTf.text = self.nickName;
+    self.mobileTf.text = self.mobile;
+}
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    
+    if (self.isFromHome) {
+        if (self.hasData) {
+            return 2.0;
+        }else{
+            return 0.0;
+        }
+    }else{
+        return 2.0;
+    }
+    
+    
+}
+
+
 
 
 - (IBAction)saveBtnClick:(UIButton *)sender {
@@ -57,6 +128,11 @@
                 weakSelf.needToReload();
             }
             [weakSelf showSuccessMsg:@"保存成功"];
+            
+            if (weakSelf.isFromHome) {
+                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+            }
+            
         }else{
             [weakSelf showErrorMsg:result];
         }
@@ -105,7 +181,7 @@
             
             [weakSelf.iconImageV setImageUrl:weakSelf.avatar];
             [weakSelf showSuccessMsg:@"上传成功"];
-            [weakSelf.navigationController popViewControllerAnimated:YES];
+            
         }else{
             [weakSelf showErrorMsg:result];
         }

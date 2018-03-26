@@ -174,6 +174,7 @@
 		57F659DE2018AAAD000FDD93 /* HUDManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F659DC2018AAAC000FDD93 /* HUDManager.m */; };
 		57F659E32018ED03000FDD93 /* UserDataLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F659E22018ED03000FDD93 /* UserDataLoader.m */; };
 		57F659E72018FF6A000FDD93 /* MyPageLogoutAndForgetPsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F659E62018FF6A000FDD93 /* MyPageLogoutAndForgetPsCell.m */; };
+		B4150C8C20693B8600CF4EDC /* ProductPaySuccessController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4150C8B20693B8600CF4EDC /* ProductPaySuccessController.m */; };
 		B436426C20596D4B00AE1A84 /* ExchangeController.m in Sources */ = {isa = PBXBuildFile; fileRef = B436426920596D4A00AE1A84 /* ExchangeController.m */; };
 		B436426D20596D4B00AE1A84 /* ExchangeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B436426B20596D4B00AE1A84 /* ExchangeController.xib */; };
 		B436427420596D5700AE1A84 /* ExchangeResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = B436426E20596D5600AE1A84 /* ExchangeResultView.m */; };
@@ -511,6 +512,8 @@
 		57F659E52018FF6A000FDD93 /* MyPageLogoutAndForgetPsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPageLogoutAndForgetPsCell.h; sourceTree = "<group>"; };
 		57F659E62018FF6A000FDD93 /* MyPageLogoutAndForgetPsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPageLogoutAndForgetPsCell.m; sourceTree = "<group>"; };
 		7984CA6DE6CA9E40E51F6B72 /* Pods-me.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-me.release.xcconfig"; path = "Pods/Target Support Files/Pods-me/Pods-me.release.xcconfig"; sourceTree = "<group>"; };
+		B4150C8A20693B8600CF4EDC /* ProductPaySuccessController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductPaySuccessController.h; sourceTree = "<group>"; };
+		B4150C8B20693B8600CF4EDC /* ProductPaySuccessController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductPaySuccessController.m; sourceTree = "<group>"; };
 		B436426920596D4A00AE1A84 /* ExchangeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeController.m; sourceTree = "<group>"; };
 		B436426A20596D4A00AE1A84 /* ExchangeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeController.h; sourceTree = "<group>"; };
 		B436426B20596D4B00AE1A84 /* ExchangeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExchangeController.xib; sourceTree = "<group>"; };
@@ -652,6 +655,8 @@
 				39186335200460DE0057C491 /* ProductPage.storyboard */,
 				398DC9B8200848100083343D /* ProductOrderBillViewController.h */,
 				398DC9B9200848100083343D /* ProductOrderBillViewController.m */,
+				B4150C8A20693B8600CF4EDC /* ProductPaySuccessController.h */,
+				B4150C8B20693B8600CF4EDC /* ProductPaySuccessController.m */,
 			);
 			path = ProductPage;
 			sourceTree = "<group>";
@@ -1420,6 +1425,7 @@
 				57071DA92014C3490028FF37 /* ProductScreeningView.m in Sources */,
 				573D4C682012E8CE00260123 /* MyOtherPartnerController.m in Sources */,
 				3918637B200716430057C491 /* MyAddressAddNewTableViewController.m in Sources */,
+				B4150C8C20693B8600CF4EDC /* ProductPaySuccessController.m in Sources */,
 				573D4C6E2012FE2100260123 /* MyOtherPartnerCell.m in Sources */,
 				39F37F671FFF22BF00781706 /* LoginViewController.m in Sources */,
 				57EF8783202BFCEA00FF3458 /* CustomeAnnoPoint.m in Sources */,

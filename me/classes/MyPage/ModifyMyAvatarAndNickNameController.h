@@ -17,5 +17,7 @@
 @property (nonatomic, copy) void(^needToReload)(void);
 
 
+@property (nonatomic,assign) BOOL isFromHome;
+
 
 @end

@@ -4862,6 +4862,65 @@
             </objects>
             <point key="canvasLocation" x="1615" y="-725"/>
         </scene>
+        <!--Product Pay Success Controller-->
+        <scene sceneID="6jm-6c-sFe">
+            <objects>
+                <viewController storyboardIdentifier="ProductPaySuccessController" id="JZi-Ch-6MQ" customClass="ProductPaySuccessController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2MP-iU-dfE"/>
+                        <viewControllerLayoutGuide type="bottom" id="h7E-F0-5aX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1Dq-Lm-xcI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pay_Success" translatesAutoresizingMaskIntoConstraints="NO" id="saw-7I-OYe">
+                                <rect key="frame" x="147" y="74" width="80" height="80"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支付成功" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvF-Mt-gpr">
+                                <rect key="frame" x="153" y="169" width="69.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="实付金额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PnF-UX-dpj">
+                                <rect key="frame" x="157.5" y="195.5" width="61.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h4n-Pa-UXJ">
+                                <rect key="frame" x="147.5" y="230.5" width="80" height="40"/>
+                                <color key="backgroundColor" red="0.0" green="0.84313725490196079" blue="0.41568627450980389" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="Kdg-CF-aEy"/>
+                                    <constraint firstAttribute="height" constant="40" id="vrK-zU-nnf"/>
+                                </constraints>
+                                <state key="normal" title="查看订单">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="checkBillBtnClick:" destination="JZi-Ch-6MQ" eventType="touchUpInside" id="ma2-ll-Kie"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="qvF-Mt-gpr" firstAttribute="centerX" secondItem="1Dq-Lm-xcI" secondAttribute="centerX" id="4xD-kK-TPv"/>
+                            <constraint firstItem="saw-7I-OYe" firstAttribute="top" secondItem="2MP-iU-dfE" secondAttribute="bottom" constant="54" id="KOa-zp-dQW"/>
+                            <constraint firstItem="h4n-Pa-UXJ" firstAttribute="top" secondItem="PnF-UX-dpj" secondAttribute="bottom" constant="17" id="M2f-CN-V8r"/>
+                            <constraint firstItem="PnF-UX-dpj" firstAttribute="top" secondItem="qvF-Mt-gpr" secondAttribute="bottom" constant="6" id="Oxs-hK-RH6"/>
+                            <constraint firstItem="h4n-Pa-UXJ" firstAttribute="centerX" secondItem="1Dq-Lm-xcI" secondAttribute="centerX" id="l8M-iC-hHB"/>
+                            <constraint firstItem="saw-7I-OYe" firstAttribute="centerX" secondItem="1Dq-Lm-xcI" secondAttribute="centerX" id="nBj-cg-VJI"/>
+                            <constraint firstItem="qvF-Mt-gpr" firstAttribute="top" secondItem="saw-7I-OYe" secondAttribute="bottom" constant="15" id="pR6-Sr-3Ea"/>
+                            <constraint firstItem="PnF-UX-dpj" firstAttribute="centerX" secondItem="1Dq-Lm-xcI" secondAttribute="centerX" id="wau-ZO-7ay"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bzS-w3-fUC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2354" y="-725"/>
+        </scene>
         <!--Bind Mobile Controller-->
         <scene sceneID="rNg-VA-hk4">
             <objects>
@@ -5185,6 +5244,7 @@
         <image name="P_Commission" width="27" height="27"/>
         <image name="P_CommissionSubsidiary" width="27" height="27"/>
         <image name="P_MyPartner" width="27" height="27"/>
+        <image name="Pay_Success" width="80" height="80"/>
         <image name="add" width="14" height="14"/>
         <image name="downArrow" width="12" height="7"/>
         <image name="icon-distribute" width="15" height="15"/>

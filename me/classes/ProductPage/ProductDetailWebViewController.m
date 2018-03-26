@@ -91,6 +91,11 @@
         [self presentViewController:log animated:YES completion:nil];
         return NO;
     }
+    else if ([valueR isEqualToString:@"member.cart.add"]) {
+        NSLog(@"member.cart.add ");
+        [[NSNotificationCenter defaultCenter] postNotificationName:UserNeed_RefreshCart_Notification object:nil];
+        return NO;
+    }
     
     return YES;
 }

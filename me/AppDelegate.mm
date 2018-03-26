@@ -81,6 +81,10 @@
 
 - (void)goToLogin:(NSNotification*)notifcation{
     NSDictionary *dic = notifcation.object;
+    
+    [UserModel saveToken:nil];
+    AccountManager.sharedInstance.currentUser = nil;
+    
     if ([[dic valueForKey:@"needMsg"] isKindOfClass:[NSString class]] && [[dic valueForKey:@"needMsg"] isEqualToString:@"1"]) {
         [HUDManager showErrorMsg:@"登录已失效，请重新登录！"];
     }
