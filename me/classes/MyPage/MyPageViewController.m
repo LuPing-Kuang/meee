@@ -332,6 +332,7 @@
             if (success) {
                 [weakSelf showSuccessMsg:@"退出成功"];
                 [UserModel saveToken:nil];
+                AccountManager.sharedInstance.currentUser = nil;
                 [self.navigationController.tabBarController setSelectedIndex:0];
                 [[NSNotificationCenter defaultCenter] postNotificationName:UserLogin_Notification object:nil];
                 

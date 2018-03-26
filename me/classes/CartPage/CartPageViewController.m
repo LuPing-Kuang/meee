@@ -225,11 +225,19 @@
     [editToolBar.account setTitle:[NSString stringWithFormat:@"结算(%ld)",(long)count] forState:UIControlStateNormal];
     
     if (self==self.navigationController.viewControllers.firstObject) {
+        
         NSInteger itemCount=self.dataSource.count;
         NSString* tabbString=nil;
-        if (itemCount>0) {
-            tabbString=[NSString stringWithFormat:@"%ld",(long)itemCount];
+        
+        if ([AccountManager.sharedInstance currentUser] != nil) {
+            if (itemCount>0) {
+                tabbString=[NSString stringWithFormat:@"%ld",(long)itemCount];
+            }
+        }else {
+            tabbString = nil;
         }
+        
+        
         self.navigationController.tabBarItem.badgeValue=tabbString;
     }
 }

@@ -30,6 +30,7 @@
 @property (nonatomic, strong) NSString *suozaidiqu;
 @property (nonatomic, strong) NSString *xiangxidizhi;
 
+@property (nonatomic,assign) BOOL hasData;
 
 
 
@@ -54,7 +55,6 @@
     MJWeakSelf;
     [MyPageHttpTool getMyMaterialPartnerCache:local token:[UserModel token] success:^(PartnerMaterialModel *model) {
         weakSelf.model = model;
-        [weakSelf.tableView reloadData];
         
         
         weakSelf.proCityDisModel = [[AddressPCDModel alloc]init];
@@ -78,9 +78,12 @@
         weakSelf.proCityDisModel.district = district;
         
         [weakSelf endRefresh];
+        weakSelf.hasData = true;
+        [weakSelf.tableView reloadData];
     } failure:^(NSString *errormsg) {
         [weakSelf showErrorMsg:errormsg];
         [weakSelf endRefresh];
+        weakSelf.hasData = false;
     }];
 }
 
@@ -91,11 +94,17 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section==2) {
-        return self.model.fieldArr.count;
+    
+    if (self.hasData) {
+        if (section==2) {
+            return self.model.fieldArr.count;
+        }else{
+            return 1.0;
+        }
     }else{
-        return 1.0;
+        return 0;
     }
+    
     
 }
 
