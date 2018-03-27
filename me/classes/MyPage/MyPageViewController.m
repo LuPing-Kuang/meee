@@ -242,13 +242,19 @@
             
         }else if ([self.userModel.status isEqualToString:@"0"] && [self.userModel.isagent isEqualToString:@"0"]){
             
-            MJWeakSelf;
-            ApplyPartnerController *vc = [[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"ApplyPartnerController"];
-            vc.needRefreshBlock = ^{
-                [weakSelf refresh];
-            };
-            
-            [self.navigationController pushViewController:vc animated:YES];
+            [self showSystemAlertWithTitle:@"温馨提示" message:@"您还不是合伙人，要申请成为合伙人吗？" buttonTitle:@"确定" needDestructive:YES cancleBlock:^(UIAlertAction *action) {
+                
+            } btnBlock:^(UIAlertAction *action) {
+                
+                MJWeakSelf;
+                ApplyPartnerController *vc = [[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"ApplyPartnerController"];
+                vc.needRefreshBlock = ^{
+                    [weakSelf refresh];
+                };
+                
+                [self.navigationController pushViewController:vc animated:YES];
+            }];
+           
         }
         
         
