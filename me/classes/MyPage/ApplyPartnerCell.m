@@ -15,6 +15,12 @@
     // Initialization code
     self.applyBtn.layer.cornerRadius = 5.0;
     self.applyBtn.layer.masksToBounds = YES;
+    
+    [self.checkLb setTapAction:^(UITapGestureRecognizer *tap) {
+        if (self.checkBlock) {
+            self.checkBlock();
+        }
+    }];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

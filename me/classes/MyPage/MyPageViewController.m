@@ -227,36 +227,39 @@
     
     else if([link isEqualToString:@"member.info"])
     {
-        /*
-         status:1,isagent:1 合伙人
-         status:0,isagent:1 申请中，待审核
-         status:0,isagent:0 未申请
-         */
-        if ([self.userModel.status isEqualToString:@"1"] && [self.userModel.isagent isEqualToString:@"1"]) {
-            
-            [self pushViewControllerForStoryBoardId:@"PartnerMaterialController"];
-            
-        }else if ([self.userModel.status isEqualToString:@"0"] && [self.userModel.isagent isEqualToString:@"1"]){
-            
-            [self showMessage:@"合伙人资料申请中，等待审核"];
-            
-        }else if ([self.userModel.status isEqualToString:@"0"] && [self.userModel.isagent isEqualToString:@"0"]){
-            
-            [self showSystemAlertWithTitle:@"温馨提示" message:@"您还不是合伙人，要申请成为合伙人吗？" buttonTitle:@"确定" needDestructive:YES cancleBlock:^(UIAlertAction *action) {
-                
-            } btnBlock:^(UIAlertAction *action) {
-                
-                MJWeakSelf;
-                ApplyPartnerController *vc = [[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"ApplyPartnerController"];
-                vc.needRefreshBlock = ^{
-                    [weakSelf refresh];
-                };
-                
-                [self.navigationController pushViewController:vc animated:YES];
-            }];
-           
-        }
         
+        [self pushViewControllerForStoryBoardId:@"PartnerMaterialController"];
+        
+//        /*
+//         status:1,isagent:1 合伙人
+//         status:0,isagent:1 申请中，待审核
+//         status:0,isagent:0 未申请
+//         */
+//        if ([self.userModel.status isEqualToString:@"1"] && [self.userModel.isagent isEqualToString:@"1"]) {
+//
+//            [self pushViewControllerForStoryBoardId:@"PartnerMaterialController"];
+//
+//        }else if ([self.userModel.status isEqualToString:@"0"] && [self.userModel.isagent isEqualToString:@"1"]){
+//
+//            [self showMessage:@"合伙人资料申请中，等待审核"];
+//
+//        }else if ([self.userModel.status isEqualToString:@"0"] && [self.userModel.isagent isEqualToString:@"0"]){
+//
+//            [self showSystemAlertWithTitle:@"温馨提示" message:@"您还不是合伙人，要申请成为合伙人吗？" buttonTitle:@"确定" needDestructive:YES cancleBlock:^(UIAlertAction *action) {
+//
+//            } btnBlock:^(UIAlertAction *action) {
+//
+//                MJWeakSelf;
+//                ApplyPartnerController *vc = [[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"ApplyPartnerController"];
+//                vc.needRefreshBlock = ^{
+//                    [weakSelf refresh];
+//                };
+//
+//                [self.navigationController pushViewController:vc animated:YES];
+//            }];
+//
+//        }
+//
         
     }else if ([link isEqualToString:@"shop.notice"]){
         [self pushViewControllerForStoryBoardId:@"ReportNewsController"];

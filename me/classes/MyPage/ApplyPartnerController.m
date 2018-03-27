@@ -19,6 +19,8 @@
 @property (nonatomic, strong) UITextField *phoneTf;
 @property (nonatomic, strong) UITextField *weixinTf;
 
+@property (nonatomic, strong) UILabel *checkLb;
+
 
 @end
 
@@ -50,6 +52,11 @@
     }else if (indexPath.row==1){
         ApplyPartnerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ApplyPartnerTitleCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        MJWeakSelf;
+        cell.checkBlock = ^{
+            [weakSelf checkPartner];
+        };
+        self.checkLb = cell.checkLb;
         self.inviteTf = cell.inviteTf;
         self.nameTf = cell.nameTf;
         self.phoneTf = cell.phoneTf;
@@ -97,7 +104,9 @@
         return;
     }
     
+    [self showLoading:@"正在申请中..."];
     [MyPageHttpTool applyPartnerCache:NO mid:self.inviteTf.text.integerValue realname:self.nameTf.text mobile:self.phoneTf.text token:[UserModel token] success:^(PartnerMaterialModel *model) {
+        [weakSelf showSuccessMsg:@"成功提交申请"];
         if (self.needRefreshBlock) {
             self.needRefreshBlock();
         }
@@ -107,6 +116,33 @@
         [weakSelf showErrorMsg:errorMsg];
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
+}
+
+
+
+- (void)checkPartner{
+    MJWeakSelf;
+    
+    if (self.phoneTf.text.length==0) {
+        [self showErrorMsg:@"请输入合伙人手机号"];
+        return;
+    }
+    
+    if (self.nameTf.text.length==0) {
+        [self showErrorMsg:@"请输入合伙人姓名"];
+        return;
+    }
+    
+    [self showLoading:@"查询中..."];
+    
+    [MyPageHttpTool checkPartnerCache:NO mid:self.inviteTf.text.integerValue realname:self.nameTf.text mobile:self.phoneTf.text token:[UserModel token] success:^(NSString *name) {
+        [weakSelf showSuccessMsg:@"查询成功"];
+        weakSelf.checkLb.text = name;
+    } failure:^(NSString *errorMsg) {
+        [weakSelf showErrorMsg:errorMsg];
+        
+    }];
+
 }
 
 

@@ -71,6 +71,9 @@
 //申请成为合伙人
 +(void)applyPartnerCache:(BOOL)cache mid:(NSInteger)mid realname:(NSString*)realname mobile:(NSString*)mobile token:(NSString*)token success:(void(^)(PartnerMaterialModel* model))success failure:(void(^)(NSString* errorMsg))failure;
 
+//核对邀请人
++(void)checkPartnerCache:(BOOL)cache mid:(NSInteger)mid realname:(NSString*)realname mobile:(NSString*)mobile token:(NSString*)token success:(void(^)(NSString* name))success failure:(void(^)(NSString* errorMsg))failure;
+
 //编辑完善合伙人资料
 + (void)editPartnerMaterial:(NSDictionary*)param withCompleted:(LoadServerDataFinishedBlock)finish;
 

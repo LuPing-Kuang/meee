@@ -551,8 +551,42 @@
     [d setValue:mobile forKey:@"mobile"];
     
     NSString* str=[ZZUrlTool fullUrlWithTail:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=commission.register"];
+    
+    [self post:str params:d success:^(NSDictionary *dict) {
+        
+        NSString *code = [NSString stringWithFormat:@"%@",[dict valueForKey:@"code"]];
+        
+        if ([code isEqualToString:@"0"]) {
+            success([dict valueForKey:@"data"]);
+        }else{
+            failure([dict valueForKey:@"message"]);
+        }
+    } failure:^(NSError *error) {
+        if (failure) {
+            failure(error.localizedDescription);
+        }
+    }];
+    
+
+}
+
+
+
+//核对邀请人
++(void)checkPartnerCache:(BOOL)cache mid:(NSInteger)mid realname:(NSString*)realname mobile:(NSString*)mobile token:(NSString*)token success:(void(^)(NSString* name))success failure:(void(^)(NSString* errorMsg))failure {
+    
+    
+    NSMutableDictionary* d=[NSMutableDictionary dictionary];
+    [d setValue:token forKey:@"access_token"];
+    [d setValue:[NSNumber numberWithInteger:mid] forKey:@"mid"];
+    [d setValue:realname forKey:@"realname"];
+    [d setValue:mobile forKey:@"mobile"];
+    
+    NSString* str=[ZZUrlTool fullUrlWithTail:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=commission.register"];
+    
     [self get:str params:d usingCache:cache success:^(NSDictionary *dict) {
         NSString *code = [NSString stringWithFormat:@"%@",[dict valueForKey:@"code"]];
+        
         
         if ([code isEqualToString:@"0"]) {
             success([dict valueForKey:@"data"]);
@@ -565,6 +599,7 @@
             failure(err.localizedDescription);
         }
     }];
+    
     
 }
 

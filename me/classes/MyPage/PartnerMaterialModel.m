@@ -12,10 +12,20 @@
 
 + (instancetype)initWithf_dataDic:(NSDictionary*)f_data fields:(NSDictionary*)fields member:(NSDictionary*)member{
     PartnerMaterialModel *model = [PartnerMaterialModel mj_objectWithKeyValues:f_data];
-    NSString *province = f_data[@"diysuozaidiqu"][@"province"];
-    NSString *city = f_data[@"diysuozaidiqu"][@"city"];
-    NSString *area = f_data[@"diysuozaidiqu"][@"area"];
-    NSString *value = f_data[@"diysuozaidiqu"][@"value"];
+    
+    NSString *province;
+    NSString *city;
+    NSString *area;
+    NSString *value;
+    
+    if ([f_data[@"diysuozaidiqu"] isKindOfClass:[NSDictionary class]]) {
+        province = f_data[@"diysuozaidiqu"][@"province"];
+        city = f_data[@"diysuozaidiqu"][@"city"];
+        area = f_data[@"diysuozaidiqu"][@"area"];
+        value = f_data[@"diysuozaidiqu"][@"value"];
+    }
+    
+    
     model.province = province==nil?@"":province;
     model.city = city==nil?@"":city;
     model.area = area==nil?@"":area;

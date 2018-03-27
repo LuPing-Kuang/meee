@@ -15,8 +15,12 @@
 @property (weak, nonatomic) IBOutlet UITextField *phoneTf;
 @property (weak, nonatomic) IBOutlet UITextField *weixinTf;
 @property (weak, nonatomic) IBOutlet UIButton *applyBtn;
+@property (weak, nonatomic) IBOutlet UILabel *checkLb;
+
+
 
 @property (nonatomic, copy) void(^applyBlock)(void);
+@property (nonatomic, copy) void(^checkBlock)(void);
 
 
 @end
