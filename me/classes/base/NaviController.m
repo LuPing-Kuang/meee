@@ -95,6 +95,25 @@
 {
     UIBarButtonItem* ba=[[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     viewController.navigationItem.backBarButtonItem=ba;
+    
 }
+
+
+- (UIViewController*)popViewControllerAnimated:(BOOL)animated{
+    [HUDManager dismiss];
+    return [super popViewControllerAnimated:animated];
+}
+
+
+- (nullable NSArray<__kindof UIViewController *> *)popToViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    [HUDManager dismiss];
+    return [super popToViewController:viewController animated:animated];
+}
+
+
+
+
+
+
 
 @end

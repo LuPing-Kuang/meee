@@ -25,6 +25,9 @@
 #import "UserDataLoader.h"
 #import "ModifyMyAvatarAndNickNameController.h"
 
+#import "QRCodeScanningController.h"
+#import "ExchangeController.h"
+
 @interface MyPageViewController ()<SimpleButtonsTableViewCellDelegate>
 @property (nonatomic, strong) UserModel *userModel;
 @end
@@ -42,6 +45,7 @@
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:UserLogin_Notification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:UserNeed_RefreshMoney_Notification object:nil];
 }
 
 -(void)refresh
@@ -73,6 +77,8 @@
         }
     }];
 }
+
+
 
 #pragma mark tableview datasource delegate
 
@@ -306,6 +312,22 @@
 -(void)goToTopUp
 {
     NSLog(@"topup");
+    
+    QRCodeScanningController *vc = [[QRCodeScanningController alloc]init];
+    vc.title = @"扫一扫";
+    vc.hidesBottomBarWhenPushed = YES;
+    MJWeakSelf;
+    vc.ScanBlock = ^(NSString *str, BOOL success) {
+        if (success) {
+            ExchangeController *vc = [[ExchangeController alloc]initWithTitle:@"兑换中心"];
+            vc.key = str;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }else{
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        }
+    };
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)goToChangeAvatar

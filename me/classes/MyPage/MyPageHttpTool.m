@@ -246,6 +246,26 @@
     }];
 }
 
+//获得订单详情
++ (void)getOrderDetailId:(NSString*)oriderId withCompleted:(LoadServerDataFinishedBlock)finish{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setValue:[UserModel token] forKey:@"access_token"];
+    [dic setValue:oriderId forKey:@"id"];
+    
+    [[NetworkManager getManager] postPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=order.detail" parameters:dic success_status_ok:^(NSURLSessionDataTask *task, id data) {
+        if (finish) {
+            NSLog(@"%@",data);
+            finish(data,YES);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSString *errorMsg) {
+        if (finish) {
+            finish(errorMsg,NO);
+        }
+    }];
+}
+
+
 
 //取消订单
 + (void)cancelOrderId:(NSString*)oriderId withCompleted:(LoadServerDataFinishedBlock)finish{

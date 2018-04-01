@@ -42,7 +42,7 @@
 @property (nonatomic,strong) NSNumber* isdefault;
 @property (nonatomic,strong) NSString* zipcode;
 @property (nonatomic,strong) NSNumber* deleted;
-//@property (nonatomic,strong) NSString* street;
+@property (nonatomic,strong) NSString* street;
 @property (nonatomic,strong) NSString* datavalue;
 @property (nonatomic,strong) NSString* streetdatavalue;
 

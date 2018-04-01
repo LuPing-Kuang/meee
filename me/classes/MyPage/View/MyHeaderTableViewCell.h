@@ -17,4 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *levelName;
 @property (weak, nonatomic) IBOutlet UIButton *headButton;
 @property (weak, nonatomic) IBOutlet UIButton *topupButton;
+
+
 @end

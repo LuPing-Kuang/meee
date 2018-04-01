@@ -9,6 +9,7 @@
 #import "ProductPaySuccessController.h"
 #import "ProductOrderComfirmTableViewController.h"
 #import "ProductOrderBillViewController.h"
+#import "OrderDetailController.h"
 
 @interface ProductPaySuccessController ()
 
@@ -57,8 +58,13 @@
 
 - (IBAction)checkBillBtnClick:(UIButton *)sender {
     
-    // 调试中
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    OrderDetailController *vc = [[UIStoryboard storyboardWithName:@"MyPage" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([OrderDetailController class])];
+    vc.orderId = self.orderId;
+    
+    [self.navigationController pushViewController:vc animated:true];
+    
+    
+    
 }
 
 

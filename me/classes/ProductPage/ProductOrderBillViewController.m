@@ -9,6 +9,7 @@
 #import "ProductOrderBillViewController.h"
 #import "ProductPageHttpTool.h"
 #import "ProductionPayTypeModel.h"
+#import "ProductPaySuccessController.h"
 
 @interface ProductOrderBillViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *orderNumber;
@@ -17,6 +18,7 @@
 
 @property (nonatomic, strong) ProductionPayTypeModel *model;
 
+@property (nonatomic,assign) BOOL ishasData;
 
 @end
 
@@ -25,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title=@"收银台";
-    
+    self.ishasData = false;
     [self refresh];
 }
 
@@ -35,6 +37,7 @@
     [ProductPageHttpTool payOrderWithOrderNum:self.orderId withCompleted:^(id result, BOOL success) {
         if (success) {
             weakSelf.model = result;
+            weakSelf.ishasData = true;
             [weakSelf.tableView reloadData];
             [weakSelf endRefresh];
         }else{
@@ -54,6 +57,14 @@
 }
 
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    if (self.ishasData) {
+        return 2;
+    }else{
+        return 0;
+    }
+}
+
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -71,21 +82,32 @@
     
     if (indexPath.row==0) {
         if (self.model.credit.success) {
-            [self payWithPayType:@"credit"];
-        }else{
+            MJWeakSelf;
+            [self showSystemAlertWithTitle:@"提醒" message:@"确认要支付吗?" buttonTitle:@"确定" needDestructive:true cancleBlock:^(UIAlertAction *action) {
+                
+            } btnBlock:^(UIAlertAction *action) {
+                [weakSelf payWithPayType:@"credit"];
+            }];
             
         }
     }else if (indexPath.row==1){
         if (self.model.wechat.success) {
-            [self payWithPayType:@"wechat"];
-        }else{
+            MJWeakSelf;
+            [self showSystemAlertWithTitle:@"提醒" message:@"确认要支付吗?" buttonTitle:@"确定" needDestructive:true cancleBlock:^(UIAlertAction *action) {
+                
+            } btnBlock:^(UIAlertAction *action) {
+                [weakSelf payWithPayType:@"wechat"];
+            }];
             
         }
     }else if (indexPath.row==2){
         if (self.model.alipay.success) {
-            [self payWithPayType:@"alipay"];
-        }else{
-            
+            MJWeakSelf;
+            [self showSystemAlertWithTitle:@"提醒" message:@"确认要支付吗?" buttonTitle:@"确定" needDestructive:true cancleBlock:^(UIAlertAction *action) {
+                
+            } btnBlock:^(UIAlertAction *action) {
+                [weakSelf payWithPayType:@"alipay"];
+            }];
         }
     }
 }
@@ -93,7 +115,7 @@
 
 - (void)payWithPayType:(NSString*)payType{
     MJWeakSelf;
-    [self showLoading:@"加载中..."];
+    [self showLoading:@"支付中..."];
     [ProductPageHttpTool checkOrderWithOrderNum:self.orderId withCompleted:^(id result, BOOL success) {
         if (success) {
             
@@ -104,7 +126,10 @@
                     if (success) {
                         [weakSelf showSuccessMsg:@"余额支付成功"];
                         
-                        UIViewController* vc=[[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"ProductPaySuccessController"];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:UserNeed_RefreshMoney_Notification object:nil];
+                        
+                        ProductPaySuccessController* vc=[[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"ProductPaySuccessController"];
+                        vc.orderId = weakSelf.orderId;
                         [self.navigationController pushViewController:vc animated:YES];
                         
                     }else{
@@ -122,6 +147,8 @@
                         [weakSelf.navigationController pushViewController:vc animated:YES];
                         vc.isNeedQuery = YES;
                         vc.orderId = weakSelf.orderId;
+                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:UserNeed_RefreshMoney_Notification object:nil];
                         
                     }else{
                         [weakSelf showErrorMsg:result];

@@ -19,6 +19,12 @@
     self.headImageView.clipsToBounds=YES;
     self.headImageView.layer.cornerRadius=self.headImageView.frame.size.width/2;
     // Initialization code
+    
+    self.topupButton.layer.cornerRadius = self.topupButton.frame.size.height/2.0;
+    self.topupButton.layer.masksToBounds = true;
+    self.topupButton.layer.borderWidth = 1.0;
+    self.topupButton.layer.borderColor = UIColor.whiteColor.CGColor;
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -29,4 +35,8 @@
 
 - (IBAction)settingButton:(id)sender {
 }
+
+
+
+
 @end

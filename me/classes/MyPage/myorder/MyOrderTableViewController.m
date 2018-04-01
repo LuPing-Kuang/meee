@@ -12,6 +12,7 @@
 #import "ProductOrderBillViewController.h"
 #import "TransportMsgViewController.h"
 #import "TransportViewController.h"
+#import "OrderDetailController.h"
 
 @interface MyOrderTableViewController ()
 
@@ -168,6 +169,25 @@
     }
     return [[UITableViewCell alloc]init];
 }
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 0 || indexPath.row == 1) {
+        
+        MyOrderModel* order=[self.dataSource objectAtIndex:indexPath.section];
+        
+        OrderDetailController *vc = [[UIStoryboard storyboardWithName:@"MyPage" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([OrderDetailController class])];
+        vc.orderId = order.idd;
+        MJWeakSelf;
+        vc.needRefreshBlock = ^{
+            [weakSelf refresh];
+        };
+        
+        [self.navigationController pushViewController:vc animated:true];
+        
+    }
+}
+
 
 #pragma mark order actions
 

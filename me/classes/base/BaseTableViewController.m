@@ -286,6 +286,21 @@
     [self presentViewController:log animated:YES completion:nil];
 }
 
+- (void)pushToStoryBoardName:(NSString*)name Idetifier:(NSString*)idetifier{
+    
+    if (name == nil || idetifier == nil) {
+        return;
+    }
+    
+    UIViewController *vc = [[UIStoryboard storyboardWithName:name bundle:nil] instantiateViewControllerWithIdentifier:idetifier];
+    
+    if (vc) {
+        [self.navigationController pushViewController:vc animated:true];
+    }
+    
+    
+}
+
 
 
 @end

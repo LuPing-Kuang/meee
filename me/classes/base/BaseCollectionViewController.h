@@ -45,4 +45,7 @@
 
 - (void)showloginVc;
 
+
+- (void)pushToStoryBoardName:(NSString*)name Idetifier:(NSString*)idetifier;
+
 @end

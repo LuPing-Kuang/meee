@@ -85,6 +85,8 @@
     [UserModel saveToken:nil];
     AccountManager.sharedInstance.currentUser = nil;
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:UserLogin_Notification object:nil];
+    
     if ([[dic valueForKey:@"needMsg"] isKindOfClass:[NSString class]] && [[dic valueForKey:@"needMsg"] isEqualToString:@"1"]) {
         [HUDManager showErrorMsg:@"登录已失效，请重新登录！"];
     }

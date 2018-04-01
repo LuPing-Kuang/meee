@@ -23,6 +23,7 @@ static NSInteger const DefaultCountDownSecond = 60;
 static NSString *const UserLogin_Notification = @"UserLogin_Notification";
 static NSString *const UserNeed_Login_Notification = @"UserNeed_Login_Notification";
 static NSString *const UserNeed_RefreshCart_Notification = @"UserNeed_RefreshCart_Notification";
+static NSString *const UserNeed_RefreshMoney_Notification = @"UserNeed_RefreshMoney_Notification";
 
 #pragma mark -
 #pragma mark - 第三方sdk

@@ -139,4 +139,7 @@
 #define SYSTEM_VERSION_LATER_THAN_8_0 ([[[UIDevice currentDevice]systemVersion]floatValue]>=8.0)
 #define SYSTEM_VERSION_LATER_THAN_10_0 ([[[UIDevice currentDevice]systemVersion]floatValue]>=10.0)
 
+//--------------------------手机型号-----------------------------------------
+#define DEVICE_IS_IPHONE_X ([UIScreen mainScreen].bounds.size.height ==812)
+
 #endif /* PrefixHeader_pch */

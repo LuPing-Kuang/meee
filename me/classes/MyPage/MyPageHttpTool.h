@@ -25,6 +25,7 @@
 #import "TransportMsgModel.h"
 #import "BundlelistMsgModel.h"
 
+
 @interface MyPageHttpTool : ZZHttpTool
 
 +(void)getMyPageDataCache:(BOOL)cache token:(NSString*)token local:(BOOL)local success:(void(^)(NSArray* myPageSections))success failure:(void(^)(NSString* errorMsg))failure;
@@ -36,6 +37,9 @@
 +(void)postRemoveMyFootprints:(NSArray*)footprints token:(NSString*)token complete:(void(^)(BOOL result,NSString* msg))completion;
 
 +(void)getMyOrdersCache:(BOOL)cache token:(NSString*)token status:(NSInteger)status page:(NSInteger)page pagesize:(NSInteger)pagesize merchid:(NSString*)merchid success:(void(^)(NSArray* myAddress))success failure:(void(^)(NSError* error))failure;
+
+//获得订单详情
++ (void)getOrderDetailId:(NSString*)oriderId withCompleted:(LoadServerDataFinishedBlock)finish;
 
 //取消订单
 + (void)cancelOrderId:(NSString*)oriderId withCompleted:(LoadServerDataFinishedBlock)finish;

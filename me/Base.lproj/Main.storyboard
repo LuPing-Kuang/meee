@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BEz-Se-kvu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BEz-Se-kvu">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -85,45 +85,24 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥3333.33" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Asg-OS-hMb">
-                                            <rect key="frame" x="123" y="44" width="195" height="30"/>
+                                            <rect key="frame" x="123" y="49" width="195" height="56"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.91897296905517578" green="0.38060939311981201" blue="0.36067986488342285" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hj2-Pq-Bim" customClass="CorneredButton">
-                                            <rect key="frame" x="123" y="84" width="74" height="26"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="26" id="Opm-q1-Ijd"/>
-                                                <constraint firstAttribute="width" constant="74" id="t7k-IZ-v8K"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <state key="normal" title="购买">
-                                                <color key="titleColor" red="0.91897296910000004" green="0.38060939310000003" blue="0.36067986489999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            </state>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                    <color key="value" red="0.91897296910000004" green="0.38060939310000003" blue="0.36067986489999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="6"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </button>
                                     </subviews>
                                 </view>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="ipZ-EL-lkH" secondAttribute="trailing" id="0lp-6u-eyq"/>
                                     <constraint firstItem="ipZ-EL-lkH" firstAttribute="leading" secondItem="emG-k0-5Le" secondAttribute="trailing" constant="13" id="47f-6F-lO2"/>
                                     <constraint firstItem="emG-k0-5Le" firstAttribute="leading" secondItem="NNn-ys-sLW" secondAttribute="leading" id="8Eh-VI-vit"/>
-                                    <constraint firstItem="Hj2-Pq-Bim" firstAttribute="leading" secondItem="ipZ-EL-lkH" secondAttribute="leading" id="Jtc-zT-beS"/>
+                                    <constraint firstAttribute="bottom" secondItem="Asg-OS-hMb" secondAttribute="bottom" constant="5" id="DZl-31-0PK"/>
                                     <constraint firstItem="Asg-OS-hMb" firstAttribute="leading" secondItem="ipZ-EL-lkH" secondAttribute="leading" id="K1v-4M-rLN"/>
-                                    <constraint firstItem="Hj2-Pq-Bim" firstAttribute="top" secondItem="Asg-OS-hMb" secondAttribute="bottom" constant="10" id="LnG-Qa-9ny"/>
                                     <constraint firstItem="Asg-OS-hMb" firstAttribute="trailing" secondItem="ipZ-EL-lkH" secondAttribute="trailing" id="NsV-dt-2o4"/>
                                     <constraint firstAttribute="bottom" secondItem="emG-k0-5Le" secondAttribute="bottom" id="QW0-10-lY2"/>
                                     <constraint firstItem="ipZ-EL-lkH" firstAttribute="top" secondItem="NNn-ys-sLW" secondAttribute="top" constant="8" id="RuQ-9T-Qgv"/>
-                                    <constraint firstItem="Asg-OS-hMb" firstAttribute="top" secondItem="ipZ-EL-lkH" secondAttribute="bottom" id="TeQ-nM-YBE"/>
+                                    <constraint firstItem="Asg-OS-hMb" firstAttribute="top" secondItem="ipZ-EL-lkH" secondAttribute="bottom" constant="5" id="TeQ-nM-YBE"/>
                                     <constraint firstItem="emG-k0-5Le" firstAttribute="top" secondItem="NNn-ys-sLW" secondAttribute="top" id="nVI-Ts-OBr"/>
-                                    <constraint firstAttribute="bottom" secondItem="Hj2-Pq-Bim" secondAttribute="bottom" id="sNn-ti-vlq"/>
                                 </constraints>
                                 <size key="customSize" width="318" height="110"/>
                                 <connections>
@@ -377,7 +356,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="gfv-DH-j3S" secondAttribute="trailing" id="teX-oj-TMT"/>
                                             </constraints>
                                         </view>
-                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wnu-dQ-YNZ" customClass="CorneredButton">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wnu-dQ-YNZ">
                                             <rect key="frame" x="261" y="55" width="44" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="44" id="bv2-8X-ugb"/>

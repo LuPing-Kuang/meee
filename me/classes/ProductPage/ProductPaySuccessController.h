@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ProductPaySuccessController : UIViewController
-
+@property (nonatomic,strong) NSString *orderId;
 @end
