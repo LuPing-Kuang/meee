@@ -34,6 +34,9 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goToLogin:) name:UserNeed_Login_Notification object:nil];
     
+    [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
+    
+    
     return YES;
 }
 

@@ -97,5 +97,12 @@
 + (void)applyCash:(NSDictionary*)param withCompleted:(LoadServerDataFinishedBlock)finish;
 
 
+//退款申请页面
++ (void)applyRefundPage:(NSString*)orderId withCompleted:(LoadServerDataFinishedBlock)finish;
+
+
+//退款申请
++ (void)applyRefund:(NSDictionary*)param withCompleted:(LoadServerDataFinishedBlock)finish;
+
 
 @end

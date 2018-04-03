@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12118"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ItemPhotoBrowserImageView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hKK-CA-6CD" customClass="LZImageZoomView">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.97254901959999995" green="0.3803921569" blue="0.054901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="hKK-CA-6CD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="1fN-ax-IOl"/>
+                <constraint firstItem="hKK-CA-6CD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="P05-au-YS1"/>
+                <constraint firstAttribute="trailing" secondItem="hKK-CA-6CD" secondAttribute="trailing" id="gXU-jr-kzq"/>
+                <constraint firstAttribute="bottom" secondItem="hKK-CA-6CD" secondAttribute="bottom" id="sRU-73-cXY"/>
+            </constraints>
+            <connections>
+                <outlet property="imgV" destination="hKK-CA-6CD" id="U1b-Bn-imr"/>
+            </connections>
+        </view>
+    </objects>
+</document>

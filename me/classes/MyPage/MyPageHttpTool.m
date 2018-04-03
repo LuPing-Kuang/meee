@@ -741,5 +741,45 @@
 }
 
 
+//退款申请页面
++ (void)applyRefundPage:(NSString*)orderId withCompleted:(LoadServerDataFinishedBlock)finish{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setValue:[UserModel token] forKey:@"access_token"];
+    [dic setValue:orderId forKey:@"id"];
+    
+    [[NetworkManager getManager] postPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=order.refund" parameters:dic success_status_ok:^(NSURLSessionDataTask *task, id data) {
+        if (finish) {
+            NSLog(@"%@",data);
+            finish(data,YES);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSString *errorMsg) {
+        if (finish) {
+            finish(errorMsg,NO);
+        }
+    }];
+    
+}
+
+
+//退款申请
++ (void)applyRefund:(NSDictionary*)param withCompleted:(LoadServerDataFinishedBlock)finish{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:param];
+    [dic setValue:[UserModel token] forKey:@"access_token"];
+    
+    [[NetworkManager getManager] postPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=order.refund.submit" parameters:dic success_status_ok:^(NSURLSessionDataTask *task, id data) {
+        if (finish) {
+            NSLog(@"%@",data);
+            finish(data,YES);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSString *errorMsg) {
+        if (finish) {
+            finish(errorMsg,NO);
+        }
+    }];
+    
+}
+
 
 @end

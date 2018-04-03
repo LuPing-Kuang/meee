@@ -10,4 +10,6 @@
 
 @interface ApplyRefundController : BaseToolBarTableViewController
 
+@property (nonatomic,strong) NSString *orderId;
+
 @end

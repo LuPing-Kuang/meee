@@ -62,6 +62,13 @@
 
 #import "CorneredImageView.h"
 #import "UIView+Meee.h"
+#import "UIView+GaosutongExtension.h"
+
+#import <SDWebImage/SDImageCache.h>
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <SDWebImage/UIButton+WebCache.h>
+#import <SDWebImage/UIImage+MultiFormat.h>
+#import <SDWebImage/SDWebImageDownloader.h>
 
 
 
@@ -141,5 +148,13 @@
 
 //--------------------------手机型号-----------------------------------------
 #define DEVICE_IS_IPHONE_X ([UIScreen mainScreen].bounds.size.height ==812)
+
+#define DEVICE_IS_IPHONE_4 ([UIScreen mainScreen].bounds.size.height == 480)
+
+#define DEVICE_IS_IPHONE_5 ([UIScreen mainScreen].bounds.size.height == 568)
+
+#define DEVICE_IS_IPHONE_6 ([UIScreen mainScreen].bounds.size.height ==667)
+
+#define DEVICE_IS_IPHONE_6PLUS ([UIScreen mainScreen].bounds.size.height ==736)
 
 #endif /* PrefixHeader_pch */

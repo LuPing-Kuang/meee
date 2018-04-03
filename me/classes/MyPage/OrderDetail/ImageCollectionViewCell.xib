@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ImageCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MC_AddImage" translatesAutoresizingMaskIntoConstraints="NO" id="bGY-Uz-3Fi">
+                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D49-Jd-ga3">
+                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="D49-Jd-ga3" secondAttribute="height" multiplier="1:1" id="RGK-Va-b9b"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="bGY-Uz-3Fi" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="0ex-E0-jVP"/>
+                <constraint firstItem="bGY-Uz-3Fi" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="8AT-EN-pJ4"/>
+                <constraint firstAttribute="trailing" secondItem="D49-Jd-ga3" secondAttribute="trailing" id="SGh-al-0dd"/>
+                <constraint firstAttribute="trailing" secondItem="bGY-Uz-3Fi" secondAttribute="trailing" id="WO0-4F-rOS"/>
+                <constraint firstAttribute="bottom" secondItem="bGY-Uz-3Fi" secondAttribute="bottom" id="XRf-EM-mT7"/>
+                <constraint firstItem="D49-Jd-ga3" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="r3x-ws-HOI"/>
+                <constraint firstItem="D49-Jd-ga3" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ytT-4b-NCU"/>
+            </constraints>
+            <connections>
+                <outlet property="ImageView" destination="D49-Jd-ga3" id="Gab-xI-hyc"/>
+                <outlet property="backgroundImageView" destination="bGY-Uz-3Fi" id="vNO-4I-RSH"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="MC_AddImage" width="60" height="60"/>
+    </resources>
+</document>

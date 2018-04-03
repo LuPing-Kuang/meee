@@ -8,6 +8,7 @@
 
 #import "ImageViewScrollView.h"
 #import "ImageCollectionViewCell.h"
+#import "YTAnimation.h"
 
 @interface ImageViewScrollView()<UICollectionViewDelegate,UICollectionViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic,strong) UICollectionView *collectionView;
@@ -15,6 +16,7 @@
 @property (nonatomic,strong) ImageViewScrollView *scrollView;
 
 @property (nonatomic,strong)UIImagePickerController *imgPicController;
+@property (nonatomic,assign) BOOL isVibrateAni;
 
 
 @end
@@ -77,9 +79,24 @@
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     ImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ImageCollectionViewCell class]) forIndexPath:indexPath];
-    cell.imageV.image = self.ImageArr[indexPath.row];
+//    cell.imageV.image = self.ImageArr[indexPath.row];
+   
+     
+    
+    
     return cell;
 }
+
+
+#pragma mark -
+#pragma mark - 抖动
+- (void)vibrateAni:(BOOL)isVibrate{
+    self.isVibrateAni = isVibrate;
+    [self.collectionView reloadData];
+}
+
+
+
 
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{

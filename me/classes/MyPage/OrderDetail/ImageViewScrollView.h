@@ -10,6 +10,8 @@
 
 @interface ImageViewScrollView : UIView
 
+
+
 @property (nonatomic,strong) NSMutableArray *ImageArr;
 
 - (void)addImageArr:(NSArray*)ImageArr;

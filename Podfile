@@ -11,6 +11,7 @@ use_frameworks!
     pod 'Bugly', '~> 2.5.0'
     pod 'BaiduMapKit', '~> 3.4.2'
     pod 'SGQRCode', '~> 2.1.8'
+    pod 'SDWebImage', '~>4.0.0'            #加载图片
     
 end
 

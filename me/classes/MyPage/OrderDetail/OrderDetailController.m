@@ -318,6 +318,7 @@
 //申请退款
 - (void)applyToRefund:(NSString*)orderId {
     ApplyRefundController *vc = [[UIStoryboard storyboardWithName:@"MyPage" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([ApplyRefundController class])];
+    vc.orderId = self.orderId;
     
     [self.navigationController pushViewController:vc animated:true];
 }
