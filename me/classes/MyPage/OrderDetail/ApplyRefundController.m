@@ -11,34 +11,41 @@
 #import "MyOrderDetailBottomView.h"
 #import "ApplyItemSelectView.h"
 #import "MyPageHttpTool.h"
-#import "ImageViewScrollView.h"
 #import "MyPageHttpTool.h"
-#import "RefundPageModel.h"
+
 #import "ReportTakePhotoViewVariedHeight.h"
+#import "OrderDetailController.h"
+#import "RefundProgressController.h"
 
 @interface ApplyRefundController ()
 
 
 
-@property (nonatomic,strong) NSString *RefundDes;
-@property (nonatomic,strong) NSString *RefundMoney;
+@property (nonatomic,strong) NSString *RefundDes;       //退款说明
+@property (nonatomic,strong) NSString *RefundMoney;     //退款价格
 @property (nonatomic,strong) NSArray *RefundReasonArr;
 @property (nonatomic,strong) NSArray *handlingArr;
 
-@property (nonatomic,strong) NSString *RefundReason;
-@property (nonatomic,strong) NSString *handling;
+@property (nonatomic,strong) NSString *RefundReason;        //退款原因
+@property (nonatomic,strong) NSString *handling;            //退款处理方式
 
-@property (nonatomic,strong) ImageViewScrollView *scrollView;
+@property (nonatomic,strong) NSMutableArray *urlArr;
 
-@property (nonatomic,strong) RefundPageModel *pageModel;
+
 @property (nonatomic,assign) BOOL ishasData;
 
 
-@property (nonatomic,strong) NSString *rtypeIndex;
-@property (nonatomic,strong) NSString *reasonIndex;
+@property (nonatomic,strong) NSString *rtype;     //退款处理方式
+@property (nonatomic,strong) NSString *reason;    //退款原因
+
+
 
 @property (nonatomic,strong) ReportTakePhotoViewVariedHeight *takePhotoView;
 @property (nonatomic,assign) CGFloat cell2Height;
+
+
+
+
 
 @end
 
@@ -48,18 +55,58 @@
     [super viewDidLoad];
 //    self.title = @"退款申请";
     
-    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     NSArray *titleArr = @[@"取消申请",@"提交申请"];
     [self setupBottomViews:titleArr];
     
-    NSArray *RefundReasonArr = @[@"退款(仅退款不退货)",@"退货退款",@"换货"];
+    NSArray *RefundReasonArr = @[@"不想要了",@"卖家缺货",@"拍错了/订单信息错误",@"其他"];
     self.RefundReasonArr = RefundReasonArr;
     
-    NSArray *handlingArr = @[@"不想要了",@"卖家缺货",@"拍错了/订单信息错误",@"其它"];
+    NSArray *handlingArr = @[@"退款(仅退款不退货)",@"退货退款",@"换货"];
     self.handlingArr = handlingArr;
     
-    [self refresh];
+    
+    if (self.isModify) {
+        
+        self.handling = self.handlingArr[self.pageModel.refundModel.rtype.integerValue];
+        
+        self.rtype = self.pageModel.refundModel.rtype;
+        
+        
+        self.RefundReason = self.RefundReasonArr[self.pageModel.refundModel.reason.integerValue];
+        
+        self.reason = self.pageModel.refundModel.reason;
+        self.RefundDes = self.pageModel.content;
+        self.RefundMoney = self.pageModel.refundModel.applyprice;
+        self.title = self.pageModel.title;
+        
+        if (self.pageModel.images.count != 0) {
+            
+            MJWeakSelf;
+            [self showLoading:@"加载中..."];
+            [MyPageHttpTool downAllImageWithCartoonModel:self.pageModel.imgs imageDownloadSuccess:^(NSArray *ImageArr) {
+                [weakSelf showSuccessMsg:@"加载成功"];
+                weakSelf.ishasData = true;
+                weakSelf.takePhotoView.takeImgs = (NSMutableArray*)ImageArr;
+                [weakSelf.tableView reloadData];
+                
+            } failure:^(NSString *msg) {
+                [weakSelf showErrorMsg:msg];
+            }];
+            
+            
+        }else {
+            self.ishasData = true;
+            [self.tableView reloadData];
+            
+        }
+        
+        
+    }else{
+        
+        [self refresh];
+    }
+    
     
 }
 
@@ -77,6 +124,7 @@
         
         if (success) {
             weakSelf.pageModel = [RefundPageModel mj_objectWithKeyValues:result];
+            [weakSelf setupUIWithModel:weakSelf.pageModel];
         }else{
             [HUDManager showErrorMsg:result];
             weakSelf.ishasData = false;
@@ -88,14 +136,25 @@
     
 }
 
-
-- (void)setPageModel:(RefundPageModel *)pageModel{
+- (void)setupUIWithModel:(RefundPageModel *)pageModel{
+    
     _pageModel = pageModel;
     self.title = _pageModel.title;
+    
+    self.handling = self.handlingArr[0];
+    self.rtype = @"0";
+    
+    self.RefundReason = self.RefundReasonArr[0];
+    self.reason = @"0";
+
+    
+    
     self.ishasData = true;
     [self.tableView reloadData];
     [self endRefresh];
+    
 }
+
 
 
 
@@ -108,9 +167,14 @@
     MJWeakSelf;
     v.selectBlock = ^(NSInteger index) {
         if (index == 0) {
-            [weakSelf.navigationController popViewControllerAnimated:true];
-        }else{
+            if (self.isModify) {
+                [weakSelf cancelapplyToRefund:weakSelf.orderId];
+            }else{
+                [weakSelf.navigationController popViewControllerAnimated:true];
+            }
             
+        }else{
+            [weakSelf commitApply];
         }
 
     };
@@ -141,30 +205,16 @@
         ApplyRefundCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ApplyRefundItemCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.itemNameLb.text = @"处理方式";
-        if (self.pageModel.refundtype == nil) {
-            cell.itemMsglb.text = @"退款(仅退款不退货)";
-            self.rtypeIndex = @"0";
-        }else {
-            if ([self.pageModel.rtypeIndex isEqualToString:@"0"]) {
-                cell.itemMsglb.text = @"退款(仅退款不退货)";
-                self.rtypeIndex = @"0";
-            }else if ([self.pageModel.rtypeIndex isEqualToString:@"1"]) {
-                cell.itemMsglb.text = @"换货";
-                self.rtypeIndex = @"1";
-            }else if ([self.pageModel.rtypeIndex isEqualToString:@"1"]) {
-                cell.itemMsglb.text = @"退货退款";
-                self.rtypeIndex = @"2";
-            }
-        }
         
         MJWeakSelf;
-        if (self.handling) {
-            cell.itemMsglb.text = self.handling;
-        }
+        
+        cell.itemMsglb.text = self.handling;
+        
         cell.itemBtnClick = ^(CGRect rect) {
             
             [ApplyItemSelectView showWithButtonRect:rect SelectBlock:^(NSInteger index) {
                 weakSelf.handling = weakSelf.handlingArr[index];
+                weakSelf.rtype = [NSString stringWithFormat:@"%lu",index];
                 [weakSelf.tableView reloadData];
                 
             } TitleArr:weakSelf.handlingArr];
@@ -177,35 +227,15 @@
         ApplyRefundCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ApplyRefundItemCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.itemNameLb.text = @"退款原因";
-        cell.itemMsglb.text = @"不想要了";
+      
+        cell.itemMsglb.text = self.RefundReason;
         
-        if (self.pageModel.refundtype == nil) {
-            cell.itemMsglb.text = @"不想要了";
-            self.reasonIndex = @"0";
-        }else {
-            if ([self.pageModel.reasonIndex isEqualToString:@"0"]) {
-                cell.itemMsglb.text = @"不想要了";
-                self.reasonIndex = @"0";
-            }else if ([self.pageModel.reasonIndex isEqualToString:@"1"]) {
-                cell.itemMsglb.text = @"卖家缺货";
-                self.reasonIndex = @"1";
-            }else if ([self.pageModel.reasonIndex isEqualToString:@"2"]) {
-                cell.itemMsglb.text = @"拍错了/订单信息错误";
-                self.reasonIndex = @"2";
-            }else if ([self.pageModel.reasonIndex isEqualToString:@"3"]) {
-                cell.itemMsglb.text = @"其他";
-                self.reasonIndex = @"3";
-            }
-        }
-        
-        if (self.RefundReason) {
-            cell.itemMsglb.text = self.RefundReason;
-        }
         MJWeakSelf;
         cell.itemBtnClick = ^(CGRect rect) {
             
             [ApplyItemSelectView showWithButtonRect:rect SelectBlock:^(NSInteger index) {
                 weakSelf.RefundReason = weakSelf.RefundReasonArr[index];
+                weakSelf.reason = [NSString stringWithFormat:@"%lu",index];
                 [weakSelf.tableView reloadData];
                 
             } TitleArr:weakSelf.RefundReasonArr];
@@ -238,22 +268,7 @@
     }else if (indexPath.row == 4) {
         ApplyRefundCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ApplyRefundImageCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        MJWeakSelf;
-        cell.imageBtnClick = ^{
-
-        };
         
-        if (!self.takePhotoView) {
-            MJWeakSelf;
-            self.takePhotoView = [[ReportTakePhotoViewVariedHeight alloc]initWithFrame:CGRectMake(85, 0, UIScreenWidth - 85, 100)];
-            self.takePhotoView.resultHeight = ^(CGFloat height) {
-                
-                NSLog(@"height:%f",height);
-                weakSelf.cell2Height = height;
-                [weakSelf.tableView reloadData];
-            };
-            
-        }
         
         [cell.contentView addSubview:self.takePhotoView];
 
@@ -282,42 +297,166 @@
 }
 
 
-- (void)uploadUserIcon:(UIImage*)image{
-    [self showLoading:@"上传中..."];
-    MJWeakSelf;
-    [MyPageHttpTool uploadMyIcon:image withCompleted:^(id result, BOOL success) {
-        if (success) {
-//            NSString *url = result[@"url"];
-//            weakSelf.avatar = [NSString stringWithFormat:@"http://ewei.bangju.com/attachment/%@",url];
-//
-//            [weakSelf.iconImageV setImageUrl:weakSelf.avatar];
-            [weakSelf showSuccessMsg:@"上传成功"];
 
-        }else{
-            [weakSelf showErrorMsg:result];
-        }
-    }];
-}
-
-
-
-
-- (ImageViewScrollView *)scrollView {
-    if (_scrollView == nil) {
-        _scrollView = [[ImageViewScrollView alloc]initWithFrame:CGRectMake(85, 0, UIScreenWidth - 85, 100)];
-//        NSMutableArray *arr = [NSMutableArray array];
-//        for (NSInteger i = 0; i<6; i++) {
-//            UIImage *image = [UIImage imageNamed:@"成功"];
-//            [arr addObject:image];
-//        }
-//        _scrollView.backgroundColor = _redColor;
-//        [_scrollView addImageArr:arr];
+- (void)commitApply{
+    if (self.RefundMoney.length == 0) {
+        [self showErrorMsg:@"请填写退款金额"];
+        return;
+    }
+    
+    
+    if (self.RefundMoney.floatValue > self.pageModel.order.refundprice.floatValue) {
+        [self showErrorMsg:@"申请退款金额不能大于可退款金额"];
+        return;
+    }
+    
+    
+    
+    
+    
+    if (self.takePhotoView.takeImgs.count != 0) {
         
+        [self showLoading:@"申请中..."];
+        self.urlArr = [NSMutableArray array];
+        MJWeakSelf;
+        // 创建组
+        dispatch_group_t imageGroup = dispatch_group_create();
+        
+        for (UIImage *image in self.takePhotoView.takeImgs) {
+            
+            // 添加到组
+            dispatch_group_enter(imageGroup);
+            [MyPageHttpTool uploadMyIcon:image withCompleted:^(id result, BOOL success) {
+                if (success) {
+                    NSString *url = [NSString stringWithFormat:@"%@%@",uploadImageUrl,result[@"url"]];
+                    [weakSelf.urlArr addObject:url];
+                    dispatch_group_leave(imageGroup);
+                }
+                
+            }];
+            
+        }
+        
+        // 所有图片上传完成 就会来到
+        dispatch_group_notify(imageGroup, dispatch_get_main_queue(), ^{
+            
+            NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+            [dic setValue:self.rtype forKey:@"rtype"];
+            [dic setValue:self.reason forKey:@"reason"];
+            [dic setValue:self.RefundMoney forKey:@"price"];
+            [dic setValue:self.RefundDes forKey:@"content"];
+            [dic setValue:self.urlArr forKey:@"images"];
+            [dic setValue:self.orderId forKey:@"id"];
+            
+            [MyPageHttpTool applyRefund:dic withCompleted:^(id result, BOOL success) {
+                
+                if (success) {
+                    if (weakSelf.needRefreshBlock) {
+                        weakSelf.needRefreshBlock();
+                    }
+                    [weakSelf showSuccessMsg:@"申请成功"];
+                    [weakSelf popVc];
+                }else {
+                    [weakSelf showErrorMsg:result];
+                }
+                
+            }];
+            
+        });
+    }else {
+        
+        MJWeakSelf;
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+        [dic setValue:self.rtype forKey:@"rtype"];
+        [dic setValue:self.reason forKey:@"reason"];
+        [dic setValue:self.RefundMoney forKey:@"price"];
+        [dic setValue:self.RefundDes forKey:@"content"];
+        [dic setValue:self.orderId forKey:@"id"];
+        
+        [MyPageHttpTool applyRefund:dic withCompleted:^(id result, BOOL success) {
+            
+            if (success) {
+                if (weakSelf.needRefreshBlock) {
+                    weakSelf.needRefreshBlock();
+                }
+                [weakSelf showSuccessMsg:@"申请成功"];
+                [weakSelf popVc];
+            }else {
+                [weakSelf showErrorMsg:result];
+            }
+            
+        }];
         
     }
-    return _scrollView;
+    
+    
 }
 
+
+- (void)popVc{
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:UserNeed_RefreshOrderStatus_Notification object:nil];
+    
+    NSArray *Vcs = self.navigationController.viewControllers;
+    NSMutableArray *arr = [[NSMutableArray alloc]init];
+    
+    for (NSInteger i=0; i<Vcs.count; i++) {
+        UIViewController *vc = self.navigationController.viewControllers[i];
+        if (![vc isKindOfClass:[OrderDetailController class]] && ![vc isKindOfClass:[RefundProgressController class]]) {
+            [arr addObject:vc];
+        }
+    }
+    
+    self.navigationController.viewControllers = arr;
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+
+
+//取消申请退款
+- (void)cancelapplyToRefund:(NSString*)orderId {
+    
+    MJWeakSelf;
+    [self showSystemAlertWithTitle:@"提醒" message:@"确认取消申请退款吗?" buttonTitle:@"确定" needDestructive:true cancleBlock:^(UIAlertAction *action) {
+        
+    } btnBlock:^(UIAlertAction *action) {
+        
+        [self showLoading:@"取消申请中..."];
+        
+        [MyPageHttpTool cancelRefundApply:orderId withCompleted:^(id result, BOOL success) {
+            if (success) {
+                
+                if (weakSelf.needRefreshBlock) {
+                    weakSelf.needRefreshBlock();
+                }
+                [weakSelf showSuccessMsg:@"成功取消"];
+                [weakSelf popVc];
+                
+            }else{
+                [weakSelf showErrorMsg:result];
+            }
+        }];
+        
+    }];
+    
+}
+
+
+#pragma mark - 懒加载
+- (ReportTakePhotoViewVariedHeight *)takePhotoView {
+    if (_takePhotoView == nil) {
+        MJWeakSelf;
+        _takePhotoView = [[ReportTakePhotoViewVariedHeight alloc]initWithFrame:CGRectMake(85, 0, UIScreenWidth - 85, 100)];
+        _takePhotoView.resultHeight = ^(CGFloat height) {
+            
+            NSLog(@"height:%f",height);
+            weakSelf.cell2Height = height;
+            [weakSelf.tableView reloadData];
+        };
+    }
+    return _takePhotoView;
+}
 
 
 

@@ -14,5 +14,8 @@
 
 @property (nonatomic, strong) DistributionOrderModel *model;
 
+@property (nonatomic, strong) BuyerModel *headerModel;
+
+@property (nonatomic, strong) DisOrder_goodsModel *goodsModel;
 
 @end

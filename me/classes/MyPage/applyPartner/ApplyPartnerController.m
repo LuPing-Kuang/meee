@@ -94,8 +94,8 @@
 - (void)ApplyPartner{
     MJWeakSelf;
     
-    if (self.phoneTf.text.length==0) {
-        [self showErrorMsg:@"请输入合伙人手机号"];
+    if (self.phoneTf.text.length!=11) {
+        [self showErrorMsg:@"请输入11位合伙人手机号"];
         return;
     }
     
@@ -123,8 +123,8 @@
 - (void)checkPartner{
     MJWeakSelf;
     
-    if (self.phoneTf.text.length==0) {
-        [self showErrorMsg:@"请输入合伙人手机号"];
+    if (self.phoneTf.text.length!=11) {
+        [self showErrorMsg:@"请输入11位合伙人手机号"];
         return;
     }
     

@@ -39,13 +39,13 @@
 
 - (IBAction)registerBtnClick:(id)sender {
     
-    if (self.phoneTextField.text.length==0) {
-        [HUDManager showErrorMsg:@"请输入手机号"];
+    if (self.phoneTextField.text.length!=11) {
+        [HUDManager showErrorMsg:@"请输入11位手机号码"];
         return;
     }
     
-    if (self.codeTf.text.length==0) {
-        [HUDManager showErrorMsg:@"请输入验证码"];
+    if (self.codeTf.text.length!=6) {
+        [HUDManager showErrorMsg:@"请输入6位验证码"];
         return;
     }
     
@@ -74,8 +74,8 @@
 }
 - (IBAction)getVerifyCode:(id)sender {
     
-    if (self.phoneTextField.text.length==0) {
-        [HUDManager showErrorMsg:@"请输入手机号"];
+    if (self.phoneTextField.text.length!=11) {
+        [HUDManager showErrorMsg:@"请输入11位手机号码"];
         return;
     }
     

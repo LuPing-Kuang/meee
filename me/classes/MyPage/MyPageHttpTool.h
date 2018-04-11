@@ -24,6 +24,8 @@
 #import "PartnerMaterialModel.h"
 #import "TransportMsgModel.h"
 #import "BundlelistMsgModel.h"
+#import "RefundPageModel.h"
+#import "DistributionOrderModel.h"
 
 
 @interface MyPageHttpTool : ZZHttpTool
@@ -103,6 +105,13 @@
 
 //退款申请
 + (void)applyRefund:(NSDictionary*)param withCompleted:(LoadServerDataFinishedBlock)finish;
+
+//取消退款申请
++ (void)cancelRefundApply:(NSString*)orderId  withCompleted:(LoadServerDataFinishedBlock)finish;
+
+
+//下载所有图片
++ (void)downAllImageWithCartoonModel:(NSArray *)imageUrls imageDownloadSuccess:(void (^)(NSArray *ImageArr))imageSuccessBlock failure:(void(^)(NSString *msg))failureBlock;
 
 
 @end

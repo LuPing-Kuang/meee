@@ -25,3 +25,13 @@
 
 
 @end
+
+@implementation RefundDetailModel
+
++ (NSDictionary *)mj_replacedKeyFromPropertyName
+{
+    return @{@"ID" : @"id"};
+}
+
+
+@end

@@ -73,21 +73,39 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 1;
+    return self.dataSource.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    return self.dataSource.count;
+    
+    DistributionOrderModel *list = (DistributionOrderModel*)self.dataSource[section];
+    
+    return list.order_goods.count + 2;
 }
 
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    DistributionOrderCell* cell=[tableView dequeueReusableCellWithIdentifier:@"DistributionOrderCell" forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.model = self.dataSource[indexPath.row];
-    return cell;
+    DistributionOrderModel *list = (DistributionOrderModel*)self.dataSource[indexPath.section];
+    if (indexPath.row == 0) {
+        DistributionOrderCell* cell=[tableView dequeueReusableCellWithIdentifier:@"DistributionOrderHeaderCell" forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.headerModel = list.buyer;
+        
+        return cell;
+    }else if (indexPath.row == list.order_goods.count + 2 - 1){
+        DistributionOrderCell* cell=[tableView dequeueReusableCellWithIdentifier:@"DistributionOrderCell" forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.model = list;
+        
+        return cell;
+    }else{
+        DistributionOrderCell* cell=[tableView dequeueReusableCellWithIdentifier:@"DistributionOrderGoodsCell" forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.goodsModel = list.order_goods[indexPath.row - 1];
+        
+        return cell;
+    }
     
 }
 

@@ -7,9 +7,17 @@
 //
 
 #import "BaseToolBarTableViewController.h"
+#import "RefundPageModel.h"
 
 @interface ApplyRefundController : BaseToolBarTableViewController
 
+@property (nonatomic,assign) BOOL isModify;
+
 @property (nonatomic,strong) NSString *orderId;
+
+@property (nonatomic,copy) void(^needRefreshBlock)(void);
+
+@property (nonatomic,strong) RefundPageModel *pageModel;
+
 
 @end

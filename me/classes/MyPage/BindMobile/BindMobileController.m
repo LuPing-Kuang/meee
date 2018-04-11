@@ -41,8 +41,8 @@
 
 - (IBAction)bindBtnClick:(UIButton *)sender {
     
-    if (self.mobileTf.text.length == 0) {
-        [self showErrorMsg:@"请输入手机号"];
+    if (self.mobileTf.text.length != 11) {
+        [self showErrorMsg:@"请输入11位手机号"];
         return;
     }
     
@@ -68,8 +68,8 @@
 
 - (IBAction)codeBtnClick:(UIButton *)sender {
     
-    if (self.mobileTf.text.length==0) {
-        [HUDManager showErrorMsg:@"请输入手机号"];
+    if (self.mobileTf.text.length != 11) {
+        [self showErrorMsg:@"请输入11位手机号"];
         return;
     }
     

@@ -15,4 +15,33 @@
     return @{@"ID" : @"id"};
 }
 
++ (NSDictionary *)mj_objectClassInArray{
+    return @{@"order_goods" : [DisOrder_goodsModel class]};
+}
+
 @end
+
+
+@implementation DisOrder_goodsModel
+
++ (NSDictionary *)mj_replacedKeyFromPropertyName
+{
+    return @{@"ID" : @"id"};
+}
+
+@end
+
+
+@implementation BuyerModel
+
++ (NSDictionary *)mj_replacedKeyFromPropertyName
+{
+    return @{@"ID" : @"id"};
+}
+
+
+
+
+
+@end
+

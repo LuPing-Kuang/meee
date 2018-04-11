@@ -11,7 +11,6 @@
 @interface ReportTakePhotoViewVariedHeight : UIView
 
 @property (nonatomic,strong) NSMutableArray *takeImgs;
-@property (nonatomic,strong) NSMutableArray *sizeArr;
 
 @property (nonatomic,copy) void(^resultHeight)(CGFloat height);
 

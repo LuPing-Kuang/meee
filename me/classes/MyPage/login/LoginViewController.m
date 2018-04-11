@@ -36,8 +36,8 @@
 
 - (IBAction)gologin:(id)sender {
     
-    if (self.phoneTextField.text.length==0) {
-        [HUDManager showErrorMsg:@"请输入手机号码"];
+    if (self.phoneTextField.text.length!=11) {
+        [HUDManager showErrorMsg:@"请输入11位手机号码"];
         return;
     }
     

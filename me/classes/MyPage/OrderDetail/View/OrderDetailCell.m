@@ -12,7 +12,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
+    self.orderNumLb.isCopyable = true;
 }
 
 

@@ -14,6 +14,7 @@
     [super awakeFromNib];
     // Initialization code
     self.productImage.layer.masksToBounds = YES;
+    self.orderNumber.isCopyable = true;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

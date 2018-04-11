@@ -7,6 +7,9 @@
 //
 
 #import "MyPageHttpTool.h"
+#import <SDWebImage/SDWebImageDownloader.h>
+
+static NSMutableArray *ImageArr;
 
 @implementation MyPageHttpTool
 
@@ -464,6 +467,7 @@
     
         DistributionTotalOrderModel *model = [DistributionTotalOrderModel mj_objectWithKeyValues:data];
         
+        
         if (success) {
             success(model);
         }
@@ -780,6 +784,65 @@
     }];
     
 }
+
+
+
+//取消退款申请
++ (void)cancelRefundApply:(NSString*)orderId  withCompleted:(LoadServerDataFinishedBlock)finish{
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setValue:[UserModel token] forKey:@"access_token"];
+    [dic setValue:orderId forKey:@"id"];
+    
+    [[NetworkManager getManager] postPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=order.refund.cancel" parameters:dic success_status_ok:^(NSURLSessionDataTask *task, id data) {
+        if (finish) {
+            NSLog(@"%@",data);
+            finish(data,YES);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSString *errorMsg) {
+        if (finish) {
+            finish(errorMsg,NO);
+        }
+    }];
+    
+}
+
+
+//下载所有图片
++ (void)downAllImageWithCartoonModel:(NSArray *)imageUrls imageDownloadSuccess:(void (^)(NSArray *ImageArr))imageSuccessBlock failure:(void(^)(NSString *msg))failureBlock{
+    
+    ImageArr = [NSMutableArray array];
+    
+    // 创建组
+    dispatch_group_t imageGroup = dispatch_group_create();
+    
+    for (NSString *urlStr in imageUrls) {
+        
+        // 添加到组
+        dispatch_group_enter(imageGroup);
+        
+        [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:urlStr] options:SDWebImageDownloaderUseNSURLCache progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+            
+        } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+            if (error) {
+                failureBlock(@"图片资源加载失败");
+            } else {
+                // 图片下载完成 离开组
+                NSLog(@"url:%@,Image:%@",urlStr,image);
+                [ImageArr addObject:image];
+                dispatch_group_leave(imageGroup);
+            }
+        }];
+
+    }
+    
+    // 所有图片下载完成 就会来到
+    dispatch_group_notify(imageGroup, dispatch_get_main_queue(), ^{
+        imageSuccessBlock(ImageArr);
+    });
+}
+
+
 
 
 @end

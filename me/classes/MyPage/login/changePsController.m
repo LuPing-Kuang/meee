@@ -83,13 +83,13 @@
 
 - (void)sureBtnClick {
     
-    if (self.phoneTf.text.length==0) {
-        [HUDManager showErrorMsg:@"请输入手机号"];
+    if (self.phoneTf.text.length!=11) {
+        [HUDManager showErrorMsg:@"请输入11位手机号"];
         return;
     }
     
-    if (self.codeTf.text.length==0) {
-        [HUDManager showErrorMsg:@"请输入验证码"];
+    if (self.codeTf.text.length!=6) {
+        [HUDManager showErrorMsg:@"请输入6位验证码"];
         return;
     }
     
@@ -126,8 +126,8 @@
 
 - (void)getVerifyCode {
     
-    if (self.phoneTf.text.length==0) {
-        [HUDManager showErrorMsg:@"请输入手机号"];
+    if (self.phoneTf.text.length!=11) {
+        [HUDManager showErrorMsg:@"请输入11位手机号"];
         return;
     }
     

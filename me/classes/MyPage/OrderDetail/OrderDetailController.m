@@ -13,6 +13,7 @@
 #import "ProductionOrderModel.h"
 #import "MyOrderDetailBottomView.h"
 #import "ApplyRefundController.h"
+#import "RefundProgressController.h"
 
 @interface OrderDetailController ()
 @property (nonatomic,strong) MyOrderDetailModel *detailModel;
@@ -43,25 +44,41 @@
             //申请退款
             [self applyToRefund:self.detailModel.order.ID];
             
+        }else if (_detailModel.order.statusType == MyOrderStatusType_WaitSend && _detailModel.order.canrefund && ![_detailModel.order.refundstate isEqualToString:@"0"]) {
+            //@"取消申请",@"查看申请退款进度"
+            if (index == 0) {
+                [weakSelf cancelapplyToRefund:weakSelf.orderId];
+            }else {
+                [weakSelf checkRefundProgress:weakSelf.orderId];
+            }
+            
         }else if (weakSelf.detailModel.order.statusType == MyOrderStatusType_Refund) {
             //@"取消申请",@"查看申请退款进度"
             if (index == 0) {
-                
+                [weakSelf cancelapplyToRefund:weakSelf.orderId];
             }else {
-                
+                [weakSelf checkRefundProgress:weakSelf.orderId];
             }
             
         }else if (weakSelf.detailModel.order.statusType == MyOrderStatusType_WaitPay) {
             //取消订单
-            [self cancelOrder:self.detailModel.order.ID];
+            [weakSelf cancelOrder:weakSelf.detailModel.order.ID];
             
         }else if (weakSelf.detailModel.order.statusType == MyOrderStatusType_WaitGet) {
             //确认收货
-            [self ConfirmOrder:self.detailModel.order.ID];
+            [weakSelf ConfirmOrder:weakSelf.detailModel.order.ID];
             
         }else if (weakSelf.detailModel.order.statusType == MyOrderStatusType_Finish) {
             //删除订单
-            [self deleteOrder:self.detailModel.order.ID];
+            [weakSelf deleteOrder:weakSelf.detailModel.order.ID DeleteId:@"1"];
+            
+        }else if (weakSelf.detailModel.order.statusType == MyOrderStatusType_Delete) {
+            //@[@"恢复订单",@"彻底删除订单"];
+            if (index == 0) {
+                [weakSelf deleteOrder:weakSelf.detailModel.order.ID DeleteId:@"0"];
+            }else {
+                [weakSelf deleteOrder:weakSelf.detailModel.order.ID DeleteId:@"2"];
+            }
             
         }
         
@@ -102,6 +119,8 @@
     NSArray *titleArr = nil;
     if (_detailModel.order.statusType == MyOrderStatusType_WaitSend && _detailModel.order.canrefund && [_detailModel.order.refundstate isEqualToString:@"0"]) {
         titleArr = @[@"申请退款"];
+    }else if (_detailModel.order.statusType == MyOrderStatusType_WaitSend && _detailModel.order.canrefund && ![_detailModel.order.refundstate isEqualToString:@"0"]) {
+        titleArr = @[@"取消申请",@"查看申请退款进度"];
     }else if (_detailModel.order.statusType == MyOrderStatusType_Refund) {
         titleArr = @[@"取消申请",@"查看申请退款进度"];
     }else if (_detailModel.order.statusType == MyOrderStatusType_WaitPay) {
@@ -110,6 +129,8 @@
         titleArr = @[@"确认收货"];
     }else if (_detailModel.order.statusType == MyOrderStatusType_Finish) {
         titleArr = @[@"删除订单"];
+    }else if (_detailModel.order.statusType == MyOrderStatusType_Delete) {
+        titleArr = @[@"恢复订单",@"彻底删除订单"];
     }
     
     [self setupBottomViews:titleArr];
@@ -151,7 +172,18 @@
     if (indexPath.section == 0) {
         OrderDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderDetailHeaderCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.statusLb.text = self.detailModel.order.statusstr;
+        
+        if (_detailModel.order.statusType == MyOrderStatusType_WaitSend && _detailModel.order.canrefund && [_detailModel.order.refundstate isEqualToString:@"1"]) {
+
+           cell.statusLb.text = self.detailModel.order.refundtext;
+            
+        }else if (_detailModel.order.statusType == MyOrderStatusType_Refund) {
+            cell.statusLb.text = self.detailModel.order.refundtext;
+        }else {
+            cell.statusLb.text = self.detailModel.order.statusstr;
+        }
+        
+        
         cell.orderMoneyLb.text = [NSString stringWithFormat:@"订单金额:¥%@",self.detailModel.order.price];
         return cell;
     }else if (indexPath.section == 1) {
@@ -184,7 +216,7 @@
     }else {
         OrderDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderDetailCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.orderNumLb.text = [NSString stringWithFormat:@"订单编号 %@",self.detailModel.order.ordersn];
+        cell.orderNumLb.text = self.detailModel.order.ordersn;
         cell.createTimeLb.text = [NSString stringWithFormat:@"创建时间 %@",self.detailModel.order.createtime];
         cell.payTimeLb.text = [NSString stringWithFormat:@"支付时间 %@",self.detailModel.order.paytime];
         cell.deliveryTimeLb.text = [NSString stringWithFormat:@"发货时间 %@",self.detailModel.order.sendtime];
@@ -278,8 +310,11 @@
 
 }
 
-//删除订单
-- (void)deleteOrder:(NSString*)orderId {
+//删除订单 恢复订单
+/*
+ DeleteId 1删除，0恢复(只能恢复已完成订单),2(彻底删除订单)
+ */
+- (void)deleteOrder:(NSString*)orderId DeleteId:(NSString*)deleteId {
     MJWeakSelf;
     [self showSystemAlertWithTitle:@"提醒" message:@"确认要删除订单吗?" buttonTitle:@"确定" needDestructive:true cancleBlock:^(UIAlertAction *action) {
         
@@ -287,7 +322,8 @@
         
         [self showLoading:@"删除订单中..."];
         
-        [MyPageHttpTool deleteOrderId:orderId WithUserdeleted:@"1" withCompleted:^(id result, BOOL success) {
+        
+        [MyPageHttpTool deleteOrderId:orderId WithUserdeleted:deleteId withCompleted:^(id result, BOOL success) {
             if (success) {
                 
                 if (weakSelf.needRefreshBlock) {
@@ -305,13 +341,33 @@
 
 }
 
-//恢复订单
-- (void)restoreOrder:(NSString*)orderId {
-    
-}
+
 
 //取消申请退款
 - (void)cancelapplyToRefund:(NSString*)orderId {
+    
+    MJWeakSelf;
+    [self showSystemAlertWithTitle:@"提醒" message:@"确认取消申请退款吗?" buttonTitle:@"确定" needDestructive:true cancleBlock:^(UIAlertAction *action) {
+        
+    } btnBlock:^(UIAlertAction *action) {
+        
+        [self showLoading:@"取消申请中..."];
+        
+        [MyPageHttpTool cancelRefundApply:orderId withCompleted:^(id result, BOOL success) {
+            if (success) {
+                
+                if (weakSelf.needRefreshBlock) {
+                    weakSelf.needRefreshBlock();
+                }
+                [weakSelf showSuccessMsg:@"成功取消"];
+                [weakSelf.navigationController popViewControllerAnimated:true];
+                
+            }else{
+                [weakSelf showErrorMsg:result];
+            }
+        }];
+        
+    }];
     
 }
 
@@ -319,9 +375,27 @@
 - (void)applyToRefund:(NSString*)orderId {
     ApplyRefundController *vc = [[UIStoryboard storyboardWithName:@"MyPage" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([ApplyRefundController class])];
     vc.orderId = self.orderId;
+    MJWeakSelf;
+    vc.needRefreshBlock = ^{
+        [weakSelf refresh];
+    };
     
     [self.navigationController pushViewController:vc animated:true];
 }
+
+
+- (void)checkRefundProgress:(NSString*)orderId {
+    
+    RefundProgressController *vc = [[UIStoryboard storyboardWithName:@"MyPage" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([RefundProgressController class])];
+    vc.orderId = self.orderId;
+    MJWeakSelf;
+    vc.needRefreshBlock = ^{
+        [weakSelf refresh];
+    };
+    
+    [self.navigationController pushViewController:vc animated:true];
+}
+
 
 //确认收货
 - (void)ConfirmOrder:(NSString*)orderId {
@@ -348,6 +422,7 @@
     
 
 }
+
 
 
 

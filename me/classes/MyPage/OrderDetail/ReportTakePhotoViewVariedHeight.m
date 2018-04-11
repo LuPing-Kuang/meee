@@ -68,7 +68,6 @@ static NSInteger const limitTakePhotoCount = 6;
         [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([ImageCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:cellIdentifier];
         
         self.takeImgs = [NSMutableArray array];
-        self.sizeArr = [NSMutableArray array];
         
         [self addSubview:self.collectionView];
         
@@ -80,6 +79,7 @@ static NSInteger const limitTakePhotoCount = 6;
     }
     return self;
 }
+
 
 
 
@@ -115,7 +115,6 @@ static NSInteger const limitTakePhotoCount = 6;
     
     if (indexPath.row==self.takeImgs.count) {
         cell.backgroundImageView.hidden = NO;
-        cell.sizeLb.text = nil;
         cell.ImageView.image = nil;
         cell.hidden = NO;
         if (self.takeImgs.count==limitTakePhotoCount) {
@@ -125,15 +124,7 @@ static NSInteger const limitTakePhotoCount = 6;
         cell.hidden = NO;
         cell.ImageView.image = self.takeImgs[indexPath.row];
         cell.backgroundImageView.hidden = YES;
-        NSString *size = self.sizeArr[indexPath.row];
 
-        if (size.integerValue<512) {
-            cell.sizeLb.text = [NSString stringWithFormat:@"%luB",size.integerValue];
-        }else if (size.integerValue<512*1024){
-            cell.sizeLb.text = [NSString stringWithFormat:@"%.2fKB",(size.integerValue/1024.0)];
-        }else{
-            cell.sizeLb.text = [NSString stringWithFormat:@"%.2fM",(size.integerValue/1024/1024.0)];
-        }
 
     }
     
@@ -169,7 +160,6 @@ static NSInteger const limitTakePhotoCount = 6;
 - (void)reloadImageUI:(NSNotification *)no{
     NSNumber *index =no.object;
     [self.takeImgs removeObjectAtIndex:index.integerValue];
-    [self.sizeArr removeObjectAtIndex:index.integerValue];
     [self.collectionView reloadData];
 }
 
@@ -219,11 +209,9 @@ static NSInteger const limitTakePhotoCount = 6;
     NSLog(@"info:%@",info);
     [picker dismissViewControllerAnimated:YES completion:nil];
     UIImage *img = [info objectForKey:UIImagePickerControllerOriginalImage];
-    NSData *data = UIImageJPEGRepresentation(img, 0.8);    //压缩图片
+    NSData *data = [self imageCompressToData:img];    //压缩图片
     img = [UIImage imageWithData:data];
     
-    NSString *imageSize = [NSString stringWithFormat:@"%lu",data.length];
-    [self.sizeArr addObject:imageSize];
     
     CGFloat count = ceil((self.takeImgs.count+1)/5);
     
@@ -241,6 +229,22 @@ static NSInteger const limitTakePhotoCount = 6;
         [self.collectionView reloadData];
         [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleDefault];
     }
+}
+
+
+///压缩图片
+- (NSData *)imageCompressToData:(UIImage *)image{
+    NSData *data=UIImageJPEGRepresentation(image, 1.0);
+    if (data.length>300*1024) {
+        if (data.length>1024*1024) {//1M以及以上
+            data=UIImageJPEGRepresentation(image, 0.1);
+        }else if (data.length>512*1024) {//0.5M-1M
+            data=UIImageJPEGRepresentation(image, 0.5);
+        }else if (data.length>300*1024) {//0.25M-0.5M
+            data=UIImageJPEGRepresentation(image, 0.9);
+        }
+    }
+    return data;
 }
 
 #pragma mark UIActionSheetDelegate
@@ -287,7 +291,6 @@ static NSInteger const limitTakePhotoCount = 6;
         NSString *imageSize = [NSString stringWithFormat:@"%f",size];
         
         
-        [self.sizeArr addObject:imageSize];
         
         ALAssetRepresentation *repr = asset.defaultRepresentation;
         UIImage *img = [UIImage imageWithCGImage:repr.fullScreenImage];

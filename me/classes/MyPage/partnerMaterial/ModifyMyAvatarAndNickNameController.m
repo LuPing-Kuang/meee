@@ -177,7 +177,7 @@
     [MyPageHttpTool uploadMyIcon:image withCompleted:^(id result, BOOL success) {
         if (success) {
             NSString *url = result[@"url"];
-            weakSelf.avatar = [NSString stringWithFormat:@"http://ewei.bangju.com/attachment/%@",url];
+            weakSelf.avatar = [NSString stringWithFormat:@"%@%@",uploadImageUrl,url];
             
             [weakSelf.iconImageV setImageUrl:weakSelf.avatar];
             [weakSelf showSuccessMsg:@"上传成功"];

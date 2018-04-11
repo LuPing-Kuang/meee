@@ -29,6 +29,8 @@
 //    lab.backgroundColor=[UIColor redColor];
 //    [self.tableView addSubview:lab];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:UserNeed_RefreshOrderStatus_Notification object:nil];
+    
     [self refresh];
     // Do any additional setup after loading the view.
 }
@@ -234,16 +236,24 @@
     NSString* testStr=[NSString stringWithFormat:@"%@\n%@",order.ordersn,msg];
     
     if ([msg isEqualToString:@"取消订单"]) {
-        MJWeakSelf;
-        [self showLoading:@"正在取消中..."];
-        [MyPageHttpTool cancelOrderId:order.idd withCompleted:^(id result, BOOL success) {
-            if (success) {
-                [weakSelf showSuccessMsg:@"成功取消订单"];
-                [weakSelf refresh];
-            }else{
-                [weakSelf showErrorMsg:result];
-            }
+        
+        [self showSystemAlertWithTitle:@"提醒" message:@"确认要取消订单吗?" buttonTitle:@"确定" needDestructive:true cancleBlock:^(UIAlertAction *action) {
+            
+        } btnBlock:^(UIAlertAction *action) {
+            
+            MJWeakSelf;
+            [self showLoading:@"正在取消中..."];
+            [MyPageHttpTool cancelOrderId:order.idd withCompleted:^(id result, BOOL success) {
+                if (success) {
+                    [weakSelf showSuccessMsg:@"成功取消订单"];
+                    [weakSelf refresh];
+                }else{
+                    [weakSelf showErrorMsg:result];
+                }
+            }];
         }];
+        
+        
     }else if ([msg isEqualToString:@"支付订单"]){
         
         ProductOrderBillViewController* bill=[[UIStoryboard storyboardWithName:@"ProductPage" bundle:nil]instantiateViewControllerWithIdentifier:@"ProductOrderBillViewController"];
@@ -252,30 +262,47 @@
         
     }else if ([msg isEqualToString:@"确认收货"]){
         
-        MJWeakSelf;
-        [self showLoading:@"确认收货中..."];
-        [MyPageHttpTool confirmGetProduct:order.idd withCompleted:^(id result, BOOL success) {
-            if (success) {
-                [weakSelf showSuccessMsg:@"确认收货成功"];
-                [weakSelf refresh];
-            }else{
-                [weakSelf showErrorMsg:result];
-            }
+        [self showSystemAlertWithTitle:@"提醒" message:@"确认收货吗?" buttonTitle:@"确定" needDestructive:true cancleBlock:^(UIAlertAction *action) {
+            
+        } btnBlock:^(UIAlertAction *action) {
+            
+            MJWeakSelf;
+            [self showLoading:@"确认收货中..."];
+            [MyPageHttpTool confirmGetProduct:order.idd withCompleted:^(id result, BOOL success) {
+                if (success) {
+                    [weakSelf showSuccessMsg:@"确认收货成功"];
+                    [weakSelf refresh];
+                }else{
+                    [weakSelf showErrorMsg:result];
+                }
+            }];
         }];
+        
+        
+        
         
     }else if ([msg isEqualToString:@"删除订单"]){
         
-        MJWeakSelf;
-        [self showLoading:@"删除订单中..."];
         
-        [MyPageHttpTool deleteOrderId:order.idd WithUserdeleted:@"1" withCompleted:^(id result, BOOL success) {
-            if (success) {
-                [weakSelf showSuccessMsg:@"删除成功"];
-                [weakSelf refresh];
-            }else{
-                [weakSelf showErrorMsg:result];
-            }
+        [self showSystemAlertWithTitle:@"提醒" message:@"确认删除订单吗?" buttonTitle:@"确定" needDestructive:true cancleBlock:^(UIAlertAction *action) {
+            
+        } btnBlock:^(UIAlertAction *action) {
+            
+            MJWeakSelf;
+            [self showLoading:@"删除订单中..."];
+            
+            [MyPageHttpTool deleteOrderId:order.idd WithUserdeleted:@"1" withCompleted:^(id result, BOOL success) {
+                if (success) {
+                    [weakSelf showSuccessMsg:@"删除成功"];
+                    [weakSelf refresh];
+                }else{
+                    [weakSelf showErrorMsg:result];
+                }
+            }];
         }];
+        
+        
+        
     
         
     }else if ([msg isEqualToString:@"查看物流"]){
@@ -294,6 +321,11 @@
     }
     
     
+}
+
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

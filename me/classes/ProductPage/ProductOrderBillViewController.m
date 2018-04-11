@@ -29,6 +29,7 @@
     self.title=@"收银台";
     self.ishasData = false;
     [self refresh];
+    self.orderNumber.isCopyable = true;
 }
 
 
@@ -80,36 +81,40 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (indexPath.row==0) {
-        if (self.model.credit.success) {
-            MJWeakSelf;
-            [self showSystemAlertWithTitle:@"提醒" message:@"确认要支付吗?" buttonTitle:@"确定" needDestructive:true cancleBlock:^(UIAlertAction *action) {
+    if (indexPath.section == 1) {
+        if (indexPath.row==0) {
+            if (self.model.credit.success) {
+                MJWeakSelf;
+                [self showSystemAlertWithTitle:@"提醒" message:@"确认要支付吗?" buttonTitle:@"确定" needDestructive:true cancleBlock:^(UIAlertAction *action) {
+                    
+                } btnBlock:^(UIAlertAction *action) {
+                    [weakSelf payWithPayType:@"credit"];
+                }];
                 
-            } btnBlock:^(UIAlertAction *action) {
-                [weakSelf payWithPayType:@"credit"];
-            }];
-            
-        }
-    }else if (indexPath.row==1){
-        if (self.model.wechat.success) {
-            MJWeakSelf;
-            [self showSystemAlertWithTitle:@"提醒" message:@"确认要支付吗?" buttonTitle:@"确定" needDestructive:true cancleBlock:^(UIAlertAction *action) {
+            }
+        }else if (indexPath.row==1){
+            if (self.model.wechat.success) {
+                MJWeakSelf;
+                [self showSystemAlertWithTitle:@"提醒" message:@"确认要支付吗?" buttonTitle:@"确定" needDestructive:true cancleBlock:^(UIAlertAction *action) {
+                    
+                } btnBlock:^(UIAlertAction *action) {
+                    [weakSelf payWithPayType:@"wechat"];
+                }];
                 
-            } btnBlock:^(UIAlertAction *action) {
-                [weakSelf payWithPayType:@"wechat"];
-            }];
-            
-        }
-    }else if (indexPath.row==2){
-        if (self.model.alipay.success) {
-            MJWeakSelf;
-            [self showSystemAlertWithTitle:@"提醒" message:@"确认要支付吗?" buttonTitle:@"确定" needDestructive:true cancleBlock:^(UIAlertAction *action) {
-                
-            } btnBlock:^(UIAlertAction *action) {
-                [weakSelf payWithPayType:@"alipay"];
-            }];
+            }
+        }else if (indexPath.row==2){
+            if (self.model.alipay.success) {
+                MJWeakSelf;
+                [self showSystemAlertWithTitle:@"提醒" message:@"确认要支付吗?" buttonTitle:@"确定" needDestructive:true cancleBlock:^(UIAlertAction *action) {
+                    
+                } btnBlock:^(UIAlertAction *action) {
+                    [weakSelf payWithPayType:@"alipay"];
+                }];
+            }
         }
     }
+    
+    
 }
 
 

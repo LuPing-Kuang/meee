@@ -70,6 +70,8 @@
 #import <SDWebImage/UIImage+MultiFormat.h>
 #import <SDWebImage/SDWebImageDownloader.h>
 
+#import "UILabel+Copy.h"
+
 
 
 
