@@ -174,8 +174,11 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0 || indexPath.row == 1) {
-        
+    
+    MyOrderModel* order=[self.dataSource objectAtIndex:indexPath.section];
+    NSInteger productCount=order.products.count;
+    
+    if (indexPath.row - 1 < productCount) {
         MyOrderModel* order=[self.dataSource objectAtIndex:indexPath.section];
         
         OrderDetailController *vc = [[UIStoryboard storyboardWithName:@"MyPage" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([OrderDetailController class])];
@@ -186,8 +189,9 @@
         };
         
         [self.navigationController pushViewController:vc animated:true];
-        
     }
+    
+
 }
 
 

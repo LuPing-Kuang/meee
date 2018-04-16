@@ -130,4 +130,23 @@
     [self post:str params:par success:nil failure:nil];
 }
 
+
+//获取商品分类
++ (void)getShopCategoryWithCompleted:(LoadServerDataFinishedBlock)finish {
+    
+    
+    [[NetworkManager getManager] getPath:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=shop.get_category" parameters:nil success_status_ok:^(NSURLSessionDataTask *task, id data) {
+        if (finish) {
+            NSLog(@"%@",data);
+            finish(data,YES);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSString *errorMsg) {
+        if (finish) {
+            finish(errorMsg,NO);
+        }
+    }];
+    
+}
+
+
 @end

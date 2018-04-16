@@ -80,6 +80,9 @@
                 [weakSelf deleteOrder:weakSelf.detailModel.order.ID DeleteId:@"2"];
             }
             
+        }else if (_detailModel.order.statusType == MyOrderStatusType_Cancel) {
+            //@[@"彻底删除订单"];
+            [weakSelf deleteOrder:weakSelf.detailModel.order.ID DeleteId:@"2"];
         }
         
     };
@@ -131,8 +134,9 @@
         titleArr = @[@"删除订单"];
     }else if (_detailModel.order.statusType == MyOrderStatusType_Delete) {
         titleArr = @[@"恢复订单",@"彻底删除订单"];
+    }else if (_detailModel.order.statusType == MyOrderStatusType_Cancel) {
+        titleArr = @[@"彻底删除订单"];
     }
-    
     [self setupBottomViews:titleArr];
 }
 
@@ -203,6 +207,7 @@
         cell.productNumLb.text = [NSString stringWithFormat:@"x%@",good.total];
         cell.productNameLb.text = good.title;
         cell.productOptionLb.text = good.optionname;
+        cell.goodModel = good;
         
         return cell;
     }else if (indexPath.section == 3) {
@@ -222,7 +227,7 @@
         cell.deliveryTimeLb.text = [NSString stringWithFormat:@"发货时间 %@",self.detailModel.order.sendtime];
         cell.finishTimeLb.text = [NSString stringWithFormat:@"完成时间 %@",self.detailModel.order.finishtime];
         
-        if (self.detailModel.order.statusType == MyOrderStatusType_WaitPay) {
+        if (self.detailModel.order.statusType == MyOrderStatusType_WaitPay || self.detailModel.order.statusType == MyOrderStatusType_Cancel) {
             cell.payTimeLb.hidden = true;
             cell.deliveryTimeLb.hidden = true;
             cell.finishTimeLb.hidden = true;
@@ -252,13 +257,28 @@
         return UITableViewAutomaticDimension;
         
     }else if (indexPath.section == 2) {
-        return 200;
+        
+        OrderGoodDetailModel *good = self.detailModel.goods[indexPath.row];
+        
+        NSInteger count = 0;
+        if (good.diyformfields.count > 0) {
+            for (NSInteger i = 0; i<good.diyformfields.count; i++) {
+                OrderGoodFieldModel *m = good.diyformfields[i];
+                if ([m.data_type isEqualToString:@"5"]) {
+                    count = count + 1;
+                }
+            }
+        }
+        
+        CGFloat height = 200 + 40 * (good.diyformfields.count - count) + count * 50;
+        
+        return height;
         
     }else if (indexPath.section == 3) {
         return 120;
         
     }else {
-        if (self.detailModel.order.statusType == MyOrderStatusType_WaitPay) {
+        if (self.detailModel.order.statusType == MyOrderStatusType_WaitPay || self.detailModel.order.statusType == MyOrderStatusType_Cancel) {
             return 27 * 2;
         }else if (self.detailModel.order.statusType == MyOrderStatusType_WaitSend) {
             return 27 * 3;

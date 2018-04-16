@@ -29,6 +29,8 @@
              };
 }
 
+
+
 - (MyOrderStatusType)statusType {
     if ([self.status isEqualToString:@"-1"]) {
         return MyOrderStatusType_Cancel;
@@ -57,9 +59,20 @@
     return @{@"ID" : @"id"};
 }
 
++ (NSDictionary *)mj_objectClassInArray{
+    
+    return @{@"diyformfields" : [OrderGoodFieldModel class]
+             };
+}
+
 @end
 
 
+@implementation OrderGoodFieldModel
+
+
+
+@end
 
 
 

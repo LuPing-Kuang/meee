@@ -376,6 +376,7 @@ typedef NS_ENUM(NSInteger,ProductCollectionLayoutStyle)
                 [self showScreeningView];
             }else{
                 [self hideScreeningView];
+                self.cate = nil;
             }
         }
     }

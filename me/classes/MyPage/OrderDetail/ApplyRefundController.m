@@ -206,18 +206,21 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.itemNameLb.text = @"处理方式";
         
-        MJWeakSelf;
+//        MJWeakSelf;
         
         cell.itemMsglb.text = self.handling;
         
         cell.itemBtnClick = ^(CGRect rect) {
             
-            [ApplyItemSelectView showWithButtonRect:rect SelectBlock:^(NSInteger index) {
-                weakSelf.handling = weakSelf.handlingArr[index];
-                weakSelf.rtype = [NSString stringWithFormat:@"%lu",index];
-                [weakSelf.tableView reloadData];
-                
-            } TitleArr:weakSelf.handlingArr];
+            //暂时隐藏退款申请
+            /*
+             [ApplyItemSelectView showWithButtonRect:rect SelectBlock:^(NSInteger index) {
+             weakSelf.handling = weakSelf.handlingArr[index];
+             weakSelf.rtype = [NSString stringWithFormat:@"%lu",index];
+             [weakSelf.tableView reloadData];
+             
+             } TitleArr:weakSelf.handlingArr];
+             */
             
                         
         };

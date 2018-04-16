@@ -7,11 +7,13 @@
 //
 
 #import "ProductScreeningView.h"
+#import "CartPageHttpTool.h"
+#import "ProductionCategoryModel.h"
 
 @interface ProductScreeningView()<UIPickerViewDelegate,UIPickerViewDataSource,UIGestureRecognizerDelegate>
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *BtnArr;
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
-@property (nonatomic, strong) NSArray *titleArr;
+//@property (nonatomic, strong) NSArray *titleArr;
 
 @property (nonatomic, assign) NSInteger selectIndex;
 
@@ -22,6 +24,8 @@
 @property (nonatomic, assign) BOOL isdiscount;
 @property (nonatomic, assign) BOOL issendfree;
 @property (nonatomic, assign) BOOL istime;
+
+@property (nonatomic,strong) NSArray <ProductionCategoryModel*>*categoryArr;
 
 
 
@@ -42,9 +46,9 @@
         btn.backgroundColor = [UIColor whiteColor];
     }
     
-    self.titleArr = @[@"合伙人",@"美容仪器",@"院装产品",@"操作耗材",];
+//    self.titleArr = @[@"合伙人",@"美容仪器",@"院装产品",@"操作耗材",];
     
-    self.cate = self.titleArr[0];
+//    self.cate = self.titleArr[0];
     self.isrecommand = NO;
     self.isnew = NO;
     self.ishot = NO;
@@ -58,8 +62,29 @@
     self.pickerView.delegate = self;
     self.pickerView.showsSelectionIndicator = NO;
     self.selectIndex = 0;
-    [self.pickerView selectRow:self.selectIndex inComponent:0 animated:NO];
+//    [self.pickerView selectRow:self.selectIndex inComponent:0 animated:NO];
+    
+    [self getProductionCategory];
+    
+    
+    
 }
+
+
+
+- (void)getProductionCategory{
+    MJWeakSelf;
+    [CartPageHttpTool getShopCategoryWithCompleted:^(id result, BOOL success) {
+        
+        if (success) {
+            weakSelf.categoryArr = [ProductionCategoryModel mj_objectArrayWithKeyValuesArray:result[@"category"]];
+            [weakSelf.pickerView reloadAllComponents];
+        }
+    }];
+}
+
+
+
 
 - (IBAction)TitleBtnClick:(UIButton *)sender {
     
@@ -92,7 +117,8 @@
 
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    return self.titleArr.count;
+//    return self.titleArr.count;
+    return self.categoryArr.count;
 }
 
 
@@ -103,7 +129,8 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     self.selectIndex = row;
-    self.cate = self.titleArr[self.selectIndex];
+//    self.cate = self.titleArr[self.selectIndex];
+    self.cate = self.categoryArr[self.selectIndex].ID;
     [self.pickerView reloadAllComponents];
 }
 
@@ -115,7 +142,7 @@
     if (!view) {
         lb = [[UILabel alloc]init];
         
-        NSString *title = self.titleArr[row];
+        NSString *title = self.categoryArr[row].name;
         if (self.selectIndex == row) {
             NSAttributedString *string = [[NSAttributedString alloc]initWithString:title attributes:@{NSForegroundColorAttributeName:_redColor}];
             lb.attributedText = string;
@@ -168,7 +195,8 @@
         btn.backgroundColor = [UIColor whiteColor];
     }
     
-    self.cate = self.titleArr[0];
+//    self.cate = self.titleArr[0];
+    self.cate = self.categoryArr.firstObject.ID;
     self.isrecommand = NO;
     self.isnew = NO;
     self.ishot = NO;

@@ -21,4 +21,9 @@
 
 +(void)postSelectCartsId:(NSString*)idd token:(NSString*)token selected:(BOOL)selected;
 
+
+//获取商品分类
++ (void)getShopCategoryWithCompleted:(LoadServerDataFinishedBlock)finish;
+
+
 @end

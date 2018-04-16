@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "MyOrderDetailModel.h"
+
 @interface OrderDetailCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *statusLb;
 @property (weak, nonatomic) IBOutlet UILabel *orderMoneyLb;
@@ -32,6 +34,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *deliveryTimeLb;
 @property (weak, nonatomic) IBOutlet UILabel *finishTimeLb;
 
+
+@property (nonatomic,strong) OrderGoodDetailModel *goodModel;
 
 
 @property (nonatomic,copy) void(^addressBlock)(void);

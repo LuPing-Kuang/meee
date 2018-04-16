@@ -11,6 +11,7 @@
 #import "ProductionOrderModel.h"
 @class OrderDetailModel;
 @class OrderGoodDetailModel;
+@class OrderGoodFieldModel;
 
 typedef NS_ENUM(NSInteger,MyOrderStatusType)
 {
@@ -88,16 +89,29 @@ typedef NS_ENUM(NSInteger,MyOrderStatusType)
 
 
 @interface OrderGoodDetailModel : NSObject
+
 @property (nonatomic,strong) NSString *ID;
 @property (nonatomic,strong) NSString *title;
 @property (nonatomic,strong) NSString *price;
 @property (nonatomic,strong) NSString *thumb;
 @property (nonatomic,strong) NSString *total;
 @property (nonatomic,strong) NSString *optionname;
-@property (nonatomic,strong) NSString *diyformdata;
-@property (nonatomic,strong) NSString *diyformfields;
+@property (nonatomic,strong) NSDictionary *diyformdata;
+@property (nonatomic,strong) NSArray <OrderGoodFieldModel*>*diyformfields;
 
 @end
+
+
+@interface OrderGoodFieldModel : NSObject
+
+@property (nonatomic,strong) NSString *data_type;
+@property (nonatomic,strong) NSString *tp_name;
+@property (nonatomic,strong) NSString *tp_must;
+@property (nonatomic,strong) NSArray *tp_text;
+@property (nonatomic,strong) NSString *diy_type;
+
+@end
+
 
 
 
