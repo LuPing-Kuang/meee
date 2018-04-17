@@ -153,7 +153,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
     if (self.ishasData) {
-        return 5;
+        return 6;
     }else{
         return 0;
     }
@@ -218,6 +218,20 @@
         cell.TotalPriceLb.text = [NSString stringWithFormat:@"¥%@",self.detailModel.order.price];
         
         return cell;
+    }else if (indexPath.section == 4) {
+        
+        OrderDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderDetailRemarkCell" forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        if (self.detailModel.order.remark.length == 0) {
+            cell.remarkLb.text = @" ";
+        }else {
+            cell.remarkLb.text = self.detailModel.order.remark;
+        }
+        
+        
+        return cell;
+        
     }else {
         OrderDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderDetailCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -276,6 +290,9 @@
         
     }else if (indexPath.section == 3) {
         return 120;
+        
+    }else if (indexPath.section == 4) {
+        return UITableViewAutomaticDimension;
         
     }else {
         if (self.detailModel.order.statusType == MyOrderStatusType_WaitPay || self.detailModel.order.statusType == MyOrderStatusType_Cancel) {

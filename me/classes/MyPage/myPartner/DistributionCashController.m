@@ -36,6 +36,9 @@
     [self.view addSubview:self.bottomBtn];
     [self.bottomBtn addTarget:self action:@selector(getCashBtnClick) forControlEvents:UIControlEventTouchUpInside];
     self.bottomBtn.hidden = YES;
+    self.bottomBtn.userInteractionEnabled = false;
+    self.bottomBtn.backgroundColor = gray_153;
+    
     
     [self refresh];
     self.isHasData = NO;
@@ -126,7 +129,26 @@
     }else if (indexPath.section==4){
         DistributionCashCell* cell=[tableView dequeueReusableCellWithIdentifier:@"DistributionCashFooterCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        NSMutableAttributedString *string1 = [[NSMutableAttributedString alloc]initWithString:@"买家确认收货("];
+        NSMutableAttributedString *string2 = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@",self.commissionMdodel.set.settledays] attributes:@{NSForegroundColorAttributeName:RGB(255, 160, 81)}];
+        NSMutableAttributedString *string3 = [[NSMutableAttributedString alloc]initWithString:@")后，佣金可提现。结算期内，买家退货，佣金将自动扣除。注意：可用佣金满 "];
+        NSMutableAttributedString *string4 = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@",self.commissionMdodel.set.withdraw] attributes:@{NSForegroundColorAttributeName:RGB(255, 160, 81)}];
+        NSMutableAttributedString *string5 = [[NSMutableAttributedString alloc]initWithString:@" 元后才能申请提现"];
+        [string1 appendAttributedString:string2];
+        [string1 appendAttributedString:string3];
+        [string1 appendAttributedString:string4];
+        [string1 appendAttributedString:string5];
+        
+        cell.footerTipsLb.attributedText = string1;
+        
         return cell;
+        
+        
+        
+
+        
+        
     }
     
     return [[UITableViewCell alloc]init];
@@ -141,6 +163,15 @@
         
         
         self.bottomBtn.hidden = NO;
+        if (self.commissionMdodel.cansettle) {
+            self.bottomBtn.userInteractionEnabled = true;
+            self.bottomBtn.backgroundColor = RGB(255, 160, 81);
+            
+        }else {
+            self.bottomBtn.userInteractionEnabled = false;
+            self.bottomBtn.backgroundColor = gray_153;
+            
+        }
     }
     
     
@@ -206,14 +237,7 @@
 //我要提现
 - (void)getCashBtnClick{
     
-    NSInteger cash = self.commissionMdodel.commission_ok.integerValue;
-    
-    if (cash >= 1) {
-        [self.navigationController pushViewController:[[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"GetCashController"] animated:YES];
-    }else{
-    
-        [self showErrorMsg:@"佣金要满1元才可以提现"];
-    }
+    [self.navigationController pushViewController:[[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"GetCashController"] animated:YES];
     
     
     

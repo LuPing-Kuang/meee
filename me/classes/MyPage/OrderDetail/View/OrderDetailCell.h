@@ -34,6 +34,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *deliveryTimeLb;
 @property (weak, nonatomic) IBOutlet UILabel *finishTimeLb;
 
+@property (weak, nonatomic) IBOutlet UILabel *remarkLb;
+
 
 @property (nonatomic,strong) OrderGoodDetailModel *goodModel;
 

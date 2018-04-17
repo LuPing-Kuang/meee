@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class PartnerCommissionSetModel;
+
 @interface PartnerCommissionModel : NSObject
 /*累计佣金 */
 @property (nonatomic, copy) NSString *commission_total;
@@ -28,5 +30,32 @@
 /*未结算佣金 */
 @property (nonatomic, copy) NSString *commission_lock;
 
+@property (nonatomic, strong) PartnerCommissionSetModel *set;
+@property (nonatomic, assign) BOOL cansettle;
 
 @end
+
+
+
+@interface PartnerCommissionSetModel : NSObject
+/*多少天后可以提现 */
+@property (nonatomic, copy) NSString *settledays;
+/*可提现佣金 */
+@property (nonatomic, copy) NSString *withdraw;
+
+
+@end
+
+
+
+
+
+
+
+
+
+
+
+
+
+

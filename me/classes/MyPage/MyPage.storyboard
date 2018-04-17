@@ -3575,43 +3575,16 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户须知" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SR7-03-Q3B">
                                                     <rect key="frame" x="12" y="8" width="65.5" height="19.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="19.5" id="wFS-Lt-0Uz"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="买家确认收货后，立即获得分销佣金" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iER-b8-lN7">
-                                                    <rect key="frame" x="12" y="52.5" width="228.5" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="买家确认收货(7天)后，佣金可提现。结算期内，买家退货，佣金将自动扣除。注意：可用佣金满1000元后才能申请提现" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iER-b8-lN7">
+                                                    <rect key="frame" x="12" y="42.5" width="348" height="52"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v0O-BW-ltd">
-                                                    <rect key="frame" x="12" y="69.5" width="235" height="17"/>
-                                                    <attributedString key="attributedText">
-                                                        <fragment content="注意：可用佣金满">
-                                                            <attributes>
-                                                                <color key="NSColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <font key="NSFont" size="14" name=".PingFangSC-Regular"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                        <fragment content="1">
-                                                            <attributes>
-                                                                <color key="NSColor" red="1" green="0.62745098039215685" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" metaFont="system" size="14"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                        <fragment content="元">
-                                                            <attributes>
-                                                                <color key="NSColor" red="1" green="0.62745098039215685" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" size="14" name=".PingFangSC-Regular"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                        <fragment content="后才能申请提现">
-                                                            <attributes>
-                                                                <color key="NSColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <font key="NSFont" size="14" name=".PingFangSC-Regular"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="downArrow" translatesAutoresizingMaskIntoConstraints="NO" id="uX5-dF-jjX">
@@ -3620,15 +3593,14 @@
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="v0O-BW-ltd" firstAttribute="top" secondItem="iER-b8-lN7" secondAttribute="bottom" id="Csk-m7-K5Y"/>
-                                                <constraint firstItem="iER-b8-lN7" firstAttribute="top" secondItem="SR7-03-Q3B" secondAttribute="bottom" constant="25" id="Dky-yD-UHD"/>
-                                                <constraint firstItem="v0O-BW-ltd" firstAttribute="leading" secondItem="6sg-mA-Djh" secondAttribute="leading" constant="12" id="ReH-S1-CzV"/>
+                                                <constraint firstAttribute="bottom" secondItem="iER-b8-lN7" secondAttribute="bottom" constant="5" id="8WF-MT-tkD"/>
+                                                <constraint firstItem="iER-b8-lN7" firstAttribute="top" secondItem="SR7-03-Q3B" secondAttribute="bottom" constant="15" id="Dky-yD-UHD"/>
+                                                <constraint firstAttribute="trailing" secondItem="iER-b8-lN7" secondAttribute="trailing" constant="15" id="HHi-4e-QsT"/>
                                                 <constraint firstAttribute="trailing" secondItem="uX5-dF-jjX" secondAttribute="trailing" constant="20" id="aBL-8v-vge"/>
                                                 <constraint firstItem="SR7-03-Q3B" firstAttribute="top" secondItem="6sg-mA-Djh" secondAttribute="top" constant="8" id="d0X-O9-Iwz"/>
                                                 <constraint firstItem="SR7-03-Q3B" firstAttribute="leading" secondItem="6sg-mA-Djh" secondAttribute="leading" constant="12" id="eR3-nz-MHj"/>
                                                 <constraint firstItem="uX5-dF-jjX" firstAttribute="top" secondItem="6sg-mA-Djh" secondAttribute="top" constant="15" id="flH-fj-bzI"/>
                                                 <constraint firstItem="iER-b8-lN7" firstAttribute="leading" secondItem="6sg-mA-Djh" secondAttribute="leading" constant="12" id="lMy-Ef-SvF"/>
-                                                <constraint firstAttribute="bottom" secondItem="v0O-BW-ltd" secondAttribute="bottom" constant="13" id="mo1-kn-g8i"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -3640,7 +3612,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="footerTipsLb" destination="v0O-BW-ltd" id="cKk-ew-sKf"/>
+                                    <outlet property="footerTipsLb" destination="iER-b8-lN7" id="I1d-Wq-huA"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -5451,8 +5423,56 @@
                                     <outlet property="goodspriceLb" destination="Em1-Nf-HEE" id="DI5-t7-XZ7"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrderDetailRemarkCell" id="NW4-5V-Y0Z" customClass="OrderDetailCell">
+                                <rect key="frame" x="0.0" y="550.5" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NW4-5V-Y0Z" id="QlK-iU-lIR">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4HD-NE-TI8">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="买家留言：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iO9-fW-ITE">
+                                                    <rect key="frame" x="15" y="13" width="80" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="80" id="TMa-3y-hnc"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="获取中..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="APR-F3-z2f">
+                                                    <rect key="frame" x="95" y="5" width="265" height="33.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="iO9-fW-ITE" firstAttribute="centerY" secondItem="4HD-NE-TI8" secondAttribute="centerY" id="7Ea-5X-iMR"/>
+                                                <constraint firstAttribute="trailing" secondItem="APR-F3-z2f" secondAttribute="trailing" constant="15" id="9U7-2Q-DDZ"/>
+                                                <constraint firstItem="APR-F3-z2f" firstAttribute="leading" secondItem="iO9-fW-ITE" secondAttribute="trailing" id="YOg-z5-Ojo"/>
+                                                <constraint firstAttribute="bottom" secondItem="APR-F3-z2f" secondAttribute="bottom" constant="5" id="wsr-rR-wFr"/>
+                                                <constraint firstItem="APR-F3-z2f" firstAttribute="top" secondItem="4HD-NE-TI8" secondAttribute="top" constant="5" id="yI6-Jo-st9"/>
+                                                <constraint firstItem="iO9-fW-ITE" firstAttribute="leading" secondItem="4HD-NE-TI8" secondAttribute="leading" constant="15" id="zWj-4w-dNi"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="4HD-NE-TI8" firstAttribute="leading" secondItem="QlK-iU-lIR" secondAttribute="leading" id="RTS-jg-YNf"/>
+                                        <constraint firstAttribute="bottom" secondItem="4HD-NE-TI8" secondAttribute="bottom" id="bIE-0J-ZXh"/>
+                                        <constraint firstItem="4HD-NE-TI8" firstAttribute="top" secondItem="QlK-iU-lIR" secondAttribute="top" id="wxo-qK-xN0"/>
+                                        <constraint firstAttribute="trailing" secondItem="4HD-NE-TI8" secondAttribute="trailing" id="ynd-zS-lYu"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="remarkLb" destination="APR-F3-z2f" id="BmF-oA-VzJ"/>
+                                </connections>
+                            </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="OrderDetailCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrderDetailCell" rowHeight="135" id="duE-xo-5FB" customClass="OrderDetailCell">
-                                <rect key="frame" x="0.0" y="550.5" width="375" height="135"/>
+                                <rect key="frame" x="0.0" y="594.5" width="375" height="135"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="duE-xo-5FB" id="DNh-MA-gqE">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="134.5"/>

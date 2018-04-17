@@ -11,3 +11,9 @@
 @implementation PartnerCommissionModel
 
 @end
+
+
+@implementation PartnerCommissionSetModel
+
+
+@end

@@ -436,6 +436,14 @@ static NSMutableArray *ImageArr;
         if (success) {
             if ([dict[@"message"] isKindOfClass:[NSString class]] && [[dict[@"message"] lowercaseString] isEqualToString:@"ok"]) {
                 PartnerCommissionModel* partner=[PartnerCommissionModel yy_modelWithDictionary:data[@"member"]];
+                partner.set = [PartnerCommissionSetModel yy_modelWithDictionary:data[@"set"]];
+                NSString *cansettle = [NSString stringWithFormat:@"%@",data[@"cansettle"]];
+                if ([cansettle isEqualToString:@"0"]) {
+                    partner.cansettle = false;
+                }else {
+                    partner.cansettle = true;
+                }
+                
                 success(partner);
             }else{
                 if (failure) {

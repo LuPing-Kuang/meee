@@ -83,6 +83,7 @@ typedef NS_ENUM(NSInteger,MyOrderStatusType)
 // refundstate 1/0 1的话就是退款申请中
 @property (nonatomic,strong) NSString *refundstate;
 @property (nonatomic,strong) NSString *icon;
+@property (nonatomic,strong) NSString *remark;
 
 @end
 
