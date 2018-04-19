@@ -49,13 +49,13 @@
 +(NSString*)titleForLevelType:(DistributionLevelType)type{
     switch (type) {
         case DistributionLevelTypeLevel1:
-            return @"一级";
+            return @"A";
             break;
         case DistributionLevelTypeLevel2:
-            return @"二级";
+            return @"B";
             break;
         case DistributionLevelTypeLevel3:
-            return @"三级";
+            return @"C";
             break;
         default:
             break;

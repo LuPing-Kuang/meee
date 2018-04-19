@@ -511,7 +511,7 @@ static NSMutableArray *ImageArr;
     
 }
 
-//我的下线
+//我的团队
 +(void)getMyOtherPartnerCache:(BOOL)cache token:(NSString*)token level:(NSInteger)level page:(NSInteger)page pagesize:(NSInteger)pagesize success:(void(^)(MyOtherPartnerTotalModel* model))success failure:(void(^)(NSString* errorMsg))failure{
     
     NSDictionary* d=[ZZHttpTool pageParamsWithPage:page size:pagesize];

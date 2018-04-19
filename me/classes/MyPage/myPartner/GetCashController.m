@@ -434,7 +434,7 @@
         }
         
         if (self.Bank_Num.length == 0 || self.Bank_NumAgain.length == 0) {
-            [self showErrorMsg:@"请输入支付宝账号"];
+            [self showErrorMsg:@"请输入银行账号"];
             return;
         }
         
@@ -442,6 +442,17 @@
             [self showErrorMsg:@"两次输入的银行账号不一致"];
             return;
         }
+        
+        if (self.Bank_Num.length < 16 || self.Bank_Num.length > 18) {
+            [self showErrorMsg:@"银行卡号应为16到18位"];
+            return;
+        }
+        
+        if (self.Bank_NumAgain.length < 16 || self.Bank_NumAgain.length > 18) {
+            [self showErrorMsg:@"确认银行卡号应为16到18位"];
+            return;
+        }
+        
         
         [dic setValue:@"3" forKey:@"type"];
         [dic setValue:self.Bank_Account forKey:@"realname"];

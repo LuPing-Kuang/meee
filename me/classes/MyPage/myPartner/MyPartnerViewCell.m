@@ -108,7 +108,7 @@
 //我的合伙人
 - (IBAction)MyPartnerBtnClick:(UIButton *)sender {
     MyOtherPartnerPageController* pag=[[MyOtherPartnerPageController alloc]init];
-    pag.title = [NSString stringWithFormat:@"我的下线(%@)",_partnerModel.member.downcount];
+    pag.title = [NSString stringWithFormat:@"我的团队(%@)",_partnerModel.member.downcount];
     [self.viewController.navigationController pushViewController:pag animated:YES];
 }
 

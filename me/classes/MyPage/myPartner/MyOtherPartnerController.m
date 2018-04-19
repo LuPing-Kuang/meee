@@ -72,16 +72,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    if (section==0) {
-        return 1.0;
-    }else{
-        return self.dataSource.count;
-    }
+    return self.dataSource.count;
     
 }
 
@@ -96,11 +92,7 @@
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.section==0) {
-        MyOtherPartnerCell* cell=[tableView dequeueReusableCellWithIdentifier:@"MyOtherPartnerHeaderCell" forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
-    }else if (indexPath.section==1){
+    if (indexPath.section == 0){
         MyOtherPartnerCell* cell=[tableView dequeueReusableCellWithIdentifier:@"MyOtherPartnerCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.model = self.dataSource[indexPath.row];
