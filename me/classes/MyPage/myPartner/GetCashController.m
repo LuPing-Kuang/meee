@@ -443,13 +443,13 @@
             return;
         }
         
-        if (self.Bank_Num.length < 16 || self.Bank_Num.length > 18) {
-            [self showErrorMsg:@"银行卡号应为16到18位"];
+        if (self.Bank_Num.length < 16 || self.Bank_Num.length > 19) {
+            [self showErrorMsg:@"银行卡号应为16到19位"];
             return;
         }
         
-        if (self.Bank_NumAgain.length < 16 || self.Bank_NumAgain.length > 18) {
-            [self showErrorMsg:@"确认银行卡号应为16到18位"];
+        if (self.Bank_NumAgain.length < 16 || self.Bank_NumAgain.length > 19) {
+            [self showErrorMsg:@"确认银行卡号应为16到19位"];
             return;
         }
         
