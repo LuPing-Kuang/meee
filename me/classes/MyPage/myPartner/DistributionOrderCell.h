@@ -18,4 +18,6 @@
 
 @property (nonatomic, strong) DisOrder_goodsModel *goodsModel;
 
+@property (weak, nonatomic) IBOutlet UILabel *statusLb;
+
 @end

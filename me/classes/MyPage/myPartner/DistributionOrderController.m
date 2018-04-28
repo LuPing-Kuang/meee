@@ -92,6 +92,17 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.headerModel = list.buyer;
         
+        if ([list.status isEqualToString:@"0"]) {
+            cell.statusLb.text = @"待付款";
+            
+        }else if ([list.status isEqualToString:@"1"]) {
+            cell.statusLb.text = @"已付款";
+            
+        }else if ([list.status isEqualToString:@"3"]) {
+            cell.statusLb.text = @"已完成";
+            
+        }
+        
         return cell;
     }else if (indexPath.row == list.order_goods.count + 2 - 1){
         DistributionOrderCell* cell=[tableView dequeueReusableCellWithIdentifier:@"DistributionOrderCell" forIndexPath:indexPath];

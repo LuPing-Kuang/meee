@@ -3808,7 +3808,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="获取中..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8AD-n3-2yD">
-                                                    <rect key="frame" x="56.5" y="15" width="303.5" height="19.5"/>
+                                                    <rect key="frame" x="56.5" y="15" width="238.5" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -3820,16 +3820,27 @@
                                                         <constraint firstAttribute="height" constant="0.5" id="X5s-T8-DdZ"/>
                                                     </constraints>
                                                 </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="获取中..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DJr-Cn-jQY">
+                                                    <rect key="frame" x="297.5" y="15" width="62.5" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="62.5" id="VE3-Bb-NSe"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="hdc-yw-sPW" firstAttribute="leading" secondItem="1oM-XN-Yyi" secondAttribute="leading" constant="12" id="8Oa-JM-cMo"/>
+                                                <constraint firstItem="DJr-Cn-jQY" firstAttribute="centerY" secondItem="1oM-XN-Yyi" secondAttribute="centerY" id="8PW-CX-vLG"/>
                                                 <constraint firstItem="hdc-yw-sPW" firstAttribute="top" secondItem="1oM-XN-Yyi" secondAttribute="top" constant="5" id="Cb5-1K-lWl"/>
+                                                <constraint firstItem="DJr-Cn-jQY" firstAttribute="leading" secondItem="8AD-n3-2yD" secondAttribute="trailing" constant="2.5" id="HVc-RU-hSl"/>
+                                                <constraint firstAttribute="trailing" secondItem="DJr-Cn-jQY" secondAttribute="trailing" constant="15" id="MFb-Rp-TQp"/>
                                                 <constraint firstItem="lV4-Ii-8id" firstAttribute="leading" secondItem="1oM-XN-Yyi" secondAttribute="leading" id="N32-Sc-60S"/>
                                                 <constraint firstAttribute="bottom" secondItem="hdc-yw-sPW" secondAttribute="bottom" constant="5" id="QZF-GO-PVF"/>
                                                 <constraint firstAttribute="trailing" secondItem="lV4-Ii-8id" secondAttribute="trailing" id="X0k-tb-Kw6"/>
                                                 <constraint firstItem="8AD-n3-2yD" firstAttribute="leading" secondItem="hdc-yw-sPW" secondAttribute="trailing" constant="5" id="aLK-50-6hl"/>
-                                                <constraint firstAttribute="trailing" secondItem="8AD-n3-2yD" secondAttribute="trailing" constant="15" id="i53-8v-de4"/>
                                                 <constraint firstAttribute="bottom" secondItem="lV4-Ii-8id" secondAttribute="bottom" id="rkn-vC-NSt"/>
                                                 <constraint firstItem="8AD-n3-2yD" firstAttribute="centerY" secondItem="1oM-XN-Yyi" secondAttribute="centerY" id="yNz-OS-HLO"/>
                                             </constraints>
@@ -3845,6 +3856,7 @@
                                 <connections>
                                     <outlet property="buyerAvatorImageV" destination="hdc-yw-sPW" id="rLp-ac-bsm"/>
                                     <outlet property="nickNameLb" destination="8AD-n3-2yD" id="1d1-uV-7fl"/>
+                                    <outlet property="statusLb" destination="DJr-Cn-jQY" id="wuL-3c-dgG"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DistributionOrderGoodsCell" rowHeight="90" id="j4c-Ns-RjD" customClass="DistributionOrderCell">

@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *goodsCashLb;
 
 
+
 @end
 
 @implementation DistributionOrderCell
@@ -41,6 +42,8 @@
     self.orderNumLb.text = _model.ordersn;
     self.orderTimeLb.text = _model.createtime;
     self.cashLb.text = [NSString stringWithFormat:@"+%@",_model.commission];
+    
+    
 }
 
 - (void)setHeaderModel:(BuyerModel *)headerModel{

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 @class DisOrder_goodsModel;
 @class BuyerModel;
 
@@ -29,6 +30,7 @@
 @property (nonatomic, strong) NSArray *order_goods;
 //goods
 @property (nonatomic, strong) BuyerModel *buyer;
+
 
 
 @end

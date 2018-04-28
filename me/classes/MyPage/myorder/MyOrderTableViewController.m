@@ -32,6 +32,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:UserNeed_RefreshOrderStatus_Notification object:nil];
     
     [self refresh];
+    [self showLoadMoreView];
     // Do any additional setup after loading the view.
 }
 

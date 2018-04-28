@@ -19,6 +19,7 @@
     return @{@"order_goods" : [DisOrder_goodsModel class]};
 }
 
+
 @end
 
 
