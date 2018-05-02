@@ -176,7 +176,7 @@
     
     CGFloat maa=20;
     
-    if (contentOffset.y >= contentSize.height - frame.size.height -maa || contentSize.height < frame.size.height-maa)
+    if (contentOffset.y >= contentSize.height - frame.size.height -maa && contentOffset.y > 0)
     {
         if (loadMoreFooter.loading==NO&&loadMoreFooter.superview) {
             NSLog(@"should loadmore");

@@ -7,6 +7,7 @@
 //
 
 #import "GetCashDetailCell.h"
+#import "GetCashRealDetailController.h"
 
 @interface GetCashDetailCell ()
 @property (weak, nonatomic) IBOutlet UILabel *cashToLb;
@@ -59,6 +60,9 @@
 
 - (IBAction)showDetailBtnClick:(UIButton *)sender {
     
+    GetCashRealDetailController *vc = [[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"GetCashRealDetailController"];
+    vc.orderId = self.model.ID;
+    [self.viewController.navigationController pushViewController:vc animated:YES];
     
 }
 

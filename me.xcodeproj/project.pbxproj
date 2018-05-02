@@ -102,6 +102,9 @@
 		39F37F911FFF710A00781706 /* ZZHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F37F8E1FFF710A00781706 /* ZZHttpTool.m */; };
 		39F37F921FFF710A00781706 /* ZZUrlTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F37F901FFF710A00781706 /* ZZUrlTool.m */; };
 		39F37F951FFF718D00781706 /* HomePageHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F37F941FFF718D00781706 /* HomePageHttpTool.m */; };
+		3BB2E68420998BEF006CF961 /* GetCashRealDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB2E68220998BEF006CF961 /* GetCashRealDetailController.m */; };
+		3BB2E68820998F70006CF961 /* GetCashRealDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB2E68720998F70006CF961 /* GetCashRealDetailModel.m */; };
+		3BB2E68B2099965E006CF961 /* GetCashRealDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB2E68A2099965E006CF961 /* GetCashRealDetailCell.m */; };
 		5703CF45202359FE00B2D775 /* ProductionPayTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5703CF44202359FE00B2D775 /* ProductionPayTypeModel.m */; };
 		5703CF482023656B00B2D775 /* ProductOrderBillCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5703CF472023656B00B2D775 /* ProductOrderBillCell.m */; };
 		57071DA92014C3490028FF37 /* ProductScreeningView.m in Sources */ = {isa = PBXBuildFile; fileRef = 57071DA82014C3490028FF37 /* ProductScreeningView.m */; };
@@ -415,6 +418,12 @@
 		39F37F901FFF710A00781706 /* ZZUrlTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZUrlTool.m; sourceTree = "<group>"; };
 		39F37F931FFF718D00781706 /* HomePageHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageHttpTool.h; sourceTree = "<group>"; };
 		39F37F941FFF718D00781706 /* HomePageHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageHttpTool.m; sourceTree = "<group>"; };
+		3BB2E68120998BEF006CF961 /* GetCashRealDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetCashRealDetailController.h; sourceTree = "<group>"; };
+		3BB2E68220998BEF006CF961 /* GetCashRealDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetCashRealDetailController.m; sourceTree = "<group>"; };
+		3BB2E68620998F70006CF961 /* GetCashRealDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetCashRealDetailModel.h; sourceTree = "<group>"; };
+		3BB2E68720998F70006CF961 /* GetCashRealDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetCashRealDetailModel.m; sourceTree = "<group>"; };
+		3BB2E6892099965E006CF961 /* GetCashRealDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetCashRealDetailCell.h; sourceTree = "<group>"; };
+		3BB2E68A2099965E006CF961 /* GetCashRealDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetCashRealDetailCell.m; sourceTree = "<group>"; };
 		5703CF43202359FE00B2D775 /* ProductionPayTypeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductionPayTypeModel.h; sourceTree = "<group>"; };
 		5703CF44202359FE00B2D775 /* ProductionPayTypeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductionPayTypeModel.m; sourceTree = "<group>"; };
 		5703CF462023656B00B2D775 /* ProductOrderBillCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductOrderBillCell.h; sourceTree = "<group>"; };
@@ -1266,8 +1275,12 @@
 				B48CC020205CF37E00A04E96 /* GetCashController.m */,
 				57AA7B152011179300F2C63E /* GetCashDetailController.h */,
 				57AA7B162011179300F2C63E /* GetCashDetailController.m */,
+				3BB2E68120998BEF006CF961 /* GetCashRealDetailController.h */,
+				3BB2E68220998BEF006CF961 /* GetCashRealDetailController.m */,
 				57AA7B1B2011711600F2C63E /* GetCashDetailCell.h */,
 				57AA7B1C2011711700F2C63E /* GetCashDetailCell.m */,
+				3BB2E6892099965E006CF961 /* GetCashRealDetailCell.h */,
+				3BB2E68A2099965E006CF961 /* GetCashRealDetailCell.m */,
 				573D4C632012E8B600260123 /* MyOtherPartnerPageController.h */,
 				573D4C642012E8B600260123 /* MyOtherPartnerPageController.m */,
 				573D4C662012E8CE00260123 /* MyOtherPartnerController.h */,
@@ -1397,6 +1410,8 @@
 				573D4C5B2012D7A300260123 /* GetCashDetailTotalModel.m */,
 				573D4C5D2012D7CD00260123 /* GetCashDetailModel.h */,
 				573D4C5E2012D7CD00260123 /* GetCashDetailModel.m */,
+				3BB2E68620998F70006CF961 /* GetCashRealDetailModel.h */,
+				3BB2E68720998F70006CF961 /* GetCashRealDetailModel.m */,
 				573D4C6F2013056200260123 /* MyOtherPartnerTotalModel.h */,
 				573D4C702013056200260123 /* MyOtherPartnerTotalModel.m */,
 				573D4C722013070100260123 /* MyOtherPartnerModel.h */,
@@ -1729,6 +1744,7 @@
 				39F37F771FFF50A700781706 /* MyPageDataModel.m in Sources */,
 				B48CC021205CF37E00A04E96 /* GetCashController.m in Sources */,
 				3918634C2004AC5B0057C491 /* ProductionOrderModel.m in Sources */,
+				3BB2E68820998F70006CF961 /* GetCashRealDetailModel.m in Sources */,
 				398DC9BA200848100083343D /* ProductOrderBillViewController.m in Sources */,
 				57AA7B1120110A4400F2C63E /* DistributionOrderCell.m in Sources */,
 				3946D2681FF332B20074E77A /* TabbarController.m in Sources */,
@@ -1779,6 +1795,7 @@
 				B481A07A207070FC007DEA25 /* OrderDetailCell.m in Sources */,
 				39F37F631FFF1C4300781706 /* ZZSearchBar.m in Sources */,
 				57AA7ABF201030EF00F2C63E /* MyPartnerViewController.m in Sources */,
+				3BB2E68420998BEF006CF961 /* GetCashRealDetailController.m in Sources */,
 				B481A08B2070D689007DEA25 /* ApplyItemSelectView.m in Sources */,
 				3918638920074AAC0057C491 /* SelectedAllActionView.m in Sources */,
 				39BCC4AE1FFF8215008688B7 /* UserModel.m in Sources */,
@@ -1829,6 +1846,7 @@
 				39F37F8C1FFF700000781706 /* ProductAdvModel.m in Sources */,
 				3918632420020AA80057C491 /* ProductDetailWebViewController.m in Sources */,
 				57EF877B202AD64F00FF3458 /* StoresAddressView.m in Sources */,
+				3BB2E68B2099965E006CF961 /* GetCashRealDetailCell.m in Sources */,
 				57E091AB2025B3F00030C137 /* TransportMsgViewController.m in Sources */,
 				B42D1A982072795500C2739F /* ALAsset+assetType.m in Sources */,
 				397C074F2001CA340073A57A /* CartPageHttpTool.m in Sources */,

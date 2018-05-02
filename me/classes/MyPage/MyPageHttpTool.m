@@ -511,6 +511,31 @@ static NSMutableArray *ImageArr;
     
 }
 
+
+//提现详情
++ (void)getMyCashDetail:(NSString*)orderId page:(NSInteger)page pagesize:(NSInteger)pagesize success:(void(^)(NSArray<GetCashRealDetailModel*>* arr))success failure:(void(^)(NSString* errorMsg))failure{
+    NSMutableDictionary* d=[ZZHttpTool pageParamsWithPage:page size:pagesize];
+    [d setValue:[UserModel token] forKey:@"access_token"];
+    [d setValue:orderId forKey:@"id"];
+    
+    
+    NSString* str=[ZZUrlTool fullUrlWithTail:@"/app/index.php?i=1&c=entry&m=ewei_shopv2&do=api&r=commission.log.detail_list"];
+    
+    [[NetworkManager getManager] postPath:str parameters:d success_status_ok:^(NSURLSessionDataTask *task, id data) {
+        
+        NSArray *model = [GetCashRealDetailModel mj_objectArrayWithKeyValuesArray:data[@"list"]];
+        
+        if (success) {
+            success(model);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSString *errorMsg) {
+        if (failure) {
+            failure(errorMsg);
+        }
+    }];
+    
+}
+
 //我的团队
 +(void)getMyOtherPartnerCache:(BOOL)cache token:(NSString*)token level:(NSInteger)level page:(NSInteger)page pagesize:(NSInteger)pagesize success:(void(^)(MyOtherPartnerTotalModel* model))success failure:(void(^)(NSString* errorMsg))failure{
     
