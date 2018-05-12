@@ -23,6 +23,7 @@
 
 @property (nonatomic,strong) NSString *Bank_Account;
 @property (nonatomic,strong) NSString *Bank_Name;
+@property (nonatomic,strong) NSString *BankBranchMsg;
 @property (nonatomic,strong) NSString *Bank_Num;
 @property (nonatomic,strong) NSString *Bank_NumAgain;
 
@@ -100,7 +101,7 @@
             return 0;
         }else{
             if (self.selectSection == 3) {
-                return 5.0;
+                return 6.0;
             }else{
                 return 1.0;
             }
@@ -267,6 +268,20 @@
                 
             }else if (indexPath.row == 3){
                 GetCashCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GetCashCellSectionCell"];
+                cell.itemNameLb.text = @"支行信息";
+                cell.itemTf.placeholder = @"输入支行信息（没有可以不填）";
+                cell.itemTf.userInteractionEnabled = YES;
+                cell.rightArrow.hidden = YES;
+                MJWeakSelf;
+                cell.textChangeBlock = ^(NSString *text) {
+                    weakSelf.BankBranchMsg = text;
+                };
+                
+                cell.itemTf.text = self.BankBranchMsg;
+                return cell;
+                
+            }else if (indexPath.row == 4){
+                GetCashCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GetCashCellSectionCell"];
                 cell.itemNameLb.text = @"银行卡号";
                 cell.itemTf.placeholder = @"请输入银行卡号";
                 cell.itemTf.userInteractionEnabled = YES;
@@ -279,7 +294,7 @@
                 cell.itemTf.text = self.Bank_Num;
                 return cell;
                 
-            }else if (indexPath.row == 4){
+            }else if (indexPath.row == 5){
                 GetCashCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GetCashCellSectionCell"];
                 cell.itemNameLb.text = @"确认卡号";
                 cell.itemTf.placeholder = @"请确认卡号";
@@ -456,9 +471,11 @@
         
         [dic setValue:@"3" forKey:@"type"];
         [dic setValue:self.Bank_Account forKey:@"realname"];
+        [dic setValue:self.BankBranchMsg forKey:@"bankbranch"];
         [dic setValue:self.Bank_Name forKey:@"bankname"];
         [dic setValue:self.Bank_Num forKey:@"bankcard"];
         [dic setValue:self.Bank_NumAgain forKey:@"bankcard1"];
+        
         
     }
     
