@@ -251,6 +251,7 @@
         
         if (indexPath.row == 0) {
             GetCashCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GetCashCellSection"];
+            cell.iconImageV.image = [UIImage imageNamed:@"BankCard"];
             cell.getCashMsgLb.text = @"提现到银行卡";
             cell.selectBtn.tag = 4;
             MJWeakSelf;
@@ -262,7 +263,7 @@
             }else{
                 cell.selectBtn.selected = NO;
             }
-            [cell hideBank];
+            [cell showBank];
             return cell;
         }else{
             if (indexPath.row == 1) {

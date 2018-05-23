@@ -40,6 +40,8 @@ static NSString *const kbaiduNavAppKey = @"EQ82t7k8znhu5wxxwNqrCciC48bvNZgZ";
 //上传图片拼接路径
 static NSString *const uploadImageUrl = @"http://ewei.bangju.com/attachment/";
 
+static NSString *const OrderDetailImageUrl = @"http://p6yt8vomw.bkt.clouddn.com/";
+
 
 
 

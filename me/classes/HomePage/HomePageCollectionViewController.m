@@ -290,7 +290,7 @@
          */
         
         BaseWebViewController *vc = [[BaseWebViewController alloc]initWithUrl:[NSURL URLWithString:kNewUrl]];
-        vc.title = model.title;
+        vc.title = @"新闻";
         [self.navigationController pushViewController:vc animated:YES];
         
         

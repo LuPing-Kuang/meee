@@ -56,7 +56,7 @@
         id obj = self.goodModel.diyformdata[fieldModel.diy_type];
         if ([obj isKindOfClass:[NSArray class]]) {
             NSArray *imageArr = self.goodModel.diyformdata[fieldModel.diy_type];
-            [cell.itemImageV setImageUrl:[NSString stringWithFormat:@"%@%@",uploadImageUrl,imageArr.firstObject]];
+            [cell.itemImageV setImageUrl:[NSString stringWithFormat:@"%@%@",OrderDetailImageUrl,imageArr.firstObject]];
         }
         
     }else {

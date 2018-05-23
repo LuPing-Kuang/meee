@@ -168,6 +168,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor whiteColor];
+    [self setupSubViews];
     
     loadingIndicator=[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     loadingIndicator.center=CGPointMake(self.view.center.x, 64);
@@ -253,19 +254,44 @@
 {
     [loadingIndicator startAnimating];
 }
-//
+
 -(void)webViewDidFinishLoad:(UIWebView *)webView
 {
-//    self.ios8WebView.hidden=NO;
     [loadingIndicator stopAnimating];
-
-//    NSString* netitle = [self.ios8WebView stringByEvaluatingJavaScriptFromString:@"document.title"];
-//    if (netitle.length>0) {
-//        self.title=netitle;
-//    }
-
-//    NSLog(@"%@",[self.ios8WebView stringByEvaluatingJavaScriptFromString:@"document.documentElement.innerHTML"]);
 }
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    
+    return YES;
+}
+
+
+- (void)setupSubViews {
+    UIImage *leftButtonImg = [UIImage imageNamed:@"back"];
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backBtn setImage:leftButtonImg forState:UIControlStateNormal];
+    backBtn.frame = CGRectMake(0,0,44,44);
+    backBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 44-leftButtonImg.size.width);
+    [backBtn addTarget:self action:@selector(naviBackAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *naviBack = [[UIBarButtonItem alloc]initWithCustomView:backBtn];
+    
+    self.navigationItem.leftBarButtonItem = naviBack;
+}
+
+
+- (void)naviBackAction{
+    
+    if (self.ios8WebView.canGoBack) {
+        [self.ios8WebView goBack];
+    }else {
+        [self.navigationController popViewControllerAnimated:true];
+    }
+    
+}
+
+
+
 
 
 - (void)queryPayResult{
