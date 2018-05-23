@@ -98,6 +98,9 @@
         }else if ([list.status isEqualToString:@"1"]) {
             cell.statusLb.text = @"已付款";
             
+        }else if ([list.status isEqualToString:@"2"]) {
+            cell.statusLb.text = @"已发货";
+            
         }else if ([list.status isEqualToString:@"3"]) {
             cell.statusLb.text = @"已完成";
             

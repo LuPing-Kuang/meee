@@ -96,6 +96,9 @@
 #define BadNetworkDescription @"网络不通畅"
 #define AskToLoginDescription @"需要登录"
 #define kMapStoreUrl @"https://www.dituwuyou.com/map/viewer?mid=F7668_b3QZvZmMaGiUAmIw&from=singlemessage&isappinstalled=0"
+#define kEducationUrl @"http://www.mesd.cc/app/index.php?i=1&c=home&t=1&mid=4241"
+#define kNewUrl @"http://ewei.bangju.com/app/index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=article.list"
+
 #define kMaxPhoneLength 12
 #define kMaxCodeLength   6
 

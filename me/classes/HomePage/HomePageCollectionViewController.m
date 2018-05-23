@@ -277,15 +277,22 @@
     
     if ([action isEqualToString:@"order"]) {
         
-        if ([UserModel token].length == 0) {
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:UserNeed_Login_Notification object:@{@"needMsg":@"0"}];
-            return;
-        }
+        /*
+         if ([UserModel token].length == 0) {
+         
+         [[NSNotificationCenter defaultCenter] postNotificationName:UserNeed_Login_Notification object:@{@"needMsg":@"0"}];
+         return;
+         }
+         
+         MyOrdersPagerViewController* pag=[[MyOrdersPagerViewController alloc]init];
+         pag.originalPageIndex=MyOrderTypeNotSent ;
+         [self.navigationController pushViewController:pag animated:YES];
+         */
         
-        MyOrdersPagerViewController* pag=[[MyOrdersPagerViewController alloc]init];
-        pag.originalPageIndex=MyOrderTypeNotSent ;
-        [self.navigationController pushViewController:pag animated:YES];
+        BaseWebViewController *vc = [[BaseWebViewController alloc]initWithUrl:[NSURL URLWithString:kNewUrl]];
+        vc.title = model.title;
+        [self.navigationController pushViewController:vc animated:YES];
+        
         
     }else if ([action isEqualToString:@"member.favorite"]){
         
@@ -301,17 +308,15 @@
         
     }else if ([action isEqualToString:@"goods"]){
         
-        /*
-         StoresMapController *vc = [[StoresMapController alloc]init];
-         [self.navigationController pushViewController:vc animated:YES];
-         */
-        
         BaseWebViewController *vc = [[BaseWebViewController alloc]initWithUrl:[NSURL URLWithString:kMapStoreUrl]];
-        vc.title = @"在线地图";
+        vc.title = model.title;
         [self.navigationController pushViewController:vc animated:YES];
         
     }else{
         
+        BaseWebViewController *vc = [[BaseWebViewController alloc]initWithUrl:[NSURL URLWithString:kEducationUrl]];
+        vc.title = model.title;
+        [self.navigationController pushViewController:vc animated:YES];
     }
 
 

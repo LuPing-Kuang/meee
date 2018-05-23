@@ -275,16 +275,37 @@
         OrderGoodDetailModel *good = self.detailModel.goods[indexPath.row];
         
         NSInteger count = 0;
+        CGFloat sumHeight = 0;
         if (good.diyformfields.count > 0) {
             for (NSInteger i = 0; i<good.diyformfields.count; i++) {
                 OrderGoodFieldModel *m = good.diyformfields[i];
                 if ([m.data_type isEqualToString:@"5"]) {
                     count = count + 1;
+                }else {
+                    
+                    id obj = good.diyformdata[m.diy_type];
+                    NSString *lastStr;
+                    if ([obj isKindOfClass:[NSString class]]) {
+                        lastStr = (NSString*)obj;
+                    }else if ([obj isKindOfClass:[NSArray class]]) {
+                        NSArray *arrStr = good.diyformdata[m.diy_type];
+                        lastStr = [arrStr componentsJoinedByString:@","];
+                    }
+
+                    
+                    CGFloat height = [lastStr boundingRectWithSize:CGSizeMake(UIScreenWidth - 250, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil].size.height;
+
+                    if (height < 40) {
+                        height = 40;
+                    }
+                    sumHeight = height + sumHeight;
+                    
                 }
             }
         }
         
-        CGFloat height = 200 + 40 * (good.diyformfields.count - count) + count * 50;
+        
+        CGFloat height = 200 + sumHeight + count * 50;
         
         return height;
         

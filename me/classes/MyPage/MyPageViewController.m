@@ -192,7 +192,9 @@
     }
     else if([link isEqualToString:@"order"])
     {
+
         [self pushOrderViewControllerWithShowingOrderType:MyOrderTypeAll];
+        
     }
     else if([link isEqualToString:@"commission"])
     {
@@ -282,11 +284,13 @@
     NSInteger type=model.type;
     if ([link isEqualToString:@"order"]) {
         if (type==MyOrderTypeExchanging) {
+            
             MyOrderTableViewController* exOrderVC=[[UIStoryboard storyboardWithName:@"MyPage" bundle:nil]instantiateViewControllerWithIdentifier:@"MyOrderTableViewController"];
             MyOrderType orderType=type;
             exOrderVC.title=[MyOrderModel titleForOrderType:orderType];
             exOrderVC.orderType=orderType;
             [self.navigationController pushViewController:exOrderVC animated:YES];
+            
             return;
         }
         [self pushOrderViewControllerWithShowingOrderType:type];
@@ -302,9 +306,12 @@
 
 -(void)pushOrderViewControllerWithShowingOrderType:(MyOrderType)showingType
 {
+    
     MyOrdersPagerViewController* pag=[[MyOrdersPagerViewController alloc]init];
     pag.originalPageIndex=[MyOrderModel pageIndexForOrderType:showingType];
     [self.navigationController pushViewController:pag animated:YES];
+    
+    
 }
 
 

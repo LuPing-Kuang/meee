@@ -89,10 +89,29 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     OrderGoodFieldModel *fieldModel = self.goodModel.diyformfields[indexPath.row];
-    if ([fieldModel.data_type isEqualToString:@"5"]) {
+    if ([fieldModel.data_type isEqualToString:@"5"]) {  //相片
         return 50;
     }else {
-        return 40;
+        
+        
+        id obj = self.goodModel.diyformdata[fieldModel.diy_type];
+        NSString *lastStr;
+        if ([obj isKindOfClass:[NSString class]]) {
+            lastStr = (NSString*)obj;
+        }else if ([obj isKindOfClass:[NSArray class]]) {
+            NSArray *arrStr = self.goodModel.diyformdata[fieldModel.diy_type];
+            lastStr = [arrStr componentsJoinedByString:@","];
+        }
+        
+        
+        CGFloat height = [lastStr boundingRectWithSize:CGSizeMake(UIScreenWidth - 250, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil].size.height;
+        
+        if (height < 40) {
+            height = 40;
+        }
+        
+        
+        return height;
     }
     
 }

@@ -27,9 +27,12 @@
 @property (nonatomic,strong) NSString *Bank_Num;
 @property (nonatomic,strong) NSString *Bank_NumAgain;
 
-@property (nonatomic,strong) PayTypeModel *aliPayModel;
-@property (nonatomic,strong) PayTypeModel *weixinPayModel;
-@property (nonatomic,strong) PayTypeModel *bankModel;
+@property (nonatomic,strong) PayTypeModel *balanceModel;    //余额支付
+@property (nonatomic,strong) PayTypeModel *aliPayModel;     //支付宝支付
+@property (nonatomic,strong) PayTypeModel *weixinPayModel;  //微信支付
+@property (nonatomic,strong) PayTypeModel *bankModel;       //银行支付
+
+
 
 
 @end
@@ -69,7 +72,7 @@
         return 0;
     }
     
-    return 6;
+    return 7;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -79,28 +82,35 @@
     }else if (section == 1){
         return 1.0;
     }else if (section == 2){
+        if (!self.balanceModel) {
+            return 0;
+        }else{
+            return 1.0;
+        }
+        
+    }else if (section == 3){
         if (!self.weixinPayModel) {
             return 0;
         }else{
            return 1.0;
         }
         
-    }else if (section == 3){
+    }else if (section == 4){
         if (!self.aliPayModel) {
             return 0;
         }else{
-            if (self.selectSection == 2) {
+            if (self.selectSection == 3) {
                 return 4.0;
             }else{
                 return 1.0;
             }
         }
         
-    }else if (section == 4){
+    }else if (section == 5){
         if (!self.bankModel) {
             return 0;
         }else{
-            if (self.selectSection == 3) {
+            if (self.selectSection == 4) {
                 return 6.0;
             }else{
                 return 1.0;
@@ -137,8 +147,8 @@
         return cell;
     }else if (indexPath.section == 2){
         GetCashCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GetCashCellSection"];
-        cell.iconImageV.image = [UIImage imageNamed:@"wechat"];
-        cell.getCashMsgLb.text = @"提现到微信钱包";
+        cell.iconImageV.image = [UIImage imageNamed:@"wallet"];
+        cell.getCashMsgLb.text = @"提现到余额";
         cell.selectBtn.tag = 1;
         if (self.selectSection == 1) {
             cell.selectBtn.selected = YES;
@@ -153,18 +163,35 @@
         return cell;
         
     }else if (indexPath.section == 3){
+        GetCashCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GetCashCellSection"];
+        cell.iconImageV.image = [UIImage imageNamed:@"wechat"];
+        cell.getCashMsgLb.text = @"提现到微信钱包";
+        cell.selectBtn.tag = 2;
+        if (self.selectSection == 2) {
+            cell.selectBtn.selected = YES;
+        }else{
+            cell.selectBtn.selected = NO;
+        }
+        MJWeakSelf;
+        cell.selectBlock = ^(NSInteger index) {
+            [weakSelf selectPayMethod:index];
+        };
+        [cell showBank];
+        return cell;
+        
+    }else if (indexPath.section == 4){
         
         if (indexPath.row == 0) {
             GetCashCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GetCashCellSection"];
             cell.iconImageV.image = [UIImage imageNamed:@"支付宝"];
             cell.getCashMsgLb.text = @"提现到支付宝";
-            cell.selectBtn.tag = 2;
+            cell.selectBtn.tag = 3;
             MJWeakSelf;
             cell.selectBlock = ^(NSInteger index) {
                 [weakSelf selectPayMethod:index];
             };
             
-            if (self.selectSection == 2) {
+            if (self.selectSection == 3) {
                 cell.selectBtn.selected = YES;
             }else{
                 cell.selectBtn.selected = NO;
@@ -220,17 +247,17 @@
         }
         
         
-    }else if (indexPath.section == 4){
+    }else if (indexPath.section == 5){
         
         if (indexPath.row == 0) {
             GetCashCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GetCashCellSection"];
             cell.getCashMsgLb.text = @"提现到银行卡";
-            cell.selectBtn.tag = 3;
+            cell.selectBtn.tag = 4;
             MJWeakSelf;
             cell.selectBlock = ^(NSInteger index) {
                 [weakSelf selectPayMethod:index];
             };
-            if (self.selectSection == 3) {
+            if (self.selectSection == 4) {
                 cell.selectBtn.selected = YES;
             }else{
                 cell.selectBtn.selected = NO;
@@ -269,7 +296,7 @@
             }else if (indexPath.row == 3){
                 GetCashCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GetCashCellSectionCell"];
                 cell.itemNameLb.text = @"支行信息";
-                cell.itemTf.placeholder = @"输入支行信息（没有可以不填）";
+                cell.itemTf.placeholder = @"输入支行信息";
                 cell.itemTf.userInteractionEnabled = YES;
                 cell.rightArrow.hidden = YES;
                 MJWeakSelf;
@@ -312,7 +339,7 @@
         }
         
         
-    }else if (indexPath.section == 5){
+    }else if (indexPath.section == 6){
         
         GetCashCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GetCashCellFooter"];
         MJWeakSelf;
@@ -345,12 +372,21 @@
             for (NSInteger i=0; i<allkeys.count; i++) {
                 NSString *key = [NSString stringWithFormat:@"%@",allkeys[i]];
                 
+                if ([key isEqualToString:@"0"]) {
+                    
+                    PayTypeModel *balanceModel = [PayTypeModel mj_objectWithKeyValues:dic[key]];
+                    weakSelf.balanceModel = balanceModel;
+                    if ([balanceModel.checked isEqualToString:@"1"]) {
+                        weakSelf.selectSection = 1;
+                    }
+                }
+                
                 if ([key isEqualToString:@"1"]) {
                     
                     PayTypeModel *weixinmodel = [PayTypeModel mj_objectWithKeyValues:dic[key]];
                     weakSelf.weixinPayModel = weixinmodel;
                     if ([weixinmodel.checked isEqualToString:@"1"]) {
-                        weakSelf.selectSection = 1;
+                        weakSelf.selectSection = 2;
                     }
                 }
                 
@@ -359,7 +395,7 @@
                     PayTypeModel *alimodel = [PayTypeModel mj_objectWithKeyValues:dic[key]];
                     weakSelf.aliPayModel = alimodel;
                     if ([alimodel.checked isEqualToString:@"1"]) {
-                        weakSelf.selectSection = 2;
+                        weakSelf.selectSection = 3;
                     }
                     
                     weakSelf.AliPay_Name = weakSelf.aliPayModel.realname;
@@ -371,7 +407,7 @@
                     PayTypeModel *bankmodel = [PayTypeModel mj_objectWithKeyValues:dic[key]];
                     weakSelf.bankModel = bankmodel;
                     if ([bankmodel.checked isEqualToString:@"1"]) {
-                        weakSelf.selectSection = 3;
+                        weakSelf.selectSection = 4;
                     }
                     
                     weakSelf.Bank_Account = weakSelf.bankModel.realname;
@@ -411,10 +447,15 @@
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     
-    if (self.selectSection == 1) { //微信支付
+    if (self.selectSection == 1) { //余额支付
+        
+        [dic setValue:@"0" forKey:@"type"];
+        
+    }else if (self.selectSection == 2){ //微信支付
+        
         [dic setValue:@"1" forKey:@"type"];
         
-    }else if (self.selectSection == 2){ //支付宝支付
+    }else if (self.selectSection == 3){ //支付宝支付
         
         if (self.AliPay_Name.length == 0) {
             [self showErrorMsg:@"请输入姓名"];
@@ -436,7 +477,7 @@
         [dic setValue:self.AliPay_Account forKey:@"alipay"];
         [dic setValue:self.AliPay_AccountAgain forKey:@"alipay1"];
         
-    }else if (self.selectSection == 3){ //银行卡支付
+    }else if (self.selectSection == 4){ //银行卡支付
         
         if (self.Bank_Account.length == 0) {
             [self showErrorMsg:@"请输入姓名"];
@@ -445,6 +486,11 @@
         
         if (self.Bank_Name.length == 0) {
             [self showErrorMsg:@"请输入银行名称"];
+            return;
+        }
+        
+        if (self.BankBranchMsg.length == 0) {
+            [self showErrorMsg:@"您还没有输入支行信息"];
             return;
         }
         
