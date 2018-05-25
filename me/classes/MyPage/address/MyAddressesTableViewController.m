@@ -125,7 +125,7 @@
         if (adr.length==0) {
             adr=@"";
         }
-        cell.address.text=[NSString stringWithFormat:@"%@%@",dis,adr];
+        cell.address.text=[NSString stringWithFormat:@"%@%@%@%@",pro,cit,dis,adr];
         return cell;
     }
     else if(indexPath.row==1)

@@ -33,7 +33,7 @@
     if (self.addressModel) {
         self.realname.text = _addressModel.realname;
         self.mobile.text = _addressModel.mobile;
-//        self.area.text = _addressModel.area;
+        self.area.text = _addressModel.area;
         self.detail.text = _addressModel.address;
         
         if (_addressModel.isdefault.integerValue==1) {
@@ -89,7 +89,7 @@
     CitySelectionPicker* picke=[CitySelectionPicker defaultCityPickerWithSections:3];
     [PickerShadowContainer showPickerContainerWithView:picke title:@"请选择地区" completion:^{
         proCityDisModel=picke.selectedCity;
-        self.area.text=[NSString stringWithFormat:@"%@%@%@",proCityDisModel.province.name,proCityDisModel.city.name,proCityDisModel.district.name];
+        self.area.text=proCityDisModel.district.name;
     }];
 }
 
